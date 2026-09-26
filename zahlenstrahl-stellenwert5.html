@@ -6,544 +6,439 @@
 <title>LernWelt – Zahlenstrahl und Stellenwert</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    text-align: center;
-}
-
-header {
-    background: #2563eb;
-    color: white;
-    padding: 30px 20px;
-}
-
-.container {
-    max-width: 750px;
-    margin: 30px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 15px;
-}
-
-.explanation {
-    background: #eff6ff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.visual {
-    background: #f8fafc;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 20px 0;
-    font-size: 22px;
-}
-
-.numberline {
-    position: relative;
-    height: 90px;
-    margin: 20px;
-}
-
-.line {
-    position: absolute;
-    top: 35px;
-    left: 5%;
-    right: 5%;
-    height: 4px;
-    background: #333;
-}
-
-.tick {
-    position: absolute;
-    top: 25px;
-    width: 4px;
-    height: 25px;
-    background: #333;
-    transform: translateX(-50%);
-}
-
-.num {
-    position: absolute;
-    top: 52px;
-    transform: translateX(-50%);
-    font-size: 15px;
-}
-
-.place {
-    display: inline-block;
-    padding: 15px;
-    margin: 5px;
-    border-radius: 10px;
-    background: #dbeafe;
-    min-width: 75px;
-}
-
-input {
-    width: 80%;
-    padding: 14px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 15px;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 13px 25px;
-    margin: 8px;
-    border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-#result {
-    margin: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#solution {
-    display: none;
-    background: #f1f5f9;
-    padding: 18px;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: left;
-}
-
-#nextButton {
-    display: none;
-}
-
-.back {
-    background: #64748b;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;text-align:center}
+header{background:#2563eb;color:white;padding:30px 20px}
+.container{max-width:800px;margin:30px auto;padding:25px;background:white;border-radius:18px}
+.language{margin-bottom:20px}
+.explanation{background:#eff6ff;padding:20px;border-radius:12px;text-align:left}
+.visual{background:#f8fafc;padding:25px;border-radius:12px;margin:20px 0;font-size:25px;font-weight:bold}
+input{width:80%;padding:14px;font-size:18px;border:1px solid #ccc;border-radius:8px;margin:15px;box-sizing:border-box}
+button{padding:13px 25px;margin:8px;border:none;border-radius:9px;background:#2563eb;color:white;font-size:16px;cursor:pointer}
+button:hover{background:#1d4ed8}
+#result{margin:20px;font-size:18px;font-weight:bold}
+#solution{display:none;background:#f1f5f9;padding:18px;border-radius:10px;margin-top:15px;text-align:left}
+#nextButton{display:none}
+.back{background:#64748b}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+<h1>📚 LernWelt</h1>
+<p id="subtitle"></p>
 </header>
 
 <div class="container">
 
-<h2>🔢 Zahlenstrahl und Stellenwert</h2>
+<div class="language">
+<p id="languageText"></p>
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+</div>
+
+<h2 id="title"></h2>
 
 <div class="explanation">
-<h3>📖 Kurze Erklärung</h3>
-
-<p>
-Auf einem <strong>Zahlenstrahl</strong> stehen Zahlen in der richtigen Reihenfolge.
-</p>
-
-<p>
-Je weiter rechts eine Zahl steht, desto größer ist sie.
-</p>
-
-<p>
-Bei einer Zahl hat jede Stelle einen bestimmten Wert:
-<strong>Einer, Zehner, Hunderter, Tausender</strong>.
-</p>
-
-<p>
-Beispiel: Bei <strong>3.482</strong> ist 3 der Tausender,
-4 der Hunderter, 8 der Zehner und 2 der Einer.
-</p>
+<h3 id="explanationTitle"></h3>
+<p id="explanationText"></p>
 </div>
 
 <p id="progress"></p>
-
 <h3 id="question"></h3>
 
 <div id="visual" class="visual"></div>
 
-<input id="answer" type="text" placeholder="Deine Antwort">
+<input id="answer" type="text">
 
 <br>
 
-<button onclick="checkAnswer()">Antwort prüfen</button>
+<button onclick="checkAnswer()" id="checkButton"></button>
 
 <div id="result"></div>
 
 <div id="solution">
-<h3>💡 Lösung</h3>
+<h3 id="solutionTitle"></h3>
 <p id="solutionText"></p>
 </div>
 
-<button id="nextButton" onclick="nextQuestion()">
-➡️ Nächste Aufgabe
-</button>
+<button id="nextButton" onclick="nextQuestion()"></button>
 
 <br>
 
-<button class="back" onclick="window.location.href='mathe5.html'">
-← Zurück zu den Mathe-Themen
-</button>
+<button class="back" onclick="location.href='mathe5.html'" id="backButton"></button>
 
 </div>
 
 <script>
 
-const questions = [
+const translations={
+
+de:{
+subtitle:"Mathematik – Klasse 5",
+language:"🌐 Sprache:",
+title:"🔢 Zahlenstrahl und Stellenwert",
+explanationTitle:"📖 Kurze Erklärung",
+explanationText:"Auf dem Zahlenstrahl stehen Zahlen in einer bestimmten Reihenfolge. Beim Stellenwert zeigt jede Ziffer, welchen Wert sie in einer Zahl hat.",
+check:"Antwort prüfen",
+solution:"💡 Lösung",
+next:"➡️ Nächste Aufgabe",
+back:"← Zurück zu den Mathe-Themen",
+placeholder:"Deine Antwort",
+correct:"✅ Richtig! Sehr gut! 🎉",
+wrong:"❌ Leider falsch.",
+finished:"🎉 Du hast alle 30 Aufgaben geschafft!",
+done:"Fertig! 🏆",
+great:"Super gemacht! 🎓"
+},
+
+en:{
+subtitle:"Mathematics – Grade 5",
+language:"🌐 Language:",
+title:"🔢 Number Line and Place Value",
+explanationTitle:"📖 Short explanation",
+explanationText:"Numbers on a number line are arranged in order. Place value tells us the value of each digit in a number.",
+check:"Check answer",
+solution:"💡 Solution",
+next:"➡️ Next question",
+back:"← Back to math topics",
+placeholder:"Your answer",
+correct:"✅ Correct! Very good! 🎉",
+wrong:"❌ Unfortunately, that's wrong.",
+finished:"🎉 You completed all 30 questions!",
+done:"Finished! 🏆",
+great:"Well done! 🎓"
+},
+
+ps:{
+subtitle:"ریاضي – پنځم ټولګی",
+language:"🌐 ژبه:",
+title:"🔢 د عددونو کرښه او د عدد ځای",
+explanationTitle:"📖 لنډه تشریح",
+explanationText:"په د عددونو کرښه کې شمېرې په ترتیب سره ځای پر ځای کېږي. د عدد ځای ښيي چې هره شمېره په یو عدد کې څومره ارزښت لري.",
+check:"ځواب وګورئ",
+solution:"💡 حل",
+next:"➡️ بله پوښتنه",
+back:"← د ریاضي موضوعاتو ته بېرته",
+placeholder:"خپل ځواب ولیکئ",
+correct:"✅ سم دی! ډېر ښه! 🎉",
+wrong:"❌ له بده مرغه غلط دی.",
+finished:"🎉 ټولې ۳۰ پوښتنې دې بشپړې کړې!",
+done:"بشپړ شو! 🏆",
+great:"ډېر ښه! 🎓"
+}
+
+};
+
+const questions=[
 
 {
-q: "Welche Zahl steht zwischen 2 und 4?",
-visual: `
-<div class="numberline">
-<div class="line"></div>
-<div class="tick" style="left:10%"></div>
-<div class="num" style="left:10%">2</div>
-<div class="tick" style="left:50%"></div>
-<div class="num" style="left:50%">?</div>
-<div class="tick" style="left:90%"></div>
-<div class="num" style="left:90%">4</div>
-</div>
-`,
-answer: "3",
-solution: "Zwischen 2 und 4 steht die 3."
+q:{de:"Welche Zahl steht zwischen 2 und 4?",en:"Which number is between 2 and 4?",ps:"د ۲ او ۴ ترمنځ کومه شمېره ده؟"},
+visual:"2️⃣ —— ❓ —— 4️⃣",
+answer:"3",
+s:{de:"Die Zahl zwischen 2 und 4 ist 3.",en:"The number between 2 and 4 is 3.",ps:"د ۲ او ۴ ترمنځ ۳ ده."}
 },
 
 {
-q: "Welche Zahl kommt nach 9?",
-visual: "8 → 9 → ❓ → 11",
-answer: "10",
-solution: "Nach 9 kommt 10."
+q:{de:"Welche Zahl steht zwischen 6 und 8?",en:"Which number is between 6 and 8?",ps:"د ۶ او ۸ ترمنځ کومه شمېره ده؟"},
+visual:"6️⃣ —— ❓ —— 8️⃣",
+answer:"7",
+s:{de:"Die Zahl zwischen 6 und 8 ist 7.",en:"The number between 6 and 8 is 7.",ps:"د ۶ او ۸ ترمنځ ۷ ده."}
 },
 
 {
-q: "Welche Zahl kommt vor 20?",
-visual: "18 → 19 → ❓ → 21",
-answer: "19",
-solution: "Vor 20 kommt 19."
+q:{de:"Welche Zahl kommt nach 20?",en:"Which number comes after 20?",ps:"له ۲۰ څخه وروسته کومه شمېره راځي؟"},
+visual:"20️⃣ → ❓",
+answer:"21",
+s:{de:"Nach 20 kommt 21.",en:"21 comes after 20.",ps:"له ۲۰ څخه وروسته ۲۱ راځي."}
 },
 
 {
-q: "Welche Zahl fehlt?",
-visual: "10 → 20 → ❓ → 40 → 50",
-answer: "30",
-solution: "Die Zahlen steigen jeweils um 10. Deshalb fehlt 30."
+q:{de:"Welche Zahl kommt vor 30?",en:"Which number comes before 30?",ps:"له ۳۰ څخه مخکې کومه شمېره راځي؟"},
+visual:"❓ → 30️⃣",
+answer:"29",
+s:{de:"Vor 30 kommt 29.",en:"29 comes before 30.",ps:"له ۳۰ څخه مخکې ۲۹ راځي."}
 },
 
 {
-q: "Welche Zahl fehlt?",
-visual: "100 → 200 → ❓ → 400 → 500",
-answer: "300",
-solution: "Die Zahlen steigen jeweils um 100. Deshalb fehlt 300."
+q:{de:"Welche Zahl ist größer: 25 oder 35?",en:"Which number is greater: 25 or 35?",ps:"کومه شمېره لویه ده: ۲۵ که ۳۵؟"},
+visual:"25️⃣ < 35️⃣",
+answer:"35",
+s:{de:"35 ist größer als 25.",en:"35 is greater than 25.",ps:"۳۵ له ۲۵ څخه لویه ده."}
 },
 
 {
-q: "Welche Zahl steht auf dem Zahlenstrahl?",
-visual: `
-<div class="numberline">
-<div class="line"></div>
-<div class="tick" style="left:10%"></div>
-<div class="num" style="left:10%">0</div>
-<div class="tick" style="left:30%"></div>
-<div class="num" style="left:30%">10</div>
-<div class="tick" style="left:50%"></div>
-<div class="num" style="left:50%">?</div>
-<div class="tick" style="left:70%"></div>
-<div class="num" style="left:70%">30</div>
-<div class="tick" style="left:90%"></div>
-<div class="num" style="left:90%">40</div>
-</div>
-`,
-answer: "20",
-solution: "Die Zahlen steigen um 10. Deshalb steht bei ? die 20."
+q:{de:"Welche Zahl ist kleiner: 42 oder 24?",en:"Which number is smaller: 42 or 24?",ps:"کومه شمېره کوچنۍ ده: ۴۲ که ۲۴؟"},
+visual:"42️⃣ > 24️⃣",
+answer:"24",
+s:{de:"24 ist kleiner als 42.",en:"24 is smaller than 42.",ps:"۲۴ له ۴۲ څخه کوچنۍ ده."}
 },
 
 {
-q: "Welche Zahl ist größer: 35 oder 53?",
-visual: "35 🆚 53",
-answer: "53",
-solution: "53 ist größer als 35."
+q:{de:"Wie viele Zehner hat die Zahl 34?",en:"How many tens are in 34?",ps:"په ۳۴ کې څو لسګونه دي؟"},
+visual:"34 = 3️⃣ Zehner + 4️⃣ Einer",
+answer:"3",
+s:{de:"34 hat 3 Zehner.",en:"34 has 3 tens.",ps:"۳۴ درې لسګونه لري."}
 },
 
 {
-q: "Welche Zahl ist kleiner: 72 oder 27?",
-visual: "72 🆚 27",
-answer: "27",
-solution: "27 ist kleiner als 72."
+q:{de:"Wie viele Einer hat die Zahl 34?",en:"How many ones are in 34?",ps:"په ۳۴ کې څو یوګونه دي؟"},
+visual:"34 = 30 + ❓",
+answer:"4",
+s:{de:"34 hat 4 Einer.",en:"34 has 4 ones.",ps:"۳۴ څلور یوګونه لري."}
 },
 
 {
-q: "Wie viele Einer hat 348?",
-visual: `
-<div class="place">Hunderter<br><strong>3</strong></div>
-<div class="place">Zehner<br><strong>4</strong></div>
-<div class="place">Einer<br><strong>8</strong></div>
-`,
-answer: "8",
-solution: "Die Einerstelle von 348 ist 8."
+q:{de:"Welchen Wert hat die 5 in 52?",en:"What is the value of 5 in 52?",ps:"په ۵۲ کې د ۵ ارزښت څو دی؟"},
+visual:"5️⃣2️⃣",
+answer:"50",
+s:{de:"Die 5 steht an der Zehnerstelle und ist 50 wert.",en:"The 5 is in the tens place and has a value of 50.",ps:"۵ د لسګونو په ځای کې دی او ارزښت یې ۵۰ دی."}
 },
 
 {
-q: "Wie viele Zehner hat 572?",
-visual: `
-<div class="place">Hunderter<br><strong>5</strong></div>
-<div class="place">Zehner<br><strong>7</strong></div>
-<div class="place">Einer<br><strong>2</strong></div>
-`,
-answer: "7",
-solution: "Die Zehnerstelle von 572 ist 7."
+q:{de:"Welchen Wert hat die 2 in 52?",en:"What is the value of 2 in 52?",ps:"په ۵۲ کې د ۲ ارزښت څو دی؟"},
+visual:"5️⃣2️⃣",
+answer:"2",
+s:{de:"Die 2 steht an der Einerstelle und ist 2 wert.",en:"The 2 is in the ones place and has a value of 2.",ps:"۲ د یوګونو په ځای کې دی او ارزښت یې ۲ دی."}
 },
 
 {
-q: "Wie viele Hunderter hat 625?",
-visual: `
-<div class="place">Hunderter<br><strong>6</strong></div>
-<div class="place">Zehner<br><strong>2</strong></div>
-<div class="place">Einer<br><strong>5</strong></div>
-`,
-answer: "6",
-solution: "Die Hunderterstelle von 625 ist 6."
+q:{de:"Wie schreibt man 40 + 3 als Zahl?",en:"How do you write 40 + 3 as a number?",ps:"۴۰ + ۳ د یو عدد په توګه څنګه لیکل کېږي؟"},
+visual:"40 + 3 = ❓",
+answer:"43",
+s:{de:"40 + 3 = 43.",en:"40 + 3 = 43.",ps:"۴۰ + ۳ = ۴۳."}
 },
 
 {
-q: "Welche Zahl hat 4 Hunderter, 2 Zehner und 7 Einer?",
-visual: "400 + 20 + 7 = ❓",
-answer: "427",
-solution: "4 Hunderter + 2 Zehner + 7 Einer = 427."
+q:{de:"Wie schreibt man 60 + 7 als Zahl?",en:"How do you write 60 + 7 as a number?",ps:"۶۰ + ۷ د یو عدد په توګه څنګه لیکل کېږي؟"},
+visual:"60 + 7 = ❓",
+answer:"67",
+s:{de:"60 + 7 = 67.",en:"60 + 7 = 67.",ps:"۶۰ + ۷ = ۶۷."}
 },
 
 {
-q: "Welche Zahl hat 6 Hunderter, 3 Zehner und 5 Einer?",
-visual: "600 + 30 + 5 = ❓",
-answer: "635",
-solution: "600 + 30 + 5 = 635."
+q:{de:"Welche Zahl ist auf dem Zahlenstrahl größer: 15 oder 19?",en:"Which number is farther right: 15 or 19?",ps:"په د عددونو کرښه کې کومه شمېره لویه ده: ۱۵ که ۱۹؟"},
+visual:"15️⃣ → 19️⃣",
+answer:"19",
+s:{de:"19 ist größer und steht weiter rechts.",en:"19 is greater and is farther to the right.",ps:"۱۹ لویه ده او ښي لوري ته ده."}
 },
 
 {
-q: "Welche Zahl hat 2 Tausender, 4 Hunderter, 1 Zehner und 8 Einer?",
-visual: "2000 + 400 + 10 + 8 = ❓",
-answer: "2418",
-solution: "2000 + 400 + 10 + 8 = 2418."
+q:{de:"Welche Zahl ist auf dem Zahlenstrahl kleiner: 12 oder 18?",en:"Which number is smaller: 12 or 18?",ps:"په د عددونو کرښه کې کومه شمېره کوچنۍ ده: ۱۲ که ۱۸؟"},
+visual:"12️⃣ ← 18️⃣",
+answer:"12",
+s:{de:"12 ist kleiner und steht weiter links.",en:"12 is smaller and is farther to the left.",ps:"۱۲ کوچنۍ ده او چپ لوري ته ده."}
 },
 
 {
-q: "Zerlege 347 in Hunderter, Zehner und Einer.",
-visual: "347 = ❓ H + ❓ Z + ❓ E",
-answer: "300+40+7",
-solution: "347 = 300 + 40 + 7."
+q:{de:"Welche Zahl fehlt: 10, 20, ?, 40?",en:"Which number is missing: 10, 20, ?, 40?",ps:"کومه شمېره ورکه ده: ۱۰، ۲۰، ؟، ۴۰؟"},
+visual:"10️⃣ → 20️⃣ → ❓ → 40️⃣",
+answer:"30",
+s:{de:"Die fehlende Zahl ist 30.",en:"The missing number is 30.",ps:"ورکه شوې شمېره ۳۰ ده."}
 },
 
 {
-q: "Zerlege 582.",
-visual: "582 = ❓ H + ❓ Z + ❓ E",
-answer: "500+80+2",
-solution: "582 = 500 + 80 + 2."
+q:{de:"Welche Zahl fehlt: 50, 60, ?, 80?",en:"Which number is missing: 50, 60, ?, 80?",ps:"کومه شمېره ورکه ده: ۵۰، ۶۰، ؟، ۸۰؟"},
+visual:"50️⃣ → 60️⃣ → ❓ → 80️⃣",
+answer:"70",
+s:{de:"Die fehlende Zahl ist 70.",en:"The missing number is 70.",ps:"ورکه شوې شمېره ۷۰ ده."}
 },
 
 {
-q: "Welche Zahl ist größer: 456 oder 465?",
-visual: "456 🆚 465",
-answer: "465",
-solution: "465 ist größer als 456."
+q:{de:"Welche Zahl hat 4 Zehner und 2 Einer?",en:"Which number has 4 tens and 2 ones?",ps:"کوم عدد ۴ لسګونه او ۲ یوګونه لري؟"},
+visual:"4️⃣ Zehner + 2️⃣ Einer",
+answer:"42",
+s:{de:"4 Zehner und 2 Einer ergeben 42.",en:"4 tens and 2 ones make 42.",ps:"۴ لسګونه او ۲ یوګونه ۴۲ جوړوي."}
 },
 
 {
-q: "Welche Zahl ist kleiner: 821 oder 812?",
-visual: "821 🆚 812",
-answer: "812",
-solution: "812 ist kleiner als 821."
+q:{de:"Welche Zahl hat 7 Zehner und 5 Einer?",en:"Which number has 7 tens and 5 ones?",ps:"کوم عدد ۷ لسګونه او ۵ یوګونه لري؟"},
+visual:"7️⃣ Zehner + 5️⃣ Einer",
+answer:"75",
+s:{de:"7 Zehner und 5 Einer ergeben 75.",en:"7 tens and 5 ones make 75.",ps:"۷ لسګونه او ۵ یوګونه ۷۵ جوړوي."}
 },
 
 {
-q: "Ordne von klein nach groß: 5, 2, 8, 1.",
-visual: "5 · 2 · 8 · 1",
-answer: "1,2,5,8",
-solution: "Richtig: 1, 2, 5, 8."
+q:{de:"Welche Zahl hat 9 Zehner und 1 Einer?",en:"Which number has 9 tens and 1 one?",ps:"کوم عدد ۹ لسګونه او ۱ یوګ لري؟"},
+visual:"9️⃣ Zehner + 1️⃣ Einer",
+answer:"91",
+s:{de:"9 Zehner und 1 Einer ergeben 91.",en:"9 tens and 1 one make 91.",ps:"۹ لسګونه او ۱ یوګ ۹۱ جوړوي."}
 },
 
 {
-q: "Ordne von groß nach klein: 3, 9, 4, 7.",
-visual: "3 · 9 · 4 · 7",
-answer: "9,7,4,3",
-solution: "Richtig: 9, 7, 4, 3."
+q:{de:"Welche Zahl ist größer: 67 oder 76?",en:"Which number is greater: 67 or 76?",ps:"کومه شمېره لویه ده: ۶۷ که ۷۶؟"},
+visual:"67️⃣ < 76️⃣",
+answer:"76",
+s:{de:"76 ist größer als 67.",en:"76 is greater than 67.",ps:"۷۶ له ۶۷ څخه لویه ده."}
 },
 
 {
-q: "Welche Zahl liegt genau zwischen 30 und 32?",
-visual: "30 → ❓ → 32",
-answer: "31",
-solution: "31 liegt genau zwischen 30 und 32."
+q:{de:"Welche Zahl ist kleiner: 83 oder 38?",en:"Which number is smaller: 83 or 38?",ps:"کومه شمېره کوچنۍ ده: ۸۳ که ۳۸؟"},
+visual:"83️⃣ > 38️⃣",
+answer:"38",
+s:{de:"38 ist kleiner als 83.",en:"38 is smaller than 83.",ps:"۳۸ له ۸۳ څخه کوچنۍ ده."}
 },
 
 {
-q: "Welche Zahl liegt genau zwischen 48 und 50?",
-visual: "48 → ❓ → 50",
-answer: "49",
-solution: "49 liegt genau zwischen 48 und 50."
+q:{de:"Wie viel ist 100 + 20?",en:"What is 100 + 20?",ps:"۱۰۰ + ۲۰ څو کېږي؟"},
+visual:"100 + 20 = ❓",
+answer:"120",
+s:{de:"100 + 20 = 120.",en:"100 + 20 = 120.",ps:"۱۰۰ + ۲۰ = ۱۲۰."}
 },
 
 {
-q: "Wie viel ist eine Zehnerstelle wert, wenn dort die 5 steht?",
-visual: "5 Zehner = ❓",
-answer: "50",
-solution: "5 Zehner sind 50."
+q:{de:"Wie viel ist 200 + 30?",en:"What is 200 + 30?",ps:"۲۰۰ + ۳۰ څو کېږي؟"},
+visual:"200 + 30 = ❓",
+answer:"230",
+s:{de:"200 + 30 = 230.",en:"200 + 30 = 230.",ps:"۲۰۰ + ۳۰ = ۲۳۰."}
 },
 
 {
-q: "Wie viel sind 7 Hunderter?",
-visual: "7 Hunderter = ❓",
-answer: "700",
-solution: "7 Hunderter sind 700."
+q:{de:"Wie viele Hunderter hat 300?",en:"How many hundreds are in 300?",ps:"په ۳۰۰ کې څو سلګونه دي؟"},
+visual:"300 = ❓ Hunderter",
+answer:"3",
+s:{de:"300 hat 3 Hunderter.",en:"300 has 3 hundreds.",ps:"۳۰۰ درې سلګونه لري."}
 },
 
 {
-q: "Wie viel sind 4 Tausender?",
-visual: "4 Tausender = ❓",
-answer: "4000",
-solution: "4 Tausender sind 4000."
+q:{de:"Welchen Wert hat die 4 in 400?",en:"What is the value of 4 in 400?",ps:"په ۴۰۰ کې د ۴ ارزښت څو دی؟"},
+visual:"4️⃣00",
+answer:"400",
+s:{de:"Die 4 steht an der Hunderterstelle und ist 400 wert.",en:"The 4 is in the hundreds place and has a value of 400.",ps:"۴ د سلګونو په ځای کې دی او ارزښت یې ۴۰۰ دی."}
 },
 
 {
-q: "Welche Zahl ist 10 größer als 45?",
-visual: "45 → +10 → ❓",
-answer: "55",
-solution: "45 + 10 = 55."
+q:{de:"Welche Zahl kommt direkt vor 50?",en:"Which number comes directly before 50?",ps:"د ۵۰ څخه سمدستي مخکې کومه شمېره راځي؟"},
+visual:"❓ → 50️⃣",
+answer:"49",
+s:{de:"Direkt vor 50 kommt 49.",en:"49 comes directly before 50.",ps:"د ۵۰ څخه سمدستي مخکې ۴۹ راځي."}
 },
 
 {
-q: "Welche Zahl ist 100 größer als 250?",
-visual: "250 → +100 → ❓",
-answer: "350",
-solution: "250 + 100 = 350."
+q:{de:"Welche Zahl kommt direkt nach 75?",en:"Which number comes directly after 75?",ps:"د ۷۵ څخه سمدستي وروسته کومه شمېره راځي؟"},
+visual:"75️⃣ → ❓",
+answer:"76",
+s:{de:"Direkt nach 75 kommt 76.",en:"76 comes directly after 75.",ps:"د ۷۵ څخه سمدستي وروسته ۷۶ راځي."}
 },
 
 {
-q: "Welche Zahl ist 10 kleiner als 80?",
-visual: "80 → -10 → ❓",
-answer: "70",
-solution: "80 - 10 = 70."
+q:{de:"Ordne aufsteigend: 30, 10, 20.",en:"Order ascending: 30, 10, 20.",ps:"له کوچنۍ څخه تر لویې پورې یې ترتیب کړه: ۳۰، ۱۰، ۲۰."},
+visual:"30️⃣   10️⃣   20️⃣",
+answer:"10,20,30",
+s:{de:"Richtig ist: 10, 20, 30.",en:"The correct order is: 10, 20, 30.",ps:"سم ترتیب: ۱۰، ۲۰، ۳۰."}
 },
 
 {
-q: "Welche Zahl ist 100 kleiner als 600?",
-visual: "600 → -100 → ❓",
-answer: "500",
-solution: "600 - 100 = 500."
+q:{de:"Ordne absteigend: 40, 70, 50.",en:"Order descending: 40, 70, 50.",ps:"له لویې څخه تر کوچنۍ پورې یې ترتیب کړه: ۴۰، ۷۰، ۵۰."},
+visual:"40️⃣   70️⃣   50️⃣",
+answer:"70,50,40",
+s:{de:"Richtig ist: 70, 50, 40.",en:"The correct order is: 70, 50, 40.",ps:"سم ترتیب: ۷۰، ۵۰، ۴۰."}
 },
 
 {
-q: "Welche Zahl steht zwischen 999 und 1001?",
-visual: "999 → ❓ → 1001",
-answer: "1000",
-solution: "Zwischen 999 und 1001 steht 1000."
+q:{de:"Welche Zahl hat 5 Hunderter, 2 Zehner und 3 Einer?",en:"Which number has 5 hundreds, 2 tens and 3 ones?",ps:"کوم عدد ۵ سلګونه، ۲ لسګونه او ۳ یوګونه لري؟"},
+visual:"5️⃣ H + 2️⃣ Z + 3️⃣ E",
+answer:"523",
+s:{de:"5 Hunderter + 2 Zehner + 3 Einer = 523.",en:"5 hundreds + 2 tens + 3 ones = 523.",ps:"۵ سلګونه + ۲ لسګونه + ۳ یوګونه = ۵۲۳."}
+},
+
+{
+q:{de:"Welche Zahl hat 3 Hunderter, 4 Zehner und 6 Einer?",en:"Which number has 3 hundreds, 4 tens and 6 ones?",ps:"کوم عدد ۳ سلګونه، ۴ لسګونه او ۶ یوګونه لري؟"},
+visual:"3️⃣ H + 4️⃣ Z + 6️⃣ E",
+answer:"346",
+s:{de:"3 Hunderter + 4 Zehner + 6 Einer = 346.",en:"3 hundreds + 4 tens + 6 ones = 346.",ps:"۳ سلګونه + ۴ لسګونه + ۶ یوګونه = ۳۴۶."}
 }
 
 ];
 
-let current = 0;
+let current=0;
+let language=localStorage.getItem("language")||"de";
 
-function showQuestion() {
+function changeLanguage(lang){
+language=lang;
+localStorage.setItem("language",lang);
 
-    document.getElementById("question").textContent =
-        questions[current].q;
+const t=translations[lang];
 
-    document.getElementById("visual").innerHTML =
-        questions[current].visual;
+document.getElementById("subtitle").textContent=t.subtitle;
+document.getElementById("languageText").textContent=t.language;
+document.getElementById("title").textContent=t.title;
+document.getElementById("explanationTitle").textContent=t.explanationTitle;
+document.getElementById("explanationText").textContent=t.explanationText;
+document.getElementById("checkButton").textContent=t.check;
+document.getElementById("solutionTitle").textContent=t.solution;
+document.getElementById("nextButton").textContent=t.next;
+document.getElementById("backButton").textContent=t.back;
+document.getElementById("answer").placeholder=t.placeholder;
 
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
-
-    document.getElementById("answer").value = "";
-
-    document.getElementById("answer").disabled = false;
-
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("solution").style.display = "none";
-
-    document.getElementById("nextButton").style.display = "none";
+showQuestion();
 }
 
-function checkAnswer() {
+function showQuestion(){
 
-    const userAnswer =
-        document.getElementById("answer").value
-        .trim()
-        .toLowerCase()
-        .replace(/\s/g, "");
+const q=questions[current];
 
-    const correctAnswer =
-        questions[current].answer
-        .toLowerCase()
-        .replace(/\s/g, "");
+document.getElementById("question").textContent=q.q[language];
+document.getElementById("visual").textContent=q.visual;
 
-    if (userAnswer === correctAnswer) {
+document.getElementById("progress").textContent=
+(language==="de"?"Aufgabe ":
+language==="en"?"Question ":"پوښتنه ")
++(current+1)+" / 30";
 
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
-
-        document.getElementById("solution").style.display =
-            "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-    }
-
-    document.getElementById("answer").disabled = true;
-
-    document.getElementById("nextButton").style.display =
-        "inline-block";
+document.getElementById("answer").value="";
+document.getElementById("answer").disabled=false;
+document.getElementById("result").textContent="";
+document.getElementById("solution").style.display="none";
+document.getElementById("nextButton").style.display="none";
 }
 
-function nextQuestion() {
+function checkAnswer(){
 
-    current++;
+const userAnswer=document.getElementById("answer").value
+.trim()
+.replace(/\s/g,"");
 
-    if (current >= questions.length) {
+const correct=questions[current].answer;
+const t=translations[language];
 
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
+if(userAnswer===correct){
+document.getElementById("result").textContent=t.correct;
+}else{
+document.getElementById("result").textContent=t.wrong;
+document.getElementById("solution").style.display="block";
+document.getElementById("solutionText").textContent=questions[current].s[language];
+}
 
-        document.getElementById("progress").textContent =
-            "Fertig! 🏆";
+document.getElementById("answer").disabled=true;
+document.getElementById("nextButton").style.display="inline-block";
+}
 
-        document.getElementById("visual").style.display =
-            "none";
+function nextQuestion(){
 
-        document.getElementById("answer").style.display =
-            "none";
+current++;
 
-        document.getElementById("result").textContent =
-            "Super gemacht! 🎓";
+if(current>=questions.length){
 
-        document.getElementById("nextButton").style.display =
-            "none";
+const t=translations[language];
 
-        document.getElementById("solution").style.display =
-            "none";
+document.getElementById("question").textContent=t.finished;
+document.getElementById("progress").textContent=t.done;
+document.getElementById("visual").style.display="none";
+document.getElementById("answer").style.display="none";
+document.getElementById("checkButton").style.display="none";
+document.getElementById("result").textContent=t.great;
+document.getElementById("nextButton").style.display="none";
+document.getElementById("solution").style.display="none";
 
-        return;
-    }
-
-    showQuestion();
+return;
 }
 
 showQuestion();
+}
+
+changeLanguage(language);
 
 </script>
 
