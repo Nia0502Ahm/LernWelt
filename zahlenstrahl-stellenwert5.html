@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LernWelt – Zahlenstrahl und Stellenwert</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        input {
+            width: 80%;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #solution {
+            display: none;
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #nextButton {
+            display: none;
+        }
+
+        .back {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p>Mathe Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <h2>🔢 Zahlenstrahl und Stellenwert</h2>
+
+    <div class="explanation">
+        <h3>📖 Kurze Erklärung</h3>
+
+        <p>
+            Ein Zahlenstrahl zeigt Zahlen in der richtigen Reihenfolge.
+        </p>
+
+        <p>
+            Je weiter rechts eine Zahl steht, desto größer ist sie.
+        </p>
+
+        <p>
+            Bei einer Zahl hat jede Stelle einen bestimmten Wert:
+            Einer, Zehner, Hunderter, Tausender usw.
+        </p>
+
+        <p>
+            Beispiel: Bei <strong>3 452</strong> sind 3 Tausender,
+            4 Hunderter, 5 Zehner und 2 Einer.
+        </p>
+    </div>
+
+    <p id="progress"></p>
+
+    <h3 id="question"></h3>
+
+    <input id="answer" type="text" placeholder="Deine Antwort">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+        Antwort prüfen
+    </button>
+
+    <div id="result"></div>
+
+    <div id="solution">
+        <h3>💡 Lösung</h3>
+        <p id="solutionText"></p>
+    </div>
+
+    <button id="nextButton" onclick="nextQuestion()">
+        ➡️ Nächste Aufgabe
+    </button>
+
+    <br>
+
+    <button class="back"
+        onclick="window.location.href='mathe5.html'">
+        ← Zurück zu den Themen
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        q: "Welche Zahl kommt nach 49?",
+        answer: "50",
+        solution: "Nach 49 kommt 50."
+    },
+
+    {
+        q: "Welche Zahl kommt vor 100?",
+        answer: "99",
+        solution: "Vor 100 kommt 99."
+    },
+
+    {
+        q: "Welche Zahl ist größer: 25 oder 52?",
+        answer: "52",
+        solution: "52 steht auf dem Zahlenstrahl weiter rechts und ist deshalb größer."
+    },
+
+    {
+        q: "Welche Zahl ist kleiner: 73 oder 37?",
+        answer: "37",
+        solution: "37 ist kleiner als 73."
+    },
+
+    {
+        q: "Welche Zahl liegt zwischen 20 und 22?",
+        answer: "21",
+        solution: "Zwischen 20 und 22 liegt 21."
+    },
+
+    {
+        q: "Welche Zahl liegt zwischen 48 und 50?",
+        answer: "49",
+        solution: "Zwischen 48 und 50 liegt 49."
+    },
+
+    {
+        q: "Welche Zahl steht auf dem Zahlenstrahl weiter rechts: 80 oder 70?",
+        answer: "80",
+        solution: "80 ist größer und steht deshalb weiter rechts."
+    },
+
+    {
+        q: "Welche Zahl steht weiter links: 30 oder 40?",
+        answer: "30",
+        solution: "30 ist kleiner und steht deshalb weiter links."
+    },
+
+    {
+        q: "Wie viele Einer hat 347?",
+        answer: "7",
+        solution: "Die Einerstelle von 347 ist 7."
+    },
+
+    {
+        q: "Wie viele Zehner hat 347?",
+        answer: "4",
+        solution: "Die Zehnerstelle von 347 ist 4."
+    },
+
+    {
+        q: "Wie viele Hunderter hat 347?",
+        answer: "3",
+        solution: "Die Hunderterstelle von 347 ist 3."
+    },
+
+    {
+        q: "Wie viele Tausender hat 4 321?",
+        answer: "4",
+        solution: "Die Tausenderstelle von 4 321 ist 4."
+    },
+
+    {
+        q: "Welche Ziffer steht bei 582 an der Einerstelle?",
+        answer: "2",
+        solution: "Bei 582 steht die 2 an der Einerstelle."
+    },
+
+    {
+        q: "Welche Ziffer steht bei 582 an der Zehnerstelle?",
+        answer: "8",
+        solution: "Bei 582 steht die 8 an der Zehnerstelle."
+    },
+
+    {
+        q: "Welche Ziffer steht bei 582 an der Hunderterstelle?",
+        answer: "5",
+        solution: "Bei 582 steht die 5 an der Hunderterstelle."
+    },
+
+    {
+        q: "Welchen Wert hat die 6 in 364?",
+        answer: "60",
+        solution: "Die 6 steht an der Zehnerstelle. Deshalb ist ihr Wert 60."
+    },
+
+    {
+        q: "Welchen Wert hat die 4 in 425?",
+        answer: "400",
+        solution: "Die 4 steht an der Hunderterstelle. Ihr Wert ist 400."
+    },
+
+    {
+        q: "Welchen Wert hat die 7 in 2 715?",
+        answer: "700",
+        solution: "Die 7 steht an der Hunderterstelle. Ihr Wert ist 700."
+    },
+
+    {
+        q: "Welchen Wert hat die 5 in 5 234?",
+        answer: "5000",
+        solution: "Die 5 steht an der Tausenderstelle. Ihr Wert ist 5000."
+    },
+
+    {
+        q: "Schreibe als Zahl: 3 Hunderter, 4 Zehner und 2 Einer.",
+        answer: "342",
+        solution: "300 + 40 + 2 = 342."
+    },
+
+    {
+        q: "Schreibe als Zahl: 5 Hunderter, 2 Zehner und 7 Einer.",
+        answer: "527",
+        solution: "500 + 20 + 7 = 527."
+    },
+
+    {
+        q: "Schreibe als Zahl: 2 Tausender, 3 Hunderter, 4 Zehner und 5 Einer.",
+        answer: "2345",
+        solution: "2 000 + 300 + 40 + 5 = 2 345."
+    },
+
+    {
+        q: "Wie viele Zehner sind in 100?",
+        answer: "10",
+        solution: "100 : 10 = 10 Zehner."
+    },
+
+    {
+        q: "Wie viele Hunderter sind in 1 000?",
+        answer: "10",
+        solution: "1 000 : 100 = 10 Hunderter."
+    },
+
+    {
+        q: "Welche Zahl ist größer: 1 250 oder 1 205?",
+        answer: "1250",
+        solution: "1 250 ist größer als 1 205."
+    },
+
+    {
+        q: "Welche Zahl ist kleiner: 3 450 oder 3 540?",
+        answer: "3450",
+        solution: "3 450 ist kleiner als 3 540."
+    },
+
+    {
+        q: "Ordne aufsteigend: 5, 2, 8, 3.",
+        answer: "2,3,5,8",
+        solution: "Von klein nach groß: 2, 3, 5, 8."
+    },
+
+    {
+        q: "Ordne absteigend: 4, 9, 1, 6.",
+        answer: "9,6,4,1",
+        solution: "Von groß nach klein: 9, 6, 4, 1."
+    },
+
+    {
+        q: "Welche Zahl fehlt: 10, 20, 30, ?, 50?",
+        answer: "40",
+        solution: "Die Zahlen steigen immer um 10. Deshalb fehlt 40."
+    },
+
+    {
+        q: "Welche Zahl fehlt: 100, 200, ?, 400?",
+        answer: "300",
+        solution: "Die Zahlen steigen immer um 100. Deshalb fehlt 300."
+    }
+
+];
+
+let current = 0;
+
+function showQuestion() {
+
+    document.getElementById("question").textContent =
+        questions[current].q;
+
+    document.getElementById("progress").textContent =
+        "Aufgabe " + (current + 1) +
+        " von " + questions.length;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").disabled = false;
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("solution").style.display = "none";
+
+    document.getElementById("nextButton").style.display = "none";
+}
+
+function checkAnswer() {
+
+    const userAnswer =
+        document.getElementById("answer").value
+        .trim()
+        .replace(/\s/g, "");
+
+    const correctAnswer =
+        questions[current].answer
+        .replace(/\s/g, "");
+
+    if (userAnswer === correctAnswer) {
+
+        document.getElementById("result").textContent =
+            "✅ Richtig! Sehr gut! 🎉";
+
+    } else {
+
+        document.getElementById("result").textContent =
+            "❌ Leider falsch.";
+
+        document.getElementById("solution").style.display =
+            "block";
+
+        document.getElementById("solutionText").textContent =
+            questions[current].solution;
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.getElementById("nextButton").style.display =
+        "inline-block";
+}
+
+function nextQuestion() {
+
+    current++;
+
+    if (current >= questions.length) {
+
+        document.getElementById("question").textContent =
+            "🎉 Du hast alle 30 Aufgaben geschafft!";
+
+        document.getElementById("progress").textContent =
+            "Fertig! 🏆";
+
+        document.getElementById("answer").style.display =
+            "none";
+
+        document.getElementById("result").textContent =
+            "Super gemacht! 🎓";
+
+        document.getElementById("nextButton").style.display =
+            "none";
+
+        document.getElementById("solution").style.display =
+            "none";
+
+        return;
+    }
+
+    showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
