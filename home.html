@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LernWelt</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            padding: 30px 20px;
+        }
+
+        .classes {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .class-button {
+            width: 200px;
+            margin: 8px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .class-button:hover {
+            background: #1d4ed8;
+        }
+
+        #logout {
+            background: #dc2626;
+            margin-top: 25px;
+        }
+
+        #logout:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📚 LernWelt</h1>
+        <p>Willkommen bei deiner Lernplattform!</p>
+    </header>
+
+    <div class="container">
+
+        <h2>Wähle deine Klasse</h2>
+
+        <div class="classes">
+
+            <button class="class-button">Klasse 5</button>
+            <button class="class-button">Klasse 6</button>
+            <button class="class-button">Klasse 7</button>
+            <button class="class-button">Klasse 8</button>
+            <button class="class-button">Klasse 9</button>
+            <button class="class-button">Klasse 10</button>
+            <button class="class-button">Klasse 11</button>
+            <button class="class-button">Klasse 12</button>
+            <button class="class-button">Klasse 13 / Abi</button>
+
+        </div>
+
+        <button id="logout" class="class-button" onclick="logout()">
+            Abmelden
+        </button>
+
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
