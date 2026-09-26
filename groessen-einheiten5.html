@@ -1,88 +1,121 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Größen und Einheiten</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LernWelt – Größen und Einheiten</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
 
-        .container {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-        }
+.container {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+}
 
-        .explanation {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
 
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
+.visual {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-size: 28px;
+}
 
-        button {
-            padding: 13px 25px;
-            margin: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.ruler {
+    margin: 20px auto;
+    max-width: 600px;
+    height: 50px;
+    border-bottom: 4px solid #333;
+    background: repeating-linear-gradient(
+        to right,
+        white 0px,
+        white 19px,
+        #333 20px
+    );
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+.clock {
+    font-size: 60px;
+}
 
-        #result {
-            margin: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+.box {
+    display: inline-block;
+    padding: 15px 25px;
+    margin: 5px;
+    background: #dbeafe;
+    border-radius: 10px;
+}
 
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-        }
+input {
+    width: 80%;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 15px;
+    box-sizing: border-box;
+}
 
-        #nextButton {
-            display: none;
-        }
+button {
+    padding: 13px 25px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        .back {
-            background: #64748b;
-        }
-    </style>
+button:hover {
+    background: #1d4ed8;
+}
+
+#result {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#solution {
+    display: none;
+    background: #f1f5f9;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+#nextButton {
+    display: none;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
 </head>
 
 <body>
@@ -94,61 +127,60 @@
 
 <div class="container">
 
-    <h2>📏 Größen und Einheiten</h2>
+<h2>📏 Größen und Einheiten</h2>
 
-    <div class="explanation">
-        <h3>📖 Kurze Erklärung</h3>
+<div class="explanation">
+<h3>📖 Kurze Erklärung</h3>
 
-        <p>
-            Größen kann man messen. Zum Beispiel Länge, Gewicht,
-            Zeit und Geld.
-        </p>
+<p>
+Bei Größen benutzt man verschiedene Einheiten.
+</p>
 
-        <p>
-            Längen werden zum Beispiel in Millimeter (mm),
-            Zentimeter (cm), Meter (m) und Kilometer (km) angegeben.
-        </p>
+<p>
+📏 Länge: Millimeter (mm), Zentimeter (cm), Meter (m), Kilometer (km)
+</p>
 
-        <p>
-            Gewichte werden zum Beispiel in Gramm (g) und
-            Kilogramm (kg) angegeben.
-        </p>
+<p>
+⚖️ Gewicht: Gramm (g), Kilogramm (kg)
+</p>
 
-        <p>
-            Bei der Zeit gibt es Sekunden, Minuten, Stunden,
-            Tage und Wochen.
-        </p>
-    </div>
+<p>
+🥤 Flüssigkeit: Milliliter (ml), Liter (l)
+</p>
 
-    <p id="progress"></p>
+<p>
+⏰ Zeit: Sekunden (s), Minuten (min), Stunden (h)
+</p>
+</div>
 
-    <h3 id="question"></h3>
+<p id="progress"></p>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
+<h3 id="question"></h3>
 
-    <br>
+<div id="visual" class="visual"></div>
 
-    <button onclick="checkAnswer()">
-        Antwort prüfen
-    </button>
+<input id="answer" type="text" placeholder="Deine Antwort">
 
-    <div id="result"></div>
+<br>
 
-    <div id="solution">
-        <h3>💡 Lösung</h3>
-        <p id="solutionText"></p>
-    </div>
+<button onclick="checkAnswer()">Antwort prüfen</button>
 
-    <button id="nextButton" onclick="nextQuestion()">
-        ➡️ Nächste Aufgabe
-    </button>
+<div id="result"></div>
 
-    <br>
+<div id="solution">
+<h3>💡 Lösung</h3>
+<p id="solutionText"></p>
+</div>
 
-    <button class="back"
-        onclick="window.location.href='mathe5.html'">
-        ← Zurück zu den Themen
-    </button>
+<button id="nextButton" onclick="nextQuestion()">
+➡️ Nächste Aufgabe
+</button>
+
+<br>
+
+<button class="back" onclick="window.location.href='mathe5.html'">
+← Zurück zu den Mathe-Themen
+</button>
 
 </div>
 
@@ -156,185 +188,215 @@
 
 const questions = [
 
-    {
-        q: "Wie viele Zentimeter sind 1 Meter?",
-        answer: "100",
-        solution: "1 Meter = 100 Zentimeter."
-    },
+{
+q: "Wie viele Zentimeter sind 1 Meter?",
+visual: "📏 1 m = ❓ cm",
+answer: "100",
+solution: "1 Meter = 100 Zentimeter."
+},
 
-    {
-        q: "Wie viele Meter sind 1 Kilometer?",
-        answer: "1000",
-        solution: "1 Kilometer = 1000 Meter."
-    },
+{
+q: "Wie viele Millimeter sind 1 Zentimeter?",
+visual: "📏 1 cm = ❓ mm",
+answer: "10",
+solution: "1 Zentimeter = 10 Millimeter."
+},
 
-    {
-        q: "Wie viele Millimeter sind 1 Zentimeter?",
-        answer: "10",
-        solution: "1 Zentimeter = 10 Millimeter."
-    },
+{
+q: "Wie viele Meter sind 1 Kilometer?",
+visual: "🛣️ 1 km = ❓ m",
+answer: "1000",
+solution: "1 Kilometer = 1000 Meter."
+},
 
-    {
-        q: "Wie viele Zentimeter sind 2 Meter?",
-        answer: "200",
-        solution: "2 · 100 cm = 200 cm."
-    },
+{
+q: "Wie viele Zentimeter sind 2 Meter?",
+visual: "2 m = ❓ cm",
+answer: "200",
+solution: "2 · 100 = 200 cm."
+},
 
-    {
-        q: "Wie viele Meter sind 3 Kilometer?",
-        answer: "3000",
-        solution: "3 · 1000 m = 3000 m."
-    },
+{
+q: "Wie viele Meter sind 300 Zentimeter?",
+visual: "300 cm ➡️ ❓ m",
+answer: "3",
+solution: "300 cm = 3 m."
+},
 
-    {
-        q: "Wie viele Gramm sind 1 Kilogramm?",
-        answer: "1000",
-        solution: "1 Kilogramm = 1000 Gramm."
-    },
+{
+q: "Wie viele Millimeter sind 5 Zentimeter?",
+visual: "5 cm = ❓ mm",
+answer: "50",
+solution: "5 · 10 = 50 mm."
+},
 
-    {
-        q: "Wie viele Gramm sind 2 Kilogramm?",
-        answer: "2000",
-        solution: "2 · 1000 g = 2000 g."
-    },
+{
+q: "Wie viele Zentimeter sind 40 Millimeter?",
+visual: "40 mm ➡️ ❓ cm",
+answer: "4",
+solution: "40 mm = 4 cm."
+},
 
-    {
-        q: "Wie viele Kilogramm sind 3000 Gramm?",
-        answer: "3",
-        solution: "3000 g = 3 kg."
-    },
+{
+q: "Wie viele Gramm sind 1 Kilogramm?",
+visual: "⚖️ 1 kg = ❓ g",
+answer: "1000",
+solution: "1 Kilogramm = 1000 Gramm."
+},
 
-    {
-        q: "Wie viele Minuten hat 1 Stunde?",
-        answer: "60",
-        solution: "1 Stunde = 60 Minuten."
-    },
+{
+q: "Wie viele Gramm sind 2 Kilogramm?",
+visual: "⚖️ 2 kg = ❓ g",
+answer: "2000",
+solution: "2 · 1000 = 2000 g."
+},
 
-    {
-        q: "Wie viele Sekunden hat 1 Minute?",
-        answer: "60",
-        solution: "1 Minute = 60 Sekunden."
-    },
+{
+q: "Wie viele Kilogramm sind 3000 Gramm?",
+visual: "3000 g ➡️ ❓ kg",
+answer: "3",
+solution: "3000 g = 3 kg."
+},
 
-    {
-        q: "Wie viele Stunden hat ein Tag?",
-        answer: "24",
-        solution: "Ein Tag hat 24 Stunden."
-    },
+{
+q: "Wie viele Milliliter sind 1 Liter?",
+visual: "🥤 1 l = ❓ ml",
+answer: "1000",
+solution: "1 Liter = 1000 Milliliter."
+},
 
-    {
-        q: "Wie viele Tage hat eine Woche?",
-        answer: "7",
-        solution: "Eine Woche hat 7 Tage."
-    },
+{
+q: "Wie viele Milliliter sind 2 Liter?",
+visual: "🥤 2 l = ❓ ml",
+answer: "2000",
+solution: "2 · 1000 = 2000 ml."
+},
 
-    {
-        q: "Wie viele Cent sind 1 Euro?",
-        answer: "100",
-        solution: "1 Euro = 100 Cent."
-    },
+{
+q: "Wie viele Liter sind 3000 Milliliter?",
+visual: "3000 ml ➡️ ❓ l",
+answer: "3",
+solution: "3000 ml = 3 l."
+},
 
-    {
-        q: "Wie viele Cent sind 5 Euro?",
-        answer: "500",
-        solution: "5 · 100 Cent = 500 Cent."
-    },
+{
+q: "Wie viele Sekunden hat 1 Minute?",
+visual: "⏱️ 1 min = ❓ s",
+answer: "60",
+solution: "1 Minute = 60 Sekunden."
+},
 
-    {
-        q: "Wie viele Euro sind 300 Cent?",
-        answer: "3",
-        solution: "300 Cent = 3 Euro."
-    },
+{
+q: "Wie viele Minuten hat 1 Stunde?",
+visual: "🕐 1 h = ❓ min",
+answer: "60",
+solution: "1 Stunde = 60 Minuten."
+},
 
-    {
-        q: "Wie viele Zentimeter sind 5 Meter?",
-        answer: "500",
-        solution: "5 · 100 cm = 500 cm."
-    },
+{
+q: "Wie viele Stunden hat ein Tag?",
+visual: "🌞🌙 1 Tag = ❓ h",
+answer: "24",
+solution: "Ein Tag hat 24 Stunden."
+},
 
-    {
-        q: "Wie viele Millimeter sind 3 Zentimeter?",
-        answer: "30",
-        solution: "3 · 10 mm = 30 mm."
-    },
+{
+q: "Wie viele Minuten sind 2 Stunden?",
+visual: "🕑 2 h = ❓ min",
+answer: "120",
+solution: "2 · 60 = 120 Minuten."
+},
 
-    {
-        q: "Wie viele Meter sind 500 Zentimeter?",
-        answer: "5",
-        solution: "500 cm = 5 m."
-    },
+{
+q: "Wie viele Sekunden sind 2 Minuten?",
+visual: "⏱️ 2 min = ❓ s",
+answer: "120",
+solution: "2 · 60 = 120 Sekunden."
+},
 
-    {
-        q: "Wie viele Kilometer sind 2000 Meter?",
-        answer: "2",
-        solution: "2000 m = 2 km."
-    },
+{
+q: "Was ist länger: 1 m oder 50 cm?",
+visual: "📏 1 m 🆚 50 cm",
+answer: "1m",
+solution: "1 m ist länger als 50 cm."
+},
 
-    {
-        q: "Wie viele Gramm sind 4 Kilogramm?",
-        answer: "4000",
-        solution: "4 · 1000 g = 4000 g."
-    },
+{
+q: "Was ist schwerer: 1 kg oder 500 g?",
+visual: "⚖️ 1 kg 🆚 500 g",
+answer: "1kg",
+solution: "1 kg ist schwerer als 500 g."
+},
 
-    {
-        q: "Wie viele Kilogramm sind 5000 Gramm?",
-        answer: "5",
-        solution: "5000 g = 5 kg."
-    },
+{
+q: "Was ist mehr: 1 l oder 500 ml?",
+visual: "🥤 1 l 🆚 500 ml",
+answer: "1l",
+solution: "1 Liter ist mehr als 500 ml."
+},
 
-    {
-        q: "Wie viele Minuten sind 2 Stunden?",
-        answer: "120",
-        solution: "2 · 60 Minuten = 120 Minuten."
-    },
+{
+q: "Wie viel sind 5 m in Zentimetern?",
+visual: "📏 5 m = ❓ cm",
+answer: "500",
+solution: "5 · 100 = 500 cm."
+},
 
-    {
-        q: "Wie viele Sekunden sind 2 Minuten?",
-        answer: "120",
-        solution: "2 · 60 Sekunden = 120 Sekunden."
-    },
+{
+q: "Wie viel sind 7 kg in Gramm?",
+visual: "⚖️ 7 kg = ❓ g",
+answer: "7000",
+solution: "7 · 1000 = 7000 g."
+},
 
-    {
-        q: "Wie viele Stunden sind 2 Tage?",
-        answer: "48",
-        solution: "2 · 24 Stunden = 48 Stunden."
-    },
+{
+q: "Wie viel sind 4 l in Millilitern?",
+visual: "🥤 4 l = ❓ ml",
+answer: "4000",
+solution: "4 · 1000 = 4000 ml."
+},
 
-    {
-        q: "Wie viele Tage sind 2 Wochen?",
-        answer: "14",
-        solution: "2 · 7 Tage = 14 Tage."
-    },
+{
+q: "Wie viel sind 3 Stunden in Minuten?",
+visual: "🕒 3 h = ❓ min",
+answer: "180",
+solution: "3 · 60 = 180 Minuten."
+},
 
-    {
-        q: "Wie viele Cent sind 7 Euro?",
-        answer: "700",
-        solution: "7 · 100 Cent = 700 Cent."
-    },
+{
+q: "Wie viel sind 5 Minuten in Sekunden?",
+visual: "⏱️ 5 min = ❓ s",
+answer: "300",
+solution: "5 · 60 = 300 Sekunden."
+},
 
-    {
-        q: "Wie viele Euro sind 800 Cent?",
-        answer: "8",
-        solution: "800 Cent = 8 Euro."
-    },
+{
+q: "Ein Seil ist 2 m lang. Wie viele Zentimeter sind das?",
+visual: "🪢 2 m = ❓ cm",
+answer: "200",
+solution: "2 m = 200 cm."
+},
 
-    {
-        q: "Wie viele Meter sind 700 Zentimeter?",
-        answer: "7",
-        solution: "700 cm = 7 m."
-    },
+{
+q: "Eine Flasche enthält 1,5 Liter. Wie viele Milliliter sind das?",
+visual: "🧴 1,5 l = ❓ ml",
+answer: "1500",
+solution: "1,5 l = 1500 ml."
+},
 
-    {
-        q: "Wie viele Zentimeter sind 4 Meter?",
-        answer: "400",
-        solution: "4 · 100 cm = 400 cm."
-    },
+{
+q: "Ein Paket wiegt 3 kg. Wie viele Gramm sind das?",
+visual: "📦 3 kg = ❓ g",
+answer: "3000",
+solution: "3 kg = 3000 g."
+},
 
-    {
-        q: "Wie viele Kilogramm sind 6000 Gramm?",
-        answer: "6",
-        solution: "6000 g = 6 kg."
-    }
+{
+q: "Ein Film dauert 2 Stunden. Wie viele Minuten sind das?",
+visual: "🎬 2 h = ❓ min",
+answer: "120",
+solution: "2 · 60 = 120 Minuten."
+}
 
 ];
 
@@ -344,6 +406,9 @@ function showQuestion() {
 
     document.getElementById("question").textContent =
         questions[current].q;
+
+    document.getElementById("visual").innerHTML =
+        questions[current].visual;
 
     document.getElementById("progress").textContent =
         "Aufgabe " + (current + 1) +
@@ -365,10 +430,12 @@ function checkAnswer() {
     const userAnswer =
         document.getElementById("answer").value
         .trim()
+        .toLowerCase()
         .replace(/\s/g, "");
 
     const correctAnswer =
         questions[current].answer
+        .toLowerCase()
         .replace(/\s/g, "");
 
     if (userAnswer === correctAnswer) {
@@ -405,6 +472,9 @@ function nextQuestion() {
 
         document.getElementById("progress").textContent =
             "Fertig! 🏆";
+
+        document.getElementById("visual").style.display =
+            "none";
 
         document.getElementById("answer").style.display =
             "none";
