@@ -3,102 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LernWelt – Rechenregeln</title>
+<title>LernWelt – Rechenregeln und Klammern</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    text-align: center;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    text-align:center;
 }
-
-header {
-    background: #2563eb;
-    color: white;
-    padding: 30px 20px;
+header{
+    background:#2563eb;
+    color:white;
+    padding:30px 20px;
 }
-
-.container {
-    max-width: 750px;
-    margin: 30px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 15px;
+.container{
+    max-width:850px;
+    margin:30px auto;
+    padding:25px;
+    background:white;
+    border-radius:18px;
 }
-
-.explanation {
-    background: #eff6ff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    text-align: left;
+.explanation{
+    background:#eff6ff;
+    padding:20px;
+    border-radius:12px;
+    text-align:left;
 }
-
-.rule {
-    background: #dbeafe;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 10px;
-    font-size: 19px;
+.visual{
+    background:#f8fafc;
+    padding:30px;
+    border-radius:12px;
+    margin:20px 0;
+    font-size:36px;
+    font-weight:bold;
 }
-
-.visual {
-    background: #f8fafc;
-    padding: 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-    font-size: 30px;
-    font-weight: bold;
+input{
+    width:80%;
+    padding:14px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:15px;
+    box-sizing:border-box;
 }
-
-input {
-    width: 80%;
-    padding: 14px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 15px;
-    box-sizing: border-box;
+button{
+    padding:13px 25px;
+    margin:8px;
+    border:0;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
-
-button {
-    padding: 13px 25px;
-    margin: 8px;
-    border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+button:hover{
+    background:#1d4ed8;
 }
-
-button:hover {
-    background: #1d4ed8;
+#result{
+    margin:20px;
+    font-size:18px;
+    font-weight:bold;
 }
-
-#result {
-    margin: 20px;
-    font-size: 18px;
-    font-weight: bold;
+#solution{
+    display:none;
+    background:#f1f5f9;
+    padding:18px;
+    border-radius:10px;
+    margin-top:15px;
+    text-align:left;
 }
-
-#solution {
-    display: none;
-    background: #f1f5f9;
-    padding: 18px;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: left;
+#nextButton{
+    display:none;
 }
-
-#nextButton {
-    display: none;
-}
-
-.back {
-    background: #64748b;
+.back{
+    background:#64748b;
 }
 </style>
 </head>
@@ -106,45 +85,23 @@ button:hover {
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+<h1>📚 LernWelt</h1>
+<p id="subtitle"></p>
 </header>
 
 <div class="container">
 
-<h2>🧮 Rechenregeln</h2>
+<p id="languageText"></p>
+
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+
+<h2 id="title"></h2>
 
 <div class="explanation">
-
-<h3>📖 Kurze Erklärung</h3>
-
-<p>Bei mehreren Rechenarten gilt:</p>
-
-<div class="rule">
-✖️ Multiplikation und ➗ Division zuerst
-</div>
-
-<div class="rule">
-➕ Addition und ➖ Subtraktion danach
-</div>
-
-<div class="rule">
-🔵 Klammern immer zuerst rechnen
-</div>
-
-<p>
-<strong>Beispiel:</strong>
-</p>
-
-<p>
-2 + 3 × 4 = 14
-</p>
-
-<p>
-Zuerst 3 × 4 = 12.<br>
-Danach 2 + 12 = 14.
-</p>
-
+<h3 id="explanationTitle"></h3>
+<p id="explanationText"></p>
 </div>
 
 <p id="progress"></p>
@@ -153,348 +110,647 @@ Danach 2 + 12 = 14.
 
 <div id="visual" class="visual"></div>
 
-<input
-    id="answer"
-    type="text"
-    placeholder="Deine Antwort"
->
+<input id="answer" type="text">
 
 <br>
 
-<button onclick="checkAnswer()">
-Antwort prüfen
-</button>
+<button onclick="checkAnswer()" id="checkButton"></button>
 
 <div id="result"></div>
 
 <div id="solution">
-    <h3>💡 Lösung</h3>
-    <p id="solutionText"></p>
+<h3 id="solutionTitle"></h3>
+<p id="solutionText"></p>
 </div>
 
-<button id="nextButton" onclick="nextQuestion()">
-➡️ Nächste Aufgabe
-</button>
+<button id="nextButton" onclick="nextQuestion()"></button>
 
 <br>
 
-<button
-    class="back"
-    onclick="window.location.href='mathe5.html'"
->
-← Zurück zu den Mathe-Themen
+<button class="back"
+onclick="location.href='mathe5.html'"
+id="backButton">
 </button>
 
 </div>
 
 <script>
 
-const questions = [
+const translations={
+
+de:{
+subtitle:"Mathematik – Klasse 5",
+language:"🌐 Sprache:",
+title:"🧮 Rechenregeln und Klammern",
+explanationTitle:"📖 Kurze Erklärung",
+explanationText:
+"Beachte die Rechenregeln: Punkt vor Strich. Klammern werden zuerst berechnet. Punktrechnung bedeutet Multiplikation und Division. Strichrechnung bedeutet Addition und Subtraktion.",
+check:"Antwort prüfen",
+solution:"💡 Lösung",
+next:"➡️ Nächste Aufgabe",
+back:"← Zurück zu den Mathe-Themen",
+placeholder:"Deine Antwort",
+correct:"✅ Richtig! Sehr gut! 🎉",
+wrong:"❌ Leider falsch.",
+finished:"🎉 Du hast alle 30 Aufgaben geschafft!",
+done:"Fertig! 🏆",
+great:"Super gemacht! 🎓"
+},
+
+en:{
+subtitle:"Mathematics – Grade 5",
+language:"🌐 Language:",
+title:"🧮 Calculation Rules and Brackets",
+explanationTitle:"📖 Short explanation",
+explanationText:
+"Remember the rules: multiplication and division before addition and subtraction. Brackets are calculated first.",
+check:"Check answer",
+solution:"💡 Solution",
+next:"➡️ Next question",
+back:"← Back to math topics",
+placeholder:"Your answer",
+correct:"✅ Correct! Very good! 🎉",
+wrong:"❌ Unfortunately, that's wrong.",
+finished:"🎉 You completed all 30 questions!",
+done:"Finished! 🏆",
+great:"Well done! 🎓"
+},
+
+ps:{
+subtitle:"ریاضي – پنځم ټولګی",
+language:"🌐 ژبه:",
+title:"🧮 د حساب قواعد او قوسونه",
+explanationTitle:"📖 لنډه تشریح",
+explanationText:
+"د حساب قواعد په یاد ولره: ضرب او تقسیم د جمع او تفریق څخه مخکې کېږي. قوسونه لومړی حل کېږي.",
+check:"ځواب وګورئ",
+solution:"💡 حل",
+next:"➡️ بله پوښتنه",
+back:"← د ریاضي موضوعاتو ته بېرته",
+placeholder:"خپل ځواب ولیکئ",
+correct:"✅ سم دی! ډېر ښه! 🎉",
+wrong:"❌ له بده مرغه غلط دی.",
+finished:"🎉 ټولې ۳۰ پوښتنې دې بشپړې کړې!",
+done:"بشپړ شو! 🏆",
+great:"ډېر ښه! 🎓"
+}
+
+};
+
+const questions=[
+
+/* RECHENREGELN */
 
 {
-q: "Rechne: 3 + 4 × 2",
-visual: "3 + 4 × 2 = ❓",
-answer: "11",
-solution: "Zuerst 4 × 2 = 8. Danach 3 + 8 = 11."
+q:{
+de:"Was ist 6 + 4 × 2?",
+en:"What is 6 + 4 × 2?",
+ps:"۶ + ۴ × ۲ څو کېږي؟"
+},
+visual:"6 + 4 × 2 = ❓",
+answer:"14",
+s:{
+de:"Zuerst 4 × 2 = 8. Dann 6 + 8 = 14.",
+en:"First 4 × 2 = 8. Then 6 + 8 = 14.",
+ps:"لومړی ۴ × ۲ = ۸. بیا ۶ + ۸ = ۱۴."
+}
 },
 
 {
-q: "Rechne: 5 + 2 × 3",
-visual: "5 + 2 × 3 = ❓",
-answer: "11",
-solution: "Zuerst 2 × 3 = 6. Danach 5 + 6 = 11."
+q:{
+de:"Was ist 20 − 3 × 4?",
+en:"What is 20 − 3 × 4?",
+ps:"۲۰ − ۳ × ۴ څو کېږي؟"
+},
+visual:"20 − 3 × 4 = ❓",
+answer:"8",
+s:{
+de:"3 × 4 = 12. Dann 20 − 12 = 8.",
+en:"3 × 4 = 12. Then 20 − 12 = 8.",
+ps:"۳ × ۴ = ۱۲. بیا ۲۰ − ۱۲ = ۸."
+}
 },
 
 {
-q: "Rechne: 10 - 2 × 3",
-visual: "10 - 2 × 3 = ❓",
-answer: "4",
-solution: "Zuerst 2 × 3 = 6. Danach 10 - 6 = 4."
+q:{
+de:"Was ist 18 ÷ 3 + 5?",
+en:"What is 18 ÷ 3 + 5?",
+ps:"۱۸ ÷ ۳ + ۵ څو کېږي؟"
+},
+visual:"18 ÷ 3 + 5 = ❓",
+answer:"11",
+s:{
+de:"18 ÷ 3 = 6. Dann 6 + 5 = 11.",
+en:"18 ÷ 3 = 6. Then 6 + 5 = 11.",
+ps:"۱۸ ÷ ۳ = ۶. بیا ۶ + ۵ = ۱۱."
+}
 },
 
 {
-q: "Rechne: 20 - 4 × 2",
-visual: "20 - 4 × 2 = ❓",
-answer: "12",
-solution: "Zuerst 4 × 2 = 8. Danach 20 - 8 = 12."
+q:{
+de:"Was ist 7 + 5 × 3?",
+en:"What is 7 + 5 × 3?",
+ps:"۷ + ۵ × ۳ څو کېږي؟"
+},
+visual:"7 + 5 × 3 = ❓",
+answer:"22",
+s:{
+de:"5 × 3 = 15. Dann 7 + 15 = 22.",
+en:"5 × 3 = 15. Then 7 + 15 = 22.",
+ps:"۵ × ۳ = ۱۵. بیا ۷ + ۱۵ = ۲۲."
+}
 },
 
 {
-q: "Rechne: 6 + 12 ÷ 3",
-visual: "6 + 12 ÷ 3 = ❓",
-answer: "10",
-solution: "Zuerst 12 ÷ 3 = 4. Danach 6 + 4 = 10."
+q:{
+de:"Was ist 40 ÷ 5 − 2?",
+en:"What is 40 ÷ 5 − 2?",
+ps:"۴۰ ÷ ۵ − ۲ څو کېږي؟"
+},
+visual:"40 ÷ 5 − 2 = ❓",
+answer:"6",
+s:{
+de:"40 ÷ 5 = 8. Dann 8 − 2 = 6.",
+en:"40 ÷ 5 = 8. Then 8 − 2 = 6.",
+ps:"۴۰ ÷ ۵ = ۸. بیا ۸ − ۲ = ۶."
+}
 },
 
 {
-q: "Rechne: 15 - 10 ÷ 2",
-visual: "15 - 10 ÷ 2 = ❓",
-answer: "10",
-solution: "Zuerst 10 ÷ 2 = 5. Danach 15 - 5 = 10."
+q:{
+de:"Was ist 9 × 3 + 2?",
+en:"What is 9 × 3 + 2?",
+ps:"۹ × ۳ + ۲ څو کېږي؟"
+},
+visual:"9 × 3 + 2 = ❓",
+answer:"29",
+s:{
+de:"9 × 3 = 27. Dann 27 + 2 = 29.",
+en:"9 × 3 = 27. Then 27 + 2 = 29.",
+ps:"۹ × ۳ = ۲۷. بیا ۲۷ + ۲ = ۲۹."
+}
 },
 
 {
-q: "Rechne: 4 × 3 + 2",
-visual: "4 × 3 + 2 = ❓",
-answer: "14",
-solution: "Zuerst 4 × 3 = 12. Danach 12 + 2 = 14."
+q:{
+de:"Was ist 50 − 6 × 5?",
+en:"What is 50 − 6 × 5?",
+ps:"۵۰ − ۶ × ۵ څو کېږي؟"
+},
+visual:"50 − 6 × 5 = ❓",
+answer:"20",
+s:{
+de:"6 × 5 = 30. Dann 50 − 30 = 20.",
+en:"6 × 5 = 30. Then 50 − 30 = 20.",
+ps:"۶ × ۵ = ۳۰. بیا ۵۰ − ۳۰ = ۲۰."
+}
 },
 
 {
-q: "Rechne: 5 × 2 - 3",
-visual: "5 × 2 - 3 = ❓",
-answer: "7",
-solution: "Zuerst 5 × 2 = 10. Danach 10 - 3 = 7."
+q:{
+de:"Was ist 36 ÷ 6 + 7?",
+en:"What is 36 ÷ 6 + 7?",
+ps:"۳۶ ÷ ۶ + ۷ څو کېږي؟"
+},
+visual:"36 ÷ 6 + 7 = ❓",
+answer:"13",
+s:{
+de:"36 ÷ 6 = 6. Dann 6 + 7 = 13.",
+en:"36 ÷ 6 = 6. Then 6 + 7 = 13.",
+ps:"۳۶ ÷ ۶ = ۶. بیا ۶ + ۷ = ۱۳."
+}
 },
 
 {
-q: "Rechne: 18 ÷ 3 + 4",
-visual: "18 ÷ 3 + 4 = ❓",
-answer: "10",
-solution: "Zuerst 18 ÷ 3 = 6. Danach 6 + 4 = 10."
+q:{
+de:"Was ist 8 × 4 − 6?",
+en:"What is 8 × 4 − 6?",
+ps:"۸ × ۴ − ۶ څو کېږي؟"
+},
+visual:"8 × 4 − 6 = ❓",
+answer:"26",
+s:{
+de:"8 × 4 = 32. Dann 32 − 6 = 26.",
+en:"8 × 4 = 32. Then 32 − 6 = 26.",
+ps:"۸ × ۴ = ۳۲. بیا ۳۲ − ۶ = ۲۶."
+}
 },
 
 {
-q: "Rechne: 20 ÷ 4 - 2",
-visual: "20 ÷ 4 - 2 = ❓",
-answer: "3",
-solution: "Zuerst 20 ÷ 4 = 5. Danach 5 - 2 = 3."
+q:{
+de:"Was ist 100 ÷ 10 + 5?",
+en:"What is 100 ÷ 10 + 5?",
+ps:"۱۰۰ ÷ ۱۰ + ۵ څو کېږي؟"
+},
+visual:"100 ÷ 10 + 5 = ❓",
+answer:"15",
+s:{
+de:"100 ÷ 10 = 10. Dann 10 + 5 = 15.",
+en:"100 ÷ 10 = 10. Then 10 + 5 = 15.",
+ps:"۱۰۰ ÷ ۱۰ = ۱۰. بیا ۱۰ + ۵ = ۱۵."
+}
 },
 
 {
-q: "Rechne: (3 + 4) × 2",
-visual: "(3 + 4) × 2 = ❓",
-answer: "14",
-solution: "Zuerst die Klammer: 3 + 4 = 7. Danach 7 × 2 = 14."
+q:{
+de:"Was ist 12 + 8 ÷ 4?",
+en:"What is 12 + 8 ÷ 4?",
+ps:"۱۲ + ۸ ÷ ۴ څو کېږي؟"
+},
+visual:"12 + 8 ÷ 4 = ❓",
+answer:"14",
+s:{
+de:"8 ÷ 4 = 2. Dann 12 + 2 = 14.",
+en:"8 ÷ 4 = 2. Then 12 + 2 = 14.",
+ps:"۸ ÷ ۴ = ۲. بیا ۱۲ + ۲ = ۱۴."
+}
 },
 
 {
-q: "Rechne: (5 + 2) × 3",
-visual: "(5 + 2) × 3 = ❓",
-answer: "21",
-solution: "5 + 2 = 7. Danach 7 × 3 = 21."
+q:{
+de:"Was ist 5 × 6 − 10?",
+en:"What is 5 × 6 − 10?",
+ps:"۵ × ۶ − ۱۰ څو کېږي؟"
+},
+visual:"5 × 6 − 10 = ❓",
+answer:"20",
+s:{
+de:"5 × 6 = 30. Dann 30 − 10 = 20.",
+en:"5 × 6 = 30. Then 30 − 10 = 20.",
+ps:"۵ × ۶ = ۳۰. بیا ۳۰ − ۱۰ = ۲۰."
+}
 },
 
 {
-q: "Rechne: (10 - 4) × 2",
-visual: "(10 - 4) × 2 = ❓",
-answer: "12",
-solution: "10 - 4 = 6. Danach 6 × 2 = 12."
+q:{
+de:"Was ist 24 ÷ 4 × 2?",
+en:"What is 24 ÷ 4 × 2?",
+ps:"۲۴ ÷ ۴ × ۲ څو کېږي؟"
+},
+visual:"24 ÷ 4 × 2 = ❓",
+answer:"12",
+s:{
+de:"24 ÷ 4 = 6. Dann 6 × 2 = 12.",
+en:"24 ÷ 4 = 6. Then 6 × 2 = 12.",
+ps:"۲۴ ÷ ۴ = ۶. بیا ۶ × ۲ = ۱۲."
+}
 },
 
 {
-q: "Rechne: (8 + 4) ÷ 2",
-visual: "(8 + 4) ÷ 2 = ❓",
-answer: "6",
-solution: "8 + 4 = 12. Danach 12 ÷ 2 = 6."
+q:{
+de:"Was ist 15 + 2 × 6?",
+en:"What is 15 + 2 × 6?",
+ps:"۱۵ + ۲ × ۶ څو کېږي؟"
+},
+visual:"15 + 2 × 6 = ❓",
+answer:"27",
+s:{
+de:"2 × 6 = 12. Dann 15 + 12 = 27.",
+en:"2 × 6 = 12. Then 15 + 12 = 27.",
+ps:"۲ × ۶ = ۱۲. بیا ۱۵ + ۱۲ = ۲۷."
+}
 },
 
 {
-q: "Rechne: 20 ÷ (2 + 3)",
-visual: "20 ÷ (2 + 3) = ❓",
-answer: "4",
-solution: "Zuerst 2 + 3 = 5. Danach 20 ÷ 5 = 4."
+q:{
+de:"Was ist 70 − 8 × 5?",
+en:"What is 70 − 8 × 5?",
+ps:"۷۰ − ۸ × ۵ څو کېږي؟"
+},
+visual:"70 − 8 × 5 = ❓",
+answer:"30",
+s:{
+de:"8 × 5 = 40. Dann 70 − 40 = 30.",
+en:"8 × 5 = 40. Then 70 − 40 = 30.",
+ps:"۸ × ۵ = ۴۰. بیا ۷۰ − ۴۰ = ۳۰."
+}
+},
+
+/* KLAMMERN */
+
+{
+q:{
+de:"Was ist (5 + 3) × 2?",
+en:"What is (5 + 3) × 2?",
+ps:"(۵ + ۳) × ۲ څو کېږي؟"
+},
+visual:"🔵 (5 + 3) × 2",
+answer:"16",
+s:{
+de:"5 + 3 = 8. Dann 8 × 2 = 16.",
+en:"5 + 3 = 8. Then 8 × 2 = 16.",
+ps:"۵ + ۳ = ۸. بیا ۸ × ۲ = ۱۶."
+}
 },
 
 {
-q: "Rechne: 3 × (4 + 2)",
-visual: "3 × (4 + 2) = ❓",
-answer: "18",
-solution: "4 + 2 = 6. Danach 3 × 6 = 18."
+q:{
+de:"Was ist (10 − 4) × 3?",
+en:"What is (10 − 4) × 3?",
+ps:"(۱۰ − ۴) × ۳ څو کېږي؟"
+},
+visual:"🔵 (10 − 4) × 3",
+answer:"18",
+s:{
+de:"10 − 4 = 6. Dann 6 × 3 = 18.",
+en:"10 − 4 = 6. Then 6 × 3 = 18.",
+ps:"۱۰ − ۴ = ۶. بیا ۶ × ۳ = ۱۸."
+}
 },
 
 {
-q: "Rechne: 5 × (10 - 6)",
-visual: "5 × (10 - 6) = ❓",
-answer: "20",
-solution: "10 - 6 = 4. Danach 5 × 4 = 20."
+q:{
+de:"Was ist 20 − (5 + 3)?",
+en:"What is 20 − (5 + 3)?",
+ps:"۲۰ − (۵ + ۳) څو کېږي؟"
+},
+visual:"🔵 20 − (5 + 3)",
+answer:"12",
+s:{
+de:"5 + 3 = 8. Dann 20 − 8 = 12.",
+en:"5 + 3 = 8. Then 20 − 8 = 12.",
+ps:"۵ + ۳ = ۸. بیا ۲۰ − ۸ = ۱۲."
+}
 },
 
 {
-q: "Rechne: (6 + 3) - 4",
-visual: "(6 + 3) - 4 = ❓",
-answer: "5",
-solution: "6 + 3 = 9. Danach 9 - 4 = 5."
+q:{
+de:"Was ist 30 ÷ (5 + 1)?",
+en:"What is 30 ÷ (5 + 1)?",
+ps:"۳۰ ÷ (۵ + ۱) څو کېږي؟"
+},
+visual:"🔵 30 ÷ (5 + 1)",
+answer:"5",
+s:{
+de:"5 + 1 = 6. Dann 30 ÷ 6 = 5.",
+en:"5 + 1 = 6. Then 30 ÷ 6 = 5.",
+ps:"۵ + ۱ = ۶. بیا ۳۰ ÷ ۶ = ۵."
+}
 },
 
 {
-q: "Rechne: 30 - (5 + 5)",
-visual: "30 - (5 + 5) = ❓",
-answer: "20",
-solution: "5 + 5 = 10. Danach 30 - 10 = 20."
+q:{
+de:"Was ist 4 × (7 − 2)?",
+en:"What is 4 × (7 − 2)?",
+ps:"۴ × (۷ − ۲) څو کېږي؟"
+},
+visual:"🔵 4 × (7 − 2)",
+answer:"20",
+s:{
+de:"7 − 2 = 5. Dann 4 × 5 = 20.",
+en:"7 − 2 = 5. Then 4 × 5 = 20.",
+ps:"۷ − ۲ = ۵. بیا ۴ × ۵ = ۲۰."
+}
 },
 
 {
-q: "Rechne: 4 + (3 × 2)",
-visual: "4 + (3 × 2) = ❓",
-answer: "10",
-solution: "3 × 2 = 6. Danach 4 + 6 = 10."
+q:{
+de:"Was ist (6 + 4) ÷ 2?",
+en:"What is (6 + 4) ÷ 2?",
+ps:"(۶ + ۴) ÷ ۲ څو کېږي؟"
+},
+visual:"🔵 (6 + 4) ÷ 2",
+answer:"5",
+s:{
+de:"6 + 4 = 10. Dann 10 ÷ 2 = 5.",
+en:"6 + 4 = 10. Then 10 ÷ 2 = 5.",
+ps:"۶ + ۴ = ۱۰. بیا ۱۰ ÷ ۲ = ۵."
+}
 },
 
 {
-q: "Rechne: 2 × 5 + 6",
-visual: "2 × 5 + 6 = ❓",
-answer: "16",
-solution: "2 × 5 = 10. Danach 10 + 6 = 16."
+q:{
+de:"Was ist (8 − 3) × 4?",
+en:"What is (8 − 3) × 4?",
+ps:"(۸ − ۳) × ۴ څو کېږي؟"
+},
+visual:"🔵 (8 − 3) × 4",
+answer:"20",
+s:{
+de:"8 − 3 = 5. Dann 5 × 4 = 20.",
+en:"8 − 3 = 5. Then 5 × 4 = 20.",
+ps:"۸ − ۳ = ۵. بیا ۵ × ۴ = ۲۰."
+}
 },
 
 {
-q: "Rechne: 20 - 3 × 4",
-visual: "20 - 3 × 4 = ❓",
-answer: "8",
-solution: "3 × 4 = 12. Danach 20 - 12 = 8."
+q:{
+de:"Was ist 50 − (10 × 3)?",
+en:"What is 50 − (10 × 3)?",
+ps:"۵۰ − (۱۰ × ۳) څو کېږي؟"
+},
+visual:"🔵 50 − (10 × 3)",
+answer:"20",
+s:{
+de:"10 × 3 = 30. Dann 50 − 30 = 20.",
+en:"10 × 3 = 30. Then 50 − 30 = 20.",
+ps:"۱۰ × ۳ = ۳۰. بیا ۵۰ − ۳۰ = ۲۰."
+}
 },
 
 {
-q: "Rechne: 24 ÷ 6 + 5",
-visual: "24 ÷ 6 + 5 = ❓",
-answer: "9",
-solution: "24 ÷ 6 = 4. Danach 4 + 5 = 9."
+q:{
+de:"Was ist (12 + 8) ÷ 4?",
+en:"What is (12 + 8) ÷ 4?",
+ps:"(۱۲ + ۸) ÷ ۴ څو کېږي؟"
+},
+visual:"🔵 (12 + 8) ÷ 4",
+answer:"5",
+s:{
+de:"12 + 8 = 20. Dann 20 ÷ 4 = 5.",
+en:"12 + 8 = 20. Then 20 ÷ 4 = 5.",
+ps:"۱۲ + ۸ = ۲۰. بیا ۲۰ ÷ ۴ = ۵."
+}
 },
 
 {
-q: "Rechne: 7 + 3 × 5",
-visual: "7 + 3 × 5 = ❓",
-answer: "22",
-solution: "3 × 5 = 15. Danach 7 + 15 = 22."
+q:{
+de:"Was ist 6 × (3 + 2)?",
+en:"What is 6 × (3 + 2)?",
+ps:"۶ × (۳ + ۲) څو کېږي؟"
+},
+visual:"🔵 6 × (3 + 2)",
+answer:"30",
+s:{
+de:"3 + 2 = 5. Dann 6 × 5 = 30.",
+en:"3 + 2 = 5. Then 6 × 5 = 30.",
+ps:"۳ + ۲ = ۵. بیا ۶ × ۵ = ۳۰."
+}
 },
 
 {
-q: "Rechne: 40 - 6 × 5",
-visual: "40 - 6 × 5 = ❓",
-answer: "10",
-solution: "6 × 5 = 30. Danach 40 - 30 = 10."
+q:{
+de:"Was ist (20 − 5) ÷ 3?",
+en:"What is (20 − 5) ÷ 3?",
+ps:"(۲۰ − ۵) ÷ ۳ څو کېږي؟"
+},
+visual:"🔵 (20 − 5) ÷ 3",
+answer:"5",
+s:{
+de:"20 − 5 = 15. Dann 15 ÷ 3 = 5.",
+en:"20 − 5 = 15. Then 15 ÷ 3 = 5.",
+ps:"۲۰ − ۵ = ۱۵. بیا ۱۵ ÷ ۳ = ۵."
+}
 },
 
 {
-q: "Rechne: (7 + 3) × 5",
-visual: "(7 + 3) × 5 = ❓",
-answer: "50",
-solution: "7 + 3 = 10. Danach 10 × 5 = 50."
+q:{
+de:"Was ist (9 + 6) − 4?",
+en:"What is (9 + 6) − 4?",
+ps:"(۹ + ۶) − ۴ څو کېږي؟"
+},
+visual:"🔵 (9 + 6) − 4",
+answer:"11",
+s:{
+de:"9 + 6 = 15. Dann 15 − 4 = 11.",
+en:"9 + 6 = 15. Then 15 − 4 = 11.",
+ps:"۹ + ۶ = ۱۵. بیا ۱۵ − ۴ = ۱۱."
+}
 },
 
 {
-q: "Rechne: (20 - 8) ÷ 3",
-visual: "(20 - 8) ÷ 3 = ❓",
-answer: "4",
-solution: "20 - 8 = 12. Danach 12 ÷ 3 = 4."
+q:{
+de:"Was ist 100 − (20 + 30)?",
+en:"What is 100 − (20 + 30)?",
+ps:"۱۰۰ − (۲۰ + ۳۰) څو کېږي؟"
+},
+visual:"🔵 100 − (20 + 30)",
+answer:"50",
+s:{
+de:"20 + 30 = 50. Dann 100 − 50 = 50.",
+en:"20 + 30 = 50. Then 100 − 50 = 50.",
+ps:"۲۰ + ۳۰ = ۵۰. بیا ۱۰۰ − ۵۰ = ۵۰."
+}
 },
 
 {
-q: "Rechne: 6 × (2 + 3)",
-visual: "6 × (2 + 3) = ❓",
-answer: "30",
-solution: "2 + 3 = 5. Danach 6 × 5 = 30."
+q:{
+de:"Was ist (7 + 3) × (2 + 1)?",
+en:"What is (7 + 3) × (2 + 1)?",
+ps:"(۷ + ۳) × (۲ + ۱) څو کېږي؟"
 },
-
-{
-q: "Rechne: 50 ÷ (5 + 5)",
-visual: "50 ÷ (5 + 5) = ❓",
-answer: "5",
-solution: "5 + 5 = 10. Danach 50 ÷ 10 = 5."
-},
-
-{
-q: "Rechne: (10 + 5) × 2 - 5",
-visual: "(10 + 5) × 2 - 5 = ❓",
-answer: "25",
-solution: "10 + 5 = 15. 15 × 2 = 30. 30 - 5 = 25."
+visual:"🔵 (7 + 3) × (2 + 1)",
+answer:"30",
+s:{
+de:"7 + 3 = 10 und 2 + 1 = 3. Dann 10 × 3 = 30.",
+en:"7 + 3 = 10 and 2 + 1 = 3. Then 10 × 3 = 30.",
+ps:"۷ + ۳ = ۱۰ او ۲ + ۱ = ۳. بیا ۱۰ × ۳ = ۳۰."
+}
 }
 
 ];
 
-let current = 0;
 
-function showQuestion() {
+let current=0;
+let language=localStorage.getItem("language")||"de";
 
-    document.getElementById("question").textContent =
-        questions[current].q;
 
-    document.getElementById("visual").innerHTML =
-        questions[current].visual;
+function changeLanguage(lang){
 
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
+language=lang;
+localStorage.setItem("language",lang);
 
-    document.getElementById("answer").value = "";
+const t=translations[lang];
 
-    document.getElementById("answer").disabled = false;
+document.getElementById("subtitle").textContent=t.subtitle;
+document.getElementById("languageText").textContent=t.language;
+document.getElementById("title").textContent=t.title;
+document.getElementById("explanationTitle").textContent=t.explanationTitle;
+document.getElementById("explanationText").textContent=t.explanationText;
+document.getElementById("checkButton").textContent=t.check;
+document.getElementById("solutionTitle").textContent=t.solution;
+document.getElementById("nextButton").textContent=t.next;
+document.getElementById("backButton").textContent=t.back;
+document.getElementById("answer").placeholder=t.placeholder;
 
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("solution").style.display = "none";
-
-    document.getElementById("nextButton").style.display = "none";
+showQuestion();
 }
 
-function checkAnswer() {
 
-    const userAnswer =
-        document.getElementById("answer").value
-        .trim()
-        .replace(/\s/g, "");
+function showQuestion(){
 
-    const correctAnswer =
-        questions[current].answer;
+const q=questions[current];
 
-    if (userAnswer === correctAnswer) {
+document.getElementById("question").textContent=q.q[language];
 
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
+document.getElementById("visual").textContent=q.visual;
 
-    } else {
+document.getElementById("progress").textContent=
+(language==="de"?"Aufgabe ":
+language==="en"?"Question ":"پوښتنه ")
++(current+1)+" / 30";
 
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
+document.getElementById("answer").value="";
+document.getElementById("answer").disabled=false;
+document.getElementById("result").textContent="";
+document.getElementById("solution").style.display="none";
+document.getElementById("nextButton").style.display="none";
 
-        document.getElementById("solution").style.display =
-            "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-    }
-
-    document.getElementById("answer").disabled = true;
-
-    document.getElementById("nextButton").style.display =
-        "inline-block";
 }
 
-function nextQuestion() {
 
-    current++;
+function checkAnswer(){
 
-    if (current >= questions.length) {
+const userAnswer=document.getElementById("answer")
+.value
+.trim()
+.toLowerCase()
+.replace(/\s/g,"");
 
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
+const correct=questions[current].answer
+.toLowerCase()
+.replace(/\s/g,"");
 
-        document.getElementById("progress").textContent =
-            "Fertig! 🏆";
+const t=translations[language];
 
-        document.getElementById("visual").style.display =
-            "none";
+if(userAnswer===correct){
 
-        document.getElementById("answer").style.display =
-            "none";
+document.getElementById("result").textContent=t.correct;
 
-        document.getElementById("result").textContent =
-            "Super gemacht! 🎓";
+}else{
 
-        document.getElementById("nextButton").style.display =
-            "none";
+document.getElementById("result").textContent=t.wrong;
 
-        document.getElementById("solution").style.display =
-            "none";
+document.getElementById("solution").style.display="block";
 
-        return;
-    }
+document.getElementById("solutionText").textContent=
+questions[current].s[language];
 
-    showQuestion();
+}
+
+document.getElementById("answer").disabled=true;
+
+document.getElementById("nextButton").style.display="inline-block";
+
+}
+
+
+function nextQuestion(){
+
+current++;
+
+if(current>=questions.length){
+
+const t=translations[language];
+
+document.getElementById("question").textContent=t.finished;
+document.getElementById("progress").textContent=t.done;
+document.getElementById("visual").style.display="none";
+document.getElementById("answer").style.display="none";
+document.getElementById("checkButton").style.display="none";
+document.getElementById("result").textContent=t.great;
+document.getElementById("nextButton").style.display="none";
+document.getElementById("solution").style.display="none";
+
+return;
 }
 
 showQuestion();
+
+}
+
+
+changeLanguage(language);
 
 </script>
 
