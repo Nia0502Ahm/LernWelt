@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Natürliche Zahlen</title>
+    <title>LernWelt – Mathe Klasse 5</title>
 
     <style>
         body {
@@ -19,50 +19,43 @@
             padding: 30px 20px;
         }
 
+        header h1 {
+            margin: 0;
+        }
+
         .container {
             max-width: 700px;
             margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
+            padding: 20px;
         }
 
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-        }
-
-        button {
-            padding: 13px 25px;
-            margin: 8px;
+        .topic {
+            width: 90%;
+            max-width: 500px;
+            margin: 10px auto;
+            padding: 18px;
             border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #1d4ed8;
-        }
-
-        #result {
-            margin: 20px;
+            border-radius: 12px;
+            background: white;
+            color: #222;
             font-size: 18px;
-            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            display: block;
         }
 
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
+        .topic:hover {
+            background: #eaf1ff;
+        }
+
+        .back {
+            margin-top: 25px;
+            background: #64748b;
+            color: white;
+        }
+
+        .back:hover {
+            background: #475569;
         }
     </style>
 </head>
@@ -70,324 +63,58 @@
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+    <h1>📐 Mathe – Klasse 5</h1>
+    <p>Wähle ein Thema zum Lernen</p>
 </header>
 
 <div class="container">
 
-    <h2>🔢 Natürliche Zahlen</h2>
-
-    <p id="progress"></p>
-
-    <h3 id="question"></h3>
-
-    <input id="answer" type="text" placeholder="Deine Antwort">
-
-    <br>
-
-    <button onclick="checkAnswer()">Antwort prüfen</button>
-
-    <div id="result"></div>
-
-    <div id="solution">
-        <strong>💡 Lösung:</strong>
-        <p id="solutionText"></p>
-    </div>
-
-    <button id="nextButton" onclick="nextQuestion()" style="display:none;">
-        ➡️ Nächste Aufgabe
+    <button class="topic"
+        onclick="window.location.href='natuerliche-zahlen5.html'">
+        🔢 Natürliche Zahlen
     </button>
 
-    <br>
+    <button class="topic"
+        onclick="window.location.href='addieren-subtrahieren5.html'">
+        ➕ Addieren und Subtrahieren
+    </button>
 
-    <button onclick="window.location.href='klasse5.html'">
+    <button class="topic"
+        onclick="window.location.href='multiplizieren-dividieren5.html'">
+        ✖️ Multiplizieren und Dividieren
+    </button>
+
+    <button class="topic"
+        onclick="window.location.href='zahlenstrahl-stellenwert5.html'">
+        🔢 Zahlenstrahl und Stellenwert
+    </button>
+
+    <button class="topic"
+        onclick="window.location.href='groessen-einheiten5.html'">
+        📏 Größen und Einheiten
+    </button>
+
+    <button class="topic"
+        onclick="window.location.href='geometrie5.html'">
+        📐 Geometrische Grundformen
+    </button>
+
+    <button class="topic"
+        onclick="window.location.href='daten-diagramme5.html'">
+        📊 Daten und Diagramme
+    </button>
+
+    <button class="topic"
+        onclick="window.location.href='rechenregeln5.html'">
+        🧮 Rechenregeln und Klammern
+    </button>
+
+    <button class="topic back"
+        onclick="window.location.href='klasse5.html'">
         ← Zurück zu den Fächern
     </button>
 
 </div>
-
-<script>
-
-const questions = [
-
-    {
-        q: "Wie heißt der Nachfolger von 49?",
-        answer: "50",
-        solution: "Der Nachfolger von 49 ist 50, weil 49 + 1 = 50."
-    },
-
-    {
-        q: "Wie heißt der Vorgänger von 100?",
-        answer: "99",
-        solution: "Der Vorgänger von 100 ist 99, weil 100 - 1 = 99."
-    },
-
-    {
-        q: "Welche Zahl ist größer: 345 oder 354?",
-        answer: "354",
-        solution: "354 ist größer als 345."
-    },
-
-    {
-        q: "Welche Zahl ist kleiner: 782 oder 728?",
-        answer: "728",
-        solution: "728 ist kleiner als 782."
-    },
-
-    {
-        q: "Ordne aufsteigend: 8, 3, 12, 5.",
-        answer: "3,5,8,12",
-        solution: "Aufsteigend bedeutet von klein nach groß: 3, 5, 8, 12."
-    },
-
-    {
-        q: "Wie viele Einer hat die Zahl 347?",
-        answer: "7",
-        solution: "Bei 347 steht die 7 an der Einerstelle."
-    },
-
-    {
-        q: "Wie viele Zehner hat die Zahl 582?",
-        answer: "8",
-        solution: "Bei 582 steht die 8 an der Zehnerstelle."
-    },
-
-    {
-        q: "Wie viele Hunderter hat die Zahl 735?",
-        answer: "7",
-        solution: "Bei 735 steht die 7 an der Hunderterstelle."
-    },
-
-    {
-        q: "Welche Zahl kommt zwischen 199 und 201?",
-        answer: "200",
-        solution: "Zwischen 199 und 201 liegt die Zahl 200."
-    },
-
-    {
-        q: "Was ist 20 + 30?",
-        answer: "50",
-        solution: "20 + 30 = 50."
-    },
-
-    {
-        q: "Was ist 70 - 25?",
-        answer: "45",
-        solution: "70 - 25 = 45."
-    },
-
-    {
-        q: "Was ist 6 · 7?",
-        answer: "42",
-        solution: "6 · 7 = 42."
-    },
-
-    {
-        q: "Was ist 48 : 6?",
-        answer: "8",
-        solution: "48 : 6 = 8."
-    },
-
-    {
-        q: "Runde 47 auf den nächsten Zehner.",
-        answer: "50",
-        solution: "47 wird auf 50 gerundet."
-    },
-
-    {
-        q: "Runde 63 auf den nächsten Zehner.",
-        answer: "60",
-        solution: "63 wird auf 60 gerundet."
-    },
-
-    {
-        q: "Runde 149 auf den nächsten Hunderter.",
-        answer: "100",
-        solution: "149 wird auf 100 gerundet."
-    },
-
-    {
-        q: "Runde 156 auf den nächsten Hunderter.",
-        answer: "200",
-        solution: "156 wird auf 200 gerundet."
-    },
-
-    {
-        q: "Welche Zahl ist größer: 1 205 oder 1 250?",
-        answer: "1250",
-        solution: "1 250 ist größer als 1 205."
-    },
-
-    {
-        q: "Wie viele Tausender hat 4 321?",
-        answer: "4",
-        solution: "Die Tausenderstelle ist 4."
-    },
-
-    {
-        q: "Was ist die Hälfte von 100?",
-        answer: "50",
-        solution: "100 : 2 = 50."
-    },
-
-    {
-        q: "Was ist das Doppelte von 35?",
-        answer: "70",
-        solution: "35 · 2 = 70."
-    },
-
-    {
-        q: "Was ist 100 + 250?",
-        answer: "350",
-        solution: "100 + 250 = 350."
-    },
-
-    {
-        q: "Was ist 500 - 125?",
-        answer: "375",
-        solution: "500 - 125 = 375."
-    },
-
-    {
-        q: "Was ist 9 · 5?",
-        answer: "45",
-        solution: "9 · 5 = 45."
-    },
-
-    {
-        q: "Was ist 81 : 9?",
-        answer: "9",
-        solution: "81 : 9 = 9."
-    },
-
-    {
-        q: "Welche Zahl kommt direkt nach 999?",
-        answer: "1000",
-        solution: "Nach 999 kommt 1000."
-    },
-
-    {
-        q: "Welche Zahl kommt direkt vor 1 000?",
-        answer: "999",
-        solution: "Vor 1 000 kommt 999."
-    },
-
-    {
-        q: "Wie viele Zehner sind in 100?",
-        answer: "10",
-        solution: "100 : 10 = 10 Zehner."
-    },
-
-    {
-        q: "Wie viele Hunderter sind in 1 000?",
-        answer: "10",
-        solution: "1 000 : 100 = 10 Hunderter."
-    },
-
-    {
-        q: "Welche Zahl ist die größte: 456, 465 oder 546?",
-        answer: "546",
-        solution: "546 ist die größte der drei Zahlen."
-    }
-
-];
-
-let current = 0;
-
-function showQuestion() {
-
-    document.getElementById("question").textContent =
-        questions[current].q;
-
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) + " von " + questions.length;
-
-    document.getElementById("answer").value = "";
-
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("solution").style.display = "none";
-
-    document.getElementById("nextButton").style.display = "none";
-
-    document.getElementById("answer").disabled = false;
-}
-
-function checkAnswer() {
-
-    const userAnswer =
-        document.getElementById("answer").value
-        .trim()
-        .replace(/\s/g, "")
-        .replace(",", ".");
-
-    const correctAnswer =
-        questions[current].answer
-        .replace(/\s/g, "")
-        .replace(",", ".");
-
-    if (userAnswer === correctAnswer) {
-
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
-
-        document.getElementById("nextButton").style.display =
-            "inline-block";
-
-        document.getElementById("answer").disabled = true;
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
-
-        document.getElementById("solution").style.display =
-            "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-
-        document.getElementById("nextButton").style.display =
-            "inline-block";
-
-        document.getElementById("answer").disabled = true;
-    }
-}
-
-function nextQuestion() {
-
-    current++;
-
-    if (current >= questions.length) {
-
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
-
-        document.getElementById("progress").textContent =
-            "Fertig!";
-
-        document.getElementById("answer").style.display =
-            "none";
-
-        document.getElementById("result").textContent =
-            "Super gemacht! 🏆";
-
-        document.getElementById("nextButton").style.display =
-            "none";
-
-        document.getElementById("solution").style.display =
-            "none";
-
-        return;
-    }
-
-    showQuestion();
-}
-
-showQuestion();
-
-</script>
 
 </body>
 </html>
