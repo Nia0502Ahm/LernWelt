@@ -1,102 +1,175 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LernWelt</title>
+<title>LernWelt</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 35px 20px;
+}
 
-        header h1 {
-            margin: 0;
-        }
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 18px;
+}
 
-        .container {
-            padding: 30px 20px;
-        }
+h1 {
+    font-size: 36px;
+}
 
-        .classes {
-            max-width: 600px;
-            margin: auto;
-        }
+.language-title {
+    font-size: 22px;
+    margin-top: 30px;
+}
 
-        .class-button {
-            width: 200px;
-            margin: 8px;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
+.language-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
 
-        .class-button:hover {
-            background: #1d4ed8;
-        }
+button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
 
-        #logout {
-            background: #dc2626;
-            margin-top: 25px;
-        }
+button:hover {
+    background: #1d4ed8;
+}
 
-        #logout:hover {
-            background: #b91c1c;
-        }
-    </style>
+.language-button {
+    font-size: 18px;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>📚 LernWelt</h1>
-        <p>Willkommen bei deiner Lernplattform!</p>
-    </header>
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Lernen einfach gemacht</p>
+</header>
 
-    <div class="container">
+<div class="container">
 
-        <h2>Wähle deine Klasse</h2>
+    <h2 id="chooseLanguage">🌐 Sprache auswählen</h2>
 
-        <div class="classes">
-            
-            <button class="class-button" onclick="window.location.href='klasse5.html'">
-                Klasse 5 </button>
-            <button class="class-button">Klasse 6</button>
-            <button class="class-button">Klasse 7</button>
-            <button class="class-button">Klasse 8</button>
-            <button class="class-button">Klasse 9</button>
-            <button class="class-button">Klasse 10</button>
-            <button class="class-button">Klasse 11</button>
-            <button class="class-button">Klasse 12</button>
-            <button class="class-button">Klasse 13 / Abi</button>
+    <div class="language-buttons">
 
-        </div>
+        <button class="language-button"
+                onclick="changeLanguage('de')">
+            🇩🇪 Deutsch
+        </button>
 
-        <button id="logout" class="class-button" onclick="logout()">
-            Abmelden
+        <button class="language-button"
+                onclick="changeLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button class="language-button"
+                onclick="changeLanguage('ps')">
+            🇦🇫 پښتو
         </button>
 
     </div>
 
-    <script>
-        function logout() {
-            window.location.href = "index.html";
-        }
-    </script>
+    <p id="message">
+        Wähle deine Sprache aus.
+    </p>
+
+    <br>
+
+    <button onclick="goToSubjects()" id="startButton">
+        🚀 Start
+    </button>
+
+</div>
+
+<script>
+
+const translations = {
+
+    de: {
+        subtitle: "Lernen einfach gemacht",
+        choose: "🌐 Sprache auswählen",
+        message: "Wähle deine Sprache aus.",
+        start: "🚀 Start"
+    },
+
+    en: {
+        subtitle: "Learning made easy",
+        choose: "🌐 Choose your language",
+        message: "Choose your language.",
+        start: "🚀 Start"
+    },
+
+    ps: {
+        subtitle: "زده کړه په اسانه",
+        choose: "🌐 خپله ژبه وټاکئ",
+        message: "خپله ژبه وټاکئ.",
+        start: "🚀 پیل"
+    }
+
+};
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    document.getElementById("subtitle").textContent =
+        translations[language].subtitle;
+
+    document.getElementById("chooseLanguage").textContent =
+        translations[language].choose;
+
+    document.getElementById("message").textContent =
+        translations[language].message;
+
+    document.getElementById("startButton").textContent =
+        translations[language].start;
+}
+
+function goToSubjects() {
+
+    window.location.href = "klasse5.html";
+}
+
+const savedLanguage =
+    localStorage.getItem("language");
+
+if (savedLanguage && translations[savedLanguage]) {
+    changeLanguage(savedLanguage);
+}
+
+</script>
 
 </body>
 </html>
