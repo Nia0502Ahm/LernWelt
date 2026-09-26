@@ -176,10 +176,6 @@ button:hover {
         📚 <span id="class13">Klasse 13</span>
     </button>
 
-    <button class="class-button"
-            onclick="selectAbitur()">
-        🎓 <span id="abitur">Abitur</span>
-    </button>
 
 </div>
 
@@ -212,8 +208,6 @@ const translations = {
         class12: "Klasse 12",
         class13: "Klasse 13",
 
-        abitur:
-        "Abitur"
     },
 
 
@@ -241,8 +235,6 @@ const translations = {
         class12: "Grade 12",
         class13: "Grade 13",
 
-        abitur:
-        "High School Diploma"
     },
 
 
@@ -270,8 +262,6 @@ const translations = {
         class12: "دولسم ټولګی",
         class13: "دیارلسم ټولګی",
 
-        abitur:
-        "ابیتور"
     }
 
 };
@@ -330,8 +320,6 @@ function changeLanguage(language) {
     document.getElementById("class13").textContent =
         t.class13;
 
-    document.getElementById("abitur").textContent =
-        t.abitur;
 }
 
 
@@ -365,8 +353,6 @@ function selectAbitur() {
         "abitur"
     );
 
-    alert(
-        "Die Abitur-Seite wird noch erstellt."
     );
 }
 
