@@ -1,505 +1,755 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Multiplizieren und Dividieren</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LernWelt – Multiplizieren und Dividieren</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
-
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
-
-        .container {
-            max-width: 750px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-        }
-
-        .explanation {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .visual {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            font-size: 24px;
-        }
-
-        .groups {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .group {
-            padding: 12px;
-            background: #dbeafe;
-            border-radius: 10px;
-            min-width: 70px;
-        }
-
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 13px 25px;
-            margin: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #1d4ed8;
-        }
-
-        #result {
-            margin: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        #nextButton {
-            display: none;
-        }
-
-        .back {
-            background: #64748b;
-        }
-    </style>
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    text-align:center;
+}
+header{
+    background:#2563eb;
+    color:white;
+    padding:30px 20px;
+}
+.container{
+    max-width:800px;
+    margin:30px auto;
+    padding:25px;
+    background:white;
+    border-radius:18px;
+}
+.language{
+    margin-bottom:20px;
+}
+.explanation{
+    background:#eff6ff;
+    padding:20px;
+    border-radius:12px;
+    text-align:left;
+}
+.visual{
+    background:#f8fafc;
+    padding:25px;
+    border-radius:12px;
+    margin:20px 0;
+    font-size:30px;
+    font-weight:bold;
+}
+input{
+    width:80%;
+    padding:14px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:15px;
+    box-sizing:border-box;
+}
+button{
+    padding:13px 25px;
+    margin:8px;
+    border:none;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{
+    background:#1d4ed8;
+}
+#result{
+    margin:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+#solution{
+    display:none;
+    background:#f1f5f9;
+    padding:18px;
+    border-radius:10px;
+    margin-top:15px;
+    text-align:left;
+}
+#nextButton{
+    display:none;
+}
+.back{
+    background:#64748b;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+<h1>📚 LernWelt</h1>
+<p id="subtitle"></p>
 </header>
 
 <div class="container">
 
-    <h2>✖️ Multiplizieren und Dividieren</h2>
+<div class="language">
+<p id="languageText"></p>
 
-    <div class="explanation">
-        <h3>📖 Kurze Erklärung</h3>
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+</div>
 
-        <p>
-            Beim <strong>Multiplizieren</strong> werden gleiche Mengen
-            zusammengezählt.
-        </p>
+<h2 id="title"></h2>
 
-        <p>
-            Beispiel: 3 · 4 = 12
-        </p>
+<div class="explanation">
+<h3 id="explanationTitle"></h3>
+<p id="explanationText"></p>
+</div>
 
-        <p>
-            Beim <strong>Dividieren</strong> wird eine Menge gleichmäßig
-            aufgeteilt.
-        </p>
+<p id="progress"></p>
 
-        <p>
-            Beispiel: 12 : 3 = 4
-        </p>
-    </div>
+<h3 id="question"></h3>
 
-    <p id="progress"></p>
+<div id="visual" class="visual"></div>
 
-    <h3 id="question"></h3>
+<input id="answer" type="text">
 
-    <div id="visual" class="visual"></div>
+<br>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
+<button onclick="checkAnswer()" id="checkButton"></button>
 
-    <br>
+<div id="result"></div>
 
-    <button onclick="checkAnswer()">
-        Antwort prüfen
-    </button>
+<div id="solution">
+<h3 id="solutionTitle"></h3>
+<p id="solutionText"></p>
+</div>
 
-    <div id="result"></div>
+<button id="nextButton" onclick="nextQuestion()"></button>
 
-    <div id="solution">
-        <h3>💡 Lösung</h3>
-        <p id="solutionText"></p>
-    </div>
+<br>
 
-    <button id="nextButton" onclick="nextQuestion()">
-        ➡️ Nächste Aufgabe
-    </button>
-
-    <br>
-
-    <button class="back"
-        onclick="window.location.href='mathe5.html'">
-        ← Zurück zu den Themen
-    </button>
+<button class="back"
+onclick="window.location.href='mathe5.html'"
+id="backButton">
+</button>
 
 </div>
 
 <script>
 
-const questions = [
+const translations={
 
-    {
-        q: "2 · 3 = ?",
-        visual: `
-            <div class="groups">
-                <div class="group">🔵 🔵 🔵</div>
-                <div class="group">🔵 🔵 🔵</div>
-            </div>
-        `,
-        answer: "6",
-        solution: "2 · 3 = 6."
-    },
+de:{
+subtitle:"Mathematik – Klasse 5",
+language:"🌐 Sprache:",
+title:"✖️ Multiplizieren und Dividieren",
+explanationTitle:"📖 Kurze Erklärung",
+explanationText:
+"Beim Multiplizieren werden gleiche Mengen zusammengezählt. Beim Dividieren wird eine Menge gleichmäßig aufgeteilt. Beispiel: 3 × 4 = 12 und 12 ÷ 3 = 4.",
+check:"Antwort prüfen",
+solution:"💡 Lösung",
+next:"➡️ Nächste Aufgabe",
+back:"← Zurück zu den Mathe-Themen",
+placeholder:"Deine Antwort",
+correct:"✅ Richtig! Sehr gut! 🎉",
+wrong:"❌ Leider falsch.",
+finished:"🎉 Du hast alle 30 Aufgaben geschafft!",
+done:"Fertig! 🏆",
+great:"Super gemacht! 🎓"
+},
 
-    {
-        q: "3 · 4 = ?",
-        visual: `
-            <div class="groups">
-                <div class="group">🟦 🟦 🟦 🟦</div>
-                <div class="group">🟦 🟦 🟦 🟦</div>
-                <div class="group">🟦 🟦 🟦 🟦</div>
-            </div>
-        `,
-        answer: "12",
-        solution: "3 · 4 = 12."
-    },
+en:{
+subtitle:"Mathematics – Grade 5",
+language:"🌐 Language:",
+title:"✖️ Multiplication and Division",
+explanationTitle:"📖 Short explanation",
+explanationText:
+"Multiplication adds equal groups together. Division splits a quantity into equal groups. Example: 3 × 4 = 12 and 12 ÷ 3 = 4.",
+check:"Check answer",
+solution:"💡 Solution",
+next:"➡️ Next question",
+back:"← Back to math topics",
+placeholder:"Your answer",
+correct:"✅ Correct! Very good! 🎉",
+wrong:"❌ Unfortunately, that's wrong.",
+finished:"🎉 You completed all 30 questions!",
+done:"Finished! 🏆",
+great:"Well done! 🎓"
+},
 
-    {
-        q: "4 · 5 = ?",
-        visual: "🟢🟢🟢🟢🟢 &nbsp; × &nbsp; 4 Gruppen",
-        answer: "20",
-        solution: "4 · 5 = 20."
-    },
+ps:{
+subtitle:"ریاضي – پنځم ټولګی",
+language:"🌐 ژبه:",
+title:"✖️ ضرب او تقسیم",
+explanationTitle:"📖 لنډه تشریح",
+explanationText:
+"په ضرب کې مساوي شمېرې یوځای کوو. په تقسیم کې یو شمېر په مساوي برخو وېشو. بېلګه: ۳ × ۴ = ۱۲ او ۱۲ ÷ ۳ = ۴.",
+check:"ځواب وګورئ",
+solution:"💡 حل",
+next:"➡️ بله پوښتنه",
+back:"← د ریاضي موضوعاتو ته بېرته",
+placeholder:"خپل ځواب ولیکئ",
+correct:"✅ سم دی! ډېر ښه! 🎉",
+wrong:"❌ له بده مرغه غلط دی.",
+finished:"🎉 ټولې ۳۰ پوښتنې دې بشپړې کړې!",
+done:"بشپړ شو! 🏆",
+great:"ډېر ښه! 🎓"
+}
 
-    {
-        q: "5 · 2 = ?",
-        visual: "🟡🟡 × 5 Gruppen",
-        answer: "10",
-        solution: "5 · 2 = 10."
-    },
+};
 
-    {
-        q: "6 · 3 = ?",
-        visual: "🔵🔵🔵 × 6 Gruppen",
-        answer: "18",
-        solution: "6 · 3 = 18."
-    },
+const questions=[
 
-    {
-        q: "7 · 2 = ?",
-        visual: "🟩🟩 × 7 Gruppen",
-        answer: "14",
-        solution: "7 · 2 = 14."
-    },
+{
+q:{
+de:"Wie viel ist 2 × 3?",
+en:"What is 2 × 3?",
+ps:"۲ × ۳ څو کېږي؟"
+},
+visual:"2️⃣ × 3️⃣ = ❓",
+answer:"6",
+s:{
+de:"2 × 3 = 6.",
+en:"2 × 3 = 6.",
+ps:"۲ × ۳ = ۶."
+}
+},
 
-    {
-        q: "8 · 3 = ?",
-        visual: "🟦🟦🟦 × 8 Gruppen",
-        answer: "24",
-        solution: "8 · 3 = 24."
-    },
+{
+q:{
+de:"Wie viel ist 4 × 2?",
+en:"What is 4 × 2?",
+ps:"۴ × ۲ څو کېږي؟"
+},
+visual:"4️⃣ × 2️⃣ = ❓",
+answer:"8",
+s:{
+de:"4 × 2 = 8.",
+en:"4 × 2 = 8.",
+ps:"۴ × ۲ = ۸."
+}
+},
 
-    {
-        q: "9 · 2 = ?",
-        visual: "🔴🔴 × 9 Gruppen",
-        answer: "18",
-        solution: "9 · 2 = 18."
-    },
+{
+q:{
+de:"Wie viel ist 5 × 3?",
+en:"What is 5 × 3?",
+ps:"۵ × ۳ څو کېږي؟"
+},
+visual:"5️⃣ × 3️⃣ = ❓",
+answer:"15",
+s:{
+de:"5 × 3 = 15.",
+en:"5 × 3 = 15.",
+ps:"۵ × ۳ = ۱۵."
+}
+},
 
-    {
-        q: "10 · 4 = ?",
-        visual: "🟨🟨🟨🟨 × 10 Gruppen",
-        answer: "40",
-        solution: "10 · 4 = 40."
-    },
+{
+q:{
+de:"Wie viel ist 6 × 2?",
+en:"What is 6 × 2?",
+ps:"۶ × ۲ څو کېږي؟"
+},
+visual:"6️⃣ × 2️⃣ = ❓",
+answer:"12",
+s:{
+de:"6 × 2 = 12.",
+en:"6 × 2 = 12.",
+ps:"۶ × ۲ = ۱۲."
+}
+},
 
-    {
-        q: "5 · 5 = ?",
-        visual: "🟣🟣🟣🟣🟣 × 5 Gruppen",
-        answer: "25",
-        solution: "5 · 5 = 25."
-    },
+{
+q:{
+de:"Wie viel ist 7 × 3?",
+en:"What is 7 × 3?",
+ps:"۷ × ۳ څو کېږي؟"
+},
+visual:"7️⃣ × 3️⃣ = ❓",
+answer:"21",
+s:{
+de:"7 × 3 = 21.",
+en:"7 × 3 = 21.",
+ps:"۷ × ۳ = ۲۱."
+}
+},
 
-    {
-        q: "12 : 3 = ?",
-        visual: `
-            <div class="groups">
-                🍎🍎🍎🍎
-                🍎🍎🍎🍎
-                🍎🍎🍎🍎
-            </div>
-        `,
-        answer: "4",
-        solution: "12 : 3 = 4."
-    },
+{
+q:{
+de:"Wie viel ist 8 × 2?",
+en:"What is 8 × 2?",
+ps:"۸ × ۲ څو کېږي؟"
+},
+visual:"8️⃣ × 2️⃣ = ❓",
+answer:"16",
+s:{
+de:"8 × 2 = 16.",
+en:"8 × 2 = 16.",
+ps:"۸ × ۲ = ۱۶."
+}
+},
 
-    {
-        q: "20 : 4 = ?",
-        visual: "🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢",
-        answer: "5",
-        solution: "20 : 4 = 5."
-    },
+{
+q:{
+de:"Wie viel ist 9 × 3?",
+en:"What is 9 × 3?",
+ps:"۹ × ۳ څو کېږي؟"
+},
+visual:"9️⃣ × 3️⃣ = ❓",
+answer:"27",
+s:{
+de:"9 × 3 = 27.",
+en:"9 × 3 = 27.",
+ps:"۹ × ۳ = ۲۷."
+}
+},
 
-    {
-        q: "18 : 3 = ?",
-        visual: "🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵",
-        answer: "6",
-        solution: "18 : 3 = 6."
-    },
+{
+q:{
+de:"Wie viel ist 10 × 4?",
+en:"What is 10 × 4?",
+ps:"۱۰ × ۴ څو کېږي؟"
+},
+visual:"🔟 × 4️⃣ = ❓",
+answer:"40",
+s:{
+de:"10 × 4 = 40.",
+en:"10 × 4 = 40.",
+ps:"۱۰ × ۴ = ۴۰."
+}
+},
 
-    {
-        q: "24 : 4 = ?",
-        visual: "🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦",
-        answer: "6",
-        solution: "24 : 4 = 6."
-    },
+{
+q:{
+de:"Wie viel ist 3 × 5?",
+en:"What is 3 × 5?",
+ps:"۳ × ۵ څو کېږي؟"
+},
+visual:"3️⃣ × 5️⃣ = ❓",
+answer:"15",
+s:{
+de:"3 × 5 = 15.",
+en:"3 × 5 = 15.",
+ps:"۳ × ۵ = ۱۵."
+}
+},
 
-    {
-        q: "30 : 5 = ?",
-        visual: "🟡🟡🟡🟡🟡 × 6 Gruppen",
-        answer: "6",
-        solution: "30 : 5 = 6."
-    },
+{
+q:{
+de:"Wie viel ist 4 × 6?",
+en:"What is 4 × 6?",
+ps:"۴ × ۶ څو کېږي؟"
+},
+visual:"4️⃣ × 6️⃣ = ❓",
+answer:"24",
+s:{
+de:"4 × 6 = 24.",
+en:"4 × 6 = 24.",
+ps:"۴ × ۶ = ۲۴."
+}
+},
 
-    {
-        q: "6 · 6 = ?",
-        visual: "🟩🟩🟩🟩🟩🟩 × 6 Gruppen",
-        answer: "36",
-        solution: "6 · 6 = 36."
-    },
+{
+q:{
+de:"Wie viel ist 12 ÷ 2?",
+en:"What is 12 ÷ 2?",
+ps:"۱۲ ÷ ۲ څو کېږي؟"
+},
+visual:"1️⃣2️⃣ ÷ 2️⃣ = ❓",
+answer:"6",
+s:{
+de:"12 ÷ 2 = 6.",
+en:"12 ÷ 2 = 6.",
+ps:"۱۲ ÷ ۲ = ۶."
+}
+},
 
-    {
-        q: "7 · 5 = ?",
-        visual: "🟠🟠🟠🟠🟠 × 7 Gruppen",
-        answer: "35",
-        solution: "7 · 5 = 35."
-    },
+{
+q:{
+de:"Wie viel ist 15 ÷ 3?",
+en:"What is 15 ÷ 3?",
+ps:"۱۵ ÷ ۳ څو کېږي؟"
+},
+visual:"1️⃣5️⃣ ÷ 3️⃣ = ❓",
+answer:"5",
+s:{
+de:"15 ÷ 3 = 5.",
+en:"15 ÷ 3 = 5.",
+ps:"۱۵ ÷ ۳ = ۵."
+}
+},
 
-    {
-        q: "8 · 4 = ?",
-        visual: "🟦🟦🟦🟦 × 8 Gruppen",
-        answer: "32",
-        solution: "8 · 4 = 32."
-    },
+{
+q:{
+de:"Wie viel ist 20 ÷ 4?",
+en:"What is 20 ÷ 4?",
+ps:"۲۰ ÷ ۴ څو کېږي؟"
+},
+visual:"2️⃣0️⃣ ÷ 4️⃣ = ❓",
+answer:"5",
+s:{
+de:"20 ÷ 4 = 5.",
+en:"20 ÷ 4 = 5.",
+ps:"۲۰ ÷ ۴ = ۵."
+}
+},
 
-    {
-        q: "9 · 5 = ?",
-        visual: "🟣🟣🟣🟣🟣 × 9 Gruppen",
-        answer: "45",
-        solution: "9 · 5 = 45."
-    },
+{
+q:{
+de:"Wie viel ist 18 ÷ 3?",
+en:"What is 18 ÷ 3?",
+ps:"۱۸ ÷ ۳ څو کېږي؟"
+},
+visual:"1️⃣8️⃣ ÷ 3️⃣ = ❓",
+answer:"6",
+s:{
+de:"18 ÷ 3 = 6.",
+en:"18 ÷ 3 = 6.",
+ps:"۱۸ ÷ ۳ = ۶."
+}
+},
 
-    {
-        q: "10 · 6 = ?",
-        visual: "🟨🟨🟨🟨🟨🟨 × 10 Gruppen",
-        answer: "60",
-        solution: "10 · 6 = 60."
-    },
+{
+q:{
+de:"Wie viel ist 24 ÷ 6?",
+en:"What is 24 ÷ 6?",
+ps:"۲۴ ÷ ۶ څو کېږي؟"
+},
+visual:"2️⃣4️⃣ ÷ 6️⃣ = ❓",
+answer:"4",
+s:{
+de:"24 ÷ 6 = 4.",
+en:"24 ÷ 6 = 4.",
+ps:"۲۴ ÷ ۶ = ۴."
+}
+},
 
-    {
-        q: "36 : 6 = ?",
-        visual: "36 Punkte werden auf 6 Gruppen verteilt.",
-        answer: "6",
-        solution: "36 : 6 = 6."
-    },
+{
+q:{
+de:"Wie viel ist 30 ÷ 5?",
+en:"What is 30 ÷ 5?",
+ps:"۳۰ ÷ ۵ څو کېږي؟"
+},
+visual:"3️⃣0️⃣ ÷ 5️⃣ = ❓",
+answer:"6",
+s:{
+de:"30 ÷ 5 = 6.",
+en:"30 ÷ 5 = 6.",
+ps:"۳۰ ÷ ۵ = ۶."
+}
+},
 
-    {
-        q: "40 : 8 = ?",
-        visual: "40 Punkte werden auf 8 Gruppen verteilt.",
-        answer: "5",
-        solution: "40 : 8 = 5."
-    },
+{
+q:{
+de:"Wie viel ist 36 ÷ 6?",
+en:"What is 36 ÷ 6?",
+ps:"۳۶ ÷ ۶ څو کېږي؟"
+},
+visual:"3️⃣6️⃣ ÷ 6️⃣ = ❓",
+answer:"6",
+s:{
+de:"36 ÷ 6 = 6.",
+en:"36 ÷ 6 = 6.",
+ps:"۳۶ ÷ ۶ = ۶."
+}
+},
 
-    {
-        q: "45 : 5 = ?",
-        visual: "45 Punkte werden auf 5 Gruppen verteilt.",
-        answer: "9",
-        solution: "45 : 5 = 9."
-    },
+{
+q:{
+de:"Wie viel ist 40 ÷ 8?",
+en:"What is 40 ÷ 8?",
+ps:"۴۰ ÷ ۸ څو کېږي؟"
+},
+visual:"4️⃣0️⃣ ÷ 8️⃣ = ❓",
+answer:"5",
+s:{
+de:"40 ÷ 8 = 5.",
+en:"40 ÷ 8 = 5.",
+ps:"۴۰ ÷ ۸ = ۵."
+}
+},
 
-    {
-        q: "50 : 10 = ?",
-        visual: "50 Punkte werden auf 10 Gruppen verteilt.",
-        answer: "5",
-        solution: "50 : 10 = 5."
-    },
+{
+q:{
+de:"Wie viel ist 7 × 4?",
+en:"What is 7 × 4?",
+ps:"۷ × ۴ څو کېږي؟"
+},
+visual:"7️⃣ × 4️⃣ = ❓",
+answer:"28",
+s:{
+de:"7 × 4 = 28.",
+en:"7 × 4 = 28.",
+ps:"۷ × ۴ = ۲۸."
+}
+},
 
-    {
-        q: "12 · 2 = ?",
-        visual: "🔵🔵 × 12 Gruppen",
-        answer: "24",
-        solution: "12 · 2 = 24."
-    },
+{
+q:{
+de:"Wie viel ist 8 × 5?",
+en:"What is 8 × 5?",
+ps:"۸ × ۵ څو کېږي؟"
+},
+visual:"8️⃣ × 5️⃣ = ❓",
+answer:"40",
+s:{
+de:"8 × 5 = 40.",
+en:"8 × 5 = 40.",
+ps:"۸ × ۵ = ۴۰."
+}
+},
 
-    {
-        q: "15 · 3 = ?",
-        visual: "🟢🟢🟢 × 15 Gruppen",
-        answer: "45",
-        solution: "15 · 3 = 45."
-    },
+{
+q:{
+de:"Wie viel ist 9 × 4?",
+en:"What is 9 × 4?",
+ps:"۹ × ۴ څو کېږي؟"
+},
+visual:"9️⃣ × 4️⃣ = ❓",
+answer:"36",
+s:{
+de:"9 × 4 = 36.",
+en:"9 × 4 = 36.",
+ps:"۹ × ۴ = ۳۶."
+}
+},
 
-    {
-        q: "60 : 6 = ?",
-        visual: "60 Punkte werden auf 6 Gruppen verteilt.",
-        answer: "10",
-        solution: "60 : 6 = 10."
-    },
+{
+q:{
+de:"Wie viel ist 6 × 5?",
+en:"What is 6 × 5?",
+ps:"۶ × ۵ څو کېږي؟"
+},
+visual:"6️⃣ × 5️⃣ = ❓",
+answer:"30",
+s:{
+de:"6 × 5 = 30.",
+en:"6 × 5 = 30.",
+ps:"۶ × ۵ = ۳۰."
+}
+},
 
-    {
-        q: "72 : 8 = ?",
-        visual: "72 Punkte werden auf 8 Gruppen verteilt.",
-        answer: "9",
-        solution: "72 : 8 = 9."
-    },
+{
+q:{
+de:"Wie viel ist 45 ÷ 5?",
+en:"What is 45 ÷ 5?",
+ps:"۴۵ ÷ ۵ څو کېږي؟"
+},
+visual:"4️⃣5️⃣ ÷ 5️⃣ = ❓",
+answer:"9",
+s:{
+de:"45 ÷ 5 = 9.",
+en:"45 ÷ 5 = 9.",
+ps:"۴۵ ÷ ۵ = ۹."
+}
+},
 
-    {
-        q: "100 : 10 = ?",
-        visual: "💯 100 Punkte → 10 gleiche Gruppen",
-        answer: "10",
-        solution: "100 : 10 = 10."
-    },
+{
+q:{
+de:"Wie viel ist 42 ÷ 7?",
+en:"What is 42 ÷ 7?",
+ps:"۴۲ ÷ ۷ څو کېږي؟"
+},
+visual:"4️⃣2️⃣ ÷ 7️⃣ = ❓",
+answer:"6",
+s:{
+de:"42 ÷ 7 = 6.",
+en:"42 ÷ 7 = 6.",
+ps:"۴۲ ÷ ۷ = ۶."
+}
+},
 
-    {
-        q: "25 · 4 = ?",
-        visual: "25 · 4 = ❓",
-        answer: "100",
-        solution: "25 · 4 = 100."
-    }
+{
+q:{
+de:"Wie viel ist 48 ÷ 8?",
+en:"What is 48 ÷ 8?",
+ps:"۴۸ ÷ ۸ څو کېږي؟"
+},
+visual:"4️⃣8️⃣ ÷ 8️⃣ = ❓",
+answer:"6",
+s:{
+de:"48 ÷ 8 = 6.",
+en:"48 ÷ 8 = 6.",
+ps:"۴۸ ÷ ۸ = ۶."
+}
+},
+
+{
+q:{
+de:"Wie viel ist 9 × 6?",
+en:"What is 9 × 6?",
+ps:"۹ × ۶ څو کېږي؟"
+},
+visual:"9️⃣ × 6️⃣ = ❓",
+answer:"54",
+s:{
+de:"9 × 6 = 54.",
+en:"9 × 6 = 54.",
+ps:"۹ × ۶ = ۵۴."
+}
+},
+
+{
+q:{
+de:"Wie viel ist 7 × 7?",
+en:"What is 7 × 7?",
+ps:"۷ × ۷ څو کېږي؟"
+},
+visual:"7️⃣ × 7️⃣ = ❓",
+answer:"49",
+s:{
+de:"7 × 7 = 49.",
+en:"7 × 7 = 49.",
+ps:"۷ × ۷ = ۴۹."
+}
+},
+
+{
+q:{
+de:"Wie viel ist 56 ÷ 7?",
+en:"What is 56 ÷ 7?",
+ps:"۵۶ ÷ ۷ څو کېږي؟"
+},
+visual:"5️⃣6️⃣ ÷ 7️⃣ = ❓",
+answer:"8",
+s:{
+de:"56 ÷ 7 = 8.",
+en:"56 ÷ 7 = 8.",
+ps:"۵۶ ÷ ۷ = ۸."
+}
+},
+
+{
+q:{
+de:"Wie viel ist 8 × 8?",
+en:"What is 8 × 8?",
+ps:"۸ × ۸ څو کېږي؟"
+},
+visual:"8️⃣ × 8️⃣ = ❓",
+answer:"64",
+s:{
+de:"8 × 8 = 64.",
+en:"8 × 8 = 64.",
+ps:"۸ × ۸ = ۶۴."
+}
+},
+
+{
+q:{
+de:"Wie viel ist 72 ÷ 8?",
+en:"What is 72 ÷ 8?",
+ps:"۷۲ ÷ ۸ څو کېږي؟"
+},
+visual:"7️⃣2️⃣ ÷ 8️⃣ = ❓",
+answer:"9",
+s:{
+de:"72 ÷ 8 = 9.",
+en:"72 ÷ 8 = 9.",
+ps:"۷۲ ÷ ۸ = ۹."
+}
+}
 
 ];
 
-let current = 0;
+let current=0;
+let language=localStorage.getItem("language")||"de";
 
-function showQuestion() {
+function changeLanguage(lang){
 
-    document.getElementById("question").textContent =
-        questions[current].q;
+language=lang;
+localStorage.setItem("language",lang);
 
-    document.getElementById("visual").innerHTML =
-        questions[current].visual;
+const t=translations[lang];
 
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
+document.getElementById("subtitle").textContent=t.subtitle;
+document.getElementById("languageText").textContent=t.language;
+document.getElementById("title").textContent=t.title;
+document.getElementById("explanationTitle").textContent=t.explanationTitle;
+document.getElementById("explanationText").textContent=t.explanationText;
+document.getElementById("checkButton").textContent=t.check;
+document.getElementById("solutionTitle").textContent=t.solution;
+document.getElementById("nextButton").textContent=t.next;
+document.getElementById("backButton").textContent=t.back;
+document.getElementById("answer").placeholder=t.placeholder;
 
-    document.getElementById("answer").value = "";
-
-    document.getElementById("answer").disabled = false;
-
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("solution").style.display = "none";
-
-    document.getElementById("nextButton").style.display = "none";
+showQuestion();
 }
 
-function checkAnswer() {
+function showQuestion(){
 
-    const userAnswer =
-        document.getElementById("answer").value
-        .trim()
-        .replace(/\s/g, "");
+const q=questions[current];
 
-    const correctAnswer =
-        questions[current].answer
-        .replace(/\s/g, "");
+document.getElementById("question").textContent=q.q[language];
+document.getElementById("visual").textContent=q.visual;
 
-    if (userAnswer === correctAnswer) {
+document.getElementById("progress").textContent=
+(language==="de"?"Aufgabe ":
+language==="en"?"Question ":"پوښتنه ")
++(current+1)+" / 30";
 
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
-
-        document.getElementById("solution").style.display =
-            "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-    }
-
-    document.getElementById("answer").disabled = true;
-
-    document.getElementById("nextButton").style.display =
-        "inline-block";
+document.getElementById("answer").value="";
+document.getElementById("answer").disabled=false;
+document.getElementById("result").textContent="";
+document.getElementById("solution").style.display="none";
+document.getElementById("nextButton").style.display="none";
 }
 
-function nextQuestion() {
+function checkAnswer(){
 
-    current++;
+const userAnswer=document.getElementById("answer").value
+.trim()
+.replace(/\s/g,"");
 
-    if (current >= questions.length) {
+const correct=questions[current].answer;
+const t=translations[language];
 
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
+if(userAnswer===correct){
 
-        document.getElementById("progress").textContent =
-            "Fertig! 🏆";
+document.getElementById("result").textContent=t.correct;
 
-        document.getElementById("visual").style.display =
-            "none";
+}else{
 
-        document.getElementById("answer").style.display =
-            "none";
+document.getElementById("result").textContent=t.wrong;
 
-        document.getElementById("result").textContent =
-            "Super gemacht! 🎓";
+document.getElementById("solution").style.display="block";
 
-        document.getElementById("nextButton").style.display =
-            "none";
+document.getElementById("solutionText").textContent=
+questions[current].s[language];
+}
 
-        document.getElementById("solution").style.display =
-            "none";
+document.getElementById("answer").disabled=true;
+document.getElementById("nextButton").style.display="inline-block";
+}
 
-        return;
-    }
+function nextQuestion(){
 
-    showQuestion();
+current++;
+
+if(current>=questions.length){
+
+const t=translations[language];
+
+document.getElementById("question").textContent=t.finished;
+document.getElementById("progress").textContent=t.done;
+document.getElementById("visual").style.display="none";
+document.getElementById("answer").style.display="none";
+document.getElementById("checkButton").style.display="none";
+document.getElementById("result").textContent=t.great;
+document.getElementById("nextButton").style.display="none";
+document.getElementById("solution").style.display="none";
+
+return;
 }
 
 showQuestion();
+}
+
+changeLanguage(language);
 
 </script>
 
