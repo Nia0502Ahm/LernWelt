@@ -1,80 +1,206 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Klasse 5</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<title>LernWelt – Klasse 5</title>
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
 
-        .container {
-            padding: 30px 20px;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
 
-        .subject {
-            width: 250px;
-            margin: 12px auto;
-            padding: 18px;
-            border: none;
-            border-radius: 12px;
-            background: #2563eb;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            display: block;
-        }
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
 
-        .subject:hover {
-            background: #1d4ed8;
-        }
-    </style>
+.language {
+    margin: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.subject {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.back {
+    background: #64748b;
+}
+
+#title {
+    font-size: 30px;
+}
+
+#languageText {
+    font-weight: bold;
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>📚 LernWelt</h1>
-        <p>Klasse 5</p>
-    </header>
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Klasse 5</p>
+</header>
 
-    <div class="container">
+<div class="container">
 
-    <h2>Wähle ein Fach</h2>
+    <div class="language">
 
-    <button class="subject" onclick="window.location.href='mathe5.html'">
-        📐 Mathe
+        <p id="languageText">🌐 Sprache:</p>
+
+        <button onclick="changeLanguage('de')">
+            🇩🇪 Deutsch
+        </button>
+
+        <button onclick="changeLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button onclick="changeLanguage('ps')">
+            🇦🇫 پښتو
+        </button>
+
+    </div>
+
+    <h2 id="title">📚 Fächer auswählen</h2>
+
+    <button class="subject"
+            onclick="location.href='mathe5.html'">
+        🧮 <span id="math">Mathematik</span>
     </button>
 
-    <button class="subject" onclick="window.location.href='deutsch5.html'">
-        🇩🇪 Deutsch
+    <button class="subject"
+            onclick="location.href='deutsch5.html'">
+        📖 <span id="german">Deutsch</span>
     </button>
 
-    <button class="subject" onclick="window.location.href='englisch5.html'">
-        🇬🇧 Englisch
+    <button class="subject"
+            onclick="location.href='englisch5.html'">
+        🇬🇧 <span id="english">Englisch</span>
     </button>
 
-    <button class="subject" onclick="window.location.href='erdkunde5.html'">
-        🌍 Erdkunde
+    <button class="subject"
+            onclick="location.href='erdkunde5.html'">
+        🌍 <span id="geography">Erdkunde</span>
     </button>
 
-    <button class="subject" onclick="window.location.href='naturwissenschaften5.html'">
-        🔬 Naturwissenschaften
+    <button class="subject"
+            onclick="location.href='naturwissenschaften5.html'">
+        🔬 <span id="science">Naturwissenschaften</span>
     </button>
 
-    <button class="subject" onclick="window.location.href='home.html'">
-        ← Zurück
+    <br><br>
+
+    <button class="back"
+            onclick="location.href='home.html'">
+        ← <span id="back">Zurück</span>
     </button>
 
 </div>
+
+<script>
+
+const translations = {
+
+    de: {
+        subtitle: "Klasse 5",
+        language: "🌐 Sprache:",
+        title: "📚 Fächer auswählen",
+        math: "Mathematik",
+        german: "Deutsch",
+        english: "Englisch",
+        geography: "Erdkunde",
+        science: "Naturwissenschaften",
+        back: "Zurück"
+    },
+
+    en: {
+        subtitle: "Grade 5",
+        language: "🌐 Language:",
+        title: "📚 Choose a subject",
+        math: "Mathematics",
+        german: "German",
+        english: "English",
+        geography: "Geography",
+        science: "Science",
+        back: "Back"
+    },
+
+    ps: {
+        subtitle: "د پنځم ټولګي",
+        language: "🌐 ژبه:",
+        title: "📚 یوه مضمون وټاکئ",
+        math: "ریاضي",
+        german: "جرمني",
+        english: "انګلیسي",
+        geography: "جغرافیه",
+        science: "طبیعي علوم",
+        back: "بېرته"
+    }
+
+};
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("subtitle").textContent = t.subtitle;
+    document.getElementById("languageText").textContent = t.language;
+    document.getElementById("title").textContent = t.title;
+
+    document.getElementById("math").textContent = t.math;
+    document.getElementById("german").textContent = t.german;
+    document.getElementById("english").textContent = t.english;
+    document.getElementById("geography").textContent = t.geography;
+    document.getElementById("science").textContent = t.science;
+
+    document.getElementById("back").textContent = t.back;
+}
+
+const savedLanguage = localStorage.getItem("language");
+
+if (savedLanguage && translations[savedLanguage]) {
+    changeLanguage(savedLanguage);
+}
+
+</script>
+
+</body>
+</html>
