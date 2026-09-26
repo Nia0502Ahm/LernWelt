@@ -6,732 +6,449 @@
 <title>LernWelt – Daten und Diagramme</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    text-align: center;
-}
-
-header {
-    background: #2563eb;
-    color: white;
-    padding: 30px 20px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 15px;
-}
-
-.explanation {
-    background: #eff6ff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.visual {
-    background: #f8fafc;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 20px 0;
-}
-
-table {
-    margin: 15px auto;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #777;
-    padding: 10px 18px;
-}
-
-th {
-    background: #dbeafe;
-}
-
-.chart {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 25px;
-    height: 220px;
-    border-bottom: 3px solid #333;
-    margin: 20px;
-}
-
-.bar {
-    width: 45px;
-    background: #60a5fa;
-    position: relative;
-}
-
-.bar span {
-    position: absolute;
-    bottom: 100%;
-    width: 100%;
-    left: 0;
-    margin-bottom: 5px;
-}
-
-.label {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    margin-top: 8px;
-    font-size: 14px;
-}
-
-input {
-    width: 80%;
-    padding: 14px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 15px;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 13px 25px;
-    margin: 8px;
-    border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-#result {
-    margin: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#solution {
-    display: none;
-    background: #f1f5f9;
-    padding: 18px;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: left;
-}
-
-#nextButton {
-    display: none;
-}
-
-.back {
-    background: #64748b;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;text-align:center}
+header{background:#2563eb;color:white;padding:30px 20px}
+.container{max-width:850px;margin:30px auto;padding:25px;background:white;border-radius:18px}
+.language{margin-bottom:20px}
+.explanation{background:#eff6ff;padding:20px;border-radius:12px;text-align:left}
+.visual{background:#f8fafc;padding:25px;border-radius:12px;margin:20px 0;font-size:20px;font-weight:bold}
+.chart{margin:15px auto;max-width:600px;text-align:left}
+.bar{height:30px;margin:8px 0;background:#60a5fa;border-radius:5px;color:white;text-align:right;padding-right:8px;line-height:30px;box-sizing:border-box}
+input{width:80%;padding:14px;font-size:18px;border:1px solid #ccc;border-radius:8px;margin:15px;box-sizing:border-box}
+button{padding:13px 25px;margin:8px;border:0;border-radius:9px;background:#2563eb;color:white;font-size:16px;cursor:pointer}
+button:hover{background:#1d4ed8}
+#result{margin:20px;font-size:18px;font-weight:bold}
+#solution{display:none;background:#f1f5f9;padding:18px;border-radius:10px;margin-top:15px;text-align:left}
+#nextButton{display:none}
+.back{background:#64748b}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+<h1>📚 LernWelt</h1>
+<p id="subtitle"></p>
 </header>
 
 <div class="container">
 
-<h2>📊 Daten und Diagramme</h2>
+<div class="language">
+<p id="languageText"></p>
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+</div>
+
+<h2 id="title"></h2>
 
 <div class="explanation">
-<h3>📖 Kurze Erklärung</h3>
-
-<p>
-Daten sind Informationen, die man sammeln und vergleichen kann.
-</p>
-
-<p>
-Ein <strong>Diagramm</strong> hilft dabei, Daten übersichtlich darzustellen.
-</p>
-
-<p>
-Bei einem Säulendiagramm zeigen die Säulen, wie groß eine Zahl ist.
-</p>
-
-<p>
-Beispiel: Wenn 5 Schüler Fußball mögen, ist die Säule für Fußball 5 hoch.
-</p>
+<h3 id="explanationTitle"></h3>
+<p id="explanationText"></p>
 </div>
 
 <p id="progress"></p>
-
 <h3 id="question"></h3>
 
 <div id="visual" class="visual"></div>
 
-<input id="answer" type="text" placeholder="Deine Antwort">
+<input id="answer" type="text">
 
 <br>
 
-<button onclick="checkAnswer()">Antwort prüfen</button>
+<button onclick="checkAnswer()" id="checkButton"></button>
 
 <div id="result"></div>
 
 <div id="solution">
-<h3>💡 Lösung</h3>
+<h3 id="solutionTitle"></h3>
 <p id="solutionText"></p>
 </div>
 
-<button id="nextButton" onclick="nextQuestion()">
-➡️ Nächste Aufgabe
-</button>
+<button id="nextButton" onclick="nextQuestion()"></button>
 
 <br>
 
-<button class="back" onclick="window.location.href='mathe5.html'">
-← Zurück zu den Mathe-Themen
-</button>
+<button class="back" onclick="location.href='mathe5.html'" id="backButton"></button>
 
 </div>
 
 <script>
 
-const questions = [
+const translations={
+
+de:{
+subtitle:"Mathematik – Klasse 5",
+language:"🌐 Sprache:",
+title:"📊 Daten und Diagramme",
+explanationTitle:"📖 Kurze Erklärung",
+explanationText:"Daten sind Informationen, die wir sammeln. In Tabellen und Diagrammen können wir Daten übersichtlich darstellen und vergleichen.",
+check:"Antwort prüfen",
+solution:"💡 Lösung",
+next:"➡️ Nächste Aufgabe",
+back:"← Zurück zu den Mathe-Themen",
+placeholder:"Deine Antwort",
+correct:"✅ Richtig! Sehr gut! 🎉",
+wrong:"❌ Leider falsch.",
+finished:"🎉 Du hast alle 30 Aufgaben geschafft!",
+done:"Fertig! 🏆",
+great:"Super gemacht! 🎓"
+},
+
+en:{
+subtitle:"Mathematics – Grade 5",
+language:"🌐 Language:",
+title:"📊 Data and Charts",
+explanationTitle:"📖 Short explanation",
+explanationText:"Data is information that we collect. Tables and charts help us display and compare data clearly.",
+check:"Check answer",
+solution:"💡 Solution",
+next:"➡️ Next question",
+back:"← Back to math topics",
+placeholder:"Your answer",
+correct:"✅ Correct! Very good! 🎉",
+wrong:"❌ Unfortunately, that's wrong.",
+finished:"🎉 You completed all 30 questions!",
+done:"Finished! 🏆",
+great:"Well done! 🎓"
+},
+
+ps:{
+subtitle:"ریاضي – پنځم ټولګی",
+language:"🌐 ژبه:",
+title:"📊 معلومات او ډیاګرامونه",
+explanationTitle:"📖 لنډه تشریح",
+explanationText:"معلومات هغه شیان دي چې موږ یې راټولوو. په جدولونو او ډیاګرامونو کې معلومات په روښانه ډول ښودل او پرتله کولای شو.",
+check:"ځواب وګورئ",
+solution:"💡 حل",
+next:"➡️ بله پوښتنه",
+back:"← د ریاضي موضوعاتو ته بېرته",
+placeholder:"خپل ځواب ولیکئ",
+correct:"✅ سم دی! ډېر ښه! 🎉",
+wrong:"❌ له بده مرغه غلط دی.",
+finished:"🎉 ټولې ۳۰ پوښتنې دې بشپړې کړې!",
+done:"بشپړ شو! 🏆",
+great:"ډېر ښه! 🎓"
+}
+
+};
+
+const questions=[
 
 {
-q: "Wie viele Kinder mögen Fußball?",
-visual: `
-<table>
-<tr><th>Sport</th><th>Kinder</th></tr>
-<tr><td>⚽ Fußball</td><td>8</td></tr>
-<tr><td>🏀 Basketball</td><td>5</td></tr>
-</table>
-`,
-answer: "8",
-solution: "8 Kinder mögen Fußball."
+q:{de:"Wie viele Kinder mögen Fußball?",en:"How many children like football?",ps:"څو ماشومان فوټبال خوښوي؟"},
+visual:`<div class="chart">
+Fußball ⚽
+<div class="bar" style="width:80%">8</div>
+Basketball 🏀
+<div class="bar" style="width:50%">5</div>
+Schwimmen 🏊
+<div class="bar" style="width:30%">3</div>
+</div>`,
+answer:"8",
+s:{de:"8 Kinder mögen Fußball.",en:"8 children like football.",ps:"۸ ماشومان فوټبال خوښوي."}
 },
 
 {
-q: "Wie viele Kinder mögen Basketball?",
-visual: `
-<table>
-<tr><th>Sport</th><th>Kinder</th></tr>
-<tr><td>⚽ Fußball</td><td>8</td></tr>
-<tr><td>🏀 Basketball</td><td>5</td></tr>
-</table>
-`,
-answer: "5",
-solution: "5 Kinder mögen Basketball."
+q:{de:"Wie viele Kinder mögen Basketball?",en:"How many children like basketball?",ps:"څو ماشومان باسکټبال خوښوي؟"},
+visual:`<div class="chart">
+Fußball ⚽
+<div class="bar" style="width:80%">8</div>
+Basketball 🏀
+<div class="bar" style="width:50%">5</div>
+Schwimmen 🏊
+<div class="bar" style="width:30%">3</div>
+</div>`,
+answer:"5",
+s:{de:"5 Kinder mögen Basketball.",en:"5 children like basketball.",ps:"۵ ماشومان باسکټبال خوښوي."}
 },
 
 {
-q: "Welcher Sport wird am meisten gewählt?",
-visual: `
-<table>
-<tr><th>Sport</th><th>Kinder</th></tr>
-<tr><td>⚽ Fußball</td><td>8</td></tr>
-<tr><td>🏀 Basketball</td><td>5</td></tr>
-<tr><td>🏊 Schwimmen</td><td>6</td></tr>
-</table>
-`,
-answer: "fußball",
-solution: "Fußball hat mit 8 Kindern die höchste Zahl."
+q:{de:"Welche Sportart ist am beliebtesten?",en:"Which sport is the most popular?",ps:"کوم ورزش تر ټولو مشهور دی؟"},
+visual:`⚽ 8   🏀 5   🏊 3`,
+answer:"fußball",
+s:{de:"Fußball ist am beliebtesten.",en:"Football is the most popular.",ps:"فوټبال تر ټولو مشهور دی."}
 },
 
 {
-q: "Welcher Sport wird am wenigsten gewählt?",
-visual: `
-<table>
-<tr><th>Sport</th><th>Kinder</th></tr>
-<tr><td>⚽ Fußball</td><td>8</td></tr>
-<tr><td>🏀 Basketball</td><td>5</td></tr>
-<tr><td>🏊 Schwimmen</td><td>6</td></tr>
-</table>
-`,
-answer: "basketball",
-solution: "Basketball hat mit 5 Kindern die kleinste Zahl."
+q:{de:"Welche Sportart ist am wenigsten beliebt?",en:"Which sport is the least popular?",ps:"کوم ورزش تر ټولو کم مشهور دی؟"},
+visual:`⚽ 8   🏀 5   🏊 3`,
+answer:"schwimmen",
+s:{de:"Schwimmen ist am wenigsten beliebt.",en:"Swimming is the least popular.",ps:"لامبو تر ټولو کم مشهوره ده."}
 },
 
 {
-q: "Wie viele Bücher wurden am Montag gelesen?",
-visual: `
-<table>
-<tr><th>Tag</th><th>Bücher</th></tr>
-<tr><td>Montag</td><td>4</td></tr>
-<tr><td>Dienstag</td><td>7</td></tr>
-<tr><td>Mittwoch</td><td>5</td></tr>
-</table>
-`,
-answer: "4",
-solution: "Am Montag wurden 4 Bücher gelesen."
+q:{de:"Wie viele Kinder wurden insgesamt gefragt?",en:"How many children were asked in total?",ps:"په ټولیز ډول له څو ماشومانو پوښتنه شوې؟"},
+visual:`⚽ 8 + 🏀 5 + 🏊 3 = ❓`,
+answer:"16",
+s:{de:"8 + 5 + 3 = 16 Kinder.",en:"8 + 5 + 3 = 16 children.",ps:"۸ + ۵ + ۳ = ۱۶ ماشومان."}
 },
 
 {
-q: "Wie viele Bücher wurden am Dienstag gelesen?",
-visual: `
-<table>
-<tr><th>Tag</th><th>Bücher</th></tr>
-<tr><td>Montag</td><td>4</td></tr>
-<tr><td>Dienstag</td><td>7</td></tr>
-<tr><td>Mittwoch</td><td>5</td></tr>
-</table>
-`,
-answer: "7",
-solution: "Am Dienstag wurden 7 Bücher gelesen."
+q:{de:"Wie viele Äpfel wurden verkauft?",en:"How many apples were sold?",ps:"څو مڼې خرڅې شوې؟"},
+visual:`🍎 Montag: 5<br>🍎 Dienstag: 8<br>🍎 Mittwoch: 6`,
+answer:"8",
+s:{de:"Am Dienstag wurden 8 Äpfel verkauft.",en:"8 apples were sold on Tuesday.",ps:"د سه شنبې په ورځ ۸ مڼې خرڅې شوې."}
 },
 
 {
-q: "Wie viele Bücher wurden insgesamt gelesen?",
-visual: `
-<table>
-<tr><th>Tag</th><th>Bücher</th></tr>
-<tr><td>Montag</td><td>4</td></tr>
-<tr><td>Dienstag</td><td>7</td></tr>
-<tr><td>Mittwoch</td><td>5</td></tr>
-</table>
-`,
-answer: "16",
-solution: "4 + 7 + 5 = 16 Bücher."
+q:{de:"An welchem Tag wurden 5 Äpfel verkauft?",en:"On which day were 5 apples sold?",ps:"په کومه ورځ ۵ مڼې خرڅې شوې؟"},
+visual:`Montag: 🍎🍎🍎🍎🍎<br>Dienstag: 🍎🍎🍎🍎🍎🍎🍎🍎<br>Mittwoch: 🍎🍎🍎🍎🍎🍎`,
+answer:"montag",
+s:{de:"Am Montag wurden 5 Äpfel verkauft.",en:"5 apples were sold on Monday.",ps:"د دوشنبې په ورځ ۵ مڼې خرڅې شوې."}
 },
 
 {
-q: "Wie viele Schüler haben eine Katze?",
-visual: `
-<table>
-<tr><th>Tier</th><th>Schüler</th></tr>
-<tr><td>🐱 Katze</td><td>6</td></tr>
-<tr><td>🐶 Hund</td><td>4</td></tr>
-<tr><td>🐰 Kaninchen</td><td>3</td></tr>
-</table>
-`,
-answer: "6",
-solution: "6 Schüler haben eine Katze."
+q:{de:"Wie viele Äpfel wurden Montag und Mittwoch zusammen verkauft?",en:"How many apples were sold on Monday and Wednesday together?",ps:"د دوشنبې او چهارشنبې په ورځو کې ټولې څو مڼې خرڅې شوې؟"},
+visual:`🍎 Montag: 5<br>🍎 Mittwoch: 6<br><br>5 + 6 = ❓`,
+answer:"11",
+s:{de:"5 + 6 = 11 Äpfel.",en:"5 + 6 = 11 apples.",ps:"۵ + ۶ = ۱۱ مڼې."}
 },
 
 {
-q: "Wie viele Schüler haben einen Hund?",
-visual: `
-<table>
-<tr><th>Tier</th><th>Schüler</th></tr>
-<tr><td>🐱 Katze</td><td>6</td></tr>
-<tr><td>🐶 Hund</td><td>4</td></tr>
-<tr><td>🐰 Kaninchen</td><td>3</td></tr>
-</table>
-`,
-answer: "4",
-solution: "4 Schüler haben einen Hund."
+q:{de:"Wie viele Schüler fahren mit dem Bus?",en:"How many students go by bus?",ps:"څو زده کوونکي په بس ځي؟"},
+visual:`🚌 Bus: 10<br>🚲 Fahrrad: 6<br>🚶 Zu Fuß: 4`,
+answer:"10",
+s:{de:"10 Schüler fahren mit dem Bus.",en:"10 students go by bus.",ps:"۱۰ زده کوونکي په بس ځي."}
 },
 
 {
-q: "Welches Tier ist am beliebtesten?",
-visual: `
-<table>
-<tr><th>Tier</th><th>Schüler</th></tr>
-<tr><td>🐱 Katze</td><td>6</td></tr>
-<tr><td>🐶 Hund</td><td>4</td></tr>
-<tr><td>🐰 Kaninchen</td><td>3</td></tr>
-</table>
-`,
-answer: "katze",
-solution: "Die Katze ist mit 6 Schülern am beliebtesten."
+q:{de:"Wie viele Schüler fahren mit dem Fahrrad?",en:"How many students go by bicycle?",ps:"څو زده کوونکي په بایسکل ځي؟"},
+visual:`🚌 Bus: 10<br>🚲 Fahrrad: 6<br>🚶 Zu Fuß: 4`,
+answer:"6",
+s:{de:"6 Schüler fahren mit dem Fahrrad.",en:"6 students go by bicycle.",ps:"۶ زده کوونکي په بایسکل ځي."}
 },
 
 {
-q: "Wie viele Punkte hat Team A?",
-visual: `
-<table>
-<tr><th>Team</th><th>Punkte</th></tr>
-<tr><td>A</td><td>12</td></tr>
-<tr><td>B</td><td>9</td></tr>
-<tr><td>C</td><td>15</td></tr>
-</table>
-`,
-answer: "12",
-solution: "Team A hat 12 Punkte."
+q:{de:"Wie viele Schüler gehen zu Fuß?",en:"How many students walk?",ps:"څو زده کوونکي پیاده ځي؟"},
+visual:`🚌 Bus: 10<br>🚲 Fahrrad: 6<br>🚶 Zu Fuß: 4`,
+answer:"4",
+s:{de:"4 Schüler gehen zu Fuß.",en:"4 students walk.",ps:"۴ زده کوونکي پیاده ځي."}
 },
 
 {
-q: "Wie viele Punkte hat Team C?",
-visual: `
-<table>
-<tr><th>Team</th><th>Punkte</th></tr>
-<tr><td>A</td><td>12</td></tr>
-<tr><td>B</td><td>9</td></tr>
-<tr><td>C</td><td>15</td></tr>
-</table>
-`,
-answer: "15",
-solution: "Team C hat 15 Punkte."
+q:{de:"Wie viele Schüler sind es insgesamt?",en:"How many students are there in total?",ps:"ټول څو زده کوونکي دي؟"},
+visual:`🚌 10 + 🚲 6 + 🚶 4 = ❓`,
+answer:"20",
+s:{de:"10 + 6 + 4 = 20 Schüler.",en:"10 + 6 + 4 = 20 students.",ps:"۱۰ + ۶ + ۴ = ۲۰ زده کوونکي."}
 },
 
 {
-q: "Welches Team hat die meisten Punkte?",
-visual: `
-<table>
-<tr><th>Team</th><th>Punkte</th></tr>
-<tr><td>A</td><td>12</td></tr>
-<tr><td>B</td><td>9</td></tr>
-<tr><td>C</td><td>15</td></tr>
-</table>
-`,
-answer: "c",
-solution: "Team C hat mit 15 Punkten die meisten Punkte."
+q:{de:"Welche Gruppe ist am größten?",en:"Which group is the largest?",ps:"کومه ډله تر ټولو لویه ده؟"},
+visual:`🚌 10   🚲 6   🚶 4`,
+answer:"bus",
+s:{de:"Die Bus-Gruppe ist mit 10 Schülern am größten.",en:"The bus group is largest with 10 students.",ps:"د بس ډله له ۱۰ زده کوونکو سره تر ټولو لویه ده."}
 },
 
 {
-q: "Welches Team hat die wenigsten Punkte?",
-visual: `
-<table>
-<tr><th>Team</th><th>Punkte</th></tr>
-<tr><td>A</td><td>12</td></tr>
-<tr><td>B</td><td>9</td></tr>
-<tr><td>C</td><td>15</td></tr>
-</table>
-`,
-answer: "b",
-solution: "Team B hat mit 9 Punkten die wenigsten Punkte."
+q:{de:"Welche Gruppe ist am kleinsten?",en:"Which group is the smallest?",ps:"کومه ډله تر ټولو کوچنۍ ده؟"},
+visual:`🚌 10   🚲 6   🚶 4`,
+answer:"zu fuß",
+s:{de:"Die Gruppe zu Fuß ist mit 4 Schülern am kleinsten.",en:"The walking group is the smallest with 4 students.",ps:"پیاده ډله له ۴ زده کوونکو سره تر ټولو کوچنۍ ده."}
 },
 
 {
-q: "Wie viele Kinder sind in der Klasse?",
-visual: `
-<table>
-<tr><th>Gruppe</th><th>Anzahl</th></tr>
-<tr><td>Jungen</td><td>12</td></tr>
-<tr><td>Mädchen</td><td>13</td></tr>
-</table>
-`,
-answer: "25",
-solution: "12 + 13 = 25 Kinder."
+q:{de:"Wie viele Punkte hat Team A?",en:"How many points does Team A have?",ps:"د A ټیم څو نمرې لري؟"},
+visual:`🅰️ Team A: 12<br>🅱️ Team B: 9`,
+answer:"12",
+s:{de:"Team A hat 12 Punkte.",en:"Team A has 12 points.",ps:"A ټیم ۱۲ نمرې لري."}
 },
 
 {
-q: "Wie viele Mädchen sind in der Klasse?",
-visual: `
-<table>
-<tr><th>Gruppe</th><th>Anzahl</th></tr>
-<tr><td>Jungen</td><td>12</td></tr>
-<tr><td>Mädchen</td><td>13</td></tr>
-</table>
-`,
-answer: "13",
-solution: "13 Mädchen sind in der Klasse."
+q:{de:"Wie viele Punkte hat Team B?",en:"How many points does Team B have?",ps:"د B ټیم څو نمرې لري؟"},
+visual:`🅰️ Team A: 12<br>🅱️ Team B: 9`,
+answer:"9",
+s:{de:"Team B hat 9 Punkte.",en:"Team B has 9 points.",ps:"B ټیم ۹ نمرې لري."}
 },
 
 {
-q: "Wie viele Jungen sind in der Klasse?",
-visual: `
-<table>
-<tr><th>Gruppe</th><th>Anzahl</th></tr>
-<tr><td>Jungen</td><td>12</td></tr>
-<tr><td>Mädchen</td><td>13</td></tr>
-</table>
-`,
-answer: "12",
-solution: "12 Jungen sind in der Klasse."
+q:{de:"Wie viel mehr Punkte hat Team A?",en:"How many more points does Team A have?",ps:"A ټیم څو زیاتې نمرې لري؟"},
+visual:`12 − 9 = ❓`,
+answer:"3",
+s:{de:"12 − 9 = 3 Punkte.",en:"12 − 9 = 3 points.",ps:"۱۲ − ۹ = ۳ نمرې."}
 },
 
 {
-q: "Wie viele Kinder haben die Note 1?",
-visual: `
-<table>
-<tr><th>Note</th><th>Kinder</th></tr>
-<tr><td>1</td><td>4</td></tr>
-<tr><td>2</td><td>7</td></tr>
-<tr><td>3</td><td>5</td></tr>
-</table>
-`,
-answer: "4",
-solution: "4 Kinder haben die Note 1."
+q:{de:"Welche Zahl ist in der Tabelle am größten?",en:"Which number is the largest?",ps:"کوم عدد تر ټولو لوی دی؟"},
+visual:`4 | 9 | 6 | 2`,
+answer:"9",
+s:{de:"9 ist die größte Zahl.",en:"9 is the largest number.",ps:"۹ تر ټولو لوی عدد دی."}
 },
 
 {
-q: "Welche Note wurde am häufigsten erreicht?",
-visual: `
-<table>
-<tr><th>Note</th><th>Kinder</th></tr>
-<tr><td>1</td><td>4</td></tr>
-<tr><td>2</td><td>7</td></tr>
-<tr><td>3</td><td>5</td></tr>
-</table>
-`,
-answer: "2",
-solution: "Die Note 2 wurde mit 7 Kindern am häufigsten erreicht."
+q:{de:"Welche Zahl ist in der Tabelle am kleinsten?",en:"Which number is the smallest?",ps:"کوم عدد تر ټولو کوچنی دی؟"},
+visual:`4 | 9 | 6 | 2`,
+answer:"2",
+s:{de:"2 ist die kleinste Zahl.",en:"2 is the smallest number.",ps:"۲ تر ټولو کوچنی عدد دی."}
 },
 
 {
-q: "Wie viele Kinder haben die Note 3?",
-visual: `
-<table>
-<tr><th>Note</th><th>Kinder</th></tr>
-<tr><td>1</td><td>4</td></tr>
-<tr><td>2</td><td>7</td></tr>
-<tr><td>3</td><td>5</td></tr>
-</table>
-`,
-answer: "5",
-solution: "5 Kinder haben die Note 3."
+q:{de:"Wie oft kommt die Zahl 5 vor?",en:"How many times does the number 5 occur?",ps:"۵ څو ځله راغلی؟"},
+visual:`5 | 2 | 5 | 7 | 5`,
+answer:"3",
+s:{de:"Die Zahl 5 kommt 3-mal vor.",en:"The number 5 occurs 3 times.",ps:"۵ درې ځله راغلی."}
 },
 
 {
-q: "Wie viele Äpfel wurden verkauft?",
-visual: `
-<table>
-<tr><th>Obst</th><th>Anzahl</th></tr>
-<tr><td>🍎 Äpfel</td><td>10</td></tr>
-<tr><td>🍌 Bananen</td><td>6</td></tr>
-<tr><td>🍐 Birnen</td><td>4</td></tr>
-</table>
-`,
-answer: "10",
-solution: "10 Äpfel wurden verkauft."
+q:{de:"Wie oft kommt die Zahl 2 vor?",en:"How many times does the number 2 occur?",ps:"۲ څو ځله راغلی؟"},
+visual:`2 | 4 | 2 | 6 | 2`,
+answer:"3",
+s:{de:"Die Zahl 2 kommt 3-mal vor.",en:"The number 2 occurs 3 times.",ps:"۲ درې ځله راغلی."}
 },
 
 {
-q: "Wie viele Bananen wurden verkauft?",
-visual: `
-<table>
-<tr><th>Obst</th><th>Anzahl</th></tr>
-<tr><td>🍎 Äpfel</td><td>10</td></tr>
-<tr><td>🍌 Bananen</td><td>6</td></tr>
-<tr><td>🍐 Birnen</td><td>4</td></tr>
-</table>
-`,
-answer: "6",
-solution: "6 Bananen wurden verkauft."
+q:{de:"Welche Farbe wurde am häufigsten gewählt?",en:"Which color was chosen most often?",ps:"کوم رنګ تر ټولو ډېر انتخاب شوی؟"},
+visual:`🔴 Rot: 7<br>🔵 Blau: 4<br>🟢 Grün: 6`,
+answer:"rot",
+s:{de:"Rot wurde mit 7 Stimmen am häufigsten gewählt.",en:"Red was chosen most often with 7 votes.",ps:"سور رنګ د ۷ رایو سره تر ټولو ډېر انتخاب شوی."}
 },
 
 {
-q: "Wie viele Birnen wurden verkauft?",
-visual: `
-<table>
-<tr><th>Obst</th><th>Anzahl</th></tr>
-<tr><td>🍎 Äpfel</td><td>10</td></tr>
-<tr><td>🍌 Bananen</td><td>6</td></tr>
-<tr><td>🍐 Birnen</td><td>4</td></tr>
-</table>
-`,
-answer: "4",
-solution: "4 Birnen wurden verkauft."
+q:{de:"Welche Farbe wurde am seltensten gewählt?",en:"Which color was chosen least often?",ps:"کوم رنګ تر ټولو لږ انتخاب شوی؟"},
+visual:`🔴 Rot: 7<br>🔵 Blau: 4<br>🟢 Grün: 6`,
+answer:"blau",
+s:{de:"Blau wurde mit 4 Stimmen am seltensten gewählt.",en:"Blue was chosen least often with 4 votes.",ps:"آبي رنګ د ۴ رایو سره تر ټولو لږ انتخاب شوی."}
 },
 
 {
-q: "Wie viel Obst wurde insgesamt verkauft?",
-visual: `
-<table>
-<tr><th>Obst</th><th>Anzahl</th></tr>
-<tr><td>🍎 Äpfel</td><td>10</td></tr>
-<tr><td>🍌 Bananen</td><td>6</td></tr>
-<tr><td>🍐 Birnen</td><td>4</td></tr>
-</table>
-`,
-answer: "20",
-solution: "10 + 6 + 4 = 20 Stück Obst."
+q:{de:"Wie viele Stimmen gab es insgesamt?",en:"How many votes were there in total?",ps:"په ټولیز ډول څو رایې وې؟"},
+visual:`🔴 7 + 🔵 4 + 🟢 6 = ❓`,
+answer:"17",
+s:{de:"7 + 4 + 6 = 17 Stimmen.",en:"7 + 4 + 6 = 17 votes.",ps:"۷ + ۴ + ۶ = ۱۷ رایې."}
 },
 
 {
-q: "Welches Obst wurde am meisten verkauft?",
-visual: `
-<table>
-<tr><th>Obst</th><th>Anzahl</th></tr>
-<tr><td>🍎 Äpfel</td><td>10</td></tr>
-<tr><td>🍌 Bananen</td><td>6</td></tr>
-<tr><td>🍐 Birnen</td><td>4</td></tr>
-</table>
-`,
-answer: "äpfel",
-solution: "Äpfel wurden mit 10 Stück am meisten verkauft."
+q:{de:"Wie viele Kinder haben 2 Geschwister?",en:"How many children have 2 siblings?",ps:"څو ماشومان ۲ وروڼه یا خویندې لري؟"},
+visual:`1 Geschwister: 4 Kinder<br>2 Geschwister: 7 Kinder<br>3 Geschwister: 3 Kinder`,
+answer:"7",
+s:{de:"7 Kinder haben 2 Geschwister.",en:"7 children have 2 siblings.",ps:"۷ ماشومان ۲ وروڼه یا خویندې لري."}
 },
 
 {
-q: "Wie viele Kinder fahren mit dem Bus?",
-visual: `
-<table>
-<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
-<tr><td>🚌 Bus</td><td>9</td></tr>
-<tr><td>🚲 Fahrrad</td><td>6</td></tr>
-<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
-</table>
-`,
-answer: "9",
-solution: "9 Kinder fahren mit dem Bus."
+q:{de:"Wie viele Kinder haben 3 Geschwister?",en:"How many children have 3 siblings?",ps:"څو ماشومان ۳ وروڼه یا خویندې لري؟"},
+visual:`1 Geschwister: 4<br>2 Geschwister: 7<br>3 Geschwister: 3`,
+answer:"3",
+s:{de:"3 Kinder haben 3 Geschwister.",en:"3 children have 3 siblings.",ps:"۳ ماشومان ۳ وروڼه یا خویندې لري."}
 },
 
 {
-q: "Wie viele Kinder fahren mit dem Fahrrad?",
-visual: `
-<table>
-<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
-<tr><td>🚌 Bus</td><td>9</td></tr>
-<tr><td>🚲 Fahrrad</td><td>6</td></tr>
-<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
-</table>
-`,
-answer: "6",
-solution: "6 Kinder fahren mit dem Fahrrad."
+q:{de:"Wie viele Kinder wurden insgesamt gezählt?",en:"How many children were counted in total?",ps:"ټول څو ماشومان شمېرل شوي؟"},
+visual:`4 + 7 + 3 = ❓`,
+answer:"14",
+s:{de:"4 + 7 + 3 = 14 Kinder.",en:"4 + 7 + 3 = 14 children.",ps:"۴ + ۷ + ۳ = ۱۴ ماشومان."}
 },
 
 {
-q: "Wie viele Kinder gehen zu Fuß?",
-visual: `
-<table>
-<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
-<tr><td>🚌 Bus</td><td>9</td></tr>
-<tr><td>🚲 Fahrrad</td><td>6</td></tr>
-<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
-</table>
-`,
-answer: "5",
-solution: "5 Kinder gehen zu Fuß."
+q:{de:"Was zeigt ein Diagramm?",en:"What does a chart show?",ps:"ډیاګرام څه ښيي؟"},
+visual:"📊",
+answer:"daten",
+s:{de:"Ein Diagramm zeigt Daten übersichtlich.",en:"A chart displays data clearly.",ps:"ډیاګرام معلومات په روښانه ډول ښيي."}
 },
 
 {
-q: "Wie viele Kinder sind es insgesamt?",
-visual: `
-<table>
-<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
-<tr><td>🚌 Bus</td><td>9</td></tr>
-<tr><td>🚲 Fahrrad</td><td>6</td></tr>
-<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
-</table>
-`,
-answer: "20",
-solution: "9 + 6 + 5 = 20 Kinder."
+q:{de:"Was kann man mit einem Diagramm machen?",en:"What can you do with a chart?",ps:"د ډیاګرام په مرسته څه کولای شو؟"},
+visual:"📊 🔍",
+answer:"vergleichen",
+s:{de:"Mit einem Diagramm kann man Daten vergleichen.",en:"A chart can be used to compare data.",ps:"د ډیاګرام په مرسته معلومات پرتله کولای شو."}
 },
 
 {
-q: "Was zeigt ein Diagramm?",
-visual: "📊 Daten → Diagramm",
-answer: "daten",
-solution: "Ein Diagramm stellt Daten übersichtlich dar."
-},
-
-{
-q: "Was ist bei einem Säulendiagramm eine Säule?",
-visual: `
-<div class="chart">
-<div class="bar" style="height:70px"><span>3</span><div class="label">A</div></div>
-<div class="bar" style="height:140px"><span>6</span><div class="label">B</div></div>
-<div class="bar" style="height:100px"><span>4</span><div class="label">C</div></div>
-</div>
-`,
-answer: "b",
-solution: "Die Säule B ist hier am höchsten."
-},
-
-{
-q: "Welche Säule ist am höchsten?",
-visual: `
-<div class="chart">
-<div class="bar" style="height:60px"><span>3</span><div class="label">A</div></div>
-<div class="bar" style="height:150px"><span>7</span><div class="label">B</div></div>
-<div class="bar" style="height:100px"><span>5</span><div class="label">C</div></div>
-</div>
-`,
-answer: "b",
-solution: "Säule B ist am höchsten."
-},
-
-{
-q: "Welche Säule ist am niedrigsten?",
-visual: `
-<div class="chart">
-<div class="bar" style="height:80px"><span>4</span><div class="label">A</div></div>
-<div class="bar" style="height:140px"><span>7</span><div class="label">B</div></div>
-<div class="bar" style="height:40px"><span>2</span><div class="label">C</div></div>
-</div>
-`,
-answer: "c",
-solution: "Säule C ist am niedrigsten."
-},
-
-{
-q: "In einem Diagramm stehen 5, 8 und 3. Wie groß ist die größte Zahl?",
-visual: "📊 5 | 8 | 3",
-answer: "8",
-solution: "Die größte Zahl ist 8."
+q:{de:"Was ist eine Tabelle?",en:"What is a table?",ps:"جدول څه شی دی؟"},
+visual:"📋",
+answer:"daten",
+s:{de:"Eine Tabelle ordnet Daten übersichtlich.",en:"A table organizes data clearly.",ps:"جدول معلومات په منظم ډول ښيي."}
 }
 
 ];
 
-let current = 0;
+let current=0;
+let language=localStorage.getItem("language")||"de";
 
-function showQuestion() {
-    document.getElementById("question").textContent = questions[current].q;
-    document.getElementById("visual").innerHTML = questions[current].visual;
+function changeLanguage(lang){
+language=lang;
+localStorage.setItem("language",lang);
 
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) + " von " + questions.length;
+const t=translations[lang];
 
-    document.getElementById("answer").value = "";
-    document.getElementById("answer").disabled = false;
-    document.getElementById("result").textContent = "";
-    document.getElementById("solution").style.display = "none";
-    document.getElementById("nextButton").style.display = "none";
+document.getElementById("subtitle").textContent=t.subtitle;
+document.getElementById("languageText").textContent=t.language;
+document.getElementById("title").textContent=t.title;
+document.getElementById("explanationTitle").textContent=t.explanationTitle;
+document.getElementById("explanationText").textContent=t.explanationText;
+document.getElementById("checkButton").textContent=t.check;
+document.getElementById("solutionTitle").textContent=t.solution;
+document.getElementById("nextButton").textContent=t.next;
+document.getElementById("backButton").textContent=t.back;
+document.getElementById("answer").placeholder=t.placeholder;
+
+showQuestion();
 }
 
-function checkAnswer() {
+function showQuestion(){
 
-    const userAnswer = document.getElementById("answer").value
-        .trim()
-        .toLowerCase()
-        .replace(/\s/g, "");
+const q=questions[current];
 
-    const correctAnswer = questions[current].answer
-        .toLowerCase()
-        .replace(/\s/g, "");
+document.getElementById("question").textContent=q.q[language];
+document.getElementById("visual").innerHTML=q.visual;
 
-    if (userAnswer === correctAnswer) {
+document.getElementById("progress").textContent=
+(language==="de"?"Aufgabe ":
+language==="en"?"Question ":"پوښتنه ")
++(current+1)+" / 30";
 
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
-
-        document.getElementById("solution").style.display = "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-    }
-
-    document.getElementById("answer").disabled = true;
-    document.getElementById("nextButton").style.display = "inline-block";
+document.getElementById("answer").value="";
+document.getElementById("answer").disabled=false;
+document.getElementById("result").textContent="";
+document.getElementById("solution").style.display="none";
+document.getElementById("nextButton").style.display="none";
 }
 
-function nextQuestion() {
+function checkAnswer(){
 
-    current++;
+const userAnswer=document.getElementById("answer").value
+.trim()
+.toLowerCase();
 
-    if (current >= questions.length) {
+const correct=questions[current].answer.toLowerCase();
+const t=translations[language];
 
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
+if(userAnswer===correct){
+document.getElementById("result").textContent=t.correct;
+}else{
+document.getElementById("result").textContent=t.wrong;
+document.getElementById("solution").style.display="block";
+document.getElementById("solutionText").textContent=
+questions[current].s[language];
+}
 
-        document.getElementById("progress").textContent = "Fertig! 🏆";
-        document.getElementById("visual").style.display = "none";
-        document.getElementById("answer").style.display = "none";
-        document.getElementById("result").textContent =
-            "Super gemacht! 🎓";
+document.getElementById("answer").disabled=true;
+document.getElementById("nextButton").style.display="inline-block";
+}
 
-        document.getElementById("nextButton").style.display = "none";
-        document.getElementById("solution").style.display = "none";
+function nextQuestion(){
 
-        return;
-    }
+current++;
 
-    showQuestion();
+if(current>=questions.length){
+
+const t=translations[language];
+
+document.getElementById("question").textContent=t.finished;
+document.getElementById("progress").textContent=t.done;
+document.getElementById("visual").style.display="none";
+document.getElementById("answer").style.display="none";
+document.getElementById("checkButton").style.display="none";
+document.getElementById("result").textContent=t.great;
+document.getElementById("nextButton").style.display="none";
+document.getElementById("solution").style.display="none";
+
+return;
 }
 
 showQuestion();
+}
+
+changeLanguage(language);
 
 </script>
 
