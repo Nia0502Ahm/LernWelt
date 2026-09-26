@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LernWelt – Daten und Diagramme</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .data {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        input {
+            width: 80%;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #solution {
+            display: none;
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #nextButton {
+            display: none;
+        }
+
+        .back {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p>Mathe Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <h2>📊 Daten und Diagramme</h2>
+
+    <div class="explanation">
+        <h3>📖 Kurze Erklärung</h3>
+
+        <p>
+            Daten sind Informationen, die gesammelt werden.
+        </p>
+
+        <p>
+            Zum Beispiel kann man fragen, welches Obst Schüler
+            am liebsten essen.
+        </p>
+
+        <p>
+            Daten kann man in Tabellen oder Diagrammen darstellen.
+        </p>
+
+        <p>
+            Bei einem Säulendiagramm zeigt die Höhe einer Säule,
+            wie groß ein Wert ist.
+        </p>
+    </div>
+
+    <p id="progress"></p>
+
+    <h3 id="question"></h3>
+
+    <div id="dataBox" class="data"></div>
+
+    <input id="answer" type="text" placeholder="Deine Antwort">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+        Antwort prüfen
+    </button>
+
+    <div id="result"></div>
+
+    <div id="solution">
+        <h3>💡 Lösung</h3>
+        <p id="solutionText"></p>
+    </div>
+
+    <button id="nextButton" onclick="nextQuestion()">
+        ➡️ Nächste Aufgabe
+    </button>
+
+    <br>
+
+    <button class="back"
+        onclick="window.location.href='mathe5.html'">
+        ← Zurück zu den Themen
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        q: "Wie viele Schüler mögen Äpfel?",
+        data: "Äpfel: 8 Schüler | Bananen: 5 Schüler | Orangen: 3 Schüler",
+        answer: "8",
+        solution: "8 Schüler mögen Äpfel."
+    },
+
+    {
+        q: "Wie viele Schüler mögen Bananen?",
+        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
+        answer: "5",
+        solution: "5 Schüler mögen Bananen."
+    },
+
+    {
+        q: "Wie viele Schüler mögen Orangen?",
+        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
+        answer: "3",
+        solution: "3 Schüler mögen Orangen."
+    },
+
+    {
+        q: "Welches Obst ist am beliebtesten?",
+        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
+        answer: "Äpfel",
+        solution: "Äpfel haben mit 8 Schülern den größten Wert."
+    },
+
+    {
+        q: "Welches Obst ist am wenigsten beliebt?",
+        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
+        answer: "Orangen",
+        solution: "Orangen haben mit 3 Schülern den kleinsten Wert."
+    },
+
+    {
+        q: "Wie viele Schüler wurden insgesamt gefragt?",
+        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
+        answer: "16",
+        solution: "8 + 5 + 3 = 16 Schüler."
+    },
+
+    {
+        q: "Wie viele Bücher hat Mia gelesen?",
+        data: "Mia: 6 Bücher | Ali: 4 Bücher | Sara: 8 Bücher",
+        answer: "6",
+        solution: "Mia hat 6 Bücher gelesen."
+    },
+
+    {
+        q: "Wie viele Bücher hat Ali gelesen?",
+        data: "Mia: 6 | Ali: 4 | Sara: 8",
+        answer: "4",
+        solution: "Ali hat 4 Bücher gelesen."
+    },
+
+    {
+        q: "Wie viele Bücher hat Sara gelesen?",
+        data: "Mia: 6 | Ali: 4 | Sara: 8",
+        answer: "8",
+        solution: "Sara hat 8 Bücher gelesen."
+    },
+
+    {
+        q: "Wer hat die meisten Bücher gelesen?",
+        data: "Mia: 6 | Ali: 4 | Sara: 8",
+        answer: "Sara",
+        solution: "Sara hat mit 8 Büchern die meisten gelesen."
+    },
+
+    {
+        q: "Wer hat die wenigsten Bücher gelesen?",
+        data: "Mia: 6 | Ali: 4 | Sara: 8",
+        answer: "Ali",
+        solution: "Ali hat mit 4 Büchern die wenigsten gelesen."
+    },
+
+    {
+        q: "Wie viele Bücher wurden insgesamt gelesen?",
+        data: "Mia: 6 | Ali: 4 | Sara: 8",
+        answer: "18",
+        solution: "6 + 4 + 8 = 18 Bücher."
+    },
+
+    {
+        q: "Wie viele Kinder fahren mit dem Fahrrad?",
+        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
+        answer: "7",
+        solution: "7 Kinder fahren mit dem Fahrrad."
+    },
+
+    {
+        q: "Wie viele Kinder fahren mit dem Bus?",
+        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
+        answer: "5",
+        solution: "5 Kinder fahren mit dem Bus."
+    },
+
+    {
+        q: "Wie viele Kinder fahren mit dem Auto?",
+        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
+        answer: "3",
+        solution: "3 Kinder fahren mit dem Auto."
+    },
+
+    {
+        q: "Welches Verkehrsmittel wird am häufigsten benutzt?",
+        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
+        answer: "Fahrrad",
+        solution: "Das Fahrrad hat mit 7 Kindern den größten Wert."
+    },
+
+    {
+        q: "Wie viele Kinder sind insgesamt in der Gruppe?",
+        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
+        answer: "15",
+        solution: "7 + 5 + 3 = 15 Kinder."
+    },
+
+    {
+        q: "Wie viele Punkte hat Team A?",
+        data: "Team A: 12 Punkte | Team B: 9 Punkte | Team C: 15 Punkte",
+        answer: "12",
+        solution: "Team A hat 12 Punkte."
+    },
+
+    {
+        q: "Wie viele Punkte hat Team B?",
+        data: "Team A: 12 | Team B: 9 | Team C: 15",
+        answer: "9",
+        solution: "Team B hat 9 Punkte."
+    },
+
+    {
+        q: "Wie viele Punkte hat Team C?",
+        data: "Team A: 12 | Team B: 9 | Team C: 15",
+        answer: "15",
+        solution: "Team C hat 15 Punkte."
+    },
+
+    {
+        q: "Welches Team hat die meisten Punkte?",
+        data: "Team A: 12 | Team B: 9 | Team C: 15",
+        answer: "Team C",
+        solution: "Team C hat mit 15 Punkten die meisten."
+    },
+
+    {
+        q: "Welches Team hat die wenigsten Punkte?",
+        data: "Team A: 12 | Team B: 9 | Team C: 15",
+        answer: "Team B",
+        solution: "Team B hat mit 9 Punkten die wenigsten."
+    },
+
+    {
+        q: "Wie viele Punkte haben alle Teams zusammen?",
+        data: "Team A: 12 | Team B: 9 | Team C: 15",
+        answer: "36",
+        solution: "12 + 9 + 15 = 36 Punkte."
+    },
+
+    {
+        q: "Wie viele Schüler mögen Fußball?",
+        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
+        answer: "10",
+        solution: "10 Schüler mögen Fußball."
+    },
+
+    {
+        q: "Wie viele Schüler mögen Basketball?",
+        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
+        answer: "6",
+        solution: "6 Schüler mögen Basketball."
+    },
+
+    {
+        q: "Wie viele Schüler mögen Tennis?",
+        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
+        answer: "4",
+        solution: "4 Schüler mögen Tennis."
+    },
+
+    {
+        q: "Welche Sportart ist am beliebtesten?",
+        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
+        answer: "Fußball",
+        solution: "Fußball ist mit 10 Schülern am beliebtesten."
+    },
+
+    {
+        q: "Welche Sportart ist am wenigsten beliebt?",
+        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
+        answer: "Tennis",
+        solution: "Tennis hat mit 4 Schülern den kleinsten Wert."
+    },
+
+    {
+        q: "Wie viele Schüler wurden insgesamt gefragt?",
+        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
+        answer: "20",
+        solution: "10 + 6 + 4 = 20 Schüler."
+    },
+
+    {
+        q: "Wie viele Stimmen hat die größte Gruppe?",
+        data: "Rot: 9 Stimmen | Blau: 12 Stimmen | Grün: 7 Stimmen",
+        answer: "12",
+        solution: "Blau hat mit 12 Stimmen die größte Gruppe."
+    }
+
+];
+
+let current = 0;
+
+function showQuestion() {
+
+    document.getElementById("question").textContent =
+        questions[current].q;
+
+    document.getElementById("dataBox").textContent =
+        questions[current].data;
+
+    document.getElementById("progress").textContent =
+        "Aufgabe " + (current + 1) +
+        " von " + questions.length;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").disabled = false;
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("solution").style.display = "none";
+
+    document.getElementById("nextButton").style.display = "none";
+}
+
+function checkAnswer() {
+
+    const userAnswer =
+        document.getElementById("answer").value
+        .trim()
+        .toLowerCase()
+        .replace(/\s/g, "");
+
+    const correctAnswer =
+        questions[current].answer
+        .toLowerCase()
+        .replace(/\s/g, "");
+
+    if (userAnswer === correctAnswer) {
+
+        document.getElementById("result").textContent =
+            "✅ Richtig! Sehr gut! 🎉";
+
+    } else {
+
+        document.getElementById("result").textContent =
+            "❌ Leider falsch.";
+
+        document.getElementById("solution").style.display =
+            "block";
+
+        document.getElementById("solutionText").textContent =
+            questions[current].solution;
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.getElementById("nextButton").style.display =
+        "inline-block";
+}
+
+function nextQuestion() {
+
+    current++;
+
+    if (current >= questions.length) {
+
+        document.getElementById("question").textContent =
+            "🎉 Du hast alle 30 Aufgaben geschafft!";
+
+        document.getElementById("progress").textContent =
+            "Fertig! 🏆";
+
+        document.getElementById("dataBox").style.display =
+            "none";
+
+        document.getElementById("answer").style.display =
+            "none";
+
+        document.getElementById("result").textContent =
+            "Super gemacht! 🎓";
+
+        document.getElementById("nextButton").style.display =
+            "none";
+
+        document.getElementById("solution").style.display =
+            "none";
+
+        return;
+    }
+
+    showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
