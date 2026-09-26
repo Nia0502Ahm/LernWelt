@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Lesen und Textverständnis</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.image-box {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.image-box svg {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.story {
+    background: #eef4ff;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+.question {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.back {
+    background: #64748b;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📖 <span id="mainTitle">Lesen und Textverständnis</span></h1>
+    <p id="subtitle">Deutsch – Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <!-- SPRACHE -->
+
+    <div class="language">
+
+        <p id="languageText">🌐 Sprache:</p>
+
+        <button onclick="changeLanguage('de')">
+            🇩🇪 Deutsch
+        </button>
+
+        <button onclick="changeLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button onclick="changeLanguage('ps')">
+            🇦🇫 پښتو
+        </button>
+
+    </div>
+
+
+    <!-- BILD -->
+
+    <div class="image-box">
+
+        <svg viewBox="0 0 700 350"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <!-- Himmel -->
+            <rect width="700" height="350" fill="#bfdbfe"/>
+
+            <!-- Sonne -->
+            <circle cx="580" cy="70" r="45" fill="#facc15"/>
+
+            <!-- Gras -->
+            <rect y="230" width="700" height="120" fill="#86efac"/>
+
+            <!-- Baum -->
+            <rect x="120" y="150" width="35" height="100"
+                  fill="#92400e"/>
+
+            <circle cx="135" cy="120" r="65"
+                    fill="#22c55e"/>
+
+            <circle cx="85" cy="145" r="45"
+                    fill="#16a34a"/>
+
+            <circle cx="180" cy="145" r="45"
+                    fill="#16a34a"/>
+
+            <!-- Bank -->
+            <rect x="300" y="210" width="150" height="15"
+                  fill="#92400e"/>
+
+            <rect x="315" y="225" width="15" height="55"
+                  fill="#78350f"/>
+
+            <rect x="420" y="225" width="15" height="55"
+                  fill="#78350f"/>
+
+            <!-- Kind -->
+            <circle cx="375" cy="170" r="22"
+                    fill="#f5c2a5"/>
+
+            <rect x="355" y="190" width="40"
+                  height="55" rx="10"
+                  fill="#3b82f6"/>
+
+            <line x1="355" y1="205"
+                  x2="325" y2="235"
+                  stroke="#f5c2a5"
+                  stroke-width="12"/>
+
+            <line x1="395" y1="205"
+                  x2="425" y2="235"
+                  stroke="#f5c2a5"
+                  stroke-width="12"/>
+
+            <!-- Buch -->
+            <rect x="325" y="220"
+                  width="70" height="12"
+                  fill="#f8fafc"/>
+
+            <!-- Blumen -->
+            <circle cx="520" cy="260" r="8" fill="#ec4899"/>
+            <circle cx="550" cy="285" r="8" fill="#a855f7"/>
+            <circle cx="590" cy="255" r="8" fill="#ef4444"/>
+
+        </svg>
+
+    </div>
+
+
+    <!-- TEXT -->
+
+    <h2 id="storyTitle">📖 Lesetext</h2>
+
+    <div class="story">
+
+        <p id="storyText">
+            <strong>Ein Nachmittag im Park</strong>
+            <br><br>
+
+            Am Samstag geht Lina mit ihrem kleinen Bruder
+            Ben in den Park. Das Wetter ist warm und die Sonne
+            scheint. Lina nimmt ein Buch mit, weil sie gerne liest.
+            <br><br>
+
+            Im Park setzen sich die beiden auf eine Bank unter
+            einem großen Baum. Ben sieht einen kleinen Hund,
+            der mit einem roten Ball spielt.
+            <br><br>
+
+            Nach dem Lesen gehen Lina und Ben zum Spielplatz.
+            Dort treffen sie ihre Freunde. Gemeinsam spielen sie
+            fast eine Stunde. Am Nachmittag gehen sie zufrieden
+            nach Hause.
+        </p>
+
+    </div>
+
+
+    <!-- AUFGABEN -->
+
+    <div id="questions">
+
+        <!-- Frage 1 -->
+
+        <div class="question">
+            <h3 id="q1">
+                1. Wann geht Lina in den Park?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Samstag
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Montag
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Freitag
+            </button>
+        </div>
+
+
+        <!-- Frage 2 -->
+
+        <div class="question">
+            <h3 id="q2">
+                2. Mit wem geht Lina in den Park?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Mit ihrer Freundin
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Mit ihrem Bruder Ben
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Mit ihrem Vater
+            </button>
+        </div>
+
+
+        <!-- Frage 3 -->
+
+        <div class="question">
+            <h3 id="q3">
+                3. Warum nimmt Lina ein Buch mit?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Weil sie malen möchte.
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Weil sie gerne liest.
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Weil sie es verschenken möchte.
+            </button>
+        </div>
+
+
+        <!-- Frage 4 -->
+
+        <div class="question">
+            <h3 id="q4">
+                4. Wo sitzen Lina und Ben?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Auf einer Bank unter einem Baum
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Im Klassenzimmer
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Auf dem Fußballplatz
+            </button>
+        </div>
+
+
+        <!-- Frage 5 -->
+
+        <div class="question">
+            <h3 id="q5">
+                5. Was hat der Hund?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Einen Stock
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Einen roten Ball
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Einen Schuh
+            </button>
+        </div>
+
+
+        <!-- Frage 6 -->
+
+        <div class="question">
+            <h3 id="q6">
+                6. Wohin gehen Lina und Ben nach dem Lesen?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Nach Hause
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Zum Spielplatz
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Zur Schule
+            </button>
+        </div>
+
+
+        <!-- Frage 7 -->
+
+        <div class="question">
+            <h3 id="q7">
+                7. Wen treffen sie auf dem Spielplatz?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Ihre Freunde
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Ihre Lehrer
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Ihre Nachbarn
+            </button>
+        </div>
+
+
+        <!-- Frage 8 -->
+
+        <div class="question">
+            <h3 id="q8">
+                8. Wie lange spielen sie ungefähr?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Zehn Minuten
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Fast eine Stunde
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Drei Stunden
+            </button>
+        </div>
+
+
+        <!-- Frage 9 -->
+
+        <div class="question">
+            <h3 id="q9">
+                9. Wie fühlen sich Lina und Ben am Ende?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Traurig
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Wütend
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Zufrieden
+            </button>
+        </div>
+
+
+        <!-- Frage 10 -->
+
+        <div class="question">
+            <h3 id="q10">
+                10. Was ist die Hauptidee des Textes?
+            </h3>
+
+            <button class="answer" onclick="checkAnswer(this, true)">
+                Lina und Ben verbringen einen schönen Nachmittag im Park.
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Lina muss den ganzen Tag lernen.
+            </button>
+
+            <button class="answer" onclick="checkAnswer(this, false)">
+                Ben verliert seinen Ball.
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- PUNKTE -->
+
+    <div id="score">
+        🏆 <span id="scoreText">Punkte: 0 / 10</span>
+    </div>
+
+    <div id="result"></div>
+
+
+    <button onclick="finishQuiz()" id="finishButton">
+        ✅ Auswertung
+    </button>
+
+    <button onclick="restartQuiz()" class="restart" id="restartButton">
+        🔄 Neu starten
+    </button>
+
+    <br>
+
+    <button class="back"
+            onclick="location.href='deutsch5.html'"
+            id="backButton">
+        ← Zurück zu Deutsch
+    </button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+/* Antworten kontrollieren */
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons =
+        question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+
+            if (
+                btn.getAttribute("onclick")
+                &&
+                btn.getAttribute("onclick")
+                    .includes("true")
+            ) {
+                btn.classList.add("correct");
+            }
+
+        });
+
+    }
+
+    answered++;
+
+    updateScore();
+}
+
+
+/* Punkte anzeigen */
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    let text = "";
+
+    if (language === "de") {
+        text = "Punkte: " + score + " / 10";
+    }
+
+    if (language === "en") {
+        text = "Points: " + score + " / 10";
+    }
+
+    if (language === "ps") {
+        text = "نمرې: " + score + " / 10";
+    }
+
+    document.getElementById("scoreText").textContent =
+        text;
+}
+
+
+/* Auswertung */
+
+function finishQuiz() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    let result = "";
+
+    if (language === "de") {
+
+        if (score === 10) {
+            result = "🎉 Perfekt! 10 von 10 Punkten!";
+        }
+        else if (score >= 8) {
+            result = "👏 Sehr gut! Du hast " + score + " von 10 Punkten.";
+        }
+        else if (score >= 5) {
+            result = "👍 Gut gemacht! Du hast " + score + " von 10 Punkten.";
+        }
+        else {
+            result = "💪 Übe noch ein bisschen! " + score + " von 10 Punkten.";
+        }
+    }
+
+
+    if (language === "en") {
+
+        if (score === 10) {
+            result = "🎉 Perfect! 10 out of 10 points!";
+        }
+        else if (score >= 8) {
+            result = "👏 Very good! You got " + score + " out of 10.";
+        }
+        else if (score >= 5) {
+            result = "👍 Good job! You got " + score + " out of 10.";
+        }
+        else {
+            result = "💪 Keep practicing! " + score + " out of 10.";
+        }
+    }
+
+
+    if (language === "ps") {
+
+        if (score === 10) {
+            result = "🎉 ډېر ښه! ۱۰ له ۱۰ نمرې!";
+        }
+        else if (score >= 8) {
+            result = "👏 ډېر ښه! ستا نمرې " + score + " له ۱۰ څخه دي.";
+        }
+        else if (score >= 5) {
+            result = "👍 ښه کار! ستا نمرې " + score + " له ۱۰ څخه دي.";
+        }
+        else {
+            result = "💪 لږ نور تمرین وکړه! " + score + " له ۱۰ څخه.";
+        }
+    }
+
+
+    document.getElementById("result").textContent =
+        result;
+}
+
+
+/* بیا پیل */
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    const questions =
+        document.querySelectorAll(".question");
+
+    questions.forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        const buttons =
+            question.querySelectorAll(".answer");
+
+        buttons.forEach(function(button) {
+
+            button.disabled = false;
+
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+/* Übersetzungen */
+
+const translations = {
+
+    de: {
+
+        mainTitle: "Lesen und Textverständnis",
+        subtitle: "Deutsch – Klasse 5",
+        language: "🌐 Sprache:",
+        storyTitle: "📖 Lesetext",
+
+        q1: "1. Wann geht Lina in den Park?",
+        q2: "2. Mit wem geht Lina in den Park?",
+        q3: "3. Warum nimmt Lina ein Buch mit?",
+        q4: "4. Wo sitzen Lina und Ben?",
+        q5: "5. Was hat der Hund?",
+        q6: "6. Wohin gehen Lina und Ben nach dem Lesen?",
+        q7: "7. Wen treffen sie auf dem Spielplatz?",
+        q8: "8. Wie lange spielen sie ungefähr?",
+        q9: "9. Wie fühlen sich Lina und Ben am Ende?",
+        q10: "10. Was ist die Hauptidee des Textes?",
+
+        finish: "✅ Auswertung",
+        restart: "🔄 Neu starten",
+        back: "← Zurück zu Deutsch"
+    },
+
+
+    en: {
+
+        mainTitle: "Reading and Text Comprehension",
+        subtitle: "German – Grade 5",
+        language: "🌐 Language:",
+        storyTitle: "📖 Reading Text",
+
+        q1: "1. When does Lina go to the park?",
+        q2: "2. Who goes to the park with Lina?",
+        q3: "3. Why does Lina take a book?",
+        q4: "4. Where do Lina and Ben sit?",
+        q5: "5. What does the dog have?",
+        q6: "6. Where do Lina and Ben go after reading?",
+        q7: "7. Who do they meet at the playground?",
+        q8: "8. How long do they play?",
+        q9: "9. How do Lina and Ben feel at the end?",
+        q10: "10. What is the main idea of the text?",
+
+        finish: "✅ Results",
+        restart: "🔄 Restart",
+        back: "← Back to German"
+    },
+
+
+    ps: {
+
+        mainTitle: "لوستل او د متن پوهه",
+        subtitle: "الماني ژبه – پنځم ټولګی",
+        language: "🌐 ژبه:",
+        storyTitle: "📖 د لوستلو متن",
+
+        q1: "۱. لینا کله پارک ته ځي؟",
+        q2: "۲. لینا له چا سره پارک ته ځي؟",
+        q3: "۳. لینا ولې کتاب له ځان سره وړي؟",
+        q4: "۴. لینا او بین چېرته ناست دي؟",
+        q5: "۵. سپی څه لري؟",
+        q6: "۶. لینا او بین له لوستلو وروسته چېرته ځي؟",
+        q7: "۷. هغوی د لوبو په ځای کې له چا سره ویني؟",
+        q8: "۸. هغوی شاوخوا څومره وخت لوبې کوي؟",
+        q9: "۹. لینا او بین په پای کې څنګه احساس کوي؟",
+        q10: "۱۰. د متن اصلي موضوع څه ده؟",
+
+        finish: "✅ پایله",
+        restart: "🔄 بیا پیل",
+        back: "← الماني ته بېرته"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("mainTitle").textContent =
+        t.mainTitle;
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("storyTitle").textContent =
+        t.storyTitle;
+
+
+    document.getElementById("q1").textContent = t.q1;
+    document.getElementById("q2").textContent = t.q2;
+    document.getElementById("q3").textContent = t.q3;
+    document.getElementById("q4").textContent = t.q4;
+    document.getElementById("q5").textContent = t.q5;
+    document.getElementById("q6").textContent = t.q6;
+    document.getElementById("q7").textContent = t.q7;
+    document.getElementById("q8").textContent = t.q8;
+    document.getElementById("q9").textContent = t.q9;
+    document.getElementById("q10").textContent = t.q10;
+
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+
+    updateScore();
+}
+
+
+/* Gespeicherte Sprache */
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
