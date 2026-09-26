@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,12 +7,11 @@
 
     <title>LernWelt</title>
 
-    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
         const supabaseClient = supabase.createClient(
- "https://hridnnwxsgionkeuhaas.supabase.co",
+"https://hridnnwxsgionkeuhaas.supabase.co",
         "sb_publishable_4DTDbPS-tS5P1u3OAcCe_Q_jNdZQ8P8"
         );
     </script>
@@ -41,7 +41,7 @@
 
         button {
             display: block;
-            width: 250px;
+            width: 280px;
             margin: 15px auto;
             padding: 15px;
             border: none;
@@ -56,6 +56,23 @@
             background: #1d4ed8;
         }
 
+        .language button {
+            display: inline-block;
+            width: 130px;
+            margin: 8px;
+            font-size: 15px;
+        }
+
+        #classBox {
+            display: none;
+            background: white;
+            max-width: 500px;
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
         #authBox {
             background: white;
             max-width: 400px;
@@ -63,6 +80,7 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
         }
 
         input {
@@ -84,14 +102,69 @@
 
 <body>
 
-    <header>
-        <h1>📚 LernWelt</h1>
-        <p>Lernen von Klasse 5 bis zum Abitur</p>
-    </header>
-<button onclick="showRegister()">Registrieren</button>
-<button onclick="showLogin()">Anmelden</button>
-<button>🎓 Klasse auswählen</button>
-    <div id="authBox" style="display:none;">
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Lernen von Klasse 5 bis zum Abitur</p>
+</header>
+
+<div class="container">
+
+    <!-- SPRACHE -->
+    <h2 id="languageTitle">🌐 Sprache auswählen</h2>
+
+    <div class="language">
+        <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+        <button onclick="changeLanguage('en')">🇬🇧 English</button>
+        <button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+    </div>
+
+    <!-- ANMELDEN / REGISTRIEREN -->
+    <button onclick="showRegister()" id="registerMain">
+        Registrieren
+    </button>
+
+    <button onclick="showLogin()" id="loginMain">
+        Anmelden
+    </button>
+
+    <!-- KLASSE -->
+    <button onclick="showClasses()" id="classButton">
+        🎓 Klasse auswählen
+    </button>
+
+    <!-- KLASSENAUSWAHL -->
+    <div id="classBox">
+
+        <h2 id="classTitle">🎓 Klasse auswählen</h2>
+
+        <button onclick="selectClass(5)">
+            📚 Klasse 5
+        </button>
+
+        <button onclick="selectClass(6)">
+            📚 Klasse 6
+        </button>
+
+        <button onclick="selectClass(7)">
+            📚 Klasse 7
+        </button>
+
+        <button onclick="selectClass(8)">
+            📚 Klasse 8
+        </button>
+
+        <button onclick="selectClass(9)">
+            📚 Klasse 9
+        </button>
+
+        <button onclick="selectClass(10)">
+            📚 Klasse 10
+        </button>
+
+    </div>
+
+    <!-- LOGIN / REGISTRIERUNG -->
+    <div id="authBox">
 
         <h2 id="authTitle">Registrieren</h2>
 
@@ -111,7 +184,9 @@
             Konto erstellen
         </button>
 
-        <button id="loginButton" onclick="login()" style="display:none;">
+        <button id="loginButton"
+                onclick="login()"
+                style="display:none;">
             Anmelden
         </button>
 
@@ -119,77 +194,232 @@
 
     </div>
 
-    <script>
+</div>
 
-        function showRegister() {
-            document.getElementById("authBox").style.display = "block";
-            document.getElementById("authTitle").textContent = "Registrieren";
 
-            document.getElementById("registerButton").style.display = "block";
-            document.getElementById("loginButton").style.display = "none";
+<script>
 
-            document.getElementById("message").textContent = "";
-        }
+const texts = {
 
-        function showLogin() {
-            document.getElementById("authBox").style.display = "block";
-            document.getElementById("authTitle").textContent = "Anmelden";
+    de: {
+        subtitle: "Lernen von Klasse 5 bis zum Abitur",
+        language: "🌐 Sprache auswählen",
+        register: "Registrieren",
+        login: "Anmelden",
+        class: "🎓 Klasse auswählen",
+        classTitle: "🎓 Klasse auswählen",
+        email: "E-Mail",
+        password: "Passwort",
+        account: "Konto erstellen",
+        loginButton: "Anmelden"
+    },
 
-            document.getElementById("registerButton").style.display = "none";
-            document.getElementById("loginButton").style.display = "block";
+    en: {
+        subtitle: "Learning from grade 5 to high school",
+        language: "🌐 Choose language",
+        register: "Register",
+        login: "Login",
+        class: "🎓 Choose grade",
+        classTitle: "🎓 Choose grade",
+        email: "Email",
+        password: "Password",
+        account: "Create account",
+        loginButton: "Login"
+    },
 
-            document.getElementById("message").textContent = "";
-        }
+    ps: {
+        subtitle: "له پنځم ټولګي څخه تر لېسې پورې زده کړه",
+        language: "🌐 ژبه وټاکئ",
+        register: "نوم لیکنه",
+        login: "ننوتل",
+        class: "🎓 ټولګی وټاکئ",
+        classTitle: "🎓 ټولګی وټاکئ",
+        email: "ایمیل",
+        password: "پاسورډ",
+        account: "اکاونټ جوړول",
+        loginButton: "ننوتل"
+    }
 
-        async function register() {
+};
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
 
-            if (!email || !password) {
-                document.getElementById("message").textContent =
-                    "Bitte E-Mail und Passwort eingeben.";
-                return;
-            }
+let currentLanguage =
+    localStorage.getItem("language") || "de";
 
-            const { data, error } =
-                await supabaseClient.auth.signUp({
-                    email: email,
-                    password: password
-                });
 
-            if (error) {
-                document.getElementById("message").textContent =
-                    "Fehler: " + error.message;
-                return;
-            }
+function changeLanguage(lang) {
 
-            document.getElementById("message").textContent =
-                "Konto erstellt! Bitte prüfe deine E-Mail.";
-        }
+    currentLanguage = lang;
 
-        async function login() {
+    localStorage.setItem("language", lang);
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+    const t = texts[lang];
 
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email: email,
-                    password: password
-                });
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
 
-            if (error) {
-                document.getElementById("message").textContent =
-                    "Fehler: " + error.message;
-                return;
-            }
+    document.getElementById("languageTitle").textContent =
+        t.language;
 
-        window.location.href = "home.html";
-            
-            }
-        
-    </script>
+    document.getElementById("registerMain").textContent =
+        t.register;
+
+    document.getElementById("loginMain").textContent =
+        t.login;
+
+    document.getElementById("classButton").textContent =
+        t.class;
+
+    document.getElementById("classTitle").textContent =
+        t.classTitle;
+
+    document.getElementById("email").placeholder =
+        t.email;
+
+    document.getElementById("password").placeholder =
+        t.password;
+
+    document.getElementById("registerButton").textContent =
+        t.account;
+
+    document.getElementById("loginButton").textContent =
+        t.loginButton;
+}
+
+
+function showClasses() {
+
+    document.getElementById("classBox").style.display =
+        "block";
+}
+
+
+function selectClass(number) {
+
+    if (number === 5) {
+
+        /*
+        Klasse 5 wird geöffnet.
+        Danach kann man dort das Fach auswählen.
+        */
+
+        window.location.href = "klasse5.html";
+
+    } else {
+
+        alert(
+            "Diese Klasse wird noch erstellt."
+        );
+
+    }
+}
+
+
+function showRegister() {
+
+    document.getElementById("authBox").style.display =
+        "block";
+
+    document.getElementById("authTitle").textContent =
+        texts[currentLanguage].register;
+
+    document.getElementById("registerButton").style.display =
+        "block";
+
+    document.getElementById("loginButton").style.display =
+        "none";
+
+    document.getElementById("message").textContent = "";
+}
+
+
+function showLogin() {
+
+    document.getElementById("authBox").style.display =
+        "block";
+
+    document.getElementById("authTitle").textContent =
+        texts[currentLanguage].login;
+
+    document.getElementById("registerButton").style.display =
+        "none";
+
+    document.getElementById("loginButton").style.display =
+        "block";
+
+    document.getElementById("message").textContent = "";
+}
+
+
+async function register() {
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    if (!email || !password) {
+
+        document.getElementById("message").textContent =
+            "Bitte E-Mail und Passwort eingeben.";
+
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient.auth.signUp({
+            email: email,
+            password: password
+        });
+
+    if (error) {
+
+        document.getElementById("message").textContent =
+            "Fehler: " + error.message;
+
+        return;
+    }
+
+    document.getElementById("message").textContent =
+        "Konto erstellt! Bitte prüfe deine E-Mail.";
+}
+
+
+async function login() {
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+    if (error) {
+
+        document.getElementById("message").textContent =
+            "Fehler: " + error.message;
+
+        return;
+    }
+
+    window.location.href = "home.html";
+}
+
+
+changeLanguage(currentLanguage);
+
+</script>
 
 </body>
 </html>
+```
+
+**Wichtig:** Bei Klasse 5 geht es jetzt zuerst zu **`klasse5.html`** und nicht direkt zu einer Aufgabe.
+
+Wenn du bei **Klasse 5 → Mathe** klickst, soll es danach zu deinen **Mathe-Themen** gehen und erst danach zu `rechenregeln5.html`.
