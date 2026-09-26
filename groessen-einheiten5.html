@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LernWelt – Größen und Einheiten</title>
+<title>LernWelt – Geometrische Grundformen</title>
 
 <style>
 body {
@@ -40,32 +40,50 @@ header {
     padding: 25px;
     border-radius: 12px;
     margin: 20px 0;
-    font-size: 28px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.ruler {
-    margin: 20px auto;
-    max-width: 600px;
-    height: 50px;
-    border-bottom: 4px solid #333;
-    background: repeating-linear-gradient(
-        to right,
-        white 0px,
-        white 19px,
-        #333 20px
-    );
+.circle {
+    width: 110px;
+    height: 110px;
+    border: 5px solid #2563eb;
+    border-radius: 50%;
 }
 
-.clock {
-    font-size: 60px;
+.square {
+    width: 110px;
+    height: 110px;
+    border: 5px solid #2563eb;
 }
 
-.box {
-    display: inline-block;
-    padding: 15px 25px;
-    margin: 5px;
-    background: #dbeafe;
-    border-radius: 10px;
+.rectangle {
+    width: 180px;
+    height: 100px;
+    border: 5px solid #2563eb;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 120px solid #60a5fa;
+}
+
+.shapes {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.shape-label {
+    margin-top: 8px;
+    font-weight: bold;
 }
 
 input {
@@ -127,29 +145,30 @@ button:hover {
 
 <div class="container">
 
-<h2>📏 Größen und Einheiten</h2>
+<h2>📐 Geometrische Grundformen</h2>
 
 <div class="explanation">
 <h3>📖 Kurze Erklärung</h3>
 
 <p>
-Bei Größen benutzt man verschiedene Einheiten.
+Geometrische Formen sind zum Beispiel:
+<strong>Quadrat, Rechteck, Dreieck und Kreis.</strong>
 </p>
 
 <p>
-📏 Länge: Millimeter (mm), Zentimeter (cm), Meter (m), Kilometer (km)
+Ein Quadrat hat 4 gleich lange Seiten.
 </p>
 
 <p>
-⚖️ Gewicht: Gramm (g), Kilogramm (kg)
+Ein Rechteck hat 4 Seiten. Die gegenüberliegenden Seiten sind gleich lang.
 </p>
 
 <p>
-🥤 Flüssigkeit: Milliliter (ml), Liter (l)
+Ein Dreieck hat 3 Seiten und 3 Ecken.
 </p>
 
 <p>
-⏰ Zeit: Sekunden (s), Minuten (min), Stunden (h)
+Ein Kreis hat keine Ecken.
 </p>
 </div>
 
@@ -189,213 +208,238 @@ Bei Größen benutzt man verschiedene Einheiten.
 const questions = [
 
 {
-q: "Wie viele Zentimeter sind 1 Meter?",
-visual: "📏 1 m = ❓ cm",
-answer: "100",
-solution: "1 Meter = 100 Zentimeter."
+q: "Welche Form hat keine Ecken?",
+visual: `<div class="circle"></div>`,
+answer: "kreis",
+solution: "Ein Kreis hat keine Ecken."
 },
 
 {
-q: "Wie viele Millimeter sind 1 Zentimeter?",
-visual: "📏 1 cm = ❓ mm",
-answer: "10",
-solution: "1 Zentimeter = 10 Millimeter."
+q: "Welche Form hat 3 Seiten?",
+visual: `<div class="triangle"></div>`,
+answer: "dreieck",
+solution: "Ein Dreieck hat 3 Seiten."
 },
 
 {
-q: "Wie viele Meter sind 1 Kilometer?",
-visual: "🛣️ 1 km = ❓ m",
-answer: "1000",
-solution: "1 Kilometer = 1000 Meter."
+q: "Welche Form hat 4 gleich lange Seiten?",
+visual: `<div class="square"></div>`,
+answer: "quadrat",
+solution: "Ein Quadrat hat 4 gleich lange Seiten."
 },
 
 {
-q: "Wie viele Zentimeter sind 2 Meter?",
-visual: "2 m = ❓ cm",
-answer: "200",
-solution: "2 · 100 = 200 cm."
+q: "Welche Form hat 4 Seiten und ist länger als breit?",
+visual: `<div class="rectangle"></div>`,
+answer: "rechteck",
+solution: "Das ist ein Rechteck."
 },
 
 {
-q: "Wie viele Meter sind 300 Zentimeter?",
-visual: "300 cm ➡️ ❓ m",
+q: "Wie viele Ecken hat ein Dreieck?",
+visual: `<div class="triangle"></div>`,
 answer: "3",
-solution: "300 cm = 3 m."
+solution: "Ein Dreieck hat 3 Ecken."
 },
 
 {
-q: "Wie viele Millimeter sind 5 Zentimeter?",
-visual: "5 cm = ❓ mm",
-answer: "50",
-solution: "5 · 10 = 50 mm."
-},
-
-{
-q: "Wie viele Zentimeter sind 40 Millimeter?",
-visual: "40 mm ➡️ ❓ cm",
+q: "Wie viele Seiten hat ein Quadrat?",
+visual: `<div class="square"></div>`,
 answer: "4",
-solution: "40 mm = 4 cm."
+solution: "Ein Quadrat hat 4 Seiten."
 },
 
 {
-q: "Wie viele Gramm sind 1 Kilogramm?",
-visual: "⚖️ 1 kg = ❓ g",
-answer: "1000",
-solution: "1 Kilogramm = 1000 Gramm."
+q: "Wie viele Ecken hat ein Quadrat?",
+visual: `<div class="square"></div>`,
+answer: "4",
+solution: "Ein Quadrat hat 4 Ecken."
 },
 
 {
-q: "Wie viele Gramm sind 2 Kilogramm?",
-visual: "⚖️ 2 kg = ❓ g",
-answer: "2000",
-solution: "2 · 1000 = 2000 g."
+q: "Wie viele Seiten hat ein Rechteck?",
+visual: `<div class="rectangle"></div>`,
+answer: "4",
+solution: "Ein Rechteck hat 4 Seiten."
 },
 
 {
-q: "Wie viele Kilogramm sind 3000 Gramm?",
-visual: "3000 g ➡️ ❓ kg",
-answer: "3",
-solution: "3000 g = 3 kg."
+q: "Wie viele Ecken hat ein Rechteck?",
+visual: `<div class="rectangle"></div>`,
+answer: "4",
+solution: "Ein Rechteck hat 4 Ecken."
 },
 
 {
-q: "Wie viele Milliliter sind 1 Liter?",
-visual: "🥤 1 l = ❓ ml",
-answer: "1000",
-solution: "1 Liter = 1000 Milliliter."
+q: "Wie viele Ecken hat ein Kreis?",
+visual: `<div class="circle"></div>`,
+answer: "0",
+solution: "Ein Kreis hat 0 Ecken."
 },
 
 {
-q: "Wie viele Milliliter sind 2 Liter?",
-visual: "🥤 2 l = ❓ ml",
-answer: "2000",
-solution: "2 · 1000 = 2000 ml."
+q: "Welche Form ist rund?",
+visual: `<div class="circle"></div>`,
+answer: "kreis",
+solution: "Der Kreis ist rund."
 },
 
 {
-q: "Wie viele Liter sind 3000 Milliliter?",
-visual: "3000 ml ➡️ ❓ l",
-answer: "3",
-solution: "3000 ml = 3 l."
+q: "Welche Form sieht wie ein Fenster aus?",
+visual: `<div class="rectangle"></div>`,
+answer: "rechteck",
+solution: "Ein Fenster ist oft rechteckig."
 },
 
 {
-q: "Wie viele Sekunden hat 1 Minute?",
-visual: "⏱️ 1 min = ❓ s",
-answer: "60",
-solution: "1 Minute = 60 Sekunden."
+q: "Welche Form sieht wie ein Verkehrsschild mit drei Ecken aus?",
+visual: `<div class="triangle"></div>`,
+answer: "dreieck",
+solution: "Die Form ist ein Dreieck."
 },
 
 {
-q: "Wie viele Minuten hat 1 Stunde?",
-visual: "🕐 1 h = ❓ min",
-answer: "60",
-solution: "1 Stunde = 60 Minuten."
+q: "Welche Form sieht wie ein Würfel von vorne aus?",
+visual: `<div class="square"></div>`,
+answer: "quadrat",
+solution: "Die Vorderseite eines Würfels kann ein Quadrat sein."
 },
 
 {
-q: "Wie viele Stunden hat ein Tag?",
-visual: "🌞🌙 1 Tag = ❓ h",
-answer: "24",
-solution: "Ein Tag hat 24 Stunden."
+q: "Wie viele Seiten haben zwei Dreiecke zusammen?",
+visual: `
+<div class="shapes">
+<div class="triangle"></div>
+<div class="triangle"></div>
+</div>
+`,
+answer: "6",
+solution: "2 · 3 = 6 Seiten."
 },
 
 {
-q: "Wie viele Minuten sind 2 Stunden?",
-visual: "🕑 2 h = ❓ min",
-answer: "120",
-solution: "2 · 60 = 120 Minuten."
+q: "Wie viele Ecken haben zwei Quadrate zusammen?",
+visual: `
+<div class="shapes">
+<div class="square"></div>
+<div class="square"></div>
+</div>
+`,
+answer: "8",
+solution: "2 · 4 = 8 Ecken."
 },
 
 {
-q: "Wie viele Sekunden sind 2 Minuten?",
-visual: "⏱️ 2 min = ❓ s",
-answer: "120",
-solution: "2 · 60 = 120 Sekunden."
+q: "Welche Form hat vier rechte Winkel?",
+visual: `<div class="rectangle"></div>`,
+answer: "rechteck",
+solution: "Ein Rechteck hat vier rechte Winkel."
 },
 
 {
-q: "Was ist länger: 1 m oder 50 cm?",
-visual: "📏 1 m 🆚 50 cm",
-answer: "1m",
-solution: "1 m ist länger als 50 cm."
+q: "Welche Form hat drei Ecken?",
+visual: `<div class="triangle"></div>`,
+answer: "dreieck",
+solution: "Ein Dreieck hat drei Ecken."
 },
 
 {
-q: "Was ist schwerer: 1 kg oder 500 g?",
-visual: "⚖️ 1 kg 🆚 500 g",
-answer: "1kg",
-solution: "1 kg ist schwerer als 500 g."
+q: "Welche Form hat vier gleich lange Seiten?",
+visual: `<div class="square"></div>`,
+answer: "quadrat",
+solution: "Ein Quadrat hat vier gleich lange Seiten."
 },
 
 {
-q: "Was ist mehr: 1 l oder 500 ml?",
-visual: "🥤 1 l 🆚 500 ml",
-answer: "1l",
-solution: "1 Liter ist mehr als 500 ml."
+q: "Welche Form hat einen Mittelpunkt und keine Seiten?",
+visual: `<div class="circle"></div>`,
+answer: "kreis",
+solution: "Ein Kreis hat keine geraden Seiten."
 },
 
 {
-q: "Wie viel sind 5 m in Zentimetern?",
-visual: "📏 5 m = ❓ cm",
-answer: "500",
-solution: "5 · 100 = 500 cm."
+q: "Ein Quadrat hat eine Seitenlänge von 5 cm. Wie lang ist der Umfang?",
+visual: "⬜ 5 cm × 5 cm",
+answer: "20",
+solution: "5 + 5 + 5 + 5 = 20 cm."
 },
 
 {
-q: "Wie viel sind 7 kg in Gramm?",
-visual: "⚖️ 7 kg = ❓ g",
-answer: "7000",
-solution: "7 · 1000 = 7000 g."
+q: "Ein Rechteck ist 6 cm lang und 3 cm breit. Wie groß ist der Umfang?",
+visual: "▭ 6 cm × 3 cm",
+answer: "18",
+solution: "6 + 3 + 6 + 3 = 18 cm."
 },
 
 {
-q: "Wie viel sind 4 l in Millilitern?",
-visual: "🥤 4 l = ❓ ml",
-answer: "4000",
-solution: "4 · 1000 = 4000 ml."
+q: "Ein Quadrat hat eine Seitenlänge von 4 cm. Wie groß ist der Umfang?",
+visual: "⬜ 4 cm",
+answer: "16",
+solution: "4 · 4 = 16 cm."
 },
 
 {
-q: "Wie viel sind 3 Stunden in Minuten?",
-visual: "🕒 3 h = ❓ min",
-answer: "180",
-solution: "3 · 60 = 180 Minuten."
+q: "Ein Rechteck ist 10 cm lang und 5 cm breit. Wie groß ist der Umfang?",
+visual: "▭ 10 cm × 5 cm",
+answer: "30",
+solution: "10 + 5 + 10 + 5 = 30 cm."
 },
 
 {
-q: "Wie viel sind 5 Minuten in Sekunden?",
-visual: "⏱️ 5 min = ❓ s",
-answer: "300",
-solution: "5 · 60 = 300 Sekunden."
+q: "Wie viele Seiten haben drei Dreiecke zusammen?",
+visual: "🔺 🔺 🔺",
+answer: "9",
+solution: "3 · 3 = 9 Seiten."
 },
 
 {
-q: "Ein Seil ist 2 m lang. Wie viele Zentimeter sind das?",
-visual: "🪢 2 m = ❓ cm",
-answer: "200",
-solution: "2 m = 200 cm."
+q: "Wie viele Ecken haben drei Quadrate zusammen?",
+visual: "⬜ ⬜ ⬜",
+answer: "12",
+solution: "3 · 4 = 12 Ecken."
 },
 
 {
-q: "Eine Flasche enthält 1,5 Liter. Wie viele Milliliter sind das?",
-visual: "🧴 1,5 l = ❓ ml",
-answer: "1500",
-solution: "1,5 l = 1500 ml."
+q: "Welche Form hat genau 3 Seiten und 3 Ecken?",
+visual: `<div class="triangle"></div>`,
+answer: "dreieck",
+solution: "Ein Dreieck hat 3 Seiten und 3 Ecken."
 },
 
 {
-q: "Ein Paket wiegt 3 kg. Wie viele Gramm sind das?",
-visual: "📦 3 kg = ❓ g",
-answer: "3000",
-solution: "3 kg = 3000 g."
+q: "Welche Form hat genau 4 Seiten und 4 Ecken?",
+visual: `<div class="square"></div>`,
+answer: "quadrat",
+solution: "Ein Quadrat hat 4 Seiten und 4 Ecken."
 },
 
 {
-q: "Ein Film dauert 2 Stunden. Wie viele Minuten sind das?",
-visual: "🎬 2 h = ❓ min",
-answer: "120",
-solution: "2 · 60 = 120 Minuten."
+q: "Welche Form hat keine Ecken und keine geraden Seiten?",
+visual: `<div class="circle"></div>`,
+answer: "kreis",
+solution: "Ein Kreis hat keine Ecken und keine geraden Seiten."
+},
+
+{
+q: "Welche Grundform ist hier zu sehen?",
+visual: `
+<div class="shapes">
+<div>
+<div class="circle"></div>
+<div class="shape-label">❓</div>
+</div>
+<div>
+<div class="square"></div>
+<div class="shape-label">❓</div>
+</div>
+<div>
+<div class="triangle"></div>
+<div class="shape-label">❓</div>
+</div>
+</div>
+`,
+answer: "kreis,quadrat,dreieck",
+solution: "Die drei Formen sind Kreis, Quadrat und Dreieck."
 }
 
 ];
