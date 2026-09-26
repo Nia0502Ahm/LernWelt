@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LernWelt – Geometrische Grundformen</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        input {
+            width: 80%;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #solution {
+            display: none;
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #nextButton {
+            display: none;
+        }
+
+        .back {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p>Mathe Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <h2>📐 Geometrische Grundformen</h2>
+
+    <div class="explanation">
+        <h3>📖 Kurze Erklärung</h3>
+
+        <p>
+            Zu den Grundformen gehören zum Beispiel Quadrat,
+            Rechteck, Dreieck und Kreis.
+        </p>
+
+        <p>
+            Ein Quadrat hat 4 gleich lange Seiten.
+        </p>
+
+        <p>
+            Ein Rechteck hat 4 Seiten. Die gegenüberliegenden
+            Seiten sind gleich lang.
+        </p>
+
+        <p>
+            Ein Dreieck hat 3 Seiten und 3 Ecken.
+        </p>
+
+        <p>
+            Ein Kreis hat keine Ecken.
+        </p>
+    </div>
+
+    <p id="progress"></p>
+
+    <h3 id="question"></h3>
+
+    <input id="answer" type="text" placeholder="Deine Antwort">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+        Antwort prüfen
+    </button>
+
+    <div id="result"></div>
+
+    <div id="solution">
+        <h3>💡 Lösung</h3>
+        <p id="solutionText"></p>
+    </div>
+
+    <button id="nextButton" onclick="nextQuestion()">
+        ➡️ Nächste Aufgabe
+    </button>
+
+    <br>
+
+    <button class="back"
+        onclick="window.location.href='mathe5.html'">
+        ← Zurück zu den Themen
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        q: "Wie viele Seiten hat ein Dreieck?",
+        answer: "3",
+        solution: "Ein Dreieck hat 3 Seiten."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Dreieck?",
+        answer: "3",
+        solution: "Ein Dreieck hat 3 Ecken."
+    },
+
+    {
+        q: "Wie viele Seiten hat ein Quadrat?",
+        answer: "4",
+        solution: "Ein Quadrat hat 4 Seiten."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Quadrat?",
+        answer: "4",
+        solution: "Ein Quadrat hat 4 Ecken."
+    },
+
+    {
+        q: "Wie viele Seiten hat ein Rechteck?",
+        answer: "4",
+        solution: "Ein Rechteck hat 4 Seiten."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Rechteck?",
+        answer: "4",
+        solution: "Ein Rechteck hat 4 Ecken."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Kreis?",
+        answer: "0",
+        solution: "Ein Kreis hat keine Ecken."
+    },
+
+    {
+        q: "Welche Form hat 3 Seiten?",
+        answer: "Dreieck",
+        solution: "Eine Form mit 3 Seiten ist ein Dreieck."
+    },
+
+    {
+        q: "Welche Form hat 4 gleich lange Seiten?",
+        answer: "Quadrat",
+        solution: "Ein Quadrat hat 4 gleich lange Seiten."
+    },
+
+    {
+        q: "Welche Form hat keine Ecken?",
+        answer: "Kreis",
+        solution: "Ein Kreis hat keine Ecken."
+    },
+
+    {
+        q: "Wie viele Seiten hat ein Fünfeck?",
+        answer: "5",
+        solution: "Ein Fünfeck hat 5 Seiten."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Fünfeck?",
+        answer: "5",
+        solution: "Ein Fünfeck hat 5 Ecken."
+    },
+
+    {
+        q: "Wie viele Seiten hat ein Sechseck?",
+        answer: "6",
+        solution: "Ein Sechseck hat 6 Seiten."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Sechseck?",
+        answer: "6",
+        solution: "Ein Sechseck hat 6 Ecken."
+    },
+
+    {
+        q: "Wie nennt man eine Form mit 8 Seiten?",
+        answer: "Achteck",
+        solution: "Eine Form mit 8 Seiten heißt Achteck."
+    },
+
+    {
+        q: "Wie viele Seiten hat ein Achteck?",
+        answer: "8",
+        solution: "Ein Achteck hat 8 Seiten."
+    },
+
+    {
+        q: "Wie viele Ecken hat ein Achteck?",
+        answer: "8",
+        solution: "Ein Achteck hat 8 Ecken."
+    },
+
+    {
+        q: "Wie nennt man die Seite eines Quadrats?",
+        answer: "Seite",
+        solution: "Die Begrenzungen eines Quadrats heißen Seiten."
+    },
+
+    {
+        q: "Wie nennt man den Abstand von einem Punkt zum Mittelpunkt eines Kreises?",
+        answer: "Radius",
+        solution: "Der Abstand vom Mittelpunkt zur Kreislinie heißt Radius."
+    },
+
+    {
+        q: "Wie nennt man die Strecke durch den Mittelpunkt eines Kreises?",
+        answer: "Durchmesser",
+        solution: "Eine Strecke durch den Mittelpunkt von einer Seite zur anderen heißt Durchmesser."
+    },
+
+    {
+        q: "Ein Quadrat hat eine Seitenlänge von 5 cm. Wie lang ist der Umfang?",
+        answer: "20",
+        solution: "5 + 5 + 5 + 5 = 20 cm."
+    },
+
+    {
+        q: "Ein Rechteck ist 6 cm lang und 4 cm breit. Wie groß ist der Umfang?",
+        answer: "20",
+        solution: "6 + 4 + 6 + 4 = 20 cm."
+    },
+
+    {
+        q: "Ein Quadrat hat eine Seitenlänge von 7 cm. Wie groß ist der Umfang?",
+        answer: "28",
+        solution: "7 · 4 = 28 cm."
+    },
+
+    {
+        q: "Ein Rechteck ist 10 cm lang und 3 cm breit. Wie groß ist der Umfang?",
+        answer: "26",
+        solution: "10 + 3 + 10 + 3 = 26 cm."
+    },
+
+    {
+        q: "Wie viele rechte Winkel hat ein Quadrat?",
+        answer: "4",
+        solution: "Ein Quadrat hat 4 rechte Winkel."
+    },
+
+    {
+        q: "Wie viele rechte Winkel hat ein Rechteck?",
+        answer: "4",
+        solution: "Ein Rechteck hat 4 rechte Winkel."
+    },
+
+    {
+        q: "Sind alle Seiten eines Quadrats gleich lang?",
+        answer: "ja",
+        solution: "Ja. Alle 4 Seiten eines Quadrats sind gleich lang."
+    },
+
+    {
+        q: "Sind gegenüberliegende Seiten eines Rechtecks gleich lang?",
+        answer: "ja",
+        solution: "Ja. Die gegenüberliegenden Seiten eines Rechtecks sind gleich lang."
+    },
+
+    {
+        q: "Hat ein Dreieck mehr Ecken als ein Quadrat?",
+        answer: "nein",
+        solution: "Nein. Ein Dreieck hat 3 Ecken, ein Quadrat hat 4."
+    },
+
+    {
+        q: "Hat ein Kreis eine gerade Seite?",
+        answer: "nein",
+        solution: "Nein. Ein Kreis hat keine geraden Seiten."
+    }
+
+];
+
+let current = 0;
+
+function showQuestion() {
+
+    document.getElementById("question").textContent =
+        questions[current].q;
+
+    document.getElementById("progress").textContent =
+        "Aufgabe " + (current + 1) +
+        " von " + questions.length;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").disabled = false;
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("solution").style.display = "none";
+
+    document.getElementById("nextButton").style.display = "none";
+}
+
+function checkAnswer() {
+
+    const userAnswer =
+        document.getElementById("answer").value
+        .trim()
+        .toLowerCase()
+        .replace(/\s/g, "");
+
+    const correctAnswer =
+        questions[current].answer
+        .toLowerCase()
+        .replace(/\s/g, "");
+
+    if (userAnswer === correctAnswer) {
+
+        document.getElementById("result").textContent =
+            "✅ Richtig! Sehr gut! 🎉";
+
+    } else {
+
+        document.getElementById("result").textContent =
+            "❌ Leider falsch.";
+
+        document.getElementById("solution").style.display =
+            "block";
+
+        document.getElementById("solutionText").textContent =
+            questions[current].solution;
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.getElementById("nextButton").style.display =
+        "inline-block";
+}
+
+function nextQuestion() {
+
+    current++;
+
+    if (current >= questions.length) {
+
+        document.getElementById("question").textContent =
+            "🎉 Du hast alle 30 Aufgaben geschafft!";
+
+        document.getElementById("progress").textContent =
+            "Fertig! 🏆";
+
+        document.getElementById("answer").style.display =
+            "none";
+
+        document.getElementById("result").textContent =
+            "Super gemacht! 🎓";
+
+        document.getElementById("nextButton").style.display =
+            "none";
+
+        document.getElementById("solution").style.display =
+            "none";
+
+        return;
+    }
+
+    showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
