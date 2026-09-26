@@ -1,1 +1,319 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>LernWelt – Deutsch Klasse 5</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.topic {
+    display: block;
+    width: 90%;
+    max-width: 650px;
+    margin: 14px auto;
+    padding: 18px;
+    font-size: 18px;
+}
+
+.back {
+    background: #64748b;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+#languageText {
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Deutsch – Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <!-- SPRACHE -->
+
+    <div class="language">
+
+        <p id="languageText">🌐 Sprache:</p>
+
+        <button onclick="changeLanguage('de')">
+            🇩🇪 Deutsch
+        </button>
+
+        <button onclick="changeLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button onclick="changeLanguage('ps')">
+            🇦🇫 پښتو
+        </button>
+
+    </div>
+
+
+    <!-- THEMEN -->
+
+    <h2 id="title">📖 Deutsch-Themen</h2>
+
+
+    <button class="topic"
+        onclick="location.href='lesen-textverstaendnis5.html'">
+        📖 <span id="topic1">Lesen und Textverständnis</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='wortarten5.html'">
+        🔤 <span id="topic2">Wortarten</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='rechtschreibung5.html'">
+        ✍️ <span id="topic3">Rechtschreibung</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='satzglieder5.html'">
+        🧩 <span id="topic4">Satzglieder</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='satzbau5.html'">
+        📝 <span id="topic5">Satzbau</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='nomen-verben-adjektive5.html'">
+        🔠 <span id="topic6">
+            Nomen, Verben und Adjektive
+        </span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='zeichensetzung5.html'">
+        🔎 <span id="topic7">Zeichensetzung</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='maerchen-erzaehlungen5.html'">
+        📚 <span id="topic8">Märchen und Erzählungen</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='sprechen-zuhoeren5.html'">
+        🗣️ <span id="topic9">Sprechen und Zuhören</span>
+    </button>
+
+
+    <button class="topic"
+        onclick="location.href='sachtexte5.html'">
+        📄 <span id="topic10">Sachtexte verstehen</span>
+    </button>
+
+
+    <br>
+
+
+    <button class="back"
+        onclick="location.href='klasse5.html'">
+        ← <span id="back">Zurück</span>
+    </button>
+
+</div>
+
+
+<script>
+
+const translations = {
+
+    de: {
+
+        subtitle: "Deutsch – Klasse 5",
+
+        language: "🌐 Sprache:",
+
+        title: "📖 Deutsch-Themen",
+
+        topic1: "Lesen und Textverständnis",
+        topic2: "Wortarten",
+        topic3: "Rechtschreibung",
+        topic4: "Satzglieder",
+        topic5: "Satzbau",
+        topic6: "Nomen, Verben und Adjektive",
+        topic7: "Zeichensetzung",
+        topic8: "Märchen und Erzählungen",
+        topic9: "Sprechen und Zuhören",
+        topic10: "Sachtexte verstehen",
+
+        back: "Zurück"
+    },
+
+
+    en: {
+
+        subtitle: "German – Grade 5",
+
+        language: "🌐 Language:",
+
+        title: "📖 German Topics",
+
+        topic1: "Reading and Text Comprehension",
+        topic2: "Parts of Speech",
+        topic3: "Spelling",
+        topic4: "Sentence Parts",
+        topic5: "Sentence Structure",
+        topic6: "Nouns, Verbs and Adjectives",
+        topic7: "Punctuation",
+        topic8: "Fairy Tales and Stories",
+        topic9: "Speaking and Listening",
+        topic10: "Understanding Informational Texts",
+
+        back: "Back"
+    },
+
+
+    ps: {
+
+        subtitle: "الماني ژبه – پنځم ټولګی",
+
+        language: "🌐 ژبه:",
+
+        title: "📖 د الماني ژبې موضوعات",
+
+        topic1: "لوستل او د متن پوهه",
+        topic2: "د کلمو ډولونه",
+        topic3: "سمه لیکنه",
+        topic4: "د جملې برخې",
+        topic5: "د جملې جوړښت",
+        topic6: "اسمونه، فعلونه او صفتونه",
+        topic7: "د نښو کارول",
+        topic8: "افسانې او کیسې",
+        topic9: "خبرې کول او اورېدل",
+        topic10: "د معلوماتي متنونو پوهه",
+
+        back: "بېرته"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("title").textContent =
+        t.title;
+
+
+    document.getElementById("topic1").textContent =
+        t.topic1;
+
+    document.getElementById("topic2").textContent =
+        t.topic2;
+
+    document.getElementById("topic3").textContent =
+        t.topic3;
+
+    document.getElementById("topic4").textContent =
+        t.topic4;
+
+    document.getElementById("topic5").textContent =
+        t.topic5;
+
+    document.getElementById("topic6").textContent =
+        t.topic6;
+
+    document.getElementById("topic7").textContent =
+        t.topic7;
+
+    document.getElementById("topic8").textContent =
+        t.topic8;
+
+    document.getElementById("topic9").textContent =
+        t.topic9;
+
+    document.getElementById("topic10").textContent =
+        t.topic10;
+
+    document.getElementById("back").textContent =
+        t.back;
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
+```
