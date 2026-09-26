@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LernWelt – Mathematik Klasse 5</title>
+<title>LernWelt – Klasse 5</title>
 
 <style>
 body {
@@ -47,18 +48,18 @@ button:hover {
     background: #1d4ed8;
 }
 
-.topic {
+.subject {
     display: block;
     width: 90%;
     max-width: 650px;
     margin: 14px auto;
     padding: 18px;
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .back {
     background: #64748b;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 h2 {
@@ -75,10 +76,12 @@ h2 {
 
 <header>
     <h1>📚 LernWelt</h1>
-    <p id="subtitle">Mathematik – Klasse 5</p>
+    <p id="subtitle">Klasse 5</p>
 </header>
 
 <div class="container">
+
+    <!-- SPRACHE -->
 
     <div class="language">
 
@@ -98,113 +101,106 @@ h2 {
 
     </div>
 
-    <h2 id="title">🧮 Mathe-Themen</h2>
+    <!-- ÜBERSCHRIFT -->
 
-    <button class="topic"
-        onclick="location.href='natuerliche-zahlen5.html'">
-        🔢 <span id="topic1">Natürliche Zahlen</span>
+    <h2 id="title">📚 Fächer auswählen</h2>
+
+    <!-- MATHE -->
+
+    <button class="subject"
+        onclick="location.href='mathe5.html'">
+        🧮 <span id="subject1">Mathematik</span>
     </button>
 
-    <button class="topic"
-        onclick="location.href='addieren-subtrahieren5.html'">
-        ➕ <span id="topic2">Addieren und Subtrahieren</span>
+    <!-- DEUTSCH -->
+
+    <button class="subject"
+        onclick="location.href='deutsch5.html'">
+        📖 <span id="subject2">Deutsch</span>
     </button>
 
-    <button class="topic"
-        onclick="location.href='multiplizieren-dividieren5.html'">
-        ✖️ <span id="topic3">Multiplizieren und Dividieren</span>
+    <!-- ENGLISCH -->
+
+    <button class="subject"
+        onclick="location.href='englisch5.html'">
+        🇬🇧 <span id="subject3">Englisch</span>
     </button>
 
-    <button class="topic"
-        onclick="location.href='zahlenstrahl-stellenwert5.html'">
-        🔢 <span id="topic4">Zahlenstrahl und Stellenwert</span>
+    <!-- ERDKUNDE -->
+
+    <button class="subject"
+        onclick="location.href='erdkunde5.html'">
+        🌍 <span id="subject4">Erdkunde</span>
     </button>
 
-    <button class="topic"
-        onclick="location.href='groessen-einheiten5.html'">
-        📏 <span id="topic5">Größen und Einheiten</span>
+    <!-- NATURWISSENSCHAFTEN -->
+
+    <button class="subject"
+        onclick="location.href='naturwissenschaften5.html'">
+        🔬 <span id="subject5">Naturwissenschaften</span>
     </button>
 
-    <button class="topic"
-        onclick="location.href='geometrische-grundformen5.html'">
-        📐 <span id="topic6">Geometrische Grundformen</span>
-    </button>
-
-    <button class="topic"
-        onclick="location.href='daten-diagramme5.html'">
-        📊 <span id="topic7">Daten und Diagramme</span>
-    </button>
-
-    <button class="topic"
-        onclick="location.href='rechenregeln5.html'">
-        🧮 <span id="topic8">Rechenregeln</span>
-    </button>
+    <!-- KLASSE -->
 
     <br>
 
     <button class="back"
-        onclick="location.href='klasse5.html'">
+        onclick="location.href='home.html'">
         ← <span id="back">Zurück</span>
     </button>
 
 </div>
+
 
 <script>
 
 const translations = {
 
     de: {
-        subtitle: "Mathematik – Klasse 5",
+        subtitle: "Klasse 5",
         language: "🌐 Sprache:",
-        title: "🧮 Mathe-Themen",
+        title: "📚 Fächer auswählen",
 
-        topic1: "Natürliche Zahlen",
-        topic2: "Addieren und Subtrahieren",
-        topic3: "Multiplizieren und Dividieren",
-        topic4: "Zahlenstrahl und Stellenwert",
-        topic5: "Größen und Einheiten",
-        topic6: "Geometrische Grundformen",
-        topic7: "Daten und Diagramme",
-        topic8: "Rechenregeln",
+        subject1: "Mathematik",
+        subject2: "Deutsch",
+        subject3: "Englisch",
+        subject4: "Erdkunde",
+        subject5: "Naturwissenschaften",
 
         back: "Zurück"
     },
 
     en: {
-        subtitle: "Mathematics – Grade 5",
+        subtitle: "Grade 5",
         language: "🌐 Language:",
-        title: "🧮 Math Topics",
+        title: "📚 Choose a subject",
 
-        topic1: "Natural Numbers",
-        topic2: "Addition and Subtraction",
-        topic3: "Multiplication and Division",
-        topic4: "Number Line and Place Value",
-        topic5: "Measurements and Units",
-        topic6: "Basic Geometric Shapes",
-        topic7: "Data and Charts",
-        topic8: "Calculation Rules",
+        subject1: "Mathematics",
+        subject2: "German",
+        subject3: "English",
+        subject4: "Geography",
+        subject5: "Natural Sciences",
 
         back: "Back"
     },
 
     ps: {
-        subtitle: "ریاضي – پنځم ټولګی",
+        subtitle: "پنځم ټولګی",
         language: "🌐 ژبه:",
-        title: "🧮 د ریاضي موضوعات",
 
-        topic1: "طبیعي شمېرې",
-        topic2: "جمع او تفریق",
-        topic3: "ضرب او تقسیم",
-        topic4: "د عددونو کرښه او د عدد ځای",
-        topic5: "اندازې او واحدونه",
-        topic6: "بنسټیزې هندسي بڼې",
-        topic7: "معلومات او ډیاګرامونه",
-        topic8: "د محاسبې قواعد",
+        title: "📚 مضمون وټاکئ",
+
+        subject1: "ریاضي",
+        subject2: "الماني ژبه",
+        subject3: "انګلیسي ژبه",
+        subject4: "جغرافیه",
+        subject5: "طبیعي علوم",
 
         back: "بېرته"
     }
 
 };
+
 
 function changeLanguage(language) {
 
@@ -221,42 +217,33 @@ function changeLanguage(language) {
     document.getElementById("title").textContent =
         t.title;
 
-    document.getElementById("topic1").textContent =
-        t.topic1;
+    document.getElementById("subject1").textContent =
+        t.subject1;
 
-    document.getElementById("topic2").textContent =
-        t.topic2;
+    document.getElementById("subject2").textContent =
+        t.subject2;
 
-    document.getElementById("topic3").textContent =
-        t.topic3;
+    document.getElementById("subject3").textContent =
+        t.subject3;
 
-    document.getElementById("topic4").textContent =
-        t.topic4;
+    document.getElementById("subject4").textContent =
+        t.subject4;
 
-    document.getElementById("topic5").textContent =
-        t.topic5;
-
-    document.getElementById("topic6").textContent =
-        t.topic6;
-
-    document.getElementById("topic7").textContent =
-        t.topic7;
-
-    document.getElementById("topic8").textContent =
-        t.topic8;
+    document.getElementById("subject5").textContent =
+        t.subject5;
 
     document.getElementById("back").textContent =
         t.back;
 }
 
-const savedLanguage =
-    localStorage.getItem("language");
 
-if (savedLanguage && translations[savedLanguage]) {
-    changeLanguage(savedLanguage);
-}
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
 
 </script>
 
 </body>
 </html>
+```
