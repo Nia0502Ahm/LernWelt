@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Zeitformen Klasse 5</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.image-box {
+    margin: 20px auto;
+    max-width: 700px;
+}
+
+.image-box svg {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.explanation {
+    background: #eef4ff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.time {
+    background: white;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 10px;
+    border-left: 5px solid #2563eb;
+}
+
+.question {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.answer.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.answer.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+    min-height: 30px;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⏰ <span id="mainTitle">Zeitformen</span></h1>
+    <p id="subtitle">Deutsch – Klasse 5</p>
+</header>
+
+<div class="container">
+
+<!-- SPRACHE -->
+
+<div class="language">
+
+    <p id="languageText">🌐 Sprache:</p>
+
+    <button onclick="changeLanguage('de')">
+        🇩🇪 Deutsch
+    </button>
+
+    <button onclick="changeLanguage('en')">
+        🇬🇧 English
+    </button>
+
+    <button onclick="changeLanguage('ps')">
+        🇦🇫 پښتو
+    </button>
+
+</div>
+
+
+<!-- BILD -->
+
+<div class="image-box">
+
+<svg viewBox="0 0 700 330"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="700" height="330" fill="#dbeafe"/>
+
+<rect x="55" y="40"
+width="590"
+height="240"
+rx="20"
+fill="#1e3a8a"/>
+
+<text x="350" y="85"
+text-anchor="middle"
+font-size="30"
+fill="white"
+font-family="Arial">
+ZEITFORMEN
+</text>
+
+<circle cx="175" cy="165" r="60"
+fill="#fef3c7"/>
+
+<circle cx="350" cy="165" r="60"
+fill="#dcfce7"/>
+
+<circle cx="525" cy="165" r="60"
+fill="#fce7f3"/>
+
+<text x="175" y="160"
+text-anchor="middle"
+font-size="20"
+fill="#111827"
+font-family="Arial">
+GESTERN
+</text>
+
+<text x="350" y="160"
+text-anchor="middle"
+font-size="20"
+fill="#111827"
+font-family="Arial">
+HEUTE
+</text>
+
+<text x="525" y="160"
+text-anchor="middle"
+font-size="20"
+fill="#111827"
+font-family="Arial">
+MORGEN
+</text>
+
+<text x="175" y="190"
+text-anchor="middle"
+font-size="16"
+fill="#111827"
+font-family="Arial">
+Präteritum
+</text>
+
+<text x="350" y="190"
+text-anchor="middle"
+font-size="16"
+fill="#111827"
+font-family="Arial">
+Präsens
+</text>
+
+<text x="525" y="190"
+text-anchor="middle"
+font-size="16"
+fill="#111827"
+font-family="Arial">
+Futur I
+</text>
+
+</svg>
+
+</div>
+
+
+<!-- ERKLÄRUNG -->
+
+<h2 id="explanationTitle">
+📖 Die wichtigsten Zeitformen
+</h2>
+
+<div class="explanation">
+
+<div class="time">
+<strong id="presentTitle">1. Präsens – Gegenwart</strong><br>
+<span id="presentText">
+Das Präsens beschreibt etwas, das jetzt passiert.
+<br>
+Beispiel: Ich spiele Fußball.
+</span>
+</div>
+
+<div class="time">
+<strong id="pastTitle">2. Präteritum – Vergangenheit</strong><br>
+<span id="pastText">
+Das Präteritum beschreibt etwas, das früher passiert ist.
+<br>
+Beispiel: Ich spielte Fußball.
+</span>
+</div>
+
+<div class="time">
+<strong id="perfectTitle">3. Perfekt</strong><br>
+<span id="perfectText">
+Das Perfekt beschreibt ebenfalls etwas Vergangenes.
+<br>
+Beispiel: Ich habe Fußball gespielt.
+</span>
+</div>
+
+<div class="time">
+<strong id="futureTitle">4. Futur I – Zukunft</strong><br>
+<span id="futureText">
+Das Futur I beschreibt etwas, das später passieren wird.
+<br>
+Beispiel: Ich werde Fußball spielen.
+</span>
+</div>
+
+</div>
+
+
+<!-- AUFGABEN -->
+
+<h2 id="exerciseTitle">📝 Aufgaben</h2>
+
+
+<!-- 1 -->
+
+<div class="question">
+
+<h3 id="q1">
+1. Welche Zeitform hat der Satz: „Ich spiele Fußball.“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Präsens
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präteritum
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Futur I
+</button>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="question">
+
+<h3 id="q2">
+2. Welche Zeitform hat: „Ich spielte Fußball.“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präsens
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Präteritum
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Futur I
+</button>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="question">
+
+<h3 id="q3">
+3. Welche Zeitform hat: „Ich habe Fußball gespielt.“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präsens
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Perfekt
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Futur I
+</button>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="question">
+
+<h3 id="q4">
+4. Welche Zeitform hat: „Ich werde Fußball spielen.“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präsens
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präteritum
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Futur I
+</button>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="question">
+
+<h3 id="q5">
+5. Was ist die Gegenwartsform von „Ich ging“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Ich gehe.
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Ich werde gehen.
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Ich bin gegangen.
+</button>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="question">
+
+<h3 id="q6">
+6. Welche Form beschreibt die Zukunft?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präsens
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präteritum
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Futur I
+</button>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="question">
+
+<h3 id="q7">
+7. Welche Form ist richtig im Perfekt?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Ich spiele.
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Ich habe gespielt.
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Ich werde spielen.
+</button>
+
+</div>
+
+
+<!-- 8 -->
+
+<div class="question">
+
+<h3 id="q8">
+8. Welche Form ist Präteritum?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Ich habe gelernt.
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Ich lernte.
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Ich werde lernen.
+</button>
+
+</div>
+
+
+<!-- 9 -->
+
+<div class="question">
+
+<h3 id="q9">
+9. Welche Zeitform ist „Wir werden reisen.“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Perfekt
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Futur I
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präteritum
+</button>
+
+</div>
+
+
+<!-- 10 -->
+
+<div class="question">
+
+<h3 id="q10">
+10. Welche Zeitform ist „Sie hat gegessen.“?
+</h3>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Präsens
+</button>
+
+<button class="answer" onclick="checkAnswer(this,true)">
+Perfekt
+</button>
+
+<button class="answer" onclick="checkAnswer(this,false)">
+Futur I
+</button>
+
+</div>
+
+
+<!-- PUNKTE -->
+
+<div id="score">
+🏆 <span id="scoreText">Punkte: 0 / 10</span>
+</div>
+
+<div id="result"></div>
+
+<button onclick="finishQuiz()" id="finishButton">
+✅ Auswertung
+</button>
+
+<button onclick="restartQuiz()" class="restart" id="restartButton">
+🔄 Neu starten
+</button>
+
+<br>
+
+<button class="back"
+onclick="location.href='deutsch5.html'"
+id="backButton">
+← Zurück zu Deutsch
+</button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+/* Antwort prüfen */
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons =
+        question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+
+            const code =
+                btn.getAttribute("onclick");
+
+            if (code && code.includes("true")) {
+                btn.classList.add("correct");
+            }
+
+        });
+    }
+
+    answered++;
+
+    updateScore();
+}
+
+
+/* Punkte */
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (language === "de") {
+        document.getElementById("scoreText").textContent =
+            "Punkte: " + score + " / 10";
+    }
+
+    if (language === "en") {
+        document.getElementById("scoreText").textContent =
+            "Points: " + score + " / 10";
+    }
+
+    if (language === "ps") {
+        document.getElementById("scoreText").textContent =
+            "نمرې: " + score + " / 10";
+    }
+}
+
+
+/* Auswertung */
+
+function finishQuiz() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    let result = "";
+
+    if (answered < 10) {
+
+        if (language === "de")
+            result = "⚠️ Beantworte zuerst alle Aufgaben.";
+
+        if (language === "en")
+            result = "⚠️ Answer all questions first.";
+
+        if (language === "ps")
+            result = "⚠️ لومړی ټولې پوښتنې ځواب کړئ.";
+
+    } else {
+
+        if (language === "de") {
+
+            if (score === 10)
+                result = "🎉 Perfekt! 10 von 10 Punkten!";
+            else if (score >= 8)
+                result = "👏 Sehr gut! " + score + " von 10 Punkten!";
+            else if (score >= 5)
+                result = "👍 Gut gemacht! " + score + " von 10 Punkten!";
+            else
+                result = "💪 Übe noch etwas! " + score + " von 10 Punkten.";
+
+        } else if (language === "en") {
+
+            if (score === 10)
+                result = "🎉 Perfect! 10 out of 10!";
+            else if (score >= 8)
+                result = "👏 Very good! " + score + " out of 10!";
+            else if (score >= 5)
+                result = "👍 Good job! " + score + " out of 10!";
+            else
+                result = "💪 Keep practicing! " + score + " out of 10.";
+
+        } else {
+
+            if (score === 10)
+                result = "🎉 ډېر ښه! ۱۰ له ۱۰ نمرې!";
+            else if (score >= 8)
+                result = "👏 ډېر ښه! " + score + " له ۱۰ نمرې!";
+            else if (score >= 5)
+                result = "👍 ښه کار! " + score + " له ۱۰ نمرې!";
+            else
+                result = "💪 لا ډېر تمرین وکړه! " + score + " له ۱۰ څخه.";
+        }
+    }
+
+    document.getElementById("result").textContent = result;
+}
+
+
+/* Neustart */
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        question.querySelectorAll(".answer").forEach(function(button) {
+
+            button.disabled = false;
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+/* Übersetzungen */
+
+const translations = {
+
+de: {
+
+mainTitle: "Zeitformen",
+subtitle: "Deutsch – Klasse 5",
+language: "🌐 Sprache:",
+
+explanationTitle: "📖 Die wichtigsten Zeitformen",
+
+presentTitle: "1. Präsens – Gegenwart",
+presentText: "Das Präsens beschreibt etwas, das jetzt passiert. Beispiel: Ich spiele Fußball.",
+
+pastTitle: "2. Präteritum – Vergangenheit",
+pastText: "Das Präteritum beschreibt etwas, das früher passiert ist. Beispiel: Ich spielte Fußball.",
+
+perfectTitle: "3. Perfekt",
+perfectText: "Das Perfekt beschreibt ebenfalls etwas Vergangenes. Beispiel: Ich habe Fußball gespielt.",
+
+futureTitle: "4. Futur I – Zukunft",
+futureText: "Das Futur I beschreibt etwas, das später passieren wird. Beispiel: Ich werde Fußball spielen.",
+
+exerciseTitle: "📝 Aufgaben",
+
+q1: "1. Welche Zeitform hat der Satz: „Ich spiele Fußball.“?",
+q2: "2. Welche Zeitform hat: „Ich spielte Fußball.“?",
+q3: "3. Welche Zeitform hat: „Ich habe Fußball gespielt.“?",
+q4: "4. Welche Zeitform hat: „Ich werde Fußball spielen.“?",
+q5: "5. Was ist die Gegenwartsform von „Ich ging“?",
+q6: "6. Welche Form beschreibt die Zukunft?",
+q7: "7. Welche Form ist richtig im Perfekt?",
+q8: "8. Welche Form ist Präteritum?",
+q9: "9. Welche Zeitform ist „Wir werden reisen.“?",
+q10: "10. Welche Zeitform ist „Sie hat gegessen.“?",
+
+finish: "✅ Auswertung",
+restart: "🔄 Neu starten",
+back: "← Zurück zu Deutsch"
+
+},
+
+en: {
+
+mainTitle: "Tenses",
+subtitle: "German – Grade 5",
+language: "🌐 Language:",
+
+explanationTitle: "📖 The most important tenses",
+
+presentTitle: "1. Present – Now",
+presentText: "The present tense describes something happening now. Example: Ich spiele Fußball.",
+
+pastTitle: "2. Simple Past",
+pastText: "The simple past describes something that happened in the past. Example: Ich spielte Fußball.",
+
+perfectTitle: "3. Perfect",
+perfectText: "The perfect tense also describes something in the past. Example: Ich habe Fußball gespielt.",
+
+futureTitle: "4. Future",
+futureText: "The future tense describes something that will happen later. Example: Ich werde Fußball spielen.",
+
+exerciseTitle: "📝 Exercises",
+
+q1: "1. Which tense is: „Ich spiele Fußball.“?",
+q2: "2. Which tense is: „Ich spielte Fußball.“?",
+q3: "3. Which tense is: „Ich habe Fußball gespielt.“?",
+q4: "4. Which tense is: „Ich werde Fußball spielen.“?",
+q5: "5. What is the present form of „Ich ging“?",
+q6: "6. Which form describes the future?",
+q7: "7. Which form is correct in the perfect tense?",
+q8: "8. Which form is simple past?",
+q9: "9. Which tense is „Wir werden reisen.“?",
+q10: "10. Which tense is „Sie hat gegessen.“?",
+
+finish: "✅ Results",
+restart: "🔄 Restart",
+back: "← Back to German"
+
+},
+
+ps: {
+
+mainTitle: "د فعلونو زمانې",
+subtitle: "الماني – پنځم ټولګی",
+language: "🌐 ژبه:",
+
+explanationTitle: "📖 مهمې زمانې",
+
+presentTitle: "۱. اوسنی وخت – Präsens",
+presentText: "Präsens هغه کار ښيي چې اوس ترسره کېږي. مثال: Ich spiele Fußball.",
+
+pastTitle: "۲. تېر وخت – Präteritum",
+pastText: "Präteritum هغه کار ښيي چې مخکې ترسره شوی وي. مثال: Ich spielte Fußball.",
+
+perfectTitle: "۳. Perfekt",
+perfectText: "Perfekt هم تېر شوی کار ښيي. مثال: Ich habe Fußball gespielt.",
+
+futureTitle: "۴. راتلونکی وخت – Futur I",
+futureText: "Futur I هغه کار ښيي چې وروسته به ترسره شي. مثال: Ich werde Fußball spielen.",
+
+exerciseTitle: "📝 تمرینونه",
+
+q1: "۱. د „Ich spiele Fußball.“ جمله کومه زمانه ده؟",
+q2: "۲. „Ich spielte Fußball.“ کومه زمانه ده؟",
+q3: "۳. „Ich habe Fußball gespielt.“ کومه زمانه ده؟",
+q4: "۴. „Ich werde Fußball spielen.“ کومه زمانه ده؟",
+q5: "۵. د „Ich ging“ اوسنی شکل کوم دی؟",
+q6: "۶. کومه زمانه راتلونکی ښيي؟",
+q7: "۷. په Perfekt کې کومه جمله سمه ده؟",
+q8: "۸. کومه جمله Präteritum ده؟",
+q9: "۹. „Wir werden reisen.“ کومه زمانه ده؟",
+q10: "۱۰. „Sie hat gegessen.“ کومه زمانه ده؟",
+
+finish: "✅ پایله",
+restart: "🔄 بیا پیل",
+back: "← الماني ته بېرته"
+
+}
+
+};
+
+
+/* Sprache ändern */
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("mainTitle").textContent =
+        t.mainTitle;
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("explanationTitle").textContent =
+        t.explanationTitle;
+
+    document.getElementById("presentTitle").textContent =
+        t.presentTitle;
+
+    document.getElementById("presentText").textContent =
+        t.presentText;
+
+    document.getElementById("pastTitle").textContent =
+        t.pastTitle;
+
+    document.getElementById("pastText").textContent =
+        t.pastText;
+
+    document.getElementById("perfectTitle").textContent =
+        t.perfectTitle;
+
+    document.getElementById("perfectText").textContent =
+        t.perfectText;
+
+    document.getElementById("futureTitle").textContent =
+        t.futureTitle;
+
+    document.getElementById("futureText").textContent =
+        t.futureText;
+
+    document.getElementById("exerciseTitle").textContent =
+        t.exerciseTitle;
+
+    document.getElementById("q1").textContent = t.q1;
+    document.getElementById("q2").textContent = t.q2;
+    document.getElementById("q3").textContent = t.q3;
+    document.getElementById("q4").textContent = t.q4;
+    document.getElementById("q5").textContent = t.q5;
+    document.getElementById("q6").textContent = t.q6;
+    document.getElementById("q7").textContent = t.q7;
+    document.getElementById("q8").textContent = t.q8;
+    document.getElementById("q9").textContent = t.q9;
+    document.getElementById("q10").textContent = t.q10;
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+    updateScore();
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
