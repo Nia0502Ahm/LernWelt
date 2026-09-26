@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LernWelt – Rechenregeln und Klammern</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        input {
+            width: 80%;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #solution {
+            display: none;
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #nextButton {
+            display: none;
+        }
+
+        .back {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p>Mathe Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <h2>🧮 Rechenregeln und Klammern</h2>
+
+    <div class="explanation">
+        <h3>📖 Kurze Erklärung</h3>
+
+        <p>
+            Bei Rechnungen mit mehreren Rechenarten gilt:
+            <strong>Punkt vor Strich.</strong>
+        </p>
+
+        <p>
+            Multiplikation (·) und Division (:) werden vor
+            Addition (+) und Subtraktion (-) gerechnet.
+        </p>
+
+        <p>
+            Klammern werden zuerst berechnet.
+        </p>
+
+        <p>
+            Beispiel: 5 + 3 · 2 = 5 + 6 = 11
+        </p>
+
+        <p>
+            Beispiel: (5 + 3) · 2 = 8 · 2 = 16
+        </p>
+    </div>
+
+    <p id="progress"></p>
+
+    <h3 id="question"></h3>
+
+    <input id="answer" type="text" placeholder="Deine Antwort">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+        Antwort prüfen
+    </button>
+
+    <div id="result"></div>
+
+    <div id="solution">
+        <h3>💡 Lösung</h3>
+        <p id="solutionText"></p>
+    </div>
+
+    <button id="nextButton" onclick="nextQuestion()">
+        ➡️ Nächste Aufgabe
+    </button>
+
+    <br>
+
+    <button class="back"
+        onclick="window.location.href='mathe5.html'">
+        ← Zurück zu den Themen
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        q: "5 + 3 · 2 = ?",
+        answer: "11",
+        solution: "Zuerst 3 · 2 = 6. Dann 5 + 6 = 11."
+    },
+
+    {
+        q: "10 + 4 · 2 = ?",
+        answer: "18",
+        solution: "Zuerst 4 · 2 = 8. Dann 10 + 8 = 18."
+    },
+
+    {
+        q: "20 - 3 · 4 = ?",
+        answer: "8",
+        solution: "Zuerst 3 · 4 = 12. Dann 20 - 12 = 8."
+    },
+
+    {
+        q: "6 · 5 + 4 = ?",
+        answer: "34",
+        solution: "Zuerst 6 · 5 = 30. Dann 30 + 4 = 34."
+    },
+
+    {
+        q: "30 - 2 · 5 = ?",
+        answer: "20",
+        solution: "Zuerst 2 · 5 = 10. Dann 30 - 10 = 20."
+    },
+
+    {
+        q: "8 + 12 : 3 = ?",
+        answer: "12",
+        solution: "Zuerst 12 : 3 = 4. Dann 8 + 4 = 12."
+    },
+
+    {
+        q: "20 - 16 : 4 = ?",
+        answer: "16",
+        solution: "Zuerst 16 : 4 = 4. Dann 20 - 4 = 16."
+    },
+
+    {
+        q: "5 · 4 - 6 = ?",
+        answer: "14",
+        solution: "Zuerst 5 · 4 = 20. Dann 20 - 6 = 14."
+    },
+
+    {
+        q: "(5 + 3) · 2 = ?",
+        answer: "16",
+        solution: "Zuerst die Klammer: 5 + 3 = 8. Dann 8 · 2 = 16."
+    },
+
+    {
+        q: "(10 - 4) · 3 = ?",
+        answer: "18",
+        solution: "Zuerst die Klammer: 10 - 4 = 6. Dann 6 · 3 = 18."
+    },
+
+    {
+        q: "(6 + 4) : 2 = ?",
+        answer: "5",
+        solution: "Zuerst 6 + 4 = 10. Dann 10 : 2 = 5."
+    },
+
+    {
+        q: "(12 - 4) : 2 = ?",
+        answer: "4",
+        solution: "Zuerst 12 - 4 = 8. Dann 8 : 2 = 4."
+    },
+
+    {
+        q: "7 + 2 · 5 = ?",
+        answer: "17",
+        solution: "Zuerst 2 · 5 = 10. Dann 7 + 10 = 17."
+    },
+
+    {
+        q: "15 - 3 · 2 = ?",
+        answer: "9",
+        solution: "Zuerst 3 · 2 = 6. Dann 15 - 6 = 9."
+    },
+
+    {
+        q: "4 · 6 + 5 = ?",
+        answer: "29",
+        solution: "Zuerst 4 · 6 = 24. Dann 24 + 5 = 29."
+    },
+
+    {
+        q: "40 - 5 · 6 = ?",
+        answer: "10",
+        solution: "Zuerst 5 · 6 = 30. Dann 40 - 30 = 10."
+    },
+
+    {
+        q: "18 : 3 + 7 = ?",
+        answer: "13",
+        solution: "Zuerst 18 : 3 = 6. Dann 6 + 7 = 13."
+    },
+
+    {
+        q: "24 : 4 + 6 = ?",
+        answer: "12",
+        solution: "Zuerst 24 : 4 = 6. Dann 6 + 6 = 12."
+    },
+
+    {
+        q: "30 - 12 : 3 = ?",
+        answer: "26",
+        solution: "Zuerst 12 : 3 = 4. Dann 30 - 4 = 26."
+    },
+
+    {
+        q: "7 · 3 + 8 = ?",
+        answer: "29",
+        solution: "Zuerst 7 · 3 = 21. Dann 21 + 8 = 29."
+    },
+
+    {
+        q: "(7 + 3) · 4 = ?",
+        answer: "40",
+        solution: "Zuerst 7 + 3 = 10. Dann 10 · 4 = 40."
+    },
+
+    {
+        q: "(15 - 5) · 2 = ?",
+        answer: "20",
+        solution: "Zuerst 15 - 5 = 10. Dann 10 · 2 = 20."
+    },
+
+    {
+        q: "(8 + 4) : 3 = ?",
+        answer: "4",
+        solution: "Zuerst 8 + 4 = 12. Dann 12 : 3 = 4."
+    },
+
+    {
+        q: "(20 - 8) : 4 = ?",
+        answer: "3",
+        solution: "Zuerst 20 - 8 = 12. Dann 12 : 4 = 3."
+    },
+
+    {
+        q: "2 + 3 · 4 = ?",
+        answer: "14",
+        solution: "Zuerst 3 · 4 = 12. Dann 2 + 12 = 14."
+    },
+
+    {
+        q: "50 - 6 · 7 = ?",
+        answer: "8",
+        solution: "Zuerst 6 · 7 = 42. Dann 50 - 42 = 8."
+    },
+
+    {
+        q: "9 · 4 - 10 = ?",
+        answer: "26",
+        solution: "Zuerst 9 · 4 = 36. Dann 36 - 10 = 26."
+    },
+
+    {
+        q: "36 : 6 + 9 = ?",
+        answer: "15",
+        solution: "Zuerst 36 : 6 = 6. Dann 6 + 9 = 15."
+    },
+
+    {
+        q: "(9 + 6) : 3 = ?",
+        answer: "5",
+        solution: "Zuerst 9 + 6 = 15. Dann 15 : 3 = 5."
+    },
+
+    {
+        q: "(20 + 10) : 5 = ?",
+        answer: "6",
+        solution: "Zuerst 20 + 10 = 30. Dann 30 : 5 = 6."
+    }
+
+];
+
+let current = 0;
+
+function showQuestion() {
+
+    document.getElementById("question").textContent =
+        questions[current].q;
+
+    document.getElementById("progress").textContent =
+        "Aufgabe " + (current + 1) +
+        " von " + questions.length;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").disabled = false;
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("solution").style.display = "none";
+
+    document.getElementById("nextButton").style.display = "none";
+}
+
+function checkAnswer() {
+
+    const userAnswer =
+        document.getElementById("answer").value
+        .trim()
+        .replace(/\s/g, "");
+
+    const correctAnswer =
+        questions[current].answer
+        .replace(/\s/g, "");
+
+    if (userAnswer === correctAnswer) {
+
+        document.getElementById("result").textContent =
+            "✅ Richtig! Sehr gut! 🎉";
+
+    } else {
+
+        document.getElementById("result").textContent =
+            "❌ Leider falsch.";
+
+        document.getElementById("solution").style.display =
+            "block";
+
+        document.getElementById("solutionText").textContent =
+            questions[current].solution;
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.getElementById("nextButton").style.display =
+        "inline-block";
+}
+
+function nextQuestion() {
+
+    current++;
+
+    if (current >= questions.length) {
+
+        document.getElementById("question").textContent =
+            "🎉 Du hast alle 30 Aufgaben geschafft!";
+
+        document.getElementById("progress").textContent =
+            "Fertig! 🏆";
+
+        document.getElementById("answer").style.display =
+            "none";
+
+        document.getElementById("result").textContent =
+            "Super gemacht! 🎓";
+
+        document.getElementById("nextButton").style.display =
+            "none";
+
+        document.getElementById("solution").style.display =
+            "none";
+
+        return;
+    }
+
+    showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
