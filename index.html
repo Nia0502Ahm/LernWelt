@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>LernWelt</title>
+
+    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
-    const supabaseClient = supabase.createClient(
+        const supabaseClient = supabase.createClient(
  "https://hridnnwxsgionkeuhaas.supabase.co",
         "sb_publishable_4DTDbPS-tS5P1u3OAcCe_Q_jNdZQ8P8"
-        
-    );
-</script>
+        );
+    </script>
 
     <style>
         body {
@@ -52,6 +55,30 @@
         button:hover {
             background: #1d4ed8;
         }
+
+        #authBox {
+            background: white;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        input {
+            display: block;
+            width: 90%;
+            margin: 12px auto;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #message {
+            margin: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -65,26 +92,110 @@
     <div class="container">
         <h2>Willkommen!</h2>
 
-        <button>Anmelden</button>
-        <button>Registrieren</button>
+        <button onclick="showRegister()">Registrieren</button>
+        <button onclick="showLogin()">Anmelden</button>
         <button>🎓 Klasse auswählen</button>
     </div>
-<div class="container">
-    <h2>Willkommen!</h2>
 
-    <button onclick="showRegister()">Registrieren</button>
-    <button onclick="showLogin()">Anmelden</button>
-    <button>🎓 Klasse auswählen</button>
-</div>
+    <div id="authBox" style="display:none;">
 
-<div id="authBox" style="display:none;">
-    <h2 id="authTitle">Registrieren</h2>
+        <h2 id="authTitle">Registrieren</h2>
 
-    <input id="email" type="email" placeholder="E-Mail">
-    <input id="password" type="password" placeholder="Passwort">
+        <input
+            id="email"
+            type="email"
+            placeholder="E-Mail"
+        >
 
-    <button onclick="register()">Konto erstellen</button>
-    <button onclick="login()">Anmelden</button>
-</div>
+        <input
+            id="password"
+            type="password"
+            placeholder="Passwort"
+        >
+
+        <button id="registerButton" onclick="register()">
+            Konto erstellen
+        </button>
+
+        <button id="loginButton" onclick="login()" style="display:none;">
+            Anmelden
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+    <script>
+
+        function showRegister() {
+            document.getElementById("authBox").style.display = "block";
+            document.getElementById("authTitle").textContent = "Registrieren";
+
+            document.getElementById("registerButton").style.display = "block";
+            document.getElementById("loginButton").style.display = "none";
+
+            document.getElementById("message").textContent = "";
+        }
+
+        function showLogin() {
+            document.getElementById("authBox").style.display = "block";
+            document.getElementById("authTitle").textContent = "Anmelden";
+
+            document.getElementById("registerButton").style.display = "none";
+            document.getElementById("loginButton").style.display = "block";
+
+            document.getElementById("message").textContent = "";
+        }
+
+        async function register() {
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                document.getElementById("message").textContent =
+                    "Bitte E-Mail und Passwort eingeben.";
+                return;
+            }
+
+            const { data, error } =
+                await supabaseClient.auth.signUp({
+                    email: email,
+                    password: password
+                });
+
+            if (error) {
+                document.getElementById("message").textContent =
+                    "Fehler: " + error.message;
+                return;
+            }
+
+            document.getElementById("message").textContent =
+                "Konto erstellt! Bitte prüfe deine E-Mail.";
+        }
+
+        async function login() {
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+            if (error) {
+                document.getElementById("message").textContent =
+                    "Fehler: " + error.message;
+                return;
+            }
+
+            document.getElementById("message").textContent =
+                "Du bist erfolgreich angemeldet! 🎉";
+        }
+
+    </script>
+
 </body>
 </html>
