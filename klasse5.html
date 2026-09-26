@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LernWelt – Klasse 5</title>
+<title>LernWelt – Mathematik Klasse 5</title>
 
 <style>
 body {
@@ -47,21 +47,22 @@ button:hover {
     background: #1d4ed8;
 }
 
-.subject {
+.topic {
     display: block;
     width: 90%;
-    max-width: 600px;
-    margin: 15px auto;
-    padding: 20px;
-    font-size: 20px;
+    max-width: 650px;
+    margin: 14px auto;
+    padding: 18px;
+    font-size: 18px;
 }
 
 .back {
     background: #64748b;
+    margin-top: 20px;
 }
 
-#title {
-    font-size: 30px;
+h2 {
+    font-size: 28px;
 }
 
 #languageText {
@@ -74,7 +75,7 @@ button:hover {
 
 <header>
     <h1>📚 LernWelt</h1>
-    <p id="subtitle">Klasse 5</p>
+    <p id="subtitle">Mathematik – Klasse 5</p>
 </header>
 
 <div class="container">
@@ -97,37 +98,52 @@ button:hover {
 
     </div>
 
-    <h2 id="title">📚 Fächer auswählen</h2>
+    <h2 id="title">🧮 Mathe-Themen</h2>
 
-    <button class="subject"
-            onclick="location.href='mathe5.html'">
-        🧮 <span id="math">Mathematik</span>
+    <button class="topic"
+        onclick="location.href='natuerliche-zahlen5.html'">
+        🔢 <span id="topic1">Natürliche Zahlen</span>
     </button>
 
-    <button class="subject"
-            onclick="location.href='deutsch5.html'">
-        📖 <span id="german">Deutsch</span>
+    <button class="topic"
+        onclick="location.href='addieren-subtrahieren5.html'">
+        ➕ <span id="topic2">Addieren und Subtrahieren</span>
     </button>
 
-    <button class="subject"
-            onclick="location.href='englisch5.html'">
-        🇬🇧 <span id="english">Englisch</span>
+    <button class="topic"
+        onclick="location.href='multiplizieren-dividieren5.html'">
+        ✖️ <span id="topic3">Multiplizieren und Dividieren</span>
     </button>
 
-    <button class="subject"
-            onclick="location.href='erdkunde5.html'">
-        🌍 <span id="geography">Erdkunde</span>
+    <button class="topic"
+        onclick="location.href='zahlenstrahl-stellenwert5.html'">
+        🔢 <span id="topic4">Zahlenstrahl und Stellenwert</span>
     </button>
 
-    <button class="subject"
-            onclick="location.href='naturwissenschaften5.html'">
-        🔬 <span id="science">Naturwissenschaften</span>
+    <button class="topic"
+        onclick="location.href='groessen-einheiten5.html'">
+        📏 <span id="topic5">Größen und Einheiten</span>
     </button>
 
-    <br><br>
+    <button class="topic"
+        onclick="location.href='geometrische-grundformen5.html'">
+        📐 <span id="topic6">Geometrische Grundformen</span>
+    </button>
+
+    <button class="topic"
+        onclick="location.href='daten-diagramme5.html'">
+        📊 <span id="topic7">Daten und Diagramme</span>
+    </button>
+
+    <button class="topic"
+        onclick="location.href='rechenregeln5.html'">
+        🧮 <span id="topic8">Rechenregeln</span>
+    </button>
+
+    <br>
 
     <button class="back"
-            onclick="location.href='home.html'">
+        onclick="location.href='klasse5.html'">
         ← <span id="back">Zurück</span>
     </button>
 
@@ -138,38 +154,53 @@ button:hover {
 const translations = {
 
     de: {
-        subtitle: "Klasse 5",
+        subtitle: "Mathematik – Klasse 5",
         language: "🌐 Sprache:",
-        title: "📚 Fächer auswählen",
-        math: "Mathematik",
-        german: "Deutsch",
-        english: "Englisch",
-        geography: "Erdkunde",
-        science: "Naturwissenschaften",
+        title: "🧮 Mathe-Themen",
+
+        topic1: "Natürliche Zahlen",
+        topic2: "Addieren und Subtrahieren",
+        topic3: "Multiplizieren und Dividieren",
+        topic4: "Zahlenstrahl und Stellenwert",
+        topic5: "Größen und Einheiten",
+        topic6: "Geometrische Grundformen",
+        topic7: "Daten und Diagramme",
+        topic8: "Rechenregeln",
+
         back: "Zurück"
     },
 
     en: {
-        subtitle: "Grade 5",
+        subtitle: "Mathematics – Grade 5",
         language: "🌐 Language:",
-        title: "📚 Choose a subject",
-        math: "Mathematics",
-        german: "German",
-        english: "English",
-        geography: "Geography",
-        science: "Science",
+        title: "🧮 Math Topics",
+
+        topic1: "Natural Numbers",
+        topic2: "Addition and Subtraction",
+        topic3: "Multiplication and Division",
+        topic4: "Number Line and Place Value",
+        topic5: "Measurements and Units",
+        topic6: "Basic Geometric Shapes",
+        topic7: "Data and Charts",
+        topic8: "Calculation Rules",
+
         back: "Back"
     },
 
     ps: {
-        subtitle: "د پنځم ټولګي",
+        subtitle: "ریاضي – پنځم ټولګی",
         language: "🌐 ژبه:",
-        title: "📚 یوه مضمون وټاکئ",
-        math: "ریاضي",
-        german: "جرمني",
-        english: "انګلیسي",
-        geography: "جغرافیه",
-        science: "طبیعي علوم",
+        title: "🧮 د ریاضي موضوعات",
+
+        topic1: "طبیعي شمېرې",
+        topic2: "جمع او تفریق",
+        topic3: "ضرب او تقسیم",
+        topic4: "د عددونو کرښه او د عدد ځای",
+        topic5: "اندازې او واحدونه",
+        topic6: "بنسټیزې هندسي بڼې",
+        topic7: "معلومات او ډیاګرامونه",
+        topic8: "د محاسبې قواعد",
+
         back: "بېرته"
     }
 
@@ -181,20 +212,45 @@ function changeLanguage(language) {
 
     const t = translations[language];
 
-    document.getElementById("subtitle").textContent = t.subtitle;
-    document.getElementById("languageText").textContent = t.language;
-    document.getElementById("title").textContent = t.title;
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
 
-    document.getElementById("math").textContent = t.math;
-    document.getElementById("german").textContent = t.german;
-    document.getElementById("english").textContent = t.english;
-    document.getElementById("geography").textContent = t.geography;
-    document.getElementById("science").textContent = t.science;
+    document.getElementById("languageText").textContent =
+        t.language;
 
-    document.getElementById("back").textContent = t.back;
+    document.getElementById("title").textContent =
+        t.title;
+
+    document.getElementById("topic1").textContent =
+        t.topic1;
+
+    document.getElementById("topic2").textContent =
+        t.topic2;
+
+    document.getElementById("topic3").textContent =
+        t.topic3;
+
+    document.getElementById("topic4").textContent =
+        t.topic4;
+
+    document.getElementById("topic5").textContent =
+        t.topic5;
+
+    document.getElementById("topic6").textContent =
+        t.topic6;
+
+    document.getElementById("topic7").textContent =
+        t.topic7;
+
+    document.getElementById("topic8").textContent =
+        t.topic8;
+
+    document.getElementById("back").textContent =
+        t.back;
 }
 
-const savedLanguage = localStorage.getItem("language");
+const savedLanguage =
+    localStorage.getItem("language");
 
 if (savedLanguage && translations[savedLanguage]) {
     changeLanguage(savedLanguage);
