@@ -3,542 +3,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LernWelt – Geometrische Grundformen</title>
+<title>LernWelt – Größen und Einheiten</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    text-align: center;
-}
-
-header {
-    background: #2563eb;
-    color: white;
-    padding: 30px 20px;
-}
-
-.container {
-    max-width: 750px;
-    margin: 30px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 15px;
-}
-
-.explanation {
-    background: #eff6ff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.visual {
-    background: #f8fafc;
-    padding: 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-    min-height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.circle {
-    width: 110px;
-    height: 110px;
-    border: 5px solid #2563eb;
-    border-radius: 50%;
-}
-
-.square {
-    width: 110px;
-    height: 110px;
-    border: 5px solid #2563eb;
-}
-
-.rectangle {
-    width: 180px;
-    height: 100px;
-    border: 5px solid #2563eb;
-}
-
-.triangle {
-    width: 0;
-    height: 0;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 120px solid #60a5fa;
-}
-
-.shapes {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.shape-label {
-    margin-top: 8px;
-    font-weight: bold;
-}
-
-input {
-    width: 80%;
-    padding: 14px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 15px;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 13px 25px;
-    margin: 8px;
-    border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-#result {
-    margin: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#solution {
-    display: none;
-    background: #f1f5f9;
-    padding: 18px;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: left;
-}
-
-#nextButton {
-    display: none;
-}
-
-.back {
-    background: #64748b;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;text-align:center}
+header{background:#2563eb;color:white;padding:30px 20px}
+.container{max-width:800px;margin:30px auto;padding:25px;background:white;border-radius:18px}
+.language{margin-bottom:20px}
+.explanation{background:#eff6ff;padding:20px;border-radius:12px;text-align:left}
+.visual{background:#f8fafc;padding:25px;border-radius:12px;margin:20px 0;font-size:28px;font-weight:bold}
+input{width:80%;padding:14px;font-size:18px;border:1px solid #ccc;border-radius:8px;margin:15px;box-sizing:border-box}
+button{padding:13px 25px;margin:8px;border:none;border-radius:9px;background:#2563eb;color:white;font-size:16px;cursor:pointer}
+button:hover{background:#1d4ed8}
+#result{margin:20px;font-size:18px;font-weight:bold}
+#solution{display:none;background:#f1f5f9;padding:18px;border-radius:10px;margin-top:15px;text-align:left}
+#nextButton{display:none}
+.back{background:#64748b}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+<h1>📚 LernWelt</h1>
+<p id="subtitle"></p>
 </header>
 
 <div class="container">
 
-<h2>📐 Geometrische Grundformen</h2>
+<div class="language">
+<p id="languageText"></p>
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+</div>
+
+<h2 id="title"></h2>
 
 <div class="explanation">
-<h3>📖 Kurze Erklärung</h3>
-
-<p>
-Geometrische Formen sind zum Beispiel:
-<strong>Quadrat, Rechteck, Dreieck und Kreis.</strong>
-</p>
-
-<p>
-Ein Quadrat hat 4 gleich lange Seiten.
-</p>
-
-<p>
-Ein Rechteck hat 4 Seiten. Die gegenüberliegenden Seiten sind gleich lang.
-</p>
-
-<p>
-Ein Dreieck hat 3 Seiten und 3 Ecken.
-</p>
-
-<p>
-Ein Kreis hat keine Ecken.
-</p>
+<h3 id="explanationTitle"></h3>
+<p id="explanationText"></p>
 </div>
 
 <p id="progress"></p>
-
 <h3 id="question"></h3>
 
 <div id="visual" class="visual"></div>
 
-<input id="answer" type="text" placeholder="Deine Antwort">
+<input id="answer" type="text">
 
 <br>
 
-<button onclick="checkAnswer()">Antwort prüfen</button>
+<button onclick="checkAnswer()" id="checkButton"></button>
 
 <div id="result"></div>
 
 <div id="solution">
-<h3>💡 Lösung</h3>
+<h3 id="solutionTitle"></h3>
 <p id="solutionText"></p>
 </div>
 
-<button id="nextButton" onclick="nextQuestion()">
-➡️ Nächste Aufgabe
-</button>
+<button id="nextButton" onclick="nextQuestion()"></button>
 
 <br>
 
-<button class="back" onclick="window.location.href='mathe5.html'">
-← Zurück zu den Mathe-Themen
-</button>
+<button class="back" onclick="location.href='mathe5.html'" id="backButton"></button>
 
 </div>
 
 <script>
 
-const questions = [
+const translations={
+
+de:{
+subtitle:"Mathematik – Klasse 5",
+language:"🌐 Sprache:",
+title:"📏 Größen und Einheiten",
+explanationTitle:"📖 Kurze Erklärung",
+explanationText:"Größen beschreiben zum Beispiel Länge, Gewicht, Zeit oder Geld. Dafür benutzen wir verschiedene Einheiten wie Meter, Kilogramm, Liter, Stunden und Euro.",
+check:"Antwort prüfen",
+solution:"💡 Lösung",
+next:"➡️ Nächste Aufgabe",
+back:"← Zurück zu den Mathe-Themen",
+placeholder:"Deine Antwort",
+correct:"✅ Richtig! Sehr gut! 🎉",
+wrong:"❌ Leider falsch.",
+finished:"🎉 Du hast alle 30 Aufgaben geschafft!",
+done:"Fertig! 🏆",
+great:"Super gemacht! 🎓"
+},
+
+en:{
+subtitle:"Mathematics – Grade 5",
+language:"🌐 Language:",
+title:"📏 Measurements and Units",
+explanationTitle:"📖 Short explanation",
+explanationText:"Measurements describe things such as length, weight, time or money. We use units such as meters, kilograms, liters, hours and euros.",
+check:"Check answer",
+solution:"💡 Solution",
+next:"➡️ Next question",
+back:"← Back to math topics",
+placeholder:"Your answer",
+correct:"✅ Correct! Very good! 🎉",
+wrong:"❌ Unfortunately, that's wrong.",
+finished:"🎉 You completed all 30 questions!",
+done:"Finished! 🏆",
+great:"Well done! 🎓"
+},
+
+ps:{
+subtitle:"ریاضي – پنځم ټولګی",
+language:"🌐 ژبه:",
+title:"📏 اندازې او واحدونه",
+explanationTitle:"📖 لنډه تشریح",
+explanationText:"اندازې لکه اوږدوالی، وزن، وخت او پیسې ښيي. د دې لپاره متر، کیلوګرام، لیتر، ساعت او یورو په څېر واحدونه کاروو.",
+check:"ځواب وګورئ",
+solution:"💡 حل",
+next:"➡️ بله پوښتنه",
+back:"← د ریاضي موضوعاتو ته بېرته",
+placeholder:"خپل ځواب ولیکئ",
+correct:"✅ سم دی! ډېر ښه! 🎉",
+wrong:"❌ له بده مرغه غلط دی.",
+finished:"🎉 ټولې ۳۰ پوښتنې دې بشپړې کړې!",
+done:"بشپړ شو! 🏆",
+great:"ډېر ښه! 🎓"
+}
+
+};
+
+const questions=[
 
 {
-q: "Welche Form hat keine Ecken?",
-visual: `<div class="circle"></div>`,
-answer: "kreis",
-solution: "Ein Kreis hat keine Ecken."
+q:{de:"Wie viele Zentimeter sind 1 Meter?",en:"How many centimeters are in 1 meter?",ps:"په ۱ متر کې څو سانتي متره دي؟"},
+visual:"1 m = ❓ cm",
+answer:"100",
+s:{de:"1 Meter = 100 Zentimeter.",en:"1 meter = 100 centimeters.",ps:"۱ متر = ۱۰۰ سانتي متره."}
 },
 
 {
-q: "Welche Form hat 3 Seiten?",
-visual: `<div class="triangle"></div>`,
-answer: "dreieck",
-solution: "Ein Dreieck hat 3 Seiten."
+q:{de:"Wie viele Zentimeter sind 2 Meter?",en:"How many centimeters are in 2 meters?",ps:"په ۲ مترو کې څو سانتي متره دي؟"},
+visual:"2 m = ❓ cm",
+answer:"200",
+s:{de:"2 Meter = 200 Zentimeter.",en:"2 meters = 200 centimeters.",ps:"۲ متر = ۲۰۰ سانتي متره."}
 },
 
 {
-q: "Welche Form hat 4 gleich lange Seiten?",
-visual: `<div class="square"></div>`,
-answer: "quadrat",
-solution: "Ein Quadrat hat 4 gleich lange Seiten."
+q:{de:"Wie viele Millimeter sind 1 Zentimeter?",en:"How many millimeters are in 1 centimeter?",ps:"په ۱ سانتي متر کې څو ملي متره دي؟"},
+visual:"1 cm = ❓ mm",
+answer:"10",
+s:{de:"1 Zentimeter = 10 Millimeter.",en:"1 centimeter = 10 millimeters.",ps:"۱ سانتي متر = ۱۰ ملي متره."}
 },
 
 {
-q: "Welche Form hat 4 Seiten und ist länger als breit?",
-visual: `<div class="rectangle"></div>`,
-answer: "rechteck",
-solution: "Das ist ein Rechteck."
+q:{de:"Wie viele Meter sind 1 Kilometer?",en:"How many meters are in 1 kilometer?",ps:"په ۱ کیلومتر کې څو متره دي؟"},
+visual:"1 km = ❓ m",
+answer:"1000",
+s:{de:"1 Kilometer = 1000 Meter.",en:"1 kilometer = 1000 meters.",ps:"۱ کیلومتر = ۱۰۰۰ متره."}
 },
 
 {
-q: "Wie viele Ecken hat ein Dreieck?",
-visual: `<div class="triangle"></div>`,
-answer: "3",
-solution: "Ein Dreieck hat 3 Ecken."
+q:{de:"Wie viele Gramm sind 1 Kilogramm?",en:"How many grams are in 1 kilogram?",ps:"په ۱ کیلوګرام کې څو ګرامه دي؟"},
+visual:"1 kg = ❓ g",
+answer:"1000",
+s:{de:"1 Kilogramm = 1000 Gramm.",en:"1 kilogram = 1000 grams.",ps:"۱ کیلوګرام = ۱۰۰۰ ګرامه."}
 },
 
 {
-q: "Wie viele Seiten hat ein Quadrat?",
-visual: `<div class="square"></div>`,
-answer: "4",
-solution: "Ein Quadrat hat 4 Seiten."
+q:{de:"Wie viele Gramm sind 2 Kilogramm?",en:"How many grams are in 2 kilograms?",ps:"په ۲ کیلوګرامو کې څو ګرامه دي؟"},
+visual:"2 kg = ❓ g",
+answer:"2000",
+s:{de:"2 Kilogramm = 2000 Gramm.",en:"2 kilograms = 2000 grams.",ps:"۲ کیلوګرامه = ۲۰۰۰ ګرامه."}
 },
 
 {
-q: "Wie viele Ecken hat ein Quadrat?",
-visual: `<div class="square"></div>`,
-answer: "4",
-solution: "Ein Quadrat hat 4 Ecken."
+q:{de:"Wie viele Minuten hat 1 Stunde?",en:"How many minutes are in 1 hour?",ps:"په ۱ ساعت کې څو دقیقې دي؟"},
+visual:"1 Stunde = ❓ Minuten ⏰",
+answer:"60",
+s:{de:"1 Stunde = 60 Minuten.",en:"1 hour = 60 minutes.",ps:"۱ ساعت = ۶۰ دقیقې."}
 },
 
 {
-q: "Wie viele Seiten hat ein Rechteck?",
-visual: `<div class="rectangle"></div>`,
-answer: "4",
-solution: "Ein Rechteck hat 4 Seiten."
+q:{de:"Wie viele Minuten haben 2 Stunden?",en:"How many minutes are in 2 hours?",ps:"په ۲ ساعتونو کې څو دقیقې دي؟"},
+visual:"2 Stunden = ❓ Minuten ⏰",
+answer:"120",
+s:{de:"2 Stunden = 120 Minuten.",en:"2 hours = 120 minutes.",ps:"۲ ساعتونه = ۱۲۰ دقیقې."}
 },
 
 {
-q: "Wie viele Ecken hat ein Rechteck?",
-visual: `<div class="rectangle"></div>`,
-answer: "4",
-solution: "Ein Rechteck hat 4 Ecken."
+q:{de:"Wie viele Sekunden hat 1 Minute?",en:"How many seconds are in 1 minute?",ps:"په ۱ دقیقه کې څو ثانیې دي؟"},
+visual:"1 Minute = ❓ Sekunden ⏱️",
+answer:"60",
+s:{de:"1 Minute = 60 Sekunden.",en:"1 minute = 60 seconds.",ps:"۱ دقیقه = ۶۰ ثانیې."}
 },
 
 {
-q: "Wie viele Ecken hat ein Kreis?",
-visual: `<div class="circle"></div>`,
-answer: "0",
-solution: "Ein Kreis hat 0 Ecken."
+q:{de:"Wie viele Stunden hat 1 Tag?",en:"How many hours are in 1 day?",ps:"په ۱ ورځ کې څو ساعتونه دي؟"},
+visual:"1 Tag = ❓ Stunden ☀️",
+answer:"24",
+s:{de:"1 Tag = 24 Stunden.",en:"1 day = 24 hours.",ps:"۱ ورځ = ۲۴ ساعتونه."}
 },
 
 {
-q: "Welche Form ist rund?",
-visual: `<div class="circle"></div>`,
-answer: "kreis",
-solution: "Der Kreis ist rund."
+q:{de:"Wie viele Tage hat eine Woche?",en:"How many days are in a week?",ps:"په یوه اونۍ کې څو ورځې دي؟"},
+visual:"📅 Woche = ❓ Tage",
+answer:"7",
+s:{de:"Eine Woche hat 7 Tage.",en:"A week has 7 days.",ps:"یوه اونۍ ۷ ورځې لري."}
 },
 
 {
-q: "Welche Form sieht wie ein Fenster aus?",
-visual: `<div class="rectangle"></div>`,
-answer: "rechteck",
-solution: "Ein Fenster ist oft rechteckig."
+q:{de:"Wie viele Monate hat ein Jahr?",en:"How many months are in a year?",ps:"په یو کال کې څو میاشتې دي؟"},
+visual:"📅 Jahr = ❓ Monate",
+answer:"12",
+s:{de:"Ein Jahr hat 12 Monate.",en:"A year has 12 months.",ps:"یو کال ۱۲ میاشتې لري."}
 },
 
 {
-q: "Welche Form sieht wie ein Verkehrsschild mit drei Ecken aus?",
-visual: `<div class="triangle"></div>`,
-answer: "dreieck",
-solution: "Die Form ist ein Dreieck."
+q:{de:"Wie viele Liter sind 2 Liter?",en:"How many liters are 2 liters?",ps:"۲ لیتره څو لیتره دي؟"},
+visual:"2 L = ❓ L",
+answer:"2",
+s:{de:"2 Liter bleiben 2 Liter.",en:"2 liters remain 2 liters.",ps:"۲ لیتره هماغه ۲ لیتره دي."}
 },
 
 {
-q: "Welche Form sieht wie ein Würfel von vorne aus?",
-visual: `<div class="square"></div>`,
-answer: "quadrat",
-solution: "Die Vorderseite eines Würfels kann ein Quadrat sein."
+q:{de:"Wie viele Milliliter sind 1 Liter?",en:"How many milliliters are in 1 liter?",ps:"په ۱ لیتر کې څو ملي لیتره دي؟"},
+visual:"1 L = ❓ ml",
+answer:"1000",
+s:{de:"1 Liter = 1000 Milliliter.",en:"1 liter = 1000 milliliters.",ps:"۱ لیتر = ۱۰۰۰ ملي لیتره."}
 },
 
 {
-q: "Wie viele Seiten haben zwei Dreiecke zusammen?",
-visual: `
-<div class="shapes">
-<div class="triangle"></div>
-<div class="triangle"></div>
-</div>
-`,
-answer: "6",
-solution: "2 · 3 = 6 Seiten."
+q:{de:"Wie viele Milliliter sind 2 Liter?",en:"How many milliliters are in 2 liters?",ps:"په ۲ لیتره کې څو ملي لیتره دي؟"},
+visual:"2 L = ❓ ml",
+answer:"2000",
+s:{de:"2 Liter = 2000 Milliliter.",en:"2 liters = 2000 milliliters.",ps:"۲ لیتره = ۲۰۰۰ ملي لیتره."}
 },
 
 {
-q: "Wie viele Ecken haben zwei Quadrate zusammen?",
-visual: `
-<div class="shapes">
-<div class="square"></div>
-<div class="square"></div>
-</div>
-`,
-answer: "8",
-solution: "2 · 4 = 8 Ecken."
+q:{de:"Was ist länger: 1 m oder 50 cm?",en:"Which is longer: 1 m or 50 cm?",ps:"کوم یو اوږد دی: ۱ متر که ۵۰ سانتي متره؟"},
+visual:"1 m 📏   50 cm 📏",
+answer:"1m",
+s:{de:"1 m ist länger als 50 cm.",en:"1 m is longer than 50 cm.",ps:"۱ متر له ۵۰ سانتي مترو څخه اوږد دی."}
 },
 
 {
-q: "Welche Form hat vier rechte Winkel?",
-visual: `<div class="rectangle"></div>`,
-answer: "rechteck",
-solution: "Ein Rechteck hat vier rechte Winkel."
+q:{de:"Was ist schwerer: 1 kg oder 500 g?",en:"Which is heavier: 1 kg or 500 g?",ps:"کوم یو دروند دی: ۱ کیلوګرام که ۵۰۰ ګرامه؟"},
+visual:"1 kg ⚖️   500 g ⚖️",
+answer:"1kg",
+s:{de:"1 kg ist schwerer als 500 g.",en:"1 kg is heavier than 500 g.",ps:"۱ کیلوګرام له ۵۰۰ ګرامو څخه دروند دی."}
 },
 
 {
-q: "Welche Form hat drei Ecken?",
-visual: `<div class="triangle"></div>`,
-answer: "dreieck",
-solution: "Ein Dreieck hat drei Ecken."
+q:{de:"Was ist mehr: 1 L oder 500 ml?",en:"Which is more: 1 L or 500 ml?",ps:"کوم یو ډېر دی: ۱ لیتر که ۵۰۰ ملي لیتر؟"},
+visual:"1 L 🥤   500 ml 🥤",
+answer:"1l",
+s:{de:"1 L ist mehr als 500 ml.",en:"1 L is more than 500 ml.",ps:"۱ لیتر له ۵۰۰ ملي لیتر څخه ډېر دی."}
 },
 
 {
-q: "Welche Form hat vier gleich lange Seiten?",
-visual: `<div class="square"></div>`,
-answer: "quadrat",
-solution: "Ein Quadrat hat vier gleich lange Seiten."
+q:{de:"Wie viel sind 50 cm + 50 cm?",en:"How much is 50 cm + 50 cm?",ps:"۵۰ سانتي متر + ۵۰ سانتي متر څو کېږي؟"},
+visual:"50 cm + 50 cm = ❓",
+answer:"100",
+s:{de:"50 cm + 50 cm = 100 cm.",en:"50 cm + 50 cm = 100 cm.",ps:"۵۰ + ۵۰ = ۱۰۰ سانتي متر."}
 },
 
 {
-q: "Welche Form hat einen Mittelpunkt und keine Seiten?",
-visual: `<div class="circle"></div>`,
-answer: "kreis",
-solution: "Ein Kreis hat keine geraden Seiten."
+q:{de:"Wie viel sind 1 m + 2 m?",en:"How much is 1 m + 2 m?",ps:"۱ متر + ۲ متر څو کېږي؟"},
+visual:"1 m + 2 m = ❓ m",
+answer:"3",
+s:{de:"1 m + 2 m = 3 m.",en:"1 m + 2 m = 3 m.",ps:"۱ متر + ۲ متر = ۳ متره."}
 },
 
 {
-q: "Ein Quadrat hat eine Seitenlänge von 5 cm. Wie lang ist der Umfang?",
-visual: "⬜ 5 cm × 5 cm",
-answer: "20",
-solution: "5 + 5 + 5 + 5 = 20 cm."
+q:{de:"Wie viel sind 500 g + 500 g?",en:"How much is 500 g + 500 g?",ps:"۵۰۰ ګرام + ۵۰۰ ګرام څو کېږي؟"},
+visual:"500 g + 500 g = ❓",
+answer:"1000",
+s:{de:"500 g + 500 g = 1000 g.",en:"500 g + 500 g = 1000 g.",ps:"۵۰۰ + ۵۰۰ = ۱۰۰۰ ګرامه."}
 },
 
 {
-q: "Ein Rechteck ist 6 cm lang und 3 cm breit. Wie groß ist der Umfang?",
-visual: "▭ 6 cm × 3 cm",
-answer: "18",
-solution: "6 + 3 + 6 + 3 = 18 cm."
+q:{de:"Wie viel sind 2 kg + 1 kg?",en:"How much is 2 kg + 1 kg?",ps:"۲ کیلوګرام + ۱ کیلوګرام څو کېږي؟"},
+visual:"2 kg + 1 kg = ❓",
+answer:"3",
+s:{de:"2 kg + 1 kg = 3 kg.",en:"2 kg + 1 kg = 3 kg.",ps:"۲ + ۱ = ۳ کیلوګرامه."}
 },
 
 {
-q: "Ein Quadrat hat eine Seitenlänge von 4 cm. Wie groß ist der Umfang?",
-visual: "⬜ 4 cm",
-answer: "16",
-solution: "4 · 4 = 16 cm."
+q:{de:"Wie viel sind 20 Minuten + 10 Minuten?",en:"How much is 20 minutes + 10 minutes?",ps:"۲۰ دقیقې + ۱۰ دقیقې څو کېږي؟"},
+visual:"20 min + 10 min = ❓",
+answer:"30",
+s:{de:"20 + 10 = 30 Minuten.",en:"20 + 10 = 30 minutes.",ps:"۲۰ + ۱۰ = ۳۰ دقیقې."}
 },
 
 {
-q: "Ein Rechteck ist 10 cm lang und 5 cm breit. Wie groß ist der Umfang?",
-visual: "▭ 10 cm × 5 cm",
-answer: "30",
-solution: "10 + 5 + 10 + 5 = 30 cm."
+q:{de:"Wie viel sind 30 Minuten + 30 Minuten?",en:"How much is 30 minutes + 30 minutes?",ps:"۳۰ دقیقې + ۳۰ دقیقې څو کېږي؟"},
+visual:"30 min + 30 min = ❓",
+answer:"60",
+s:{de:"30 + 30 = 60 Minuten = 1 Stunde.",en:"30 + 30 = 60 minutes = 1 hour.",ps:"۳۰ + ۳۰ = ۶۰ دقیقې = ۱ ساعت."}
 },
 
 {
-q: "Wie viele Seiten haben drei Dreiecke zusammen?",
-visual: "🔺 🔺 🔺",
-answer: "9",
-solution: "3 · 3 = 9 Seiten."
+q:{de:"Wie viele Cent sind 1 Euro?",en:"How many cents are in 1 euro?",ps:"په ۱ یورو کې څو سنټه دي؟"},
+visual:"💶 1 € = ❓ Cent",
+answer:"100",
+s:{de:"1 Euro = 100 Cent.",en:"1 euro = 100 cents.",ps:"۱ یورو = ۱۰۰ سنټه."}
 },
 
 {
-q: "Wie viele Ecken haben drei Quadrate zusammen?",
-visual: "⬜ ⬜ ⬜",
-answer: "12",
-solution: "3 · 4 = 12 Ecken."
+q:{de:"Wie viele Cent sind 2 Euro?",en:"How many cents are in 2 euros?",ps:"په ۲ یورو کې څو سنټه دي؟"},
+visual:"💶 2 € = ❓ Cent",
+answer:"200",
+s:{de:"2 Euro = 200 Cent.",en:"2 euros = 200 cents.",ps:"۲ یورو = ۲۰۰ سنټه."}
 },
 
 {
-q: "Welche Form hat genau 3 Seiten und 3 Ecken?",
-visual: `<div class="triangle"></div>`,
-answer: "dreieck",
-solution: "Ein Dreieck hat 3 Seiten und 3 Ecken."
+q:{de:"Wie viel Geld sind 50 Cent + 50 Cent?",en:"How much money is 50 cents + 50 cents?",ps:"۵۰ سنټه + ۵۰ سنټه څو کېږي؟"},
+visual:"🪙 50 ct + 50 ct = ❓",
+answer:"100",
+s:{de:"50 Cent + 50 Cent = 100 Cent = 1 Euro.",en:"50 cents + 50 cents = 100 cents = 1 euro.",ps:"۵۰ + ۵۰ سنټه = ۱۰۰ سنټه = ۱ یورو."}
 },
 
 {
-q: "Welche Form hat genau 4 Seiten und 4 Ecken?",
-visual: `<div class="square"></div>`,
-answer: "quadrat",
-solution: "Ein Quadrat hat 4 Seiten und 4 Ecken."
+q:{de:"Wie viel Geld sind 1 € + 2 €?",en:"How much money is 1 € + 2 €?",ps:"۱ یورو + ۲ یورو څو کېږي؟"},
+visual:"💶 1 € + 2 € = ❓",
+answer:"3",
+s:{de:"1 € + 2 € = 3 €.",en:"1 € + 2 € = 3 €.",ps:"۱ یورو + ۲ یورو = ۳ یورو."}
 },
 
 {
-q: "Welche Form hat keine Ecken und keine geraden Seiten?",
-visual: `<div class="circle"></div>`,
-answer: "kreis",
-solution: "Ein Kreis hat keine Ecken und keine geraden Seiten."
+q:{de:"Wie viele Meter sind 300 cm?",en:"How many meters are 300 cm?",ps:"۳۰۰ سانتي متره څو متره دي؟"},
+visual:"300 cm = ❓ m",
+answer:"3",
+s:{de:"300 cm = 3 m.",en:"300 cm = 3 m.",ps:"۳۰۰ سانتي متر = ۳ متره."}
 },
 
 {
-q: "Welche Grundform ist hier zu sehen?",
-visual: `
-<div class="shapes">
-<div>
-<div class="circle"></div>
-<div class="shape-label">❓</div>
-</div>
-<div>
-<div class="square"></div>
-<div class="shape-label">❓</div>
-</div>
-<div>
-<div class="triangle"></div>
-<div class="shape-label">❓</div>
-</div>
-</div>
-`,
-answer: "kreis,quadrat,dreieck",
-solution: "Die drei Formen sind Kreis, Quadrat und Dreieck."
+q:{de:"Wie viele Gramm sind 3 kg?",en:"How many grams are 3 kg?",ps:"۳ کیلوګرامه څو ګرامه دي؟"},
+visual:"3 kg = ❓ g",
+answer:"3000",
+s:{de:"3 kg = 3000 g.",en:"3 kg = 3000 g.",ps:"۳ کیلوګرامه = ۳۰۰۰ ګرامه."}
 }
 
 ];
 
-let current = 0;
+let current=0;
+let language=localStorage.getItem("language")||"de";
 
-function showQuestion() {
+function changeLanguage(lang){
+language=lang;
+localStorage.setItem("language",lang);
 
-    document.getElementById("question").textContent =
-        questions[current].q;
+const t=translations[lang];
 
-    document.getElementById("visual").innerHTML =
-        questions[current].visual;
+document.getElementById("subtitle").textContent=t.subtitle;
+document.getElementById("languageText").textContent=t.language;
+document.getElementById("title").textContent=t.title;
+document.getElementById("explanationTitle").textContent=t.explanationTitle;
+document.getElementById("explanationText").textContent=t.explanationText;
+document.getElementById("checkButton").textContent=t.check;
+document.getElementById("solutionTitle").textContent=t.solution;
+document.getElementById("nextButton").textContent=t.next;
+document.getElementById("backButton").textContent=t.back;
+document.getElementById("answer").placeholder=t.placeholder;
 
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
-
-    document.getElementById("answer").value = "";
-
-    document.getElementById("answer").disabled = false;
-
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("solution").style.display = "none";
-
-    document.getElementById("nextButton").style.display = "none";
+showQuestion();
 }
 
-function checkAnswer() {
+function showQuestion(){
+const q=questions[current];
 
-    const userAnswer =
-        document.getElementById("answer").value
-        .trim()
-        .toLowerCase()
-        .replace(/\s/g, "");
+document.getElementById("question").textContent=q.q[language];
+document.getElementById("visual").textContent=q.visual;
 
-    const correctAnswer =
-        questions[current].answer
-        .toLowerCase()
-        .replace(/\s/g, "");
+document.getElementById("progress").textContent=
+(language==="de"?"Aufgabe ":
+language==="en"?"Question ":"پوښتنه ")
++(current+1)+" / 30";
 
-    if (userAnswer === correctAnswer) {
-
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
-
-        document.getElementById("solution").style.display =
-            "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-    }
-
-    document.getElementById("answer").disabled = true;
-
-    document.getElementById("nextButton").style.display =
-        "inline-block";
+document.getElementById("answer").value="";
+document.getElementById("answer").disabled=false;
+document.getElementById("result").textContent="";
+document.getElementById("solution").style.display="none";
+document.getElementById("nextButton").style.display="none";
 }
 
-function nextQuestion() {
+function checkAnswer(){
 
-    current++;
+const userAnswer=document.getElementById("answer").value
+.trim()
+.toLowerCase()
+.replace(/\s/g,"");
 
-    if (current >= questions.length) {
+const correct=questions[current].answer.toLowerCase();
+const t=translations[language];
 
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
+if(userAnswer===correct){
+document.getElementById("result").textContent=t.correct;
+}else{
+document.getElementById("result").textContent=t.wrong;
+document.getElementById("solution").style.display="block";
+document.getElementById("solutionText").textContent=questions[current].s[language];
+}
 
-        document.getElementById("progress").textContent =
-            "Fertig! 🏆";
+document.getElementById("answer").disabled=true;
+document.getElementById("nextButton").style.display="inline-block";
+}
 
-        document.getElementById("visual").style.display =
-            "none";
+function nextQuestion(){
 
-        document.getElementById("answer").style.display =
-            "none";
+current++;
 
-        document.getElementById("result").textContent =
-            "Super gemacht! 🎓";
+if(current>=questions.length){
 
-        document.getElementById("nextButton").style.display =
-            "none";
+const t=translations[language];
 
-        document.getElementById("solution").style.display =
-            "none";
+document.getElementById("question").textContent=t.finished;
+document.getElementById("progress").textContent=t.done;
+document.getElementById("visual").style.display="none";
+document.getElementById("answer").style.display="none";
+document.getElementById("checkButton").style.display="none";
+document.getElementById("result").textContent=t.great;
+document.getElementById("nextButton").style.display="none";
+document.getElementById("solution").style.display="none";
 
-        return;
-    }
-
-    showQuestion();
+return;
 }
 
 showQuestion();
+}
+
+changeLanguage(language);
 
 </script>
 
