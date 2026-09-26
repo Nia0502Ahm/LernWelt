@@ -21,40 +21,36 @@ header {
     padding: 35px 20px;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
 .container {
-    max-width: 700px;
-    margin: 40px auto;
+    max-width: 750px;
+    margin: 35px auto;
     padding: 30px;
     background: white;
     border-radius: 18px;
 }
 
-h1 {
-    font-size: 36px;
-}
-
-.language-title {
-    font-size: 22px;
-    margin-top: 30px;
-}
-
 .language-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
     flex-wrap: wrap;
-    margin: 25px 0;
+    gap: 10px;
+    margin: 20px 0 30px;
 }
 
 button {
-    padding: 15px 25px;
+    padding: 14px 22px;
+    margin: 7px;
     border: none;
     border-radius: 10px;
     background: #2563eb;
     color: white;
     font-size: 17px;
     cursor: pointer;
-    margin: 8px;
 }
 
 button:hover {
@@ -62,24 +58,31 @@ button:hover {
 }
 
 .language-button {
-    font-size: 18px;
-}
-
-#classBox {
-    display: none;
-    margin-top: 30px;
+    font-size: 16px;
 }
 
 .class-button {
     display: block;
-    width: 280px;
+    width: 90%;
+    max-width: 500px;
     margin: 12px auto;
+    padding: 17px;
+    font-size: 19px;
+}
+
+#classTitle {
+    margin-top: 25px;
+    font-size: 28px;
 }
 
 #message {
-    margin-top: 20px;
-    font-size: 18px;
     font-weight: bold;
+    margin: 15px;
+}
+
+.back {
+    background: #64748b;
+    margin-top: 25px;
 }
 </style>
 </head>
@@ -88,14 +91,14 @@ button:hover {
 
 <header>
     <h1>📚 LernWelt</h1>
-    <p id="subtitle">Lernen einfach gemacht</p>
+    <p id="subtitle">Lernen von Klasse 5 bis zum Abitur</p>
 </header>
 
 <div class="container">
 
     <!-- SPRACHE -->
 
-    <h2 id="chooseLanguage">🌐 Sprache auswählen</h2>
+    <h2 id="languageTitle">🌐 Sprache auswählen</h2>
 
     <div class="language-buttons">
 
@@ -117,56 +120,62 @@ button:hover {
     </div>
 
     <p id="message">
-        Wähle deine Sprache aus.
+        Wähle zuerst deine Klasse aus.
     </p>
 
-    <br>
+    <!-- KLASSEN -->
 
-    <!-- START -->
+    <h2 id="classTitle">🎓 Klasse auswählen</h2>
 
-    <button onclick="showClasses()" id="startButton">
-        🚀 Start
+    <button class="class-button"
+            onclick="selectClass(5)">
+        📚 Klasse 5
     </button>
 
-    <!-- KLASSENAUSWAHL -->
+    <button class="class-button"
+            onclick="selectClass(6)">
+        📚 Klasse 6
+    </button>
 
-    <div id="classBox">
+    <button class="class-button"
+            onclick="selectClass(7)">
+        📚 Klasse 7
+    </button>
 
-        <h2 id="classTitle">
-            🎓 Klasse auswählen
-        </h2>
+    <button class="class-button"
+            onclick="selectClass(8)">
+        📚 Klasse 8
+    </button>
 
-        <button class="class-button"
-                onclick="selectClass(5)">
-            📚 Klasse 5
-        </button>
+    <button class="class-button"
+            onclick="selectClass(9)">
+        📚 Klasse 9
+    </button>
 
-        <button class="class-button"
-                onclick="selectClass(6)">
-            📚 Klasse 6
-        </button>
+    <button class="class-button"
+            onclick="selectClass(10)">
+        📚 Klasse 10
+    </button>
 
-        <button class="class-button"
-                onclick="selectClass(7)">
-            📚 Klasse 7
-        </button>
+    <button class="class-button"
+            onclick="selectClass(11)">
+        📚 Klasse 11
+    </button>
 
-        <button class="class-button"
-                onclick="selectClass(8)">
-            📚 Klasse 8
-        </button>
+    <button class="class-button"
+            onclick="selectClass(12)">
+        📚 Klasse 12
+    </button>
 
-        <button class="class-button"
-                onclick="selectClass(9)">
-            📚 Klasse 9
-        </button>
+    <button class="class-button"
+            onclick="selectClass(13)">
+        📚 Klasse 13
+    </button>
 
-        <button class="class-button"
-                onclick="selectClass(10)">
-            📚 Klasse 10
-        </button>
-
-    </div>
+    <button class="class-button"
+            onclick="selectAbitur()">
+        🎓 Abitur
+    </button>
 
 </div>
 
@@ -176,26 +185,23 @@ button:hover {
 const translations = {
 
     de: {
-        subtitle: "Lernen einfach gemacht",
-        choose: "🌐 Sprache auswählen",
-        message: "Wähle deine Sprache aus.",
-        start: "🚀 Start",
+        subtitle: "Lernen von Klasse 5 bis zum Abitur",
+        languageTitle: "🌐 Sprache auswählen",
+        message: "Wähle zuerst deine Klasse aus.",
         classTitle: "🎓 Klasse auswählen"
     },
 
     en: {
-        subtitle: "Learning made easy",
-        choose: "🌐 Choose your language",
-        message: "Choose your language.",
-        start: "🚀 Start",
+        subtitle: "Learning from grade 5 to high school",
+        languageTitle: "🌐 Choose your language",
+        message: "First choose your grade.",
         classTitle: "🎓 Choose your grade"
     },
 
     ps: {
-        subtitle: "زده کړه په اسانه",
-        choose: "🌐 خپله ژبه وټاکئ",
-        message: "خپله ژبه وټاکئ.",
-        start: "🚀 پیل",
+        subtitle: "له پنځم ټولګي څخه تر ابیتور پورې زده کړه",
+        languageTitle: "🌐 خپله ژبه وټاکئ",
+        message: "لومړی خپل ټولګی وټاکئ.",
         classTitle: "🎓 خپل ټولګی وټاکئ"
     }
 
@@ -217,33 +223,25 @@ function changeLanguage(language) {
     document.getElementById("subtitle").textContent =
         t.subtitle;
 
-    document.getElementById("chooseLanguage").textContent =
-        t.choose;
+    document.getElementById("languageTitle").textContent =
+        t.languageTitle;
 
     document.getElementById("message").textContent =
         t.message;
-
-    document.getElementById("startButton").textContent =
-        t.start;
 
     document.getElementById("classTitle").textContent =
         t.classTitle;
 }
 
 
-function showClasses() {
-
-    document.getElementById("classBox").style.display =
-        "block";
-
-    document.getElementById("startButton").style.display =
-        "none";
-}
-
-
 function selectClass(number) {
 
     localStorage.setItem("selectedClass", number);
+
+    /*
+       Klasse 5 hat bereits eine fertige Fächerseite.
+       Die anderen Klassen können später ergänzt werden.
+    */
 
     if (number === 5) {
 
@@ -253,10 +251,20 @@ function selectClass(number) {
 
         alert(
             "Klasse " + number +
-            " wird noch erstellt."
+            " ist noch nicht erstellt."
         );
 
     }
+}
+
+
+function selectAbitur() {
+
+    localStorage.setItem("selectedClass", "abitur");
+
+    alert(
+        "Die Abitur-Seite wird noch erstellt."
+    );
 }
 
 
