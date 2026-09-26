@@ -1,96 +1,141 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Daten und Diagramme</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LernWelt – Daten und Diagramme</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
 
-        .container {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-        }
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+}
 
-        .explanation {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
 
-        .data {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            text-align: left;
-        }
+.visual {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
 
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
+table {
+    margin: 15px auto;
+    border-collapse: collapse;
+}
 
-        button {
-            padding: 13px 25px;
-            margin: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+th, td {
+    border: 1px solid #777;
+    padding: 10px 18px;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+th {
+    background: #dbeafe;
+}
 
-        #result {
-            margin: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+.chart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 25px;
+    height: 220px;
+    border-bottom: 3px solid #333;
+    margin: 20px;
+}
 
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-        }
+.bar {
+    width: 45px;
+    background: #60a5fa;
+    position: relative;
+}
 
-        #nextButton {
-            display: none;
-        }
+.bar span {
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    left: 0;
+    margin-bottom: 5px;
+}
 
-        .back {
-            background: #64748b;
-        }
-    </style>
+.label {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+input {
+    width: 80%;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 13px 25px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#result {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#solution {
+    display: none;
+    background: #f1f5f9;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+#nextButton {
+    display: none;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
 </head>
 
 <body>
@@ -102,61 +147,56 @@
 
 <div class="container">
 
-    <h2>📊 Daten und Diagramme</h2>
+<h2>📊 Daten und Diagramme</h2>
 
-    <div class="explanation">
-        <h3>📖 Kurze Erklärung</h3>
+<div class="explanation">
+<h3>📖 Kurze Erklärung</h3>
 
-        <p>
-            Daten sind Informationen, die gesammelt werden.
-        </p>
+<p>
+Daten sind Informationen, die man sammeln und vergleichen kann.
+</p>
 
-        <p>
-            Zum Beispiel kann man fragen, welches Obst Schüler
-            am liebsten essen.
-        </p>
+<p>
+Ein <strong>Diagramm</strong> hilft dabei, Daten übersichtlich darzustellen.
+</p>
 
-        <p>
-            Daten kann man in Tabellen oder Diagrammen darstellen.
-        </p>
+<p>
+Bei einem Säulendiagramm zeigen die Säulen, wie groß eine Zahl ist.
+</p>
 
-        <p>
-            Bei einem Säulendiagramm zeigt die Höhe einer Säule,
-            wie groß ein Wert ist.
-        </p>
-    </div>
+<p>
+Beispiel: Wenn 5 Schüler Fußball mögen, ist die Säule für Fußball 5 hoch.
+</p>
+</div>
 
-    <p id="progress"></p>
+<p id="progress"></p>
 
-    <h3 id="question"></h3>
+<h3 id="question"></h3>
 
-    <div id="dataBox" class="data"></div>
+<div id="visual" class="visual"></div>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
+<input id="answer" type="text" placeholder="Deine Antwort">
 
-    <br>
+<br>
 
-    <button onclick="checkAnswer()">
-        Antwort prüfen
-    </button>
+<button onclick="checkAnswer()">Antwort prüfen</button>
 
-    <div id="result"></div>
+<div id="result"></div>
 
-    <div id="solution">
-        <h3>💡 Lösung</h3>
-        <p id="solutionText"></p>
-    </div>
+<div id="solution">
+<h3>💡 Lösung</h3>
+<p id="solutionText"></p>
+</div>
 
-    <button id="nextButton" onclick="nextQuestion()">
-        ➡️ Nächste Aufgabe
-    </button>
+<button id="nextButton" onclick="nextQuestion()">
+➡️ Nächste Aufgabe
+</button>
 
-    <br>
+<br>
 
-    <button class="back"
-        onclick="window.location.href='mathe5.html'">
-        ← Zurück zu den Themen
-    </button>
+<button class="back" onclick="window.location.href='mathe5.html'">
+← Zurück zu den Mathe-Themen
+</button>
 
 </div>
 
@@ -164,253 +204,486 @@
 
 const questions = [
 
-    {
-        q: "Wie viele Schüler mögen Äpfel?",
-        data: "Äpfel: 8 Schüler | Bananen: 5 Schüler | Orangen: 3 Schüler",
-        answer: "8",
-        solution: "8 Schüler mögen Äpfel."
-    },
+{
+q: "Wie viele Kinder mögen Fußball?",
+visual: `
+<table>
+<tr><th>Sport</th><th>Kinder</th></tr>
+<tr><td>⚽ Fußball</td><td>8</td></tr>
+<tr><td>🏀 Basketball</td><td>5</td></tr>
+</table>
+`,
+answer: "8",
+solution: "8 Kinder mögen Fußball."
+},
 
-    {
-        q: "Wie viele Schüler mögen Bananen?",
-        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
-        answer: "5",
-        solution: "5 Schüler mögen Bananen."
-    },
+{
+q: "Wie viele Kinder mögen Basketball?",
+visual: `
+<table>
+<tr><th>Sport</th><th>Kinder</th></tr>
+<tr><td>⚽ Fußball</td><td>8</td></tr>
+<tr><td>🏀 Basketball</td><td>5</td></tr>
+</table>
+`,
+answer: "5",
+solution: "5 Kinder mögen Basketball."
+},
 
-    {
-        q: "Wie viele Schüler mögen Orangen?",
-        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
-        answer: "3",
-        solution: "3 Schüler mögen Orangen."
-    },
+{
+q: "Welcher Sport wird am meisten gewählt?",
+visual: `
+<table>
+<tr><th>Sport</th><th>Kinder</th></tr>
+<tr><td>⚽ Fußball</td><td>8</td></tr>
+<tr><td>🏀 Basketball</td><td>5</td></tr>
+<tr><td>🏊 Schwimmen</td><td>6</td></tr>
+</table>
+`,
+answer: "fußball",
+solution: "Fußball hat mit 8 Kindern die höchste Zahl."
+},
 
-    {
-        q: "Welches Obst ist am beliebtesten?",
-        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
-        answer: "Äpfel",
-        solution: "Äpfel haben mit 8 Schülern den größten Wert."
-    },
+{
+q: "Welcher Sport wird am wenigsten gewählt?",
+visual: `
+<table>
+<tr><th>Sport</th><th>Kinder</th></tr>
+<tr><td>⚽ Fußball</td><td>8</td></tr>
+<tr><td>🏀 Basketball</td><td>5</td></tr>
+<tr><td>🏊 Schwimmen</td><td>6</td></tr>
+</table>
+`,
+answer: "basketball",
+solution: "Basketball hat mit 5 Kindern die kleinste Zahl."
+},
 
-    {
-        q: "Welches Obst ist am wenigsten beliebt?",
-        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
-        answer: "Orangen",
-        solution: "Orangen haben mit 3 Schülern den kleinsten Wert."
-    },
+{
+q: "Wie viele Bücher wurden am Montag gelesen?",
+visual: `
+<table>
+<tr><th>Tag</th><th>Bücher</th></tr>
+<tr><td>Montag</td><td>4</td></tr>
+<tr><td>Dienstag</td><td>7</td></tr>
+<tr><td>Mittwoch</td><td>5</td></tr>
+</table>
+`,
+answer: "4",
+solution: "Am Montag wurden 4 Bücher gelesen."
+},
 
-    {
-        q: "Wie viele Schüler wurden insgesamt gefragt?",
-        data: "Äpfel: 8 | Bananen: 5 | Orangen: 3",
-        answer: "16",
-        solution: "8 + 5 + 3 = 16 Schüler."
-    },
+{
+q: "Wie viele Bücher wurden am Dienstag gelesen?",
+visual: `
+<table>
+<tr><th>Tag</th><th>Bücher</th></tr>
+<tr><td>Montag</td><td>4</td></tr>
+<tr><td>Dienstag</td><td>7</td></tr>
+<tr><td>Mittwoch</td><td>5</td></tr>
+</table>
+`,
+answer: "7",
+solution: "Am Dienstag wurden 7 Bücher gelesen."
+},
 
-    {
-        q: "Wie viele Bücher hat Mia gelesen?",
-        data: "Mia: 6 Bücher | Ali: 4 Bücher | Sara: 8 Bücher",
-        answer: "6",
-        solution: "Mia hat 6 Bücher gelesen."
-    },
+{
+q: "Wie viele Bücher wurden insgesamt gelesen?",
+visual: `
+<table>
+<tr><th>Tag</th><th>Bücher</th></tr>
+<tr><td>Montag</td><td>4</td></tr>
+<tr><td>Dienstag</td><td>7</td></tr>
+<tr><td>Mittwoch</td><td>5</td></tr>
+</table>
+`,
+answer: "16",
+solution: "4 + 7 + 5 = 16 Bücher."
+},
 
-    {
-        q: "Wie viele Bücher hat Ali gelesen?",
-        data: "Mia: 6 | Ali: 4 | Sara: 8",
-        answer: "4",
-        solution: "Ali hat 4 Bücher gelesen."
-    },
+{
+q: "Wie viele Schüler haben eine Katze?",
+visual: `
+<table>
+<tr><th>Tier</th><th>Schüler</th></tr>
+<tr><td>🐱 Katze</td><td>6</td></tr>
+<tr><td>🐶 Hund</td><td>4</td></tr>
+<tr><td>🐰 Kaninchen</td><td>3</td></tr>
+</table>
+`,
+answer: "6",
+solution: "6 Schüler haben eine Katze."
+},
 
-    {
-        q: "Wie viele Bücher hat Sara gelesen?",
-        data: "Mia: 6 | Ali: 4 | Sara: 8",
-        answer: "8",
-        solution: "Sara hat 8 Bücher gelesen."
-    },
+{
+q: "Wie viele Schüler haben einen Hund?",
+visual: `
+<table>
+<tr><th>Tier</th><th>Schüler</th></tr>
+<tr><td>🐱 Katze</td><td>6</td></tr>
+<tr><td>🐶 Hund</td><td>4</td></tr>
+<tr><td>🐰 Kaninchen</td><td>3</td></tr>
+</table>
+`,
+answer: "4",
+solution: "4 Schüler haben einen Hund."
+},
 
-    {
-        q: "Wer hat die meisten Bücher gelesen?",
-        data: "Mia: 6 | Ali: 4 | Sara: 8",
-        answer: "Sara",
-        solution: "Sara hat mit 8 Büchern die meisten gelesen."
-    },
+{
+q: "Welches Tier ist am beliebtesten?",
+visual: `
+<table>
+<tr><th>Tier</th><th>Schüler</th></tr>
+<tr><td>🐱 Katze</td><td>6</td></tr>
+<tr><td>🐶 Hund</td><td>4</td></tr>
+<tr><td>🐰 Kaninchen</td><td>3</td></tr>
+</table>
+`,
+answer: "katze",
+solution: "Die Katze ist mit 6 Schülern am beliebtesten."
+},
 
-    {
-        q: "Wer hat die wenigsten Bücher gelesen?",
-        data: "Mia: 6 | Ali: 4 | Sara: 8",
-        answer: "Ali",
-        solution: "Ali hat mit 4 Büchern die wenigsten gelesen."
-    },
+{
+q: "Wie viele Punkte hat Team A?",
+visual: `
+<table>
+<tr><th>Team</th><th>Punkte</th></tr>
+<tr><td>A</td><td>12</td></tr>
+<tr><td>B</td><td>9</td></tr>
+<tr><td>C</td><td>15</td></tr>
+</table>
+`,
+answer: "12",
+solution: "Team A hat 12 Punkte."
+},
 
-    {
-        q: "Wie viele Bücher wurden insgesamt gelesen?",
-        data: "Mia: 6 | Ali: 4 | Sara: 8",
-        answer: "18",
-        solution: "6 + 4 + 8 = 18 Bücher."
-    },
+{
+q: "Wie viele Punkte hat Team C?",
+visual: `
+<table>
+<tr><th>Team</th><th>Punkte</th></tr>
+<tr><td>A</td><td>12</td></tr>
+<tr><td>B</td><td>9</td></tr>
+<tr><td>C</td><td>15</td></tr>
+</table>
+`,
+answer: "15",
+solution: "Team C hat 15 Punkte."
+},
 
-    {
-        q: "Wie viele Kinder fahren mit dem Fahrrad?",
-        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
-        answer: "7",
-        solution: "7 Kinder fahren mit dem Fahrrad."
-    },
+{
+q: "Welches Team hat die meisten Punkte?",
+visual: `
+<table>
+<tr><th>Team</th><th>Punkte</th></tr>
+<tr><td>A</td><td>12</td></tr>
+<tr><td>B</td><td>9</td></tr>
+<tr><td>C</td><td>15</td></tr>
+</table>
+`,
+answer: "c",
+solution: "Team C hat mit 15 Punkten die meisten Punkte."
+},
 
-    {
-        q: "Wie viele Kinder fahren mit dem Bus?",
-        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
-        answer: "5",
-        solution: "5 Kinder fahren mit dem Bus."
-    },
+{
+q: "Welches Team hat die wenigsten Punkte?",
+visual: `
+<table>
+<tr><th>Team</th><th>Punkte</th></tr>
+<tr><td>A</td><td>12</td></tr>
+<tr><td>B</td><td>9</td></tr>
+<tr><td>C</td><td>15</td></tr>
+</table>
+`,
+answer: "b",
+solution: "Team B hat mit 9 Punkten die wenigsten Punkte."
+},
 
-    {
-        q: "Wie viele Kinder fahren mit dem Auto?",
-        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
-        answer: "3",
-        solution: "3 Kinder fahren mit dem Auto."
-    },
+{
+q: "Wie viele Kinder sind in der Klasse?",
+visual: `
+<table>
+<tr><th>Gruppe</th><th>Anzahl</th></tr>
+<tr><td>Jungen</td><td>12</td></tr>
+<tr><td>Mädchen</td><td>13</td></tr>
+</table>
+`,
+answer: "25",
+solution: "12 + 13 = 25 Kinder."
+},
 
-    {
-        q: "Welches Verkehrsmittel wird am häufigsten benutzt?",
-        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
-        answer: "Fahrrad",
-        solution: "Das Fahrrad hat mit 7 Kindern den größten Wert."
-    },
+{
+q: "Wie viele Mädchen sind in der Klasse?",
+visual: `
+<table>
+<tr><th>Gruppe</th><th>Anzahl</th></tr>
+<tr><td>Jungen</td><td>12</td></tr>
+<tr><td>Mädchen</td><td>13</td></tr>
+</table>
+`,
+answer: "13",
+solution: "13 Mädchen sind in der Klasse."
+},
 
-    {
-        q: "Wie viele Kinder sind insgesamt in der Gruppe?",
-        data: "Fahrrad: 7 | Bus: 5 | Auto: 3",
-        answer: "15",
-        solution: "7 + 5 + 3 = 15 Kinder."
-    },
+{
+q: "Wie viele Jungen sind in der Klasse?",
+visual: `
+<table>
+<tr><th>Gruppe</th><th>Anzahl</th></tr>
+<tr><td>Jungen</td><td>12</td></tr>
+<tr><td>Mädchen</td><td>13</td></tr>
+</table>
+`,
+answer: "12",
+solution: "12 Jungen sind in der Klasse."
+},
 
-    {
-        q: "Wie viele Punkte hat Team A?",
-        data: "Team A: 12 Punkte | Team B: 9 Punkte | Team C: 15 Punkte",
-        answer: "12",
-        solution: "Team A hat 12 Punkte."
-    },
+{
+q: "Wie viele Kinder haben die Note 1?",
+visual: `
+<table>
+<tr><th>Note</th><th>Kinder</th></tr>
+<tr><td>1</td><td>4</td></tr>
+<tr><td>2</td><td>7</td></tr>
+<tr><td>3</td><td>5</td></tr>
+</table>
+`,
+answer: "4",
+solution: "4 Kinder haben die Note 1."
+},
 
-    {
-        q: "Wie viele Punkte hat Team B?",
-        data: "Team A: 12 | Team B: 9 | Team C: 15",
-        answer: "9",
-        solution: "Team B hat 9 Punkte."
-    },
+{
+q: "Welche Note wurde am häufigsten erreicht?",
+visual: `
+<table>
+<tr><th>Note</th><th>Kinder</th></tr>
+<tr><td>1</td><td>4</td></tr>
+<tr><td>2</td><td>7</td></tr>
+<tr><td>3</td><td>5</td></tr>
+</table>
+`,
+answer: "2",
+solution: "Die Note 2 wurde mit 7 Kindern am häufigsten erreicht."
+},
 
-    {
-        q: "Wie viele Punkte hat Team C?",
-        data: "Team A: 12 | Team B: 9 | Team C: 15",
-        answer: "15",
-        solution: "Team C hat 15 Punkte."
-    },
+{
+q: "Wie viele Kinder haben die Note 3?",
+visual: `
+<table>
+<tr><th>Note</th><th>Kinder</th></tr>
+<tr><td>1</td><td>4</td></tr>
+<tr><td>2</td><td>7</td></tr>
+<tr><td>3</td><td>5</td></tr>
+</table>
+`,
+answer: "5",
+solution: "5 Kinder haben die Note 3."
+},
 
-    {
-        q: "Welches Team hat die meisten Punkte?",
-        data: "Team A: 12 | Team B: 9 | Team C: 15",
-        answer: "Team C",
-        solution: "Team C hat mit 15 Punkten die meisten."
-    },
+{
+q: "Wie viele Äpfel wurden verkauft?",
+visual: `
+<table>
+<tr><th>Obst</th><th>Anzahl</th></tr>
+<tr><td>🍎 Äpfel</td><td>10</td></tr>
+<tr><td>🍌 Bananen</td><td>6</td></tr>
+<tr><td>🍐 Birnen</td><td>4</td></tr>
+</table>
+`,
+answer: "10",
+solution: "10 Äpfel wurden verkauft."
+},
 
-    {
-        q: "Welches Team hat die wenigsten Punkte?",
-        data: "Team A: 12 | Team B: 9 | Team C: 15",
-        answer: "Team B",
-        solution: "Team B hat mit 9 Punkten die wenigsten."
-    },
+{
+q: "Wie viele Bananen wurden verkauft?",
+visual: `
+<table>
+<tr><th>Obst</th><th>Anzahl</th></tr>
+<tr><td>🍎 Äpfel</td><td>10</td></tr>
+<tr><td>🍌 Bananen</td><td>6</td></tr>
+<tr><td>🍐 Birnen</td><td>4</td></tr>
+</table>
+`,
+answer: "6",
+solution: "6 Bananen wurden verkauft."
+},
 
-    {
-        q: "Wie viele Punkte haben alle Teams zusammen?",
-        data: "Team A: 12 | Team B: 9 | Team C: 15",
-        answer: "36",
-        solution: "12 + 9 + 15 = 36 Punkte."
-    },
+{
+q: "Wie viele Birnen wurden verkauft?",
+visual: `
+<table>
+<tr><th>Obst</th><th>Anzahl</th></tr>
+<tr><td>🍎 Äpfel</td><td>10</td></tr>
+<tr><td>🍌 Bananen</td><td>6</td></tr>
+<tr><td>🍐 Birnen</td><td>4</td></tr>
+</table>
+`,
+answer: "4",
+solution: "4 Birnen wurden verkauft."
+},
 
-    {
-        q: "Wie viele Schüler mögen Fußball?",
-        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
-        answer: "10",
-        solution: "10 Schüler mögen Fußball."
-    },
+{
+q: "Wie viel Obst wurde insgesamt verkauft?",
+visual: `
+<table>
+<tr><th>Obst</th><th>Anzahl</th></tr>
+<tr><td>🍎 Äpfel</td><td>10</td></tr>
+<tr><td>🍌 Bananen</td><td>6</td></tr>
+<tr><td>🍐 Birnen</td><td>4</td></tr>
+</table>
+`,
+answer: "20",
+solution: "10 + 6 + 4 = 20 Stück Obst."
+},
 
-    {
-        q: "Wie viele Schüler mögen Basketball?",
-        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
-        answer: "6",
-        solution: "6 Schüler mögen Basketball."
-    },
+{
+q: "Welches Obst wurde am meisten verkauft?",
+visual: `
+<table>
+<tr><th>Obst</th><th>Anzahl</th></tr>
+<tr><td>🍎 Äpfel</td><td>10</td></tr>
+<tr><td>🍌 Bananen</td><td>6</td></tr>
+<tr><td>🍐 Birnen</td><td>4</td></tr>
+</table>
+`,
+answer: "äpfel",
+solution: "Äpfel wurden mit 10 Stück am meisten verkauft."
+},
 
-    {
-        q: "Wie viele Schüler mögen Tennis?",
-        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
-        answer: "4",
-        solution: "4 Schüler mögen Tennis."
-    },
+{
+q: "Wie viele Kinder fahren mit dem Bus?",
+visual: `
+<table>
+<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
+<tr><td>🚌 Bus</td><td>9</td></tr>
+<tr><td>🚲 Fahrrad</td><td>6</td></tr>
+<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
+</table>
+`,
+answer: "9",
+solution: "9 Kinder fahren mit dem Bus."
+},
 
-    {
-        q: "Welche Sportart ist am beliebtesten?",
-        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
-        answer: "Fußball",
-        solution: "Fußball ist mit 10 Schülern am beliebtesten."
-    },
+{
+q: "Wie viele Kinder fahren mit dem Fahrrad?",
+visual: `
+<table>
+<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
+<tr><td>🚌 Bus</td><td>9</td></tr>
+<tr><td>🚲 Fahrrad</td><td>6</td></tr>
+<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
+</table>
+`,
+answer: "6",
+solution: "6 Kinder fahren mit dem Fahrrad."
+},
 
-    {
-        q: "Welche Sportart ist am wenigsten beliebt?",
-        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
-        answer: "Tennis",
-        solution: "Tennis hat mit 4 Schülern den kleinsten Wert."
-    },
+{
+q: "Wie viele Kinder gehen zu Fuß?",
+visual: `
+<table>
+<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
+<tr><td>🚌 Bus</td><td>9</td></tr>
+<tr><td>🚲 Fahrrad</td><td>6</td></tr>
+<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
+</table>
+`,
+answer: "5",
+solution: "5 Kinder gehen zu Fuß."
+},
 
-    {
-        q: "Wie viele Schüler wurden insgesamt gefragt?",
-        data: "Fußball: 10 | Basketball: 6 | Tennis: 4",
-        answer: "20",
-        solution: "10 + 6 + 4 = 20 Schüler."
-    },
+{
+q: "Wie viele Kinder sind es insgesamt?",
+visual: `
+<table>
+<tr><th>Verkehrsmittel</th><th>Kinder</th></tr>
+<tr><td>🚌 Bus</td><td>9</td></tr>
+<tr><td>🚲 Fahrrad</td><td>6</td></tr>
+<tr><td>🚶 Zu Fuß</td><td>5</td></tr>
+</table>
+`,
+answer: "20",
+solution: "9 + 6 + 5 = 20 Kinder."
+},
 
-    {
-        q: "Wie viele Stimmen hat die größte Gruppe?",
-        data: "Rot: 9 Stimmen | Blau: 12 Stimmen | Grün: 7 Stimmen",
-        answer: "12",
-        solution: "Blau hat mit 12 Stimmen die größte Gruppe."
-    }
+{
+q: "Was zeigt ein Diagramm?",
+visual: "📊 Daten → Diagramm",
+answer: "daten",
+solution: "Ein Diagramm stellt Daten übersichtlich dar."
+},
+
+{
+q: "Was ist bei einem Säulendiagramm eine Säule?",
+visual: `
+<div class="chart">
+<div class="bar" style="height:70px"><span>3</span><div class="label">A</div></div>
+<div class="bar" style="height:140px"><span>6</span><div class="label">B</div></div>
+<div class="bar" style="height:100px"><span>4</span><div class="label">C</div></div>
+</div>
+`,
+answer: "b",
+solution: "Die Säule B ist hier am höchsten."
+},
+
+{
+q: "Welche Säule ist am höchsten?",
+visual: `
+<div class="chart">
+<div class="bar" style="height:60px"><span>3</span><div class="label">A</div></div>
+<div class="bar" style="height:150px"><span>7</span><div class="label">B</div></div>
+<div class="bar" style="height:100px"><span>5</span><div class="label">C</div></div>
+</div>
+`,
+answer: "b",
+solution: "Säule B ist am höchsten."
+},
+
+{
+q: "Welche Säule ist am niedrigsten?",
+visual: `
+<div class="chart">
+<div class="bar" style="height:80px"><span>4</span><div class="label">A</div></div>
+<div class="bar" style="height:140px"><span>7</span><div class="label">B</div></div>
+<div class="bar" style="height:40px"><span>2</span><div class="label">C</div></div>
+</div>
+`,
+answer: "c",
+solution: "Säule C ist am niedrigsten."
+},
+
+{
+q: "In einem Diagramm stehen 5, 8 und 3. Wie groß ist die größte Zahl?",
+visual: "📊 5 | 8 | 3",
+answer: "8",
+solution: "Die größte Zahl ist 8."
+}
 
 ];
 
 let current = 0;
 
 function showQuestion() {
-
-    document.getElementById("question").textContent =
-        questions[current].q;
-
-    document.getElementById("dataBox").textContent =
-        questions[current].data;
+    document.getElementById("question").textContent = questions[current].q;
+    document.getElementById("visual").innerHTML = questions[current].visual;
 
     document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
+        "Aufgabe " + (current + 1) + " von " + questions.length;
 
     document.getElementById("answer").value = "";
-
     document.getElementById("answer").disabled = false;
-
     document.getElementById("result").textContent = "";
-
     document.getElementById("solution").style.display = "none";
-
     document.getElementById("nextButton").style.display = "none";
 }
 
 function checkAnswer() {
 
-    const userAnswer =
-        document.getElementById("answer").value
+    const userAnswer = document.getElementById("answer").value
         .trim()
         .toLowerCase()
         .replace(/\s/g, "");
 
-    const correctAnswer =
-        questions[current].answer
+    const correctAnswer = questions[current].answer
         .toLowerCase()
         .replace(/\s/g, "");
 
@@ -424,17 +697,14 @@ function checkAnswer() {
         document.getElementById("result").textContent =
             "❌ Leider falsch.";
 
-        document.getElementById("solution").style.display =
-            "block";
+        document.getElementById("solution").style.display = "block";
 
         document.getElementById("solutionText").textContent =
             questions[current].solution;
     }
 
     document.getElementById("answer").disabled = true;
-
-    document.getElementById("nextButton").style.display =
-        "inline-block";
+    document.getElementById("nextButton").style.display = "inline-block";
 }
 
 function nextQuestion() {
@@ -446,23 +716,14 @@ function nextQuestion() {
         document.getElementById("question").textContent =
             "🎉 Du hast alle 30 Aufgaben geschafft!";
 
-        document.getElementById("progress").textContent =
-            "Fertig! 🏆";
-
-        document.getElementById("dataBox").style.display =
-            "none";
-
-        document.getElementById("answer").style.display =
-            "none";
-
+        document.getElementById("progress").textContent = "Fertig! 🏆";
+        document.getElementById("visual").style.display = "none";
+        document.getElementById("answer").style.display = "none";
         document.getElementById("result").textContent =
             "Super gemacht! 🎓";
 
-        document.getElementById("nextButton").style.display =
-            "none";
-
-        document.getElementById("solution").style.display =
-            "none";
+        document.getElementById("nextButton").style.display = "none";
+        document.getElementById("solution").style.display = "none";
 
         return;
     }
