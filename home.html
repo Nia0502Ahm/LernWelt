@@ -80,10 +80,6 @@ button:hover {
     margin: 15px;
 }
 
-.back {
-    background: #64748b;
-    margin-top: 25px;
-}
 </style>
 </head>
 
@@ -91,14 +87,18 @@ button:hover {
 
 <header>
     <h1>📚 LernWelt</h1>
-    <p id="subtitle">Lernen von Klasse 5 bis zum Abitur</p>
+    <p id="subtitle">
+        Lernen von Klasse 5 bis zum Abitur
+    </p>
 </header>
 
 <div class="container">
 
     <!-- SPRACHE -->
 
-    <h2 id="languageTitle">🌐 Sprache auswählen</h2>
+    <h2 id="languageTitle">
+        🌐 Sprache auswählen
+    </h2>
 
     <div class="language-buttons">
 
@@ -123,58 +123,62 @@ button:hover {
         Wähle zuerst deine Klasse aus.
     </p>
 
-    <!-- KLASSEN -->
 
-    <h2 id="classTitle">🎓 Klasse auswählen</h2>
+    <!-- KLASSENAUSWAHL -->
+
+    <h2 id="classTitle">
+        🎓 Klasse auswählen
+    </h2>
+
 
     <button class="class-button"
             onclick="selectClass(5)">
-        📚 Klasse 5
+        📚 <span id="class5">Klasse 5</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(6)">
-        📚 Klasse 6
+        📚 <span id="class6">Klasse 6</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(7)">
-        📚 Klasse 7
+        📚 <span id="class7">Klasse 7</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(8)">
-        📚 Klasse 8
+        📚 <span id="class8">Klasse 8</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(9)">
-        📚 Klasse 9
+        📚 <span id="class9">Klasse 9</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(10)">
-        📚 Klasse 10
+        📚 <span id="class10">Klasse 10</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(11)">
-        📚 Klasse 11
+        📚 <span id="class11">Klasse 11</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(12)">
-        📚 Klasse 12
+        📚 <span id="class12">Klasse 12</span>
     </button>
 
     <button class="class-button"
             onclick="selectClass(13)">
-        📚 Klasse 13
+        📚 <span id="class13">Klasse 13</span>
     </button>
 
     <button class="class-button"
             onclick="selectAbitur()">
-        🎓 Abitur
+        🎓 <span id="abitur">Abitur</span>
     </button>
 
 </div>
@@ -185,24 +189,89 @@ button:hover {
 const translations = {
 
     de: {
-        subtitle: "Lernen von Klasse 5 bis zum Abitur",
-        languageTitle: "🌐 Sprache auswählen",
-        message: "Wähle zuerst deine Klasse aus.",
-        classTitle: "🎓 Klasse auswählen"
+
+        subtitle:
+        "Lernen von Klasse 5 bis zum Abitur",
+
+        languageTitle:
+        "🌐 Sprache auswählen",
+
+        message:
+        "Wähle zuerst deine Klasse aus.",
+
+        classTitle:
+        "🎓 Klasse auswählen",
+
+        class5: "Klasse 5",
+        class6: "Klasse 6",
+        class7: "Klasse 7",
+        class8: "Klasse 8",
+        class9: "Klasse 9",
+        class10: "Klasse 10",
+        class11: "Klasse 11",
+        class12: "Klasse 12",
+        class13: "Klasse 13",
+
+        abitur:
+        "Abitur"
     },
+
 
     en: {
-        subtitle: "Learning from grade 5 to high school",
-        languageTitle: "🌐 Choose your language",
-        message: "First choose your grade.",
-        classTitle: "🎓 Choose your grade"
+
+        subtitle:
+        "Learning from grade 5 to high school",
+
+        languageTitle:
+        "🌐 Choose your language",
+
+        message:
+        "First choose your grade.",
+
+        classTitle:
+        "🎓 Choose your grade",
+
+        class5: "Grade 5",
+        class6: "Grade 6",
+        class7: "Grade 7",
+        class8: "Grade 8",
+        class9: "Grade 9",
+        class10: "Grade 10",
+        class11: "Grade 11",
+        class12: "Grade 12",
+        class13: "Grade 13",
+
+        abitur:
+        "High School Diploma"
     },
 
+
     ps: {
-        subtitle: "له پنځم ټولګي څخه تر ابیتور پورې زده کړه",
-        languageTitle: "🌐 خپله ژبه وټاکئ",
-        message: "لومړی خپل ټولګی وټاکئ.",
-        classTitle: "🎓 خپل ټولګی وټاکئ"
+
+        subtitle:
+        "له پنځم ټولګي څخه تر ابیتور پورې زده کړه",
+
+        languageTitle:
+        "🌐 خپله ژبه وټاکئ",
+
+        message:
+        "لومړی خپل ټولګی وټاکئ.",
+
+        classTitle:
+        "🎓 خپل ټولګی وټاکئ",
+
+        class5: "پنځم ټولګی",
+        class6: "شپږم ټولګی",
+        class7: "اووم ټولګی",
+        class8: "اتم ټولګی",
+        class9: "نهم ټولګی",
+        class10: "لسم ټولګی",
+        class11: "یوولسم ټولګی",
+        class12: "دولسم ټولګی",
+        class13: "دیارلسم ټولګی",
+
+        abitur:
+        "ابیتور"
     }
 
 };
@@ -220,6 +289,7 @@ function changeLanguage(language) {
 
     const t = translations[language];
 
+
     document.getElementById("subtitle").textContent =
         t.subtitle;
 
@@ -231,27 +301,57 @@ function changeLanguage(language) {
 
     document.getElementById("classTitle").textContent =
         t.classTitle;
+
+
+    document.getElementById("class5").textContent =
+        t.class5;
+
+    document.getElementById("class6").textContent =
+        t.class6;
+
+    document.getElementById("class7").textContent =
+        t.class7;
+
+    document.getElementById("class8").textContent =
+        t.class8;
+
+    document.getElementById("class9").textContent =
+        t.class9;
+
+    document.getElementById("class10").textContent =
+        t.class10;
+
+    document.getElementById("class11").textContent =
+        t.class11;
+
+    document.getElementById("class12").textContent =
+        t.class12;
+
+    document.getElementById("class13").textContent =
+        t.class13;
+
+    document.getElementById("abitur").textContent =
+        t.abitur;
 }
 
 
 function selectClass(number) {
 
-    localStorage.setItem("selectedClass", number);
+    localStorage.setItem(
+        "selectedClass",
+        number
+    );
 
-    /*
-       Klasse 5 hat bereits eine fertige Fächerseite.
-       Die anderen Klassen können später ergänzt werden.
-    */
 
     if (number === 5) {
 
-        window.location.href = "klasse5.html";
+        window.location.href =
+            "klasse5.html";
 
     } else {
 
         alert(
-            "Klasse " + number +
-            " ist noch nicht erstellt."
+            "Diese Klasse wird noch erstellt."
         );
 
     }
@@ -260,7 +360,10 @@ function selectClass(number) {
 
 function selectAbitur() {
 
-    localStorage.setItem("selectedClass", "abitur");
+    localStorage.setItem(
+        "selectedClass",
+        "abitur"
+    );
 
     alert(
         "Die Abitur-Seite wird noch erstellt."
