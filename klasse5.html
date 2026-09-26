@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LernWelt – Klasse 5</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px;
+        }
+
+        .container {
+            padding: 30px 20px;
+        }
+
+        .subject {
+            width: 250px;
+            margin: 12px auto;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+        }
+
+        .subject:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📚 LernWelt</h1>
+        <p>Klasse 5</p>
+    </header>
+
+    <div class="container">
+
+        <h2>Wähle ein Fach</h2>
+
+        <button class="subject">📐 Mathe</button>
+        <button class="subject">🇩🇪 Deutsch</button>
+        <button class="subject">🇬🇧 Englisch</button>
+        <button class="subject">🌍 Erdkunde</button>
+        <button class="subject">🔬 Naturwissenschaften</button>
+
+        <button class="subject"
+                onclick="window.location.href='home.html'">
+            ← Zurück
+        </button>
+
+    </div>
+
+</body>
+</html>
