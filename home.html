@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -53,6 +54,7 @@ button {
     color: white;
     font-size: 17px;
     cursor: pointer;
+    margin: 8px;
 }
 
 button:hover {
@@ -61,6 +63,17 @@ button:hover {
 
 .language-button {
     font-size: 18px;
+}
+
+#classBox {
+    display: none;
+    margin-top: 30px;
+}
+
+.class-button {
+    display: block;
+    width: 280px;
+    margin: 12px auto;
 }
 
 #message {
@@ -79,6 +92,8 @@ button:hover {
 </header>
 
 <div class="container">
+
+    <!-- SPRACHE -->
 
     <h2 id="chooseLanguage">🌐 Sprache auswählen</h2>
 
@@ -107,11 +122,54 @@ button:hover {
 
     <br>
 
-    <button onclick="goToSubjects()" id="startButton">
+    <!-- START -->
+
+    <button onclick="showClasses()" id="startButton">
         🚀 Start
     </button>
 
+    <!-- KLASSENAUSWAHL -->
+
+    <div id="classBox">
+
+        <h2 id="classTitle">
+            🎓 Klasse auswählen
+        </h2>
+
+        <button class="class-button"
+                onclick="selectClass(5)">
+            📚 Klasse 5
+        </button>
+
+        <button class="class-button"
+                onclick="selectClass(6)">
+            📚 Klasse 6
+        </button>
+
+        <button class="class-button"
+                onclick="selectClass(7)">
+            📚 Klasse 7
+        </button>
+
+        <button class="class-button"
+                onclick="selectClass(8)">
+            📚 Klasse 8
+        </button>
+
+        <button class="class-button"
+                onclick="selectClass(9)">
+            📚 Klasse 9
+        </button>
+
+        <button class="class-button"
+                onclick="selectClass(10)">
+            📚 Klasse 10
+        </button>
+
+    </div>
+
 </div>
+
 
 <script>
 
@@ -121,55 +179,91 @@ const translations = {
         subtitle: "Lernen einfach gemacht",
         choose: "🌐 Sprache auswählen",
         message: "Wähle deine Sprache aus.",
-        start: "🚀 Start"
+        start: "🚀 Start",
+        classTitle: "🎓 Klasse auswählen"
     },
 
     en: {
         subtitle: "Learning made easy",
         choose: "🌐 Choose your language",
         message: "Choose your language.",
-        start: "🚀 Start"
+        start: "🚀 Start",
+        classTitle: "🎓 Choose your grade"
     },
 
     ps: {
         subtitle: "زده کړه په اسانه",
         choose: "🌐 خپله ژبه وټاکئ",
         message: "خپله ژبه وټاکئ.",
-        start: "🚀 پیل"
+        start: "🚀 پیل",
+        classTitle: "🎓 خپل ټولګی وټاکئ"
     }
 
 };
 
+
+let currentLanguage =
+    localStorage.getItem("language") || "de";
+
+
 function changeLanguage(language) {
+
+    currentLanguage = language;
 
     localStorage.setItem("language", language);
 
+    const t = translations[language];
+
     document.getElementById("subtitle").textContent =
-        translations[language].subtitle;
+        t.subtitle;
 
     document.getElementById("chooseLanguage").textContent =
-        translations[language].choose;
+        t.choose;
 
     document.getElementById("message").textContent =
-        translations[language].message;
+        t.message;
 
     document.getElementById("startButton").textContent =
-        translations[language].start;
+        t.start;
+
+    document.getElementById("classTitle").textContent =
+        t.classTitle;
 }
 
-function goToSubjects() {
 
-    window.location.href = "klasse5.html";
+function showClasses() {
+
+    document.getElementById("classBox").style.display =
+        "block";
+
+    document.getElementById("startButton").style.display =
+        "none";
 }
 
-const savedLanguage =
-    localStorage.getItem("language");
 
-if (savedLanguage && translations[savedLanguage]) {
-    changeLanguage(savedLanguage);
+function selectClass(number) {
+
+    localStorage.setItem("selectedClass", number);
+
+    if (number === 5) {
+
+        window.location.href = "klasse5.html";
+
+    } else {
+
+        alert(
+            "Klasse " + number +
+            " wird noch erstellt."
+        );
+
+    }
 }
+
+
+changeLanguage(currentLanguage);
 
 </script>
 
 </body>
 </html>
+```
