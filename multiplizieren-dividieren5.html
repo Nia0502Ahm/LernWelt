@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 750px;
             margin: 30px auto;
             padding: 25px;
             background: white;
@@ -33,6 +33,28 @@
             border-radius: 10px;
             margin-bottom: 25px;
             text-align: left;
+        }
+
+        .visual {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 24px;
+        }
+
+        .groups {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .group {
+            padding: 12px;
+            background: #dbeafe;
+            border-radius: 10px;
+            min-width: 70px;
         }
 
         input {
@@ -100,29 +122,29 @@
         <h3>📖 Kurze Erklärung</h3>
 
         <p>
-            Beim <strong>Multiplizieren</strong> werden Zahlen miteinander malgenommen.
+            Beim <strong>Multiplizieren</strong> werden gleiche Mengen
+            zusammengezählt.
         </p>
 
         <p>
-            Beispiel: 6 · 4 = 24
+            Beispiel: 3 · 4 = 12
         </p>
 
         <p>
-            Beim <strong>Dividieren</strong> wird eine Zahl geteilt.
+            Beim <strong>Dividieren</strong> wird eine Menge gleichmäßig
+            aufgeteilt.
         </p>
 
         <p>
-            Beispiel: 24 : 4 = 6
-        </p>
-
-        <p>
-            Multiplikation und Division sind Umkehraufgaben.
+            Beispiel: 12 : 3 = 4
         </p>
     </div>
 
     <p id="progress"></p>
 
     <h3 id="question"></h3>
+
+    <div id="visual" class="visual"></div>
 
     <input id="answer" type="text" placeholder="Deine Antwort">
 
@@ -157,183 +179,230 @@
 const questions = [
 
     {
-        q: "6 · 4 = ?",
+        q: "2 · 3 = ?",
+        visual: `
+            <div class="groups">
+                <div class="group">🔵 🔵 🔵</div>
+                <div class="group">🔵 🔵 🔵</div>
+            </div>
+        `,
+        answer: "6",
+        solution: "2 · 3 = 6."
+    },
+
+    {
+        q: "3 · 4 = ?",
+        visual: `
+            <div class="groups">
+                <div class="group">🟦 🟦 🟦 🟦</div>
+                <div class="group">🟦 🟦 🟦 🟦</div>
+                <div class="group">🟦 🟦 🟦 🟦</div>
+            </div>
+        `,
+        answer: "12",
+        solution: "3 · 4 = 12."
+    },
+
+    {
+        q: "4 · 5 = ?",
+        visual: "🟢🟢🟢🟢🟢 &nbsp; × &nbsp; 4 Gruppen",
+        answer: "20",
+        solution: "4 · 5 = 20."
+    },
+
+    {
+        q: "5 · 2 = ?",
+        visual: "🟡🟡 × 5 Gruppen",
+        answer: "10",
+        solution: "5 · 2 = 10."
+    },
+
+    {
+        q: "6 · 3 = ?",
+        visual: "🔵🔵🔵 × 6 Gruppen",
+        answer: "18",
+        solution: "6 · 3 = 18."
+    },
+
+    {
+        q: "7 · 2 = ?",
+        visual: "🟩🟩 × 7 Gruppen",
+        answer: "14",
+        solution: "7 · 2 = 14."
+    },
+
+    {
+        q: "8 · 3 = ?",
+        visual: "🟦🟦🟦 × 8 Gruppen",
         answer: "24",
-        solution: "6 · 4 = 24."
+        solution: "8 · 3 = 24."
     },
 
     {
-        q: "7 · 5 = ?",
-        answer: "35",
-        solution: "7 · 5 = 35."
+        q: "9 · 2 = ?",
+        visual: "🔴🔴 × 9 Gruppen",
+        answer: "18",
+        solution: "9 · 2 = 18."
     },
 
     {
-        q: "8 · 6 = ?",
-        answer: "48",
-        solution: "8 · 6 = 48."
+        q: "10 · 4 = ?",
+        visual: "🟨🟨🟨🟨 × 10 Gruppen",
+        answer: "40",
+        solution: "10 · 4 = 40."
     },
 
     {
-        q: "9 · 7 = ?",
-        answer: "63",
-        solution: "9 · 7 = 63."
+        q: "5 · 5 = ?",
+        visual: "🟣🟣🟣🟣🟣 × 5 Gruppen",
+        answer: "25",
+        solution: "5 · 5 = 25."
     },
 
     {
-        q: "12 · 3 = ?",
-        answer: "36",
-        solution: "12 · 3 = 36."
+        q: "12 : 3 = ?",
+        visual: `
+            <div class="groups">
+                🍎🍎🍎🍎
+                🍎🍎🍎🍎
+                🍎🍎🍎🍎
+            </div>
+        `,
+        answer: "4",
+        solution: "12 : 3 = 4."
     },
 
     {
-        q: "15 · 4 = ?",
-        answer: "60",
-        solution: "15 · 4 = 60."
+        q: "20 : 4 = ?",
+        visual: "🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢",
+        answer: "5",
+        solution: "20 : 4 = 5."
     },
 
     {
-        q: "20 · 5 = ?",
-        answer: "100",
-        solution: "20 · 5 = 100."
-    },
-
-    {
-        q: "25 · 4 = ?",
-        answer: "100",
-        solution: "25 · 4 = 100."
-    },
-
-    {
-        q: "30 · 3 = ?",
-        answer: "90",
-        solution: "30 · 3 = 90."
-    },
-
-    {
-        q: "11 · 6 = ?",
-        answer: "66",
-        solution: "11 · 6 = 66."
+        q: "18 : 3 = ?",
+        visual: "🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵",
+        answer: "6",
+        solution: "18 : 3 = 6."
     },
 
     {
         q: "24 : 4 = ?",
+        visual: "🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦",
         answer: "6",
         solution: "24 : 4 = 6."
     },
 
     {
-        q: "35 : 5 = ?",
-        answer: "7",
-        solution: "35 : 5 = 7."
+        q: "30 : 5 = ?",
+        visual: "🟡🟡🟡🟡🟡 × 6 Gruppen",
+        answer: "6",
+        solution: "30 : 5 = 6."
     },
 
     {
-        q: "48 : 6 = ?",
-        answer: "8",
-        solution: "48 : 6 = 8."
+        q: "6 · 6 = ?",
+        visual: "🟩🟩🟩🟩🟩🟩 × 6 Gruppen",
+        answer: "36",
+        solution: "6 · 6 = 36."
     },
 
     {
-        q: "63 : 7 = ?",
+        q: "7 · 5 = ?",
+        visual: "🟠🟠🟠🟠🟠 × 7 Gruppen",
+        answer: "35",
+        solution: "7 · 5 = 35."
+    },
+
+    {
+        q: "8 · 4 = ?",
+        visual: "🟦🟦🟦🟦 × 8 Gruppen",
+        answer: "32",
+        solution: "8 · 4 = 32."
+    },
+
+    {
+        q: "9 · 5 = ?",
+        visual: "🟣🟣🟣🟣🟣 × 9 Gruppen",
+        answer: "45",
+        solution: "9 · 5 = 45."
+    },
+
+    {
+        q: "10 · 6 = ?",
+        visual: "🟨🟨🟨🟨🟨🟨 × 10 Gruppen",
+        answer: "60",
+        solution: "10 · 6 = 60."
+    },
+
+    {
+        q: "36 : 6 = ?",
+        visual: "36 Punkte werden auf 6 Gruppen verteilt.",
+        answer: "6",
+        solution: "36 : 6 = 6."
+    },
+
+    {
+        q: "40 : 8 = ?",
+        visual: "40 Punkte werden auf 8 Gruppen verteilt.",
+        answer: "5",
+        solution: "40 : 8 = 5."
+    },
+
+    {
+        q: "45 : 5 = ?",
+        visual: "45 Punkte werden auf 5 Gruppen verteilt.",
         answer: "9",
-        solution: "63 : 7 = 9."
+        solution: "45 : 5 = 9."
     },
 
     {
-        q: "36 : 3 = ?",
-        answer: "12",
-        solution: "36 : 3 = 12."
+        q: "50 : 10 = ?",
+        visual: "50 Punkte werden auf 10 Gruppen verteilt.",
+        answer: "5",
+        solution: "50 : 10 = 5."
     },
 
     {
-        q: "60 : 4 = ?",
-        answer: "15",
-        solution: "60 : 4 = 15."
+        q: "12 · 2 = ?",
+        visual: "🔵🔵 × 12 Gruppen",
+        answer: "24",
+        solution: "12 · 2 = 24."
     },
 
     {
-        q: "100 : 5 = ?",
-        answer: "20",
-        solution: "100 : 5 = 20."
+        q: "15 · 3 = ?",
+        visual: "🟢🟢🟢 × 15 Gruppen",
+        answer: "45",
+        solution: "15 · 3 = 45."
     },
 
     {
-        q: "120 : 6 = ?",
-        answer: "20",
-        solution: "120 : 6 = 20."
-    },
-
-    {
-        q: "150 : 5 = ?",
-        answer: "30",
-        solution: "150 : 5 = 30."
-    },
-
-    {
-        q: "200 : 10 = ?",
-        answer: "20",
-        solution: "200 : 10 = 20."
-    },
-
-    {
-        q: "14 · 5 = ?",
-        answer: "70",
-        solution: "14 · 5 = 70."
-    },
-
-    {
-        q: "16 · 6 = ?",
-        answer: "96",
-        solution: "16 · 6 = 96."
-    },
-
-    {
-        q: "18 · 5 = ?",
-        answer: "90",
-        solution: "18 · 5 = 90."
-    },
-
-    {
-        q: "21 · 4 = ?",
-        answer: "84",
-        solution: "21 · 4 = 84."
+        q: "60 : 6 = ?",
+        visual: "60 Punkte werden auf 6 Gruppen verteilt.",
+        answer: "10",
+        solution: "60 : 6 = 10."
     },
 
     {
         q: "72 : 8 = ?",
+        visual: "72 Punkte werden auf 8 Gruppen verteilt.",
         answer: "9",
         solution: "72 : 8 = 9."
     },
 
     {
-        q: "81 : 9 = ?",
-        answer: "9",
-        solution: "81 : 9 = 9."
+        q: "100 : 10 = ?",
+        visual: "💯 100 Punkte → 10 gleiche Gruppen",
+        answer: "10",
+        solution: "100 : 10 = 10."
     },
 
     {
-        q: "96 : 8 = ?",
-        answer: "12",
-        solution: "96 : 8 = 12."
-    },
-
-    {
-        q: "144 : 12 = ?",
-        answer: "12",
-        solution: "144 : 12 = 12."
-    },
-
-    {
-        q: "25 · 8 = ?",
-        answer: "200",
-        solution: "25 · 8 = 200."
-    },
-
-    {
-        q: "240 : 6 = ?",
-        answer: "40",
-        solution: "240 : 6 = 40."
+        q: "25 · 4 = ?",
+        visual: "25 · 4 = ❓",
+        answer: "100",
+        solution: "25 · 4 = 100."
     }
 
 ];
@@ -344,6 +413,9 @@ function showQuestion() {
 
     document.getElementById("question").textContent =
         questions[current].q;
+
+    document.getElementById("visual").innerHTML =
+        questions[current].visual;
 
     document.getElementById("progress").textContent =
         "Aufgabe " + (current + 1) +
@@ -405,6 +477,9 @@ function nextQuestion() {
 
         document.getElementById("progress").textContent =
             "Fertig! 🏆";
+
+        document.getElementById("visual").style.display =
+            "none";
 
         document.getElementById("answer").style.display =
             "none";
