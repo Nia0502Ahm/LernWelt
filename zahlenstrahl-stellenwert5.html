@@ -1,88 +1,136 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Zahlenstrahl und Stellenwert</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LernWelt – Zahlenstrahl und Stellenwert</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
 
-        .container {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-        }
+.container {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+}
 
-        .explanation {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
 
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
+.visual {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-size: 22px;
+}
 
-        button {
-            padding: 13px 25px;
-            margin: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.numberline {
+    position: relative;
+    height: 90px;
+    margin: 20px;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+.line {
+    position: absolute;
+    top: 35px;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background: #333;
+}
 
-        #result {
-            margin: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+.tick {
+    position: absolute;
+    top: 25px;
+    width: 4px;
+    height: 25px;
+    background: #333;
+    transform: translateX(-50%);
+}
 
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-        }
+.num {
+    position: absolute;
+    top: 52px;
+    transform: translateX(-50%);
+    font-size: 15px;
+}
 
-        #nextButton {
-            display: none;
-        }
+.place {
+    display: inline-block;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 10px;
+    background: #dbeafe;
+    min-width: 75px;
+}
 
-        .back {
-            background: #64748b;
-        }
-    </style>
+input {
+    width: 80%;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 13px 25px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#result {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#solution {
+    display: none;
+    background: #f1f5f9;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+#nextButton {
+    display: none;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
 </head>
 
 <body>
@@ -94,59 +142,58 @@
 
 <div class="container">
 
-    <h2>🔢 Zahlenstrahl und Stellenwert</h2>
+<h2>🔢 Zahlenstrahl und Stellenwert</h2>
 
-    <div class="explanation">
-        <h3>📖 Kurze Erklärung</h3>
+<div class="explanation">
+<h3>📖 Kurze Erklärung</h3>
 
-        <p>
-            Ein Zahlenstrahl zeigt Zahlen in der richtigen Reihenfolge.
-        </p>
+<p>
+Auf einem <strong>Zahlenstrahl</strong> stehen Zahlen in der richtigen Reihenfolge.
+</p>
 
-        <p>
-            Je weiter rechts eine Zahl steht, desto größer ist sie.
-        </p>
+<p>
+Je weiter rechts eine Zahl steht, desto größer ist sie.
+</p>
 
-        <p>
-            Bei einer Zahl hat jede Stelle einen bestimmten Wert:
-            Einer, Zehner, Hunderter, Tausender usw.
-        </p>
+<p>
+Bei einer Zahl hat jede Stelle einen bestimmten Wert:
+<strong>Einer, Zehner, Hunderter, Tausender</strong>.
+</p>
 
-        <p>
-            Beispiel: Bei <strong>3 452</strong> sind 3 Tausender,
-            4 Hunderter, 5 Zehner und 2 Einer.
-        </p>
-    </div>
+<p>
+Beispiel: Bei <strong>3.482</strong> ist 3 der Tausender,
+4 der Hunderter, 8 der Zehner und 2 der Einer.
+</p>
+</div>
 
-    <p id="progress"></p>
+<p id="progress"></p>
 
-    <h3 id="question"></h3>
+<h3 id="question"></h3>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
+<div id="visual" class="visual"></div>
 
-    <br>
+<input id="answer" type="text" placeholder="Deine Antwort">
 
-    <button onclick="checkAnswer()">
-        Antwort prüfen
-    </button>
+<br>
 
-    <div id="result"></div>
+<button onclick="checkAnswer()">Antwort prüfen</button>
 
-    <div id="solution">
-        <h3>💡 Lösung</h3>
-        <p id="solutionText"></p>
-    </div>
+<div id="result"></div>
 
-    <button id="nextButton" onclick="nextQuestion()">
-        ➡️ Nächste Aufgabe
-    </button>
+<div id="solution">
+<h3>💡 Lösung</h3>
+<p id="solutionText"></p>
+</div>
 
-    <br>
+<button id="nextButton" onclick="nextQuestion()">
+➡️ Nächste Aufgabe
+</button>
 
-    <button class="back"
-        onclick="window.location.href='mathe5.html'">
-        ← Zurück zu den Themen
-    </button>
+<br>
+
+<button class="back" onclick="window.location.href='mathe5.html'">
+← Zurück zu den Mathe-Themen
+</button>
 
 </div>
 
@@ -154,185 +201,251 @@
 
 const questions = [
 
-    {
-        q: "Welche Zahl kommt nach 49?",
-        answer: "50",
-        solution: "Nach 49 kommt 50."
-    },
+{
+q: "Welche Zahl steht zwischen 2 und 4?",
+visual: `
+<div class="numberline">
+<div class="line"></div>
+<div class="tick" style="left:10%"></div>
+<div class="num" style="left:10%">2</div>
+<div class="tick" style="left:50%"></div>
+<div class="num" style="left:50%">?</div>
+<div class="tick" style="left:90%"></div>
+<div class="num" style="left:90%">4</div>
+</div>
+`,
+answer: "3",
+solution: "Zwischen 2 und 4 steht die 3."
+},
 
-    {
-        q: "Welche Zahl kommt vor 100?",
-        answer: "99",
-        solution: "Vor 100 kommt 99."
-    },
+{
+q: "Welche Zahl kommt nach 9?",
+visual: "8 → 9 → ❓ → 11",
+answer: "10",
+solution: "Nach 9 kommt 10."
+},
 
-    {
-        q: "Welche Zahl ist größer: 25 oder 52?",
-        answer: "52",
-        solution: "52 steht auf dem Zahlenstrahl weiter rechts und ist deshalb größer."
-    },
+{
+q: "Welche Zahl kommt vor 20?",
+visual: "18 → 19 → ❓ → 21",
+answer: "19",
+solution: "Vor 20 kommt 19."
+},
 
-    {
-        q: "Welche Zahl ist kleiner: 73 oder 37?",
-        answer: "37",
-        solution: "37 ist kleiner als 73."
-    },
+{
+q: "Welche Zahl fehlt?",
+visual: "10 → 20 → ❓ → 40 → 50",
+answer: "30",
+solution: "Die Zahlen steigen jeweils um 10. Deshalb fehlt 30."
+},
 
-    {
-        q: "Welche Zahl liegt zwischen 20 und 22?",
-        answer: "21",
-        solution: "Zwischen 20 und 22 liegt 21."
-    },
+{
+q: "Welche Zahl fehlt?",
+visual: "100 → 200 → ❓ → 400 → 500",
+answer: "300",
+solution: "Die Zahlen steigen jeweils um 100. Deshalb fehlt 300."
+},
 
-    {
-        q: "Welche Zahl liegt zwischen 48 und 50?",
-        answer: "49",
-        solution: "Zwischen 48 und 50 liegt 49."
-    },
+{
+q: "Welche Zahl steht auf dem Zahlenstrahl?",
+visual: `
+<div class="numberline">
+<div class="line"></div>
+<div class="tick" style="left:10%"></div>
+<div class="num" style="left:10%">0</div>
+<div class="tick" style="left:30%"></div>
+<div class="num" style="left:30%">10</div>
+<div class="tick" style="left:50%"></div>
+<div class="num" style="left:50%">?</div>
+<div class="tick" style="left:70%"></div>
+<div class="num" style="left:70%">30</div>
+<div class="tick" style="left:90%"></div>
+<div class="num" style="left:90%">40</div>
+</div>
+`,
+answer: "20",
+solution: "Die Zahlen steigen um 10. Deshalb steht bei ? die 20."
+},
 
-    {
-        q: "Welche Zahl steht auf dem Zahlenstrahl weiter rechts: 80 oder 70?",
-        answer: "80",
-        solution: "80 ist größer und steht deshalb weiter rechts."
-    },
+{
+q: "Welche Zahl ist größer: 35 oder 53?",
+visual: "35 🆚 53",
+answer: "53",
+solution: "53 ist größer als 35."
+},
 
-    {
-        q: "Welche Zahl steht weiter links: 30 oder 40?",
-        answer: "30",
-        solution: "30 ist kleiner und steht deshalb weiter links."
-    },
+{
+q: "Welche Zahl ist kleiner: 72 oder 27?",
+visual: "72 🆚 27",
+answer: "27",
+solution: "27 ist kleiner als 72."
+},
 
-    {
-        q: "Wie viele Einer hat 347?",
-        answer: "7",
-        solution: "Die Einerstelle von 347 ist 7."
-    },
+{
+q: "Wie viele Einer hat 348?",
+visual: `
+<div class="place">Hunderter<br><strong>3</strong></div>
+<div class="place">Zehner<br><strong>4</strong></div>
+<div class="place">Einer<br><strong>8</strong></div>
+`,
+answer: "8",
+solution: "Die Einerstelle von 348 ist 8."
+},
 
-    {
-        q: "Wie viele Zehner hat 347?",
-        answer: "4",
-        solution: "Die Zehnerstelle von 347 ist 4."
-    },
+{
+q: "Wie viele Zehner hat 572?",
+visual: `
+<div class="place">Hunderter<br><strong>5</strong></div>
+<div class="place">Zehner<br><strong>7</strong></div>
+<div class="place">Einer<br><strong>2</strong></div>
+`,
+answer: "7",
+solution: "Die Zehnerstelle von 572 ist 7."
+},
 
-    {
-        q: "Wie viele Hunderter hat 347?",
-        answer: "3",
-        solution: "Die Hunderterstelle von 347 ist 3."
-    },
+{
+q: "Wie viele Hunderter hat 625?",
+visual: `
+<div class="place">Hunderter<br><strong>6</strong></div>
+<div class="place">Zehner<br><strong>2</strong></div>
+<div class="place">Einer<br><strong>5</strong></div>
+`,
+answer: "6",
+solution: "Die Hunderterstelle von 625 ist 6."
+},
 
-    {
-        q: "Wie viele Tausender hat 4 321?",
-        answer: "4",
-        solution: "Die Tausenderstelle von 4 321 ist 4."
-    },
+{
+q: "Welche Zahl hat 4 Hunderter, 2 Zehner und 7 Einer?",
+visual: "400 + 20 + 7 = ❓",
+answer: "427",
+solution: "4 Hunderter + 2 Zehner + 7 Einer = 427."
+},
 
-    {
-        q: "Welche Ziffer steht bei 582 an der Einerstelle?",
-        answer: "2",
-        solution: "Bei 582 steht die 2 an der Einerstelle."
-    },
+{
+q: "Welche Zahl hat 6 Hunderter, 3 Zehner und 5 Einer?",
+visual: "600 + 30 + 5 = ❓",
+answer: "635",
+solution: "600 + 30 + 5 = 635."
+},
 
-    {
-        q: "Welche Ziffer steht bei 582 an der Zehnerstelle?",
-        answer: "8",
-        solution: "Bei 582 steht die 8 an der Zehnerstelle."
-    },
+{
+q: "Welche Zahl hat 2 Tausender, 4 Hunderter, 1 Zehner und 8 Einer?",
+visual: "2000 + 400 + 10 + 8 = ❓",
+answer: "2418",
+solution: "2000 + 400 + 10 + 8 = 2418."
+},
 
-    {
-        q: "Welche Ziffer steht bei 582 an der Hunderterstelle?",
-        answer: "5",
-        solution: "Bei 582 steht die 5 an der Hunderterstelle."
-    },
+{
+q: "Zerlege 347 in Hunderter, Zehner und Einer.",
+visual: "347 = ❓ H + ❓ Z + ❓ E",
+answer: "300+40+7",
+solution: "347 = 300 + 40 + 7."
+},
 
-    {
-        q: "Welchen Wert hat die 6 in 364?",
-        answer: "60",
-        solution: "Die 6 steht an der Zehnerstelle. Deshalb ist ihr Wert 60."
-    },
+{
+q: "Zerlege 582.",
+visual: "582 = ❓ H + ❓ Z + ❓ E",
+answer: "500+80+2",
+solution: "582 = 500 + 80 + 2."
+},
 
-    {
-        q: "Welchen Wert hat die 4 in 425?",
-        answer: "400",
-        solution: "Die 4 steht an der Hunderterstelle. Ihr Wert ist 400."
-    },
+{
+q: "Welche Zahl ist größer: 456 oder 465?",
+visual: "456 🆚 465",
+answer: "465",
+solution: "465 ist größer als 456."
+},
 
-    {
-        q: "Welchen Wert hat die 7 in 2 715?",
-        answer: "700",
-        solution: "Die 7 steht an der Hunderterstelle. Ihr Wert ist 700."
-    },
+{
+q: "Welche Zahl ist kleiner: 821 oder 812?",
+visual: "821 🆚 812",
+answer: "812",
+solution: "812 ist kleiner als 821."
+},
 
-    {
-        q: "Welchen Wert hat die 5 in 5 234?",
-        answer: "5000",
-        solution: "Die 5 steht an der Tausenderstelle. Ihr Wert ist 5000."
-    },
+{
+q: "Ordne von klein nach groß: 5, 2, 8, 1.",
+visual: "5 · 2 · 8 · 1",
+answer: "1,2,5,8",
+solution: "Richtig: 1, 2, 5, 8."
+},
 
-    {
-        q: "Schreibe als Zahl: 3 Hunderter, 4 Zehner und 2 Einer.",
-        answer: "342",
-        solution: "300 + 40 + 2 = 342."
-    },
+{
+q: "Ordne von groß nach klein: 3, 9, 4, 7.",
+visual: "3 · 9 · 4 · 7",
+answer: "9,7,4,3",
+solution: "Richtig: 9, 7, 4, 3."
+},
 
-    {
-        q: "Schreibe als Zahl: 5 Hunderter, 2 Zehner und 7 Einer.",
-        answer: "527",
-        solution: "500 + 20 + 7 = 527."
-    },
+{
+q: "Welche Zahl liegt genau zwischen 30 und 32?",
+visual: "30 → ❓ → 32",
+answer: "31",
+solution: "31 liegt genau zwischen 30 und 32."
+},
 
-    {
-        q: "Schreibe als Zahl: 2 Tausender, 3 Hunderter, 4 Zehner und 5 Einer.",
-        answer: "2345",
-        solution: "2 000 + 300 + 40 + 5 = 2 345."
-    },
+{
+q: "Welche Zahl liegt genau zwischen 48 und 50?",
+visual: "48 → ❓ → 50",
+answer: "49",
+solution: "49 liegt genau zwischen 48 und 50."
+},
 
-    {
-        q: "Wie viele Zehner sind in 100?",
-        answer: "10",
-        solution: "100 : 10 = 10 Zehner."
-    },
+{
+q: "Wie viel ist eine Zehnerstelle wert, wenn dort die 5 steht?",
+visual: "5 Zehner = ❓",
+answer: "50",
+solution: "5 Zehner sind 50."
+},
 
-    {
-        q: "Wie viele Hunderter sind in 1 000?",
-        answer: "10",
-        solution: "1 000 : 100 = 10 Hunderter."
-    },
+{
+q: "Wie viel sind 7 Hunderter?",
+visual: "7 Hunderter = ❓",
+answer: "700",
+solution: "7 Hunderter sind 700."
+},
 
-    {
-        q: "Welche Zahl ist größer: 1 250 oder 1 205?",
-        answer: "1250",
-        solution: "1 250 ist größer als 1 205."
-    },
+{
+q: "Wie viel sind 4 Tausender?",
+visual: "4 Tausender = ❓",
+answer: "4000",
+solution: "4 Tausender sind 4000."
+},
 
-    {
-        q: "Welche Zahl ist kleiner: 3 450 oder 3 540?",
-        answer: "3450",
-        solution: "3 450 ist kleiner als 3 540."
-    },
+{
+q: "Welche Zahl ist 10 größer als 45?",
+visual: "45 → +10 → ❓",
+answer: "55",
+solution: "45 + 10 = 55."
+},
 
-    {
-        q: "Ordne aufsteigend: 5, 2, 8, 3.",
-        answer: "2,3,5,8",
-        solution: "Von klein nach groß: 2, 3, 5, 8."
-    },
+{
+q: "Welche Zahl ist 100 größer als 250?",
+visual: "250 → +100 → ❓",
+answer: "350",
+solution: "250 + 100 = 350."
+},
 
-    {
-        q: "Ordne absteigend: 4, 9, 1, 6.",
-        answer: "9,6,4,1",
-        solution: "Von groß nach klein: 9, 6, 4, 1."
-    },
+{
+q: "Welche Zahl ist 10 kleiner als 80?",
+visual: "80 → -10 → ❓",
+answer: "70",
+solution: "80 - 10 = 70."
+},
 
-    {
-        q: "Welche Zahl fehlt: 10, 20, 30, ?, 50?",
-        answer: "40",
-        solution: "Die Zahlen steigen immer um 10. Deshalb fehlt 40."
-    },
+{
+q: "Welche Zahl ist 100 kleiner als 600?",
+visual: "600 → -100 → ❓",
+answer: "500",
+solution: "600 - 100 = 500."
+},
 
-    {
-        q: "Welche Zahl fehlt: 100, 200, ?, 400?",
-        answer: "300",
-        solution: "Die Zahlen steigen immer um 100. Deshalb fehlt 300."
-    }
+{
+q: "Welche Zahl steht zwischen 999 und 1001?",
+visual: "999 → ❓ → 1001",
+answer: "1000",
+solution: "Zwischen 999 und 1001 steht 1000."
+}
 
 ];
 
@@ -342,6 +455,9 @@ function showQuestion() {
 
     document.getElementById("question").textContent =
         questions[current].q;
+
+    document.getElementById("visual").innerHTML =
+        questions[current].visual;
 
     document.getElementById("progress").textContent =
         "Aufgabe " + (current + 1) +
@@ -363,10 +479,12 @@ function checkAnswer() {
     const userAnswer =
         document.getElementById("answer").value
         .trim()
+        .toLowerCase()
         .replace(/\s/g, "");
 
     const correctAnswer =
         questions[current].answer
+        .toLowerCase()
         .replace(/\s/g, "");
 
     if (userAnswer === correctAnswer) {
@@ -403,6 +521,9 @@ function nextQuestion() {
 
         document.getElementById("progress").textContent =
             "Fertig! 🏆";
+
+        document.getElementById("visual").style.display =
+            "none";
 
         document.getElementById("answer").style.display =
             "none";
