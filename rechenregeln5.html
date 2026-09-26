@@ -1,88 +1,106 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Rechenregeln und Klammern</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
+<title>LernWelt – Rechenregeln</title>
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
 
-        .container {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
 
-        .explanation {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
+.container {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+}
 
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
 
-        button {
-            padding: 13px 25px;
-            margin: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.rule {
+    background: #dbeafe;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 19px;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+.visual {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-size: 30px;
+    font-weight: bold;
+}
 
-        #result {
-            margin: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+input {
+    width: 80%;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 15px;
+    box-sizing: border-box;
+}
 
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-        }
+button {
+    padding: 13px 25px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        #nextButton {
-            display: none;
-        }
+button:hover {
+    background: #1d4ed8;
+}
 
-        .back {
-            background: #64748b;
-        }
-    </style>
+#result {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#solution {
+    display: none;
+    background: #f1f5f9;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+#nextButton {
+    display: none;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
 </head>
 
 <body>
@@ -94,63 +112,78 @@
 
 <div class="container">
 
-    <h2>🧮 Rechenregeln und Klammern</h2>
+<h2>🧮 Rechenregeln</h2>
 
-    <div class="explanation">
-        <h3>📖 Kurze Erklärung</h3>
+<div class="explanation">
 
-        <p>
-            Bei Rechnungen mit mehreren Rechenarten gilt:
-            <strong>Punkt vor Strich.</strong>
-        </p>
+<h3>📖 Kurze Erklärung</h3>
 
-        <p>
-            Multiplikation (·) und Division (:) werden vor
-            Addition (+) und Subtraktion (-) gerechnet.
-        </p>
+<p>Bei mehreren Rechenarten gilt:</p>
 
-        <p>
-            Klammern werden zuerst berechnet.
-        </p>
+<div class="rule">
+✖️ Multiplikation und ➗ Division zuerst
+</div>
 
-        <p>
-            Beispiel: 5 + 3 · 2 = 5 + 6 = 11
-        </p>
+<div class="rule">
+➕ Addition und ➖ Subtraktion danach
+</div>
 
-        <p>
-            Beispiel: (5 + 3) · 2 = 8 · 2 = 16
-        </p>
-    </div>
+<div class="rule">
+🔵 Klammern immer zuerst rechnen
+</div>
 
-    <p id="progress"></p>
+<p>
+<strong>Beispiel:</strong>
+</p>
 
-    <h3 id="question"></h3>
+<p>
+2 + 3 × 4 = 14
+</p>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
+<p>
+Zuerst 3 × 4 = 12.<br>
+Danach 2 + 12 = 14.
+</p>
 
-    <br>
+</div>
 
-    <button onclick="checkAnswer()">
-        Antwort prüfen
-    </button>
+<p id="progress"></p>
 
-    <div id="result"></div>
+<h3 id="question"></h3>
 
-    <div id="solution">
-        <h3>💡 Lösung</h3>
-        <p id="solutionText"></p>
-    </div>
+<div id="visual" class="visual"></div>
 
-    <button id="nextButton" onclick="nextQuestion()">
-        ➡️ Nächste Aufgabe
-    </button>
+<input
+    id="answer"
+    type="text"
+    placeholder="Deine Antwort"
+>
 
-    <br>
+<br>
 
-    <button class="back"
-        onclick="window.location.href='mathe5.html'">
-        ← Zurück zu den Themen
-    </button>
+<button onclick="checkAnswer()">
+Antwort prüfen
+</button>
+
+<div id="result"></div>
+
+<div id="solution">
+    <h3>💡 Lösung</h3>
+    <p id="solutionText"></p>
+</div>
+
+<button id="nextButton" onclick="nextQuestion()">
+➡️ Nächste Aufgabe
+</button>
+
+<br>
+
+<button
+    class="back"
+    onclick="window.location.href='mathe5.html'"
+>
+← Zurück zu den Mathe-Themen
+</button>
 
 </div>
 
@@ -158,185 +191,215 @@
 
 const questions = [
 
-    {
-        q: "5 + 3 · 2 = ?",
-        answer: "11",
-        solution: "Zuerst 3 · 2 = 6. Dann 5 + 6 = 11."
-    },
+{
+q: "Rechne: 3 + 4 × 2",
+visual: "3 + 4 × 2 = ❓",
+answer: "11",
+solution: "Zuerst 4 × 2 = 8. Danach 3 + 8 = 11."
+},
 
-    {
-        q: "10 + 4 · 2 = ?",
-        answer: "18",
-        solution: "Zuerst 4 · 2 = 8. Dann 10 + 8 = 18."
-    },
+{
+q: "Rechne: 5 + 2 × 3",
+visual: "5 + 2 × 3 = ❓",
+answer: "11",
+solution: "Zuerst 2 × 3 = 6. Danach 5 + 6 = 11."
+},
 
-    {
-        q: "20 - 3 · 4 = ?",
-        answer: "8",
-        solution: "Zuerst 3 · 4 = 12. Dann 20 - 12 = 8."
-    },
+{
+q: "Rechne: 10 - 2 × 3",
+visual: "10 - 2 × 3 = ❓",
+answer: "4",
+solution: "Zuerst 2 × 3 = 6. Danach 10 - 6 = 4."
+},
 
-    {
-        q: "6 · 5 + 4 = ?",
-        answer: "34",
-        solution: "Zuerst 6 · 5 = 30. Dann 30 + 4 = 34."
-    },
+{
+q: "Rechne: 20 - 4 × 2",
+visual: "20 - 4 × 2 = ❓",
+answer: "12",
+solution: "Zuerst 4 × 2 = 8. Danach 20 - 8 = 12."
+},
 
-    {
-        q: "30 - 2 · 5 = ?",
-        answer: "20",
-        solution: "Zuerst 2 · 5 = 10. Dann 30 - 10 = 20."
-    },
+{
+q: "Rechne: 6 + 12 ÷ 3",
+visual: "6 + 12 ÷ 3 = ❓",
+answer: "10",
+solution: "Zuerst 12 ÷ 3 = 4. Danach 6 + 4 = 10."
+},
 
-    {
-        q: "8 + 12 : 3 = ?",
-        answer: "12",
-        solution: "Zuerst 12 : 3 = 4. Dann 8 + 4 = 12."
-    },
+{
+q: "Rechne: 15 - 10 ÷ 2",
+visual: "15 - 10 ÷ 2 = ❓",
+answer: "10",
+solution: "Zuerst 10 ÷ 2 = 5. Danach 15 - 5 = 10."
+},
 
-    {
-        q: "20 - 16 : 4 = ?",
-        answer: "16",
-        solution: "Zuerst 16 : 4 = 4. Dann 20 - 4 = 16."
-    },
+{
+q: "Rechne: 4 × 3 + 2",
+visual: "4 × 3 + 2 = ❓",
+answer: "14",
+solution: "Zuerst 4 × 3 = 12. Danach 12 + 2 = 14."
+},
 
-    {
-        q: "5 · 4 - 6 = ?",
-        answer: "14",
-        solution: "Zuerst 5 · 4 = 20. Dann 20 - 6 = 14."
-    },
+{
+q: "Rechne: 5 × 2 - 3",
+visual: "5 × 2 - 3 = ❓",
+answer: "7",
+solution: "Zuerst 5 × 2 = 10. Danach 10 - 3 = 7."
+},
 
-    {
-        q: "(5 + 3) · 2 = ?",
-        answer: "16",
-        solution: "Zuerst die Klammer: 5 + 3 = 8. Dann 8 · 2 = 16."
-    },
+{
+q: "Rechne: 18 ÷ 3 + 4",
+visual: "18 ÷ 3 + 4 = ❓",
+answer: "10",
+solution: "Zuerst 18 ÷ 3 = 6. Danach 6 + 4 = 10."
+},
 
-    {
-        q: "(10 - 4) · 3 = ?",
-        answer: "18",
-        solution: "Zuerst die Klammer: 10 - 4 = 6. Dann 6 · 3 = 18."
-    },
+{
+q: "Rechne: 20 ÷ 4 - 2",
+visual: "20 ÷ 4 - 2 = ❓",
+answer: "3",
+solution: "Zuerst 20 ÷ 4 = 5. Danach 5 - 2 = 3."
+},
 
-    {
-        q: "(6 + 4) : 2 = ?",
-        answer: "5",
-        solution: "Zuerst 6 + 4 = 10. Dann 10 : 2 = 5."
-    },
+{
+q: "Rechne: (3 + 4) × 2",
+visual: "(3 + 4) × 2 = ❓",
+answer: "14",
+solution: "Zuerst die Klammer: 3 + 4 = 7. Danach 7 × 2 = 14."
+},
 
-    {
-        q: "(12 - 4) : 2 = ?",
-        answer: "4",
-        solution: "Zuerst 12 - 4 = 8. Dann 8 : 2 = 4."
-    },
+{
+q: "Rechne: (5 + 2) × 3",
+visual: "(5 + 2) × 3 = ❓",
+answer: "21",
+solution: "5 + 2 = 7. Danach 7 × 3 = 21."
+},
 
-    {
-        q: "7 + 2 · 5 = ?",
-        answer: "17",
-        solution: "Zuerst 2 · 5 = 10. Dann 7 + 10 = 17."
-    },
+{
+q: "Rechne: (10 - 4) × 2",
+visual: "(10 - 4) × 2 = ❓",
+answer: "12",
+solution: "10 - 4 = 6. Danach 6 × 2 = 12."
+},
 
-    {
-        q: "15 - 3 · 2 = ?",
-        answer: "9",
-        solution: "Zuerst 3 · 2 = 6. Dann 15 - 6 = 9."
-    },
+{
+q: "Rechne: (8 + 4) ÷ 2",
+visual: "(8 + 4) ÷ 2 = ❓",
+answer: "6",
+solution: "8 + 4 = 12. Danach 12 ÷ 2 = 6."
+},
 
-    {
-        q: "4 · 6 + 5 = ?",
-        answer: "29",
-        solution: "Zuerst 4 · 6 = 24. Dann 24 + 5 = 29."
-    },
+{
+q: "Rechne: 20 ÷ (2 + 3)",
+visual: "20 ÷ (2 + 3) = ❓",
+answer: "4",
+solution: "Zuerst 2 + 3 = 5. Danach 20 ÷ 5 = 4."
+},
 
-    {
-        q: "40 - 5 · 6 = ?",
-        answer: "10",
-        solution: "Zuerst 5 · 6 = 30. Dann 40 - 30 = 10."
-    },
+{
+q: "Rechne: 3 × (4 + 2)",
+visual: "3 × (4 + 2) = ❓",
+answer: "18",
+solution: "4 + 2 = 6. Danach 3 × 6 = 18."
+},
 
-    {
-        q: "18 : 3 + 7 = ?",
-        answer: "13",
-        solution: "Zuerst 18 : 3 = 6. Dann 6 + 7 = 13."
-    },
+{
+q: "Rechne: 5 × (10 - 6)",
+visual: "5 × (10 - 6) = ❓",
+answer: "20",
+solution: "10 - 6 = 4. Danach 5 × 4 = 20."
+},
 
-    {
-        q: "24 : 4 + 6 = ?",
-        answer: "12",
-        solution: "Zuerst 24 : 4 = 6. Dann 6 + 6 = 12."
-    },
+{
+q: "Rechne: (6 + 3) - 4",
+visual: "(6 + 3) - 4 = ❓",
+answer: "5",
+solution: "6 + 3 = 9. Danach 9 - 4 = 5."
+},
 
-    {
-        q: "30 - 12 : 3 = ?",
-        answer: "26",
-        solution: "Zuerst 12 : 3 = 4. Dann 30 - 4 = 26."
-    },
+{
+q: "Rechne: 30 - (5 + 5)",
+visual: "30 - (5 + 5) = ❓",
+answer: "20",
+solution: "5 + 5 = 10. Danach 30 - 10 = 20."
+},
 
-    {
-        q: "7 · 3 + 8 = ?",
-        answer: "29",
-        solution: "Zuerst 7 · 3 = 21. Dann 21 + 8 = 29."
-    },
+{
+q: "Rechne: 4 + (3 × 2)",
+visual: "4 + (3 × 2) = ❓",
+answer: "10",
+solution: "3 × 2 = 6. Danach 4 + 6 = 10."
+},
 
-    {
-        q: "(7 + 3) · 4 = ?",
-        answer: "40",
-        solution: "Zuerst 7 + 3 = 10. Dann 10 · 4 = 40."
-    },
+{
+q: "Rechne: 2 × 5 + 6",
+visual: "2 × 5 + 6 = ❓",
+answer: "16",
+solution: "2 × 5 = 10. Danach 10 + 6 = 16."
+},
 
-    {
-        q: "(15 - 5) · 2 = ?",
-        answer: "20",
-        solution: "Zuerst 15 - 5 = 10. Dann 10 · 2 = 20."
-    },
+{
+q: "Rechne: 20 - 3 × 4",
+visual: "20 - 3 × 4 = ❓",
+answer: "8",
+solution: "3 × 4 = 12. Danach 20 - 12 = 8."
+},
 
-    {
-        q: "(8 + 4) : 3 = ?",
-        answer: "4",
-        solution: "Zuerst 8 + 4 = 12. Dann 12 : 3 = 4."
-    },
+{
+q: "Rechne: 24 ÷ 6 + 5",
+visual: "24 ÷ 6 + 5 = ❓",
+answer: "9",
+solution: "24 ÷ 6 = 4. Danach 4 + 5 = 9."
+},
 
-    {
-        q: "(20 - 8) : 4 = ?",
-        answer: "3",
-        solution: "Zuerst 20 - 8 = 12. Dann 12 : 4 = 3."
-    },
+{
+q: "Rechne: 7 + 3 × 5",
+visual: "7 + 3 × 5 = ❓",
+answer: "22",
+solution: "3 × 5 = 15. Danach 7 + 15 = 22."
+},
 
-    {
-        q: "2 + 3 · 4 = ?",
-        answer: "14",
-        solution: "Zuerst 3 · 4 = 12. Dann 2 + 12 = 14."
-    },
+{
+q: "Rechne: 40 - 6 × 5",
+visual: "40 - 6 × 5 = ❓",
+answer: "10",
+solution: "6 × 5 = 30. Danach 40 - 30 = 10."
+},
 
-    {
-        q: "50 - 6 · 7 = ?",
-        answer: "8",
-        solution: "Zuerst 6 · 7 = 42. Dann 50 - 42 = 8."
-    },
+{
+q: "Rechne: (7 + 3) × 5",
+visual: "(7 + 3) × 5 = ❓",
+answer: "50",
+solution: "7 + 3 = 10. Danach 10 × 5 = 50."
+},
 
-    {
-        q: "9 · 4 - 10 = ?",
-        answer: "26",
-        solution: "Zuerst 9 · 4 = 36. Dann 36 - 10 = 26."
-    },
+{
+q: "Rechne: (20 - 8) ÷ 3",
+visual: "(20 - 8) ÷ 3 = ❓",
+answer: "4",
+solution: "20 - 8 = 12. Danach 12 ÷ 3 = 4."
+},
 
-    {
-        q: "36 : 6 + 9 = ?",
-        answer: "15",
-        solution: "Zuerst 36 : 6 = 6. Dann 6 + 9 = 15."
-    },
+{
+q: "Rechne: 6 × (2 + 3)",
+visual: "6 × (2 + 3) = ❓",
+answer: "30",
+solution: "2 + 3 = 5. Danach 6 × 5 = 30."
+},
 
-    {
-        q: "(9 + 6) : 3 = ?",
-        answer: "5",
-        solution: "Zuerst 9 + 6 = 15. Dann 15 : 3 = 5."
-    },
+{
+q: "Rechne: 50 ÷ (5 + 5)",
+visual: "50 ÷ (5 + 5) = ❓",
+answer: "5",
+solution: "5 + 5 = 10. Danach 50 ÷ 10 = 5."
+},
 
-    {
-        q: "(20 + 10) : 5 = ?",
-        answer: "6",
-        solution: "Zuerst 20 + 10 = 30. Dann 30 : 5 = 6."
-    }
+{
+q: "Rechne: (10 + 5) × 2 - 5",
+visual: "(10 + 5) × 2 - 5 = ❓",
+answer: "25",
+solution: "10 + 5 = 15. 15 × 2 = 30. 30 - 5 = 25."
+}
 
 ];
 
@@ -346,6 +409,9 @@ function showQuestion() {
 
     document.getElementById("question").textContent =
         questions[current].q;
+
+    document.getElementById("visual").innerHTML =
+        questions[current].visual;
 
     document.getElementById("progress").textContent =
         "Aufgabe " + (current + 1) +
@@ -370,8 +436,7 @@ function checkAnswer() {
         .replace(/\s/g, "");
 
     const correctAnswer =
-        questions[current].answer
-        .replace(/\s/g, "");
+        questions[current].answer;
 
     if (userAnswer === correctAnswer) {
 
@@ -407,6 +472,9 @@ function nextQuestion() {
 
         document.getElementById("progress").textContent =
             "Fertig! 🏆";
+
+        document.getElementById("visual").style.display =
+            "none";
 
         document.getElementById("answer").style.display =
             "none";
