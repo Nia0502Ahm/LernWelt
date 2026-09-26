@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LernWelt – Addieren und Subtrahieren</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .explanation {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        input {
+            width: 80%;
+            padding: 14px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 13px 25px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #solution {
+            display: none;
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #nextButton {
+            display: none;
+        }
+
+        .back {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p>Mathe Klasse 5</p>
+</header>
+
+<div class="container">
+
+    <h2>➕ Addieren und Subtrahieren</h2>
+
+    <div class="explanation">
+        <h3>📖 Kurze Erklärung</h3>
+
+        <p>
+            Beim <strong>Addieren</strong> werden Zahlen zusammengezählt.
+        </p>
+
+        <p>
+            Beispiel: 25 + 13 = 38
+        </p>
+
+        <p>
+            Beim <strong>Subtrahieren</strong> wird eine Zahl von einer anderen abgezogen.
+        </p>
+
+        <p>
+            Beispiel: 50 - 20 = 30
+        </p>
+    </div>
+
+    <p id="progress"></p>
+
+    <h3 id="question"></h3>
+
+    <input id="answer" type="text" placeholder="Deine Antwort">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+        Antwort prüfen
+    </button>
+
+    <div id="result"></div>
+
+    <div id="solution">
+        <h3>💡 Lösung</h3>
+        <p id="solutionText"></p>
+    </div>
+
+    <button id="nextButton" onclick="nextQuestion()">
+        ➡️ Nächste Aufgabe
+    </button>
+
+    <br>
+
+    <button class="back"
+        onclick="window.location.href='mathe5.html'">
+        ← Zurück zu den Themen
+    </button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        q: "25 + 13 = ?",
+        answer: "38",
+        solution: "25 + 13 = 38."
+    },
+
+    {
+        q: "40 + 35 = ?",
+        answer: "75",
+        solution: "40 + 35 = 75."
+    },
+
+    {
+        q: "125 + 50 = ?",
+        answer: "175",
+        solution: "125 + 50 = 175."
+    },
+
+    {
+        q: "230 + 120 = ?",
+        answer: "350",
+        solution: "230 + 120 = 350."
+    },
+
+    {
+        q: "45 + 27 = ?",
+        answer: "72",
+        solution: "45 + 27 = 72."
+    },
+
+    {
+        q: "68 + 14 = ?",
+        answer: "82",
+        solution: "68 + 14 = 82."
+    },
+
+    {
+        q: "150 + 75 = ?",
+        answer: "225",
+        solution: "150 + 75 = 225."
+    },
+
+    {
+        q: "320 + 180 = ?",
+        answer: "500",
+        solution: "320 + 180 = 500."
+    },
+
+    {
+        q: "500 + 250 = ?",
+        answer: "750",
+        solution: "500 + 250 = 750."
+    },
+
+    {
+        q: "123 + 456 = ?",
+        answer: "579",
+        solution: "123 + 456 = 579."
+    },
+
+    {
+        q: "90 - 30 = ?",
+        answer: "60",
+        solution: "90 - 30 = 60."
+    },
+
+    {
+        q: "75 - 25 = ?",
+        answer: "50",
+        solution: "75 - 25 = 50."
+    },
+
+    {
+        q: "100 - 45 = ?",
+        answer: "55",
+        solution: "100 - 45 = 55."
+    },
+
+    {
+        q: "200 - 80 = ?",
+        answer: "120",
+        solution: "200 - 80 = 120."
+    },
+
+    {
+        q: "350 - 150 = ?",
+        answer: "200",
+        solution: "350 - 150 = 200."
+    },
+
+    {
+        q: "500 - 125 = ?",
+        answer: "375",
+        solution: "500 - 125 = 375."
+    },
+
+    {
+        q: "600 - 250 = ?",
+        answer: "350",
+        solution: "600 - 250 = 350."
+    },
+
+    {
+        q: "750 - 300 = ?",
+        answer: "450",
+        solution: "750 - 300 = 450."
+    },
+
+    {
+        q: "1000 - 400 = ?",
+        answer: "600",
+        solution: "1000 - 400 = 600."
+    },
+
+    {
+        q: "850 - 125 = ?",
+        answer: "725",
+        solution: "850 - 125 = 725."
+    },
+
+    {
+        q: "34 + 56 = ?",
+        answer: "90",
+        solution: "34 + 56 = 90."
+    },
+
+    {
+        q: "72 - 38 = ?",
+        answer: "34",
+        solution: "72 - 38 = 34."
+    },
+
+    {
+        q: "145 + 255 = ?",
+        answer: "400",
+        solution: "145 + 255 = 400."
+    },
+
+    {
+        q: "500 - 275 = ?",
+        answer: "225",
+        solution: "500 - 275 = 225."
+    },
+
+    {
+        q: "321 + 179 = ?",
+        answer: "500",
+        solution: "321 + 179 = 500."
+    },
+
+    {
+        q: "900 - 450 = ?",
+        answer: "450",
+        solution: "900 - 450 = 450."
+    },
+
+    {
+        q: "275 + 125 = ?",
+        answer: "400",
+        solution: "275 + 125 = 400."
+    },
+
+    {
+        q: "700 - 325 = ?",
+        answer: "375",
+        solution: "700 - 325 = 375."
+    },
+
+    {
+        q: "456 + 144 = ?",
+        answer: "600",
+        solution: "456 + 144 = 600."
+    },
+
+    {
+        q: "1000 - 375 = ?",
+        answer: "625",
+        solution: "1000 - 375 = 625."
+    }
+
+];
+
+let current = 0;
+
+function showQuestion() {
+
+    document.getElementById("question").textContent =
+        questions[current].q;
+
+    document.getElementById("progress").textContent =
+        "Aufgabe " + (current + 1) +
+        " von " + questions.length;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").disabled = false;
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("solution").style.display = "none";
+
+    document.getElementById("nextButton").style.display = "none";
+}
+
+function checkAnswer() {
+
+    const userAnswer =
+        document.getElementById("answer").value
+        .trim()
+        .replace(/\s/g, "");
+
+    const correctAnswer =
+        questions[current].answer
+        .replace(/\s/g, "");
+
+    if (userAnswer === correctAnswer) {
+
+        document.getElementById("result").textContent =
+            "✅ Richtig! Sehr gut! 🎉";
+
+    } else {
+
+        document.getElementById("result").textContent =
+            "❌ Leider falsch.";
+
+        document.getElementById("solution").style.display =
+            "block";
+
+        document.getElementById("solutionText").textContent =
+            questions[current].solution;
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.getElementById("nextButton").style.display =
+        "inline-block";
+}
+
+function nextQuestion() {
+
+    current++;
+
+    if (current >= questions.length) {
+
+        document.getElementById("question").textContent =
+            "🎉 Du hast alle 30 Aufgaben geschafft!";
+
+        document.getElementById("progress").textContent =
+            "Fertig! 🏆";
+
+        document.getElementById("answer").style.display =
+            "none";
+
+        document.getElementById("result").textContent =
+            "Super gemacht! 🎓";
+
+        document.getElementById("nextButton").style.display =
+            "none";
+
+        document.getElementById("solution").style.display =
+            "none";
+
+        return;
+    }
+
+    showQuestion();
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
