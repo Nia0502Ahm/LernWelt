@@ -79,7 +79,6 @@ button:hover {
     font-weight: bold;
     margin: 15px;
 }
-
 </style>
 </head>
 
@@ -87,8 +86,9 @@ button:hover {
 
 <header>
     <h1>📚 LernWelt</h1>
+
     <p id="subtitle">
-        Lernen von Klasse 5 bis zum Abitur
+        Lernen von Klasse 5 bis Klasse 13
     </p>
 </header>
 
@@ -176,7 +176,6 @@ button:hover {
         📚 <span id="class13">Klasse 13</span>
     </button>
 
-
 </div>
 
 
@@ -187,7 +186,7 @@ const translations = {
     de: {
 
         subtitle:
-        "Lernen von Klasse 5 bis zum Abitur",
+        "Lernen von Klasse 5 bis Klasse 13",
 
         languageTitle:
         "🌐 Sprache auswählen",
@@ -206,15 +205,14 @@ const translations = {
         class10: "Klasse 10",
         class11: "Klasse 11",
         class12: "Klasse 12",
-        class13: "Klasse 13",
-
+        class13: "Klasse 13"
     },
 
 
     en: {
 
         subtitle:
-        "Learning from grade 5 to high school",
+        "Learning from grade 5 to grade 13",
 
         languageTitle:
         "🌐 Choose your language",
@@ -233,15 +231,14 @@ const translations = {
         class10: "Grade 10",
         class11: "Grade 11",
         class12: "Grade 12",
-        class13: "Grade 13",
-
+        class13: "Grade 13"
     },
 
 
     ps: {
 
         subtitle:
-        "له پنځم ټولګي څخه تر ابیتور پورې زده کړه",
+        "له پنځم ټولګي څخه تر دیارلسم ټولګي پورې زده کړه",
 
         languageTitle:
         "🌐 خپله ژبه وټاکئ",
@@ -260,8 +257,7 @@ const translations = {
         class10: "لسم ټولګی",
         class11: "یوولسم ټولګی",
         class12: "دولسم ټولګی",
-        class13: "دیارلسم ټولګی",
-
+        class13: "دیارلسم ټولګی"
     }
 
 };
@@ -319,7 +315,6 @@ function changeLanguage(language) {
 
     document.getElementById("class13").textContent =
         t.class13;
-
 }
 
 
@@ -339,21 +334,11 @@ function selectClass(number) {
     } else {
 
         alert(
-            "Diese Klasse wird noch erstellt."
+            "Klasse " + number +
+            " wird noch erstellt."
         );
 
     }
-}
-
-
-function selectAbitur() {
-
-    localStorage.setItem(
-        "selectedClass",
-        "abitur"
-    );
-
-    );
 }
 
 
