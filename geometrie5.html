@@ -1,436 +1,299 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LernWelt – Geometrische Grundformen</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            text-align: center;
-        }
-
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-        }
-
-        .container {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-        }
-
-        .explanation {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        input {
-            width: 80%;
-            padding: 14px;
-            font-size: 18px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin: 15px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 13px 25px;
-            margin: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #1d4ed8;
-        }
-
-        #result {
-            margin: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        #solution {
-            display: none;
-            background: #f1f5f9;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        #nextButton {
-            display: none;
-        }
-
-        .back {
-            background: #64748b;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LernWelt – Geometrische Grundformen</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;text-align:center}
+header{background:#2563eb;color:white;padding:30px 20px}
+.container{max-width:800px;margin:30px auto;padding:25px;background:white;border-radius:18px}
+.explanation{background:#eff6ff;padding:20px;border-radius:12px;text-align:left}
+.visual{background:#f8fafc;padding:30px;border-radius:12px;margin:20px 0;font-size:60px}
+button{padding:13px 25px;margin:8px;border:0;border-radius:9px;background:#2563eb;color:white;font-size:16px;cursor:pointer}
+input{width:80%;padding:14px;font-size:18px;border:1px solid #ccc;border-radius:8px;margin:15px;box-sizing:border-box}
+#result{margin:20px;font-size:18px;font-weight:bold}
+#solution{display:none;background:#f1f5f9;padding:18px;border-radius:10px;text-align:left}
+#nextButton{display:none}.back{background:#64748b}
+</style>
 </head>
-
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p>Mathe Klasse 5</p>
+<h1>📚 LernWelt</h1>
+<p id="subtitle"></p>
 </header>
 
 <div class="container">
 
-    <h2>📐 Geometrische Grundformen</h2>
+<p id="languageText"></p>
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
 
-    <div class="explanation">
-        <h3>📖 Kurze Erklärung</h3>
+<h2 id="title"></h2>
 
-        <p>
-            Zu den Grundformen gehören zum Beispiel Quadrat,
-            Rechteck, Dreieck und Kreis.
-        </p>
+<div class="explanation">
+<h3 id="explanationTitle"></h3>
+<p id="explanationText"></p>
+</div>
 
-        <p>
-            Ein Quadrat hat 4 gleich lange Seiten.
-        </p>
+<p id="progress"></p>
+<h3 id="question"></h3>
 
-        <p>
-            Ein Rechteck hat 4 Seiten. Die gegenüberliegenden
-            Seiten sind gleich lang.
-        </p>
+<div id="visual" class="visual"></div>
 
-        <p>
-            Ein Dreieck hat 3 Seiten und 3 Ecken.
-        </p>
+<input id="answer" type="text">
 
-        <p>
-            Ein Kreis hat keine Ecken.
-        </p>
-    </div>
+<br>
+<button onclick="checkAnswer()" id="checkButton"></button>
 
-    <p id="progress"></p>
+<div id="result"></div>
 
-    <h3 id="question"></h3>
+<div id="solution">
+<h3 id="solutionTitle"></h3>
+<p id="solutionText"></p>
+</div>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
-
-    <br>
-
-    <button onclick="checkAnswer()">
-        Antwort prüfen
-    </button>
-
-    <div id="result"></div>
-
-    <div id="solution">
-        <h3>💡 Lösung</h3>
-        <p id="solutionText"></p>
-    </div>
-
-    <button id="nextButton" onclick="nextQuestion()">
-        ➡️ Nächste Aufgabe
-    </button>
-
-    <br>
-
-    <button class="back"
-        onclick="window.location.href='mathe5.html'">
-        ← Zurück zu den Themen
-    </button>
+<button id="nextButton" onclick="nextQuestion()"></button>
+<br>
+<button class="back" onclick="location.href='mathe5.html'" id="backButton"></button>
 
 </div>
 
 <script>
 
-const questions = [
+const translations={
+de:{
+subtitle:"Mathematik – Klasse 5",
+language:"🌐 Sprache:",
+title:"📐 Geometrische Grundformen",
+explanationTitle:"📖 Kurze Erklärung",
+explanationText:"Wichtige geometrische Formen sind zum Beispiel Kreis, Quadrat, Rechteck und Dreieck. Sie haben unterschiedliche Eigenschaften.",
+check:"Antwort prüfen",
+solution:"💡 Lösung",
+next:"➡️ Nächste Aufgabe",
+back:"← Zurück zu den Mathe-Themen",
+placeholder:"Deine Antwort",
+correct:"✅ Richtig! Sehr gut! 🎉",
+wrong:"❌ Leider falsch.",
+finished:"🎉 Du hast alle 30 Aufgaben geschafft!",
+done:"Fertig! 🏆",
+great:"Super gemacht! 🎓"
+},
+en:{
+subtitle:"Mathematics – Grade 5",
+language:"🌐 Language:",
+title:"📐 Basic Geometric Shapes",
+explanationTitle:"📖 Short explanation",
+explanationText:"Important geometric shapes include circles, squares, rectangles and triangles. They have different properties.",
+check:"Check answer",
+solution:"💡 Solution",
+next:"➡️ Next question",
+back:"← Back to math topics",
+placeholder:"Your answer",
+correct:"✅ Correct! Very good! 🎉",
+wrong:"❌ Unfortunately, that's wrong.",
+finished:"🎉 You completed all 30 questions!",
+done:"Finished! 🏆",
+great:"Well done! 🎓"
+},
+ps:{
+subtitle:"ریاضي – پنځم ټولګی",
+language:"🌐 ژبه:",
+title:"📐 هندسي بنسټیز شکلونه",
+explanationTitle:"📖 لنډه تشریح",
+explanationText:"مهم هندسي شکلونه دایره، مربع، مستطیل او مثلث دي. هر شکل ځانګړي ځانګړتیاوې لري.",
+check:"ځواب وګورئ",
+solution:"💡 حل",
+next:"➡️ بله پوښتنه",
+back:"← د ریاضي موضوعاتو ته بېرته",
+placeholder:"خپل ځواب ولیکئ",
+correct:"✅ سم دی! ډېر ښه! 🎉",
+wrong:"❌ له بده مرغه غلط دی.",
+finished:"🎉 ټولې ۳۰ پوښتنې دې بشپړې کړې!",
+done:"بشپړ شو! 🏆",
+great:"ډېر ښه! 🎓"
+}
+};
 
-    {
-        q: "Wie viele Seiten hat ein Dreieck?",
-        answer: "3",
-        solution: "Ein Dreieck hat 3 Seiten."
-    },
+const questions=[
 
-    {
-        q: "Wie viele Ecken hat ein Dreieck?",
-        answer: "3",
-        solution: "Ein Dreieck hat 3 Ecken."
-    },
+{q:{de:"Wie heißt diese Form?",en:"What is this shape called?",ps:"دې شکل ته څه وايي؟"},visual:"●",answer:"kreis",
+s:{de:"Das ist ein Kreis.",en:"This is a circle.",ps:"دا دایره ده."}},
 
-    {
-        q: "Wie viele Seiten hat ein Quadrat?",
-        answer: "4",
-        solution: "Ein Quadrat hat 4 Seiten."
-    },
+{q:{de:"Wie heißt diese Form?",en:"What is this shape called?",ps:"دې شکل ته څه وايي؟"},visual:"■",answer:"quadrat",
+s:{de:"Das ist ein Quadrat.",en:"This is a square.",ps:"دا مربع ده."}},
 
-    {
-        q: "Wie viele Ecken hat ein Quadrat?",
-        answer: "4",
-        solution: "Ein Quadrat hat 4 Ecken."
-    },
+{q:{de:"Wie heißt diese Form?",en:"What is this shape called?",ps:"دې شکل ته څه وايي؟"},visual:"▭",answer:"rechteck",
+s:{de:"Das ist ein Rechteck.",en:"This is a rectangle.",ps:"دا مستطیل دی."}},
 
-    {
-        q: "Wie viele Seiten hat ein Rechteck?",
-        answer: "4",
-        solution: "Ein Rechteck hat 4 Seiten."
-    },
+{q:{de:"Wie heißt diese Form?",en:"What is this shape called?",ps:"دې شکل ته څه وايي؟"},visual:"▲",answer:"dreieck",
+s:{de:"Das ist ein Dreieck.",en:"This is a triangle.",ps:"دا مثلث دی."}},
 
-    {
-        q: "Wie viele Ecken hat ein Rechteck?",
-        answer: "4",
-        solution: "Ein Rechteck hat 4 Ecken."
-    },
+{q:{de:"Wie viele Seiten hat ein Dreieck?",en:"How many sides does a triangle have?",ps:"مثلث څو ضلعې لري؟"},visual:"🔺",answer:"3",
+s:{de:"Ein Dreieck hat 3 Seiten.",en:"A triangle has 3 sides.",ps:"مثلث ۳ ضلعې لري."}},
 
-    {
-        q: "Wie viele Ecken hat ein Kreis?",
-        answer: "0",
-        solution: "Ein Kreis hat keine Ecken."
-    },
+{q:{de:"Wie viele Ecken hat ein Dreieck?",en:"How many corners does a triangle have?",ps:"مثلث څو کونجونه لري؟"},visual:"🔺",answer:"3",
+s:{de:"Ein Dreieck hat 3 Ecken.",en:"A triangle has 3 corners.",ps:"مثلث ۳ کونجونه لري."}},
 
-    {
-        q: "Welche Form hat 3 Seiten?",
-        answer: "Dreieck",
-        solution: "Eine Form mit 3 Seiten ist ein Dreieck."
-    },
+{q:{de:"Wie viele Seiten hat ein Quadrat?",en:"How many sides does a square have?",ps:"مربع څو ضلعې لري؟"},visual:"⬜",answer:"4",
+s:{de:"Ein Quadrat hat 4 Seiten.",en:"A square has 4 sides.",ps:"مربع ۴ ضلعې لري."}},
 
-    {
-        q: "Welche Form hat 4 gleich lange Seiten?",
-        answer: "Quadrat",
-        solution: "Ein Quadrat hat 4 gleich lange Seiten."
-    },
+{q:{de:"Wie viele Ecken hat ein Quadrat?",en:"How many corners does a square have?",ps:"مربع څو کونجونه لري؟"},visual:"⬜",answer:"4",
+s:{de:"Ein Quadrat hat 4 Ecken.",en:"A square has 4 corners.",ps:"مربع ۴ کونجونه لري."}},
 
-    {
-        q: "Welche Form hat keine Ecken?",
-        answer: "Kreis",
-        solution: "Ein Kreis hat keine Ecken."
-    },
+{q:{de:"Wie viele Seiten hat ein Rechteck?",en:"How many sides does a rectangle have?",ps:"مستطیل څو ضلعې لري؟"},visual:"▭",answer:"4",
+s:{de:"Ein Rechteck hat 4 Seiten.",en:"A rectangle has 4 sides.",ps:"مستطیل ۴ ضلعې لري."}},
 
-    {
-        q: "Wie viele Seiten hat ein Fünfeck?",
-        answer: "5",
-        solution: "Ein Fünfeck hat 5 Seiten."
-    },
+{q:{de:"Wie viele Ecken hat ein Rechteck?",en:"How many corners does a rectangle have?",ps:"مستطیل څو کونجونه لري؟"},visual:"▭",answer:"4",
+s:{de:"Ein Rechteck hat 4 Ecken.",en:"A rectangle has 4 corners.",ps:"مستطیل ۴ کونجونه لري."}},
 
-    {
-        q: "Wie viele Ecken hat ein Fünfeck?",
-        answer: "5",
-        solution: "Ein Fünfeck hat 5 Ecken."
-    },
+{q:{de:"Hat ein Kreis Ecken?",en:"Does a circle have corners?",ps:"ایا دایره کونجونه لري؟"},visual:"⭕",answer:"nein",
+s:{de:"Nein, ein Kreis hat keine Ecken.",en:"No, a circle has no corners.",ps:"نه، دایره کونجونه نه لري."}},
 
-    {
-        q: "Wie viele Seiten hat ein Sechseck?",
-        answer: "6",
-        solution: "Ein Sechseck hat 6 Seiten."
-    },
+{q:{de:"Hat ein Kreis gerade Seiten?",en:"Does a circle have straight sides?",ps:"ایا دایره مستقیمې ضلعې لري؟"},visual:"⭕",answer:"nein",
+s:{de:"Nein, ein Kreis hat keine geraden Seiten.",en:"No, a circle has no straight sides.",ps:"نه، دایره مستقیمې ضلعې نه لري."}},
 
-    {
-        q: "Wie viele Ecken hat ein Sechseck?",
-        answer: "6",
-        solution: "Ein Sechseck hat 6 Ecken."
-    },
+{q:{de:"Welche Form hat 3 Seiten?",en:"Which shape has 3 sides?",ps:"کوم شکل ۳ ضلعې لري؟"},visual:"🔺",answer:"dreieck",
+s:{de:"Das Dreieck hat 3 Seiten.",en:"A triangle has 3 sides.",ps:"مثلث ۳ ضلعې لري."}},
 
-    {
-        q: "Wie nennt man eine Form mit 8 Seiten?",
-        answer: "Achteck",
-        solution: "Eine Form mit 8 Seiten heißt Achteck."
-    },
+{q:{de:"Welche Form hat 4 gleich lange Seiten?",en:"Which shape has 4 equal sides?",ps:"کوم شکل ۴ برابرې ضلعې لري؟"},visual:"⬜",answer:"quadrat",
+s:{de:"Ein Quadrat hat 4 gleich lange Seiten.",en:"A square has 4 equal sides.",ps:"مربع ۴ برابرې ضلعې لري."}},
 
-    {
-        q: "Wie viele Seiten hat ein Achteck?",
-        answer: "8",
-        solution: "Ein Achteck hat 8 Seiten."
-    },
+{q:{de:"Welche Form hat zwei lange und zwei kurze Seiten?",en:"Which shape has two long and two short sides?",ps:"کوم شکل دوه اوږدې او دوه لنډې ضلعې لري؟"},visual:"▭",answer:"rechteck",
+s:{de:"Das ist ein Rechteck.",en:"That is a rectangle.",ps:"دا مستطیل دی."}},
 
-    {
-        q: "Wie viele Ecken hat ein Achteck?",
-        answer: "8",
-        solution: "Ein Achteck hat 8 Ecken."
-    },
+{q:{de:"Welche Form ist rund?",en:"Which shape is round?",ps:"کوم شکل ګرد دی؟"},visual:"⭕",answer:"kreis",
+s:{de:"Der Kreis ist rund.",en:"A circle is round.",ps:"دایره ګرده ده."}},
 
-    {
-        q: "Wie nennt man die Seite eines Quadrats?",
-        answer: "Seite",
-        solution: "Die Begrenzungen eines Quadrats heißen Seiten."
-    },
+{q:{de:"Wie viele Ecken hat ein Quadrat?",en:"How many corners does a square have?",ps:"مربع څو کونجونه لري؟"},visual:"🔲",answer:"4",
+s:{de:"Ein Quadrat hat 4 Ecken.",en:"A square has 4 corners.",ps:"مربع ۴ کونجونه لري."}},
 
-    {
-        q: "Wie nennt man den Abstand von einem Punkt zum Mittelpunkt eines Kreises?",
-        answer: "Radius",
-        solution: "Der Abstand vom Mittelpunkt zur Kreislinie heißt Radius."
-    },
+{q:{de:"Wie viele Ecken hat ein Dreieck?",en:"How many corners does a triangle have?",ps:"مثلث څو کونجونه لري؟"},visual:"🔺",answer:"3",
+s:{de:"Ein Dreieck hat 3 Ecken.",en:"A triangle has 3 corners.",ps:"مثلث ۳ کونجونه لري."}},
 
-    {
-        q: "Wie nennt man die Strecke durch den Mittelpunkt eines Kreises?",
-        answer: "Durchmesser",
-        solution: "Eine Strecke durch den Mittelpunkt von einer Seite zur anderen heißt Durchmesser."
-    },
+{q:{de:"Welche Form sieht wie ein Ball aus?",en:"Which shape looks like a ball?",ps:"کوم شکل د توپ په شان ښکاري؟"},visual:"⚽",answer:"kreis",
+s:{de:"Als flache Form sieht ein Ball wie ein Kreis aus.",en:"As a flat shape, a ball looks like a circle.",ps:"د هوار شکل په توګه توپ د دایرې په شان دی."}},
 
-    {
-        q: "Ein Quadrat hat eine Seitenlänge von 5 cm. Wie lang ist der Umfang?",
-        answer: "20",
-        solution: "5 + 5 + 5 + 5 = 20 cm."
-    },
+{q:{de:"Welche Form sieht wie ein Fenster aus?",en:"Which shape can look like a window?",ps:"کوم شکل د کړکۍ په شان ښکاري؟"},visual:"🪟",answer:"rechteck",
+s:{de:"Ein Fenster ist oft rechteckig.",en:"A window is often rectangular.",ps:"کړکۍ اکثره مستطیل شکل لري."}},
 
-    {
-        q: "Ein Rechteck ist 6 cm lang und 4 cm breit. Wie groß ist der Umfang?",
-        answer: "20",
-        solution: "6 + 4 + 6 + 4 = 20 cm."
-    },
+{q:{de:"Welche Form sieht wie ein Verkehrsschild mit 3 Ecken aus?",en:"Which shape has 3 corners?",ps:"کوم شکل ۳ کونجونه لري؟"},visual:"🔺",answer:"dreieck",
+s:{de:"Das ist ein Dreieck.",en:"It is a triangle.",ps:"دا مثلث دی."}},
 
-    {
-        q: "Ein Quadrat hat eine Seitenlänge von 7 cm. Wie groß ist der Umfang?",
-        answer: "28",
-        solution: "7 · 4 = 28 cm."
-    },
+{q:{de:"Welche Form hat keine Ecken?",en:"Which shape has no corners?",ps:"کوم شکل کونجونه نه لري؟"},visual:"⭕",answer:"kreis",
+s:{de:"Der Kreis hat keine Ecken.",en:"A circle has no corners.",ps:"دایره کونجونه نه لري."}},
 
-    {
-        q: "Ein Rechteck ist 10 cm lang und 3 cm breit. Wie groß ist der Umfang?",
-        answer: "26",
-        solution: "10 + 3 + 10 + 3 = 26 cm."
-    },
+{q:{de:"Wie viele Seiten haben Quadrat und Rechteck zusammen?",en:"How many sides do a square and rectangle have together?",ps:"مربع او مستطیل یوځای څو ضلعې لري؟"},visual:"⬜ + ▭",answer:"8",
+s:{de:"4 + 4 = 8 Seiten.",en:"4 + 4 = 8 sides.",ps:"۴ + ۴ = ۸ ضلعې."}},
 
-    {
-        q: "Wie viele rechte Winkel hat ein Quadrat?",
-        answer: "4",
-        solution: "Ein Quadrat hat 4 rechte Winkel."
-    },
+{q:{de:"Wie viele Ecken haben zwei Dreiecke zusammen?",en:"How many corners do two triangles have together?",ps:"دوه مثلثونه یوځای څو کونجونه لري؟"},visual:"🔺 + 🔺",answer:"6",
+s:{de:"3 + 3 = 6 Ecken.",en:"3 + 3 = 6 corners.",ps:"۳ + ۳ = ۶ کونجونه."}},
 
-    {
-        q: "Wie viele rechte Winkel hat ein Rechteck?",
-        answer: "4",
-        solution: "Ein Rechteck hat 4 rechte Winkel."
-    },
+{q:{de:"Wie viele Seiten hat ein Quadrat mehr als ein Dreieck?",en:"How many more sides does a square have than a triangle?",ps:"مربع د مثلث په پرتله څو زیاتې ضلعې لري؟"},visual:"⬜ − 🔺",answer:"1",
+s:{de:"4 − 3 = 1.",en:"4 − 3 = 1.",ps:"۴ − ۳ = ۱."}},
 
-    {
-        q: "Sind alle Seiten eines Quadrats gleich lang?",
-        answer: "ja",
-        solution: "Ja. Alle 4 Seiten eines Quadrats sind gleich lang."
-    },
+{q:{de:"Wie viele Ecken hat ein Rechteck mehr als ein Dreieck?",en:"How many more corners does a rectangle have than a triangle?",ps:"مستطیل د مثلث په پرتله څو زیات کونجونه لري؟"},visual:"▭ − 🔺",answer:"1",
+s:{de:"4 − 3 = 1.",en:"4 − 3 = 1.",ps:"۴ − ۳ = ۱."}},
 
-    {
-        q: "Sind gegenüberliegende Seiten eines Rechtecks gleich lang?",
-        answer: "ja",
-        solution: "Ja. Die gegenüberliegenden Seiten eines Rechtecks sind gleich lang."
-    },
+{q:{de:"Welche Form hat genau 4 Seiten?",en:"Which shape has exactly 4 sides?",ps:"کوم شکل په دقیق ډول ۴ ضلعې لري؟"},visual:"⬜",answer:"quadrat",
+s:{de:"Ein Quadrat hat genau 4 Seiten.",en:"A square has exactly 4 sides.",ps:"مربع دقیقاً ۴ ضلعې لري."}},
 
-    {
-        q: "Hat ein Dreieck mehr Ecken als ein Quadrat?",
-        answer: "nein",
-        solution: "Nein. Ein Dreieck hat 3 Ecken, ein Quadrat hat 4."
-    },
+{q:{de:"Welche Form hat genau 3 Seiten?",en:"Which shape has exactly 3 sides?",ps:"کوم شکل په دقیق ډول ۳ ضلعې لري؟"},visual:"🔺",answer:"dreieck",
+s:{de:"Ein Dreieck hat genau 3 Seiten.",en:"A triangle has exactly 3 sides.",ps:"مثلث دقیقاً ۳ ضلعې لري."}},
 
-    {
-        q: "Hat ein Kreis eine gerade Seite?",
-        answer: "nein",
-        solution: "Nein. Ein Kreis hat keine geraden Seiten."
-    }
+{q:{de:"Welche Form hat vier gleich lange Seiten?",en:"Which shape has four equal sides?",ps:"کوم شکل څلور برابرې ضلعې لري؟"},visual:"🟦",answer:"quadrat",
+s:{de:"Das Quadrat hat vier gleich lange Seiten.",en:"A square has four equal sides.",ps:"مربع څلور برابرې ضلعې لري."}},
+
+{q:{de:"Welche Form ist kein Vieleck?",en:"Which shape is not a polygon?",ps:"کوم شکل څو ضلعي نه دی؟"},visual:"⭕",answer:"kreis",
+s:{de:"Ein Kreis ist kein Vieleck.",en:"A circle is not a polygon.",ps:"دایره څو ضلعي نه ده."}},
+
+{q:{de:"Welche Form hat 4 Ecken und 4 Seiten?",en:"Which shape has 4 corners and 4 sides?",ps:"کوم شکل ۴ کونجونه او ۴ ضلعې لري؟"},visual:"⬜",answer:"quadrat",
+s:{de:"Ein Quadrat hat 4 Ecken und 4 Seiten.",en:"A square has 4 corners and 4 sides.",ps:"مربع ۴ کونجونه او ۴ ضلعې لري."}}
 
 ];
 
-let current = 0;
+let current=0;
+let language=localStorage.getItem("language")||"de";
 
-function showQuestion() {
+function changeLanguage(lang){
+language=lang;
+localStorage.setItem("language",lang);
+const t=translations[lang];
 
-    document.getElementById("question").textContent =
-        questions[current].q;
-
-    document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
-
-    document.getElementById("answer").value = "";
-
-    document.getElementById("answer").disabled = false;
-
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("solution").style.display = "none";
-
-    document.getElementById("nextButton").style.display = "none";
+document.getElementById("subtitle").textContent=t.subtitle;
+document.getElementById("languageText").textContent=t.language;
+document.getElementById("title").textContent=t.title;
+document.getElementById("explanationTitle").textContent=t.explanationTitle;
+document.getElementById("explanationText").textContent=t.explanationText;
+document.getElementById("checkButton").textContent=t.check;
+document.getElementById("solutionTitle").textContent=t.solution;
+document.getElementById("nextButton").textContent=t.next;
+document.getElementById("backButton").textContent=t.back;
+document.getElementById("answer").placeholder=t.placeholder;
+showQuestion();
 }
 
-function checkAnswer() {
+function showQuestion(){
+const q=questions[current];
 
-    const userAnswer =
-        document.getElementById("answer").value
-        .trim()
-        .toLowerCase()
-        .replace(/\s/g, "");
+document.getElementById("question").textContent=q.q[language];
+document.getElementById("visual").textContent=q.visual;
+document.getElementById("progress").textContent=
+(language==="de"?"Aufgabe ":language==="en"?"Question ":"پوښتنه ")
++(current+1)+" / 30";
 
-    const correctAnswer =
-        questions[current].answer
-        .toLowerCase()
-        .replace(/\s/g, "");
-
-    if (userAnswer === correctAnswer) {
-
-        document.getElementById("result").textContent =
-            "✅ Richtig! Sehr gut! 🎉";
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "❌ Leider falsch.";
-
-        document.getElementById("solution").style.display =
-            "block";
-
-        document.getElementById("solutionText").textContent =
-            questions[current].solution;
-    }
-
-    document.getElementById("answer").disabled = true;
-
-    document.getElementById("nextButton").style.display =
-        "inline-block";
+document.getElementById("answer").value="";
+document.getElementById("answer").disabled=false;
+document.getElementById("result").textContent="";
+document.getElementById("solution").style.display="none";
+document.getElementById("nextButton").style.display="none";
 }
 
-function nextQuestion() {
+function checkAnswer(){
 
-    current++;
+let answer=document.getElementById("answer").value.trim().toLowerCase();
+let correct=questions[current].answer.toLowerCase();
+const t=translations[language];
 
-    if (current >= questions.length) {
+if(answer===correct){
+document.getElementById("result").textContent=t.correct;
+}else{
+document.getElementById("result").textContent=t.wrong;
+document.getElementById("solution").style.display="block";
+document.getElementById("solutionText").textContent=questions[current].s[language];
+}
 
-        document.getElementById("question").textContent =
-            "🎉 Du hast alle 30 Aufgaben geschafft!";
+document.getElementById("answer").disabled=true;
+document.getElementById("nextButton").style.display="inline-block";
+}
 
-        document.getElementById("progress").textContent =
-            "Fertig! 🏆";
+function nextQuestion(){
 
-        document.getElementById("answer").style.display =
-            "none";
+current++;
 
-        document.getElementById("result").textContent =
-            "Super gemacht! 🎓";
+if(current>=questions.length){
 
-        document.getElementById("nextButton").style.display =
-            "none";
+const t=translations[language];
 
-        document.getElementById("solution").style.display =
-            "none";
+document.getElementById("question").textContent=t.finished;
+document.getElementById("progress").textContent=t.done;
+document.getElementById("visual").style.display="none";
+document.getElementById("answer").style.display="none";
+document.getElementById("checkButton").style.display="none";
+document.getElementById("result").textContent=t.great;
+document.getElementById("nextButton").style.display="none";
+document.getElementById("solution").style.display="none";
 
-        return;
-    }
-
-    showQuestion();
+return;
 }
 
 showQuestion();
+}
+
+changeLanguage(language);
 
 </script>
-
 </body>
 </html>
