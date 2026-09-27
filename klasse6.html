@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
 <title>LernWelt – Klasse 6</title>
 
 <style>
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -73,64 +75,74 @@ h2 {
 #languageText {
     font-weight: bold;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
-    <p id="subtitle">Klasse 6</p>
+
+<h1>📚 LernWelt</h1>
+
+<p id="subtitle">
+Klasse 6
+</p>
+
 </header>
+
 
 <div class="container">
 
-    <!-- SPRACHE -->
+<div class="language">
 
-    <div class="language">
+<p id="languageText">
+🌐 Sprache:
+</p>
 
-        <p id="languageText">🌐 Sprache:</p>
+<button onclick="changeLanguage('de')">
+🇩🇪 Deutsch
+</button>
 
-        <button onclick="changeLanguage('de')">
-            🇩🇪 Deutsch
-        </button>
+<button onclick="changeLanguage('en')">
+🇬🇧 English
+</button>
 
-        <button onclick="changeLanguage('en')">
-            🇬🇧 English
-        </button>
+<button onclick="changeLanguage('ps')">
+🇦🇫 پښتو
+</button>
 
-        <button onclick="changeLanguage('ps')">
-            🇦🇫 پښتو
-        </button>
-
-    </div>
-
-
-    <!-- ÜBERSCHRIFT -->
-
-    <h2 id="title">🧮 Mathematik</h2>
+</div>
 
 
-    <!-- MATHEMATIK -->
-
-    <button class="subject"
-        onclick="location.href='mathe6.html'">
-
-        🧮 <span id="math">Mathematik</span>
-
-    </button>
+<h2 id="title">
+🧮 Mathematik
+</h2>
 
 
-    <!-- ZURÜCK -->
+<button
+class="subject"
+onclick="window.location.href='mathe6.html'">
 
-    <br>
+🧮 <span id="math">
+Mathematik
+</span>
 
-    <button class="back"
-        onclick="location.href='home.html'">
+</button>
 
-        ← <span id="back">Zurück</span>
 
-    </button>
+<br>
+
+
+<button
+class="back"
+onclick="window.location.href='home.html'">
+
+← <span id="back">
+Zurück
+</span>
+
+</button>
 
 </div>
 
@@ -139,85 +151,77 @@ h2 {
 
 const translations = {
 
-    de: {
+de: {
 
-        subtitle: "Klasse 6",
+subtitle: "Klasse 6",
 
-        language: "🌐 Sprache:",
+language: "🌐 Sprache:",
 
-        title: "🧮 Mathematik",
+title: "🧮 Mathematik",
 
-        math: "Mathematik",
+math: "Mathematik",
 
-        back: "Zurück"
+back: "Zurück"
 
-    },
+},
 
+en: {
 
-    en: {
+subtitle: "Grade 6",
 
-        subtitle: "Grade 6",
+language: "🌐 Language:",
 
-        language: "🌐 Language:",
+title: "🧮 Mathematics",
 
-        title: "🧮 Mathematics",
+math: "Mathematics",
 
-        math: "Mathematics",
+back: "Back"
 
-        back: "Back"
+},
 
-    },
+ps: {
 
+subtitle: "شپږم ټولګی",
 
-    ps: {
+language: "🌐 ژبه:",
 
-        subtitle: "شپږم ټولګی",
+title: "🧮 ریاضي",
 
-        language: "🌐 ژبه:",
+math: "ریاضي",
 
-        title: "🧮 ریاضي",
+back: "بېرته"
 
-        math: "ریاضي",
-
-        back: "بېرته"
-
-    }
+}
 
 };
 
 
 function changeLanguage(language) {
 
-    localStorage.setItem("language", language);
+localStorage.setItem("language", language);
 
-    const t = translations[language];
+const t = translations[language];
 
+document.getElementById("subtitle").textContent =
+t.subtitle;
 
-    document.getElementById("subtitle").textContent =
-        t.subtitle;
+document.getElementById("languageText").textContent =
+t.language;
 
+document.getElementById("title").textContent =
+t.title;
 
-    document.getElementById("languageText").textContent =
-        t.language;
+document.getElementById("math").textContent =
+t.math;
 
-
-    document.getElementById("title").textContent =
-        t.title;
-
-
-    document.getElementById("math").textContent =
-        t.math;
-
-
-    document.getElementById("back").textContent =
-        t.back;
+document.getElementById("back").textContent =
+t.back;
 
 }
 
 
 const savedLanguage =
-    localStorage.getItem("language") || "de";
-
+localStorage.getItem("language") || "de";
 
 changeLanguage(savedLanguage);
 
