@@ -1,448 +1,40 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LernWelt – Terme und Variablen Klasse 6</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    text-align: center;
-}
-
-header {
-    background: #2563eb;
-    color: white;
-    padding: 30px 20px;
-}
-
-.container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 18px;
-}
-
-.language {
-    margin-bottom: 25px;
-}
-
-button {
-    padding: 12px 20px;
-    margin: 6px;
-    border: none;
-    border-radius: 9px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-.language button {
-    background: #475569;
-}
-
-.explanation {
-    background: #eff6ff;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: left;
-    line-height: 1.7;
-}
-
-.example {
-    background: #dbeafe;
-    padding: 20px;
-    border-radius: 15px;
-    margin: 20px 0;
-}
-
-.question {
-    margin: 20px 0;
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 15px;
-    text-align: left;
-}
-
-.question h3 {
-    margin-top: 0;
-}
-
-.answer {
-    display: block;
-    width: 100%;
-    margin: 8px 0;
-    padding: 13px;
-    background: white;
-    color: #111827;
-    border: 2px solid #d1d5db;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-.answer:hover {
-    background: #eef4ff;
-}
-
-.answer.correct {
-    background: #dcfce7 !important;
-    border-color: #22c55e !important;
-}
-
-.answer.wrong {
-    background: #fee2e2 !important;
-    border-color: #ef4444 !important;
-}
-
-#score {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 25px;
-}
-
-#result {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px;
-}
-
-.restart {
-    background: #16a34a;
-}
-
-.back {
-    background: #64748b;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>📚 LernWelt</h1>
-    <p id="subtitle">Mathematik – Klasse 6</p>
-</header>
-
-<div class="container">
-
-<div class="language">
-
-<p id="languageText">🌐 Sprache:</p>
-
-<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-<button onclick="changeLanguage('en')">🇬🇧 English</button>
-<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
-
-</div>
-
-<h2 id="title">🧮 Terme und Variablen</h2>
-
-<div class="explanation">
-
-<h2 id="explanationTitle">📖 Das Thema erklärt</h2>
-
-<p id="explanationText">
-Eine Variable ist ein Buchstabe, der für eine Zahl steht.
-Ein Term ist ein Rechenausdruck mit Zahlen und Variablen.
-Zum Beispiel ist 3 + x ein Term. Wenn x = 5 ist, ergibt 3 + x = 8.
-</p>
-
-</div>
-
-<div class="example">
-
-<h3 id="exampleTitle">💡 Beispiele</h3>
-
-<p>3 + x → Term</p>
-<p>x + 5 → Term</p>
-<p>2 · x → Term</p>
-<p>Wenn x = 4: 2 · x = 8</p>
-
-</div>
-
-<h2 id="exerciseTitle">📝 30 Aufgaben</h2>
-
-
-<!-- 1 -->
-<div class="question">
-<h3>1. Was ist eine Variable?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">Ein Buchstabe für eine Zahl</button>
-<button class="answer" onclick="checkAnswer(this,false)">Nur ein Rechenzeichen</button>
-<button class="answer" onclick="checkAnswer(this,false)">Immer die Zahl 0</button>
-</div>
-
-<!-- 2 -->
-<div class="question">
-<h3>2. Welcher Ausdruck ist ein Term?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">x + 5</button>
-<button class="answer" onclick="checkAnswer(this,false)">Hallo</button>
-<button class="answer" onclick="checkAnswer(this,false)">ABC</button>
-</div>
-
-<!-- 3 -->
-<div class="question">
-<h3>3. Was bedeutet x = 5?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">x hat den Wert 5</button>
-<button class="answer" onclick="checkAnswer(this,false)">x hat den Wert 0</button>
-<button class="answer" onclick="checkAnswer(this,false)">x ist immer 1</button>
-</div>
-
-<!-- 4 -->
-<div class="question">
-<h3>4. Berechne: x + 3 für x = 5.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">7</button>
-<button class="answer" onclick="checkAnswer(this,false)">9</button>
-</div>
-
-<!-- 5 -->
-<div class="question">
-<h3>5. Berechne: x + 7 für x = 3.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">10</button>
-<button class="answer" onclick="checkAnswer(this,false)">9</button>
-<button class="answer" onclick="checkAnswer(this,false)">11</button>
-</div>
-
-<!-- 6 -->
-<div class="question">
-<h3>6. Berechne: x - 2 für x = 8.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">6</button>
-<button class="answer" onclick="checkAnswer(this,false)">10</button>
-<button class="answer" onclick="checkAnswer(this,false)">5</button>
-</div>
-
-<!-- 7 -->
-<div class="question">
-<h3>7. Berechne: x · 2 für x = 4.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">6</button>
-<button class="answer" onclick="checkAnswer(this,false)">10</button>
-</div>
-
-<!-- 8 -->
-<div class="question">
-<h3>8. Berechne: x · 3 für x = 5.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">15</button>
-<button class="answer" onclick="checkAnswer(this,false)">12</button>
-<button class="answer" onclick="checkAnswer(this,false)">18</button>
-</div>
-
-<!-- 9 -->
-<div class="question">
-<h3>9. Berechne: x + 10 für x = 6.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">16</button>
-<button class="answer" onclick="checkAnswer(this,false)">14</button>
-<button class="answer" onclick="checkAnswer(this,false)">15</button>
-</div>
-
-<!-- 10 -->
-<div class="question">
-<h3>10. Berechne: x - 5 für x = 12.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">7</button>
-<button class="answer" onclick="checkAnswer(this,false)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">6</button>
-</div>
-
-<!-- 11 -->
-<div class="question">
-<h3>11. Berechne: 2 · x für x = 7.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">14</button>
-<button class="answer" onclick="checkAnswer(this,false)">12</button>
-<button class="answer" onclick="checkAnswer(this,false)">16</button>
-</div>
-
-<!-- 12 -->
-<div class="question">
-<h3>12. Berechne: 5 · x für x = 4.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">20</button>
-<button class="answer" onclick="checkAnswer(this,false)">15</button>
-<button class="answer" onclick="checkAnswer(this,false)">25</button>
-</div>
-
-<!-- 13 -->
-<div class="question">
-<h3>13. Berechne: x + 2 für x = 10.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">12</button>
-<button class="answer" onclick="checkAnswer(this,false)">11</button>
-<button class="answer" onclick="checkAnswer(this,false)">13</button>
-</div>
-
-<!-- 14 -->
-<div class="question">
-<h3>14. Berechne: x - 4 für x = 10.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">6</button>
-<button class="answer" onclick="checkAnswer(this,false)">5</button>
-<button class="answer" onclick="checkAnswer(this,false)">7</button>
-</div>
-
-<!-- 15 -->
-<div class="question">
-<h3>15. Berechne: 3 · x für x = 6.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">18</button>
-<button class="answer" onclick="checkAnswer(this,false)">15</button>
-<button class="answer" onclick="checkAnswer(this,false)">21</button>
-</div>
-
-<!-- 16 -->
-<div class="question">
-<h3>16. Welcher Buchstabe kann eine Variable sein?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">x</button>
-<button class="answer" onclick="checkAnswer(this,false)">+</button>
-<button class="answer" onclick="checkAnswer(this,false)">=</button>
-</div>
-
-<!-- 17 -->
-<div class="question">
-<h3>17. Was bedeutet 2 · x?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">2 mal x</button>
-<button class="answer" onclick="checkAnswer(this,false)">2 plus x</button>
-<button class="answer" onclick="checkAnswer(this,false)">x minus 2</button>
-</div>
-
-<!-- 18 -->
-<div class="question">
-<h3>18. Berechne: 4 + x für x = 6.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">10</button>
-<button class="answer" onclick="checkAnswer(this,false)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">12</button>
-</div>
-
-<!-- 19 -->
-<div class="question">
-<h3>19. Berechne: 10 - x für x = 3.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">7</button>
-<button class="answer" onclick="checkAnswer(this,false)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">6</button>
-</div>
-
-<!-- 20 -->
-<div class="question">
-<h3>20. Berechne: 2 · x + 1 für x = 4.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">9</button>
-<button class="answer" onclick="checkAnswer(this,false)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">10</button>
-</div>
-
-<!-- 21 -->
-<div class="question">
-<h3>21. Berechne: 3 · x + 2 für x = 4.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">14</button>
-<button class="answer" onclick="checkAnswer(this,false)">12</button>
-<button class="answer" onclick="checkAnswer(this,false)">16</button>
-</div>
-
-<!-- 22 -->
-<div class="question">
-<h3>22. Berechne: x + x für x = 5.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">10</button>
-<button class="answer" onclick="checkAnswer(this,false)">5</button>
-<button class="answer" onclick="checkAnswer(this,false)">15</button>
-</div>
-
-<!-- 23 -->
-<div class="question">
-<h3>23. Berechne: 2 · x für x = 9.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">18</button>
-<button class="answer" onclick="checkAnswer(this,false)">11</button>
-<button class="answer" onclick="checkAnswer(this,false)">20</button>
-</div>
-
-<!-- 24 -->
-<div class="question">
-<h3>24. Berechne: x + 15 für x = 5.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">20</button>
-<button class="answer" onclick="checkAnswer(this,false)">15</button>
-<button class="answer" onclick="checkAnswer(this,false)">25</button>
-</div>
-
-<!-- 25 -->
-<div class="question">
-<h3>25. Berechne: x - 7 für x = 15.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">8</button>
-<button class="answer" onclick="checkAnswer(this,false)">7</button>
-<button class="answer" onclick="checkAnswer(this,false)">9</button>
-</div>
-
-<!-- 26 -->
-<div class="question">
-<h3>26. Berechne: 5 · x für x = 8.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">40</button>
-<button class="answer" onclick="checkAnswer(this,false)">35</button>
-<button class="answer" onclick="checkAnswer(this,false)">45</button>
-</div>
-
-<!-- 27 -->
-<div class="question">
-<h3>27. Berechne: 2 · x + 3 für x = 5.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">13</button>
-<button class="answer" onclick="checkAnswer(this,false)">12</button>
-<button class="answer" onclick="checkAnswer(this,false)">15</button>
-</div>
-
-<!-- 28 -->
-<div class="question">
-<h3>28. Berechne: 3 · x - 2 für x = 6.</h3>
-<button class="answer" onclick="checkAnswer(this,true)">16</button>
-<button class="answer" onclick="checkAnswer(this,false)">18</button>
-<button class="answer" onclick="checkAnswer(this,false)">14</button>
-</div>
-
-<!-- 29 -->
-<div class="question">
-<h3>29. Was ist 5 + x für x = 10?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">15</button>
-<button class="answer" onclick="checkAnswer(this,false)">50</button>
-<button class="answer" onclick="checkAnswer(this,false)">5</button>
-</div>
-
-<!-- 30 -->
-<div class="question">
-<h3>30. Was ist ein Term?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">4 · x + 2</button>
-<button class="answer" onclick="checkAnswer(this,false)">Nur ein Buchstabe</button>
-<button class="answer" onclick="checkAnswer(this,false)">Nur ein Gleichheitszeichen</button>
-</div>
-
-
-<div id="score">
-🏆 Punkte: 0 / 30
-</div>
-
-<div id="result"></div>
-
-<button onclick="finishQuiz()" id="finishButton">
-✅ Auswertung
-</button>
-
-<button onclick="restartQuiz()" class="restart" id="restartButton">
-🔄 Neu starten
-</button>
-
-<br>
-
-<button class="back"
-onclick="location.href='mathe6.html'"
-id="backButton">
-← Zurück zu Mathematik
-</button>
-
-</div>
-
-
 <script>
 
 let score = 0;
 let answered = 0;
+
+
+/* =========================
+   ANTWORTEN ZUFÄLLIG MISCHEN
+========================= */
+
+function shuffleAnswers() {
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        const answers = Array.from(
+            question.querySelectorAll(".answer")
+        );
+
+        for (let i = answers.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [answers[i], answers[j]] =
+            [answers[j], answers[i]];
+        }
+
+        answers.forEach(function(answer) {
+            question.appendChild(answer);
+        });
+
+    });
+}
+
+
+/* =========================
+   ANTWORT PRÜFEN
+========================= */
 
 function checkAnswer(button, correct) {
 
@@ -454,7 +46,8 @@ function checkAnswer(button, correct) {
 
     question.dataset.done = "true";
 
-    const buttons = question.querySelectorAll(".answer");
+    const buttons =
+        question.querySelectorAll(".answer");
 
     buttons.forEach(function(btn) {
         btn.disabled = true;
@@ -471,7 +64,8 @@ function checkAnswer(button, correct) {
 
         buttons.forEach(function(btn) {
 
-            const code = btn.getAttribute("onclick");
+            const code =
+                btn.getAttribute("onclick");
 
             if (code && code.includes("true")) {
                 btn.classList.add("correct");
@@ -481,9 +75,14 @@ function checkAnswer(button, correct) {
     }
 
     answered++;
+
     updateScore();
 }
 
+
+/* =========================
+   PUNKTE
+========================= */
 
 function updateScore() {
 
@@ -508,6 +107,10 @@ function updateScore() {
 }
 
 
+/* =========================
+   AUSWERTUNG
+========================= */
+
 function finishQuiz() {
 
     const language =
@@ -516,18 +119,24 @@ function finishQuiz() {
     if (answered < 30) {
 
         if (language === "de") {
+
             document.getElementById("result").textContent =
                 "⚠️ Bitte beantworte alle 30 Aufgaben.";
+
         }
 
         if (language === "en") {
+
             document.getElementById("result").textContent =
                 "⚠️ Please answer all 30 questions.";
+
         }
 
         if (language === "ps") {
+
             document.getElementById("result").textContent =
                 "⚠️ مهرباني وکړئ ټولې ۳۰ پوښتنې ځواب کړئ.";
+
         }
 
         return;
@@ -538,40 +147,100 @@ function finishQuiz() {
     if (language === "de") {
 
         if (score === 30)
-            result = "🎉 Perfekt! 30 von 30 Punkten!";
+
+            result =
+                "🎉 Perfekt! 30 von 30 Punkten!";
+
         else if (score >= 25)
-            result = "👏 Sehr gut! " + score + " von 30 Punkten!";
+
+            result =
+                "👏 Sehr gut! " +
+                score +
+                " von 30 Punkten!";
+
         else if (score >= 18)
-            result = "👍 Gut gemacht! " + score + " von 30 Punkten!";
+
+            result =
+                "👍 Gut gemacht! " +
+                score +
+                " von 30 Punkten!";
+
         else
-            result = "💪 Übe noch etwas! " + score + " von 30 Punkten.";
 
-    } else if (language === "en") {
+            result =
+                "💪 Übe noch etwas! " +
+                score +
+                " von 30 Punkten.";
 
-        if (score === 30)
-            result = "🎉 Perfect! 30 out of 30 points!";
-        else if (score >= 25)
-            result = "👏 Very good! " + score + " out of 30 points!";
-        else if (score >= 18)
-            result = "👍 Good job! " + score + " out of 30 points!";
-        else
-            result = "💪 Keep practicing! " + score + " out of 30 points.";
-
-    } else {
-
-        if (score === 30)
-            result = "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
-        else if (score >= 25)
-            result = "👏 ډېر ښه! " + score + " له ۳۰ نمرې!";
-        else if (score >= 18)
-            result = "👍 ښه کار! " + score + " له ۳۰ نمرې!";
-        else
-            result = "💪 لا ډېر تمرین وکړه! " + score + " له ۳۰ څخه.";
     }
 
-    document.getElementById("result").textContent = result;
+    else if (language === "en") {
+
+        if (score === 30)
+
+            result =
+                "🎉 Perfect! 30 out of 30 points!";
+
+        else if (score >= 25)
+
+            result =
+                "👏 Very good! " +
+                score +
+                " out of 30 points!";
+
+        else if (score >= 18)
+
+            result =
+                "👍 Good job! " +
+                score +
+                " out of 30 points!";
+
+        else
+
+            result =
+                "💪 Keep practicing! " +
+                score +
+                " out of 30 points.";
+
+    }
+
+    else {
+
+        if (score === 30)
+
+            result =
+                "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
+
+        else if (score >= 25)
+
+            result =
+                "👏 ډېر ښه! " +
+                score +
+                " له ۳۰ نمرې!";
+
+        else if (score >= 18)
+
+            result =
+                "👍 ښه کار! " +
+                score +
+                " له ۳۰ نمرې!";
+
+        else
+
+            result =
+                "💪 لا ډېر تمرین وکړه! " +
+                score +
+                " له ۳۰ څخه.";
+    }
+
+    document.getElementById("result").textContent =
+        result;
 }
 
+
+/* =========================
+   NEU STARTEN
+========================= */
 
 function restartQuiz() {
 
@@ -585,7 +254,9 @@ function restartQuiz() {
         question.querySelectorAll(".answer").forEach(function(button) {
 
             button.disabled = false;
+
             button.classList.remove("correct");
+
             button.classList.remove("wrong");
 
         });
@@ -595,61 +266,135 @@ function restartQuiz() {
     document.getElementById("result").textContent = "";
 
     updateScore();
+
+    /* Antworten wieder neu mischen */
+    shuffleAnswers();
 }
 
+
+/* =========================
+   SPRACHEN
+========================= */
 
 const translations = {
 
     de: {
-        subtitle: "Mathematik – Klasse 6",
-        language: "🌐 Sprache:",
-        title: "🧮 Terme und Variablen",
-        explanationTitle: "📖 Das Thema erklärt",
+
+        subtitle:
+            "Mathematik – Klasse 6",
+
+        language:
+            "🌐 Sprache:",
+
+        title:
+            "🧮 Terme und Variablen",
+
+        explanationTitle:
+            "📖 Das Thema erklärt",
+
         explanationText:
             "Eine Variable ist ein Buchstabe, der für eine Zahl steht. Ein Term ist ein Rechenausdruck mit Zahlen und Variablen. Zum Beispiel ist 3 + x ein Term. Wenn x = 5 ist, ergibt 3 + x = 8.",
-        exampleTitle: "💡 Beispiele",
-        exerciseTitle: "📝 30 Aufgaben",
-        finish: "✅ Auswertung",
-        restart: "🔄 Neu starten",
-        back: "← Zurück zu Mathematik"
+
+        exampleTitle:
+            "💡 Beispiele",
+
+        exerciseTitle:
+            "📝 30 Aufgaben",
+
+        finish:
+            "✅ Auswertung",
+
+        restart:
+            "🔄 Neu starten",
+
+        back:
+            "← Zurück zu Mathematik"
     },
+
 
     en: {
-        subtitle: "Mathematics – Grade 6",
-        language: "🌐 Language:",
-        title: "🧮 Terms and Variables",
-        explanationTitle: "📖 The topic explained",
+
+        subtitle:
+            "Mathematics – Grade 6",
+
+        language:
+            "🌐 Language:",
+
+        title:
+            "🧮 Terms and Variables",
+
+        explanationTitle:
+            "📖 The topic explained",
+
         explanationText:
             "A variable is a letter that represents a number. A term is a mathematical expression with numbers and variables. For example, 3 + x is a term. If x = 5, then 3 + x = 8.",
-        exampleTitle: "💡 Examples",
-        exerciseTitle: "📝 30 Exercises",
-        finish: "✅ Results",
-        restart: "🔄 Restart",
-        back: "← Back to Mathematics"
+
+        exampleTitle:
+            "💡 Examples",
+
+        exerciseTitle:
+            "📝 30 Exercises",
+
+        finish:
+            "✅ Results",
+
+        restart:
+            "🔄 Restart",
+
+        back:
+            "← Back to Mathematics"
     },
 
+
     ps: {
-        subtitle: "ریاضي – شپږم ټولګی",
-        language: "🌐 ژبه:",
-        title: "🧮 عبارتونه او متغیرونه",
-        explanationTitle: "📖 د موضوع تشریح",
+
+        subtitle:
+            "ریاضي – شپږم ټولګی",
+
+        language:
+            "🌐 ژبه:",
+
+        title:
+            "🧮 عبارتونه او متغیرونه",
+
+        explanationTitle:
+            "📖 د موضوع تشریح",
+
         explanationText:
             "متغیر یو توری دی چې د یوې شمېرې لپاره کارېږي. عبارت د شمیرو او متغیرونو څخه جوړ شوی ریاضيکي عبارت دی. د بېلګې په توګه 3 + x یو عبارت دی. که x = 5 وي، نو 3 + x = 8 کېږي.",
-        exampleTitle: "💡 بېلګې",
-        exerciseTitle: "📝 ۳۰ تمرینونه",
-        finish: "✅ پایله",
-        restart: "🔄 بیا پیل",
-        back: "← ریاضي ته بېرته"
+
+        exampleTitle:
+            "💡 بېلګې",
+
+        exerciseTitle:
+            "📝 ۳۰ تمرینونه",
+
+        finish:
+            "✅ پایله",
+
+        restart:
+            "🔄 بیا پیل",
+
+        back:
+            "← ریاضي ته بېرته"
     }
 
 };
 
 
+/* =========================
+   SPRACHE ÄNDERN
+========================= */
+
 function changeLanguage(language) {
 
-    localStorage.setItem("language", language);
+    localStorage.setItem(
+        "language",
+        language
+    );
 
-    const t = translations[language];
+    const t =
+        translations[language];
 
     document.getElementById("subtitle").textContent =
         t.subtitle;
@@ -685,12 +430,17 @@ function changeLanguage(language) {
 }
 
 
+/* =========================
+   START
+========================= */
+
 const savedLanguage =
     localStorage.getItem("language") || "de";
 
 changeLanguage(savedLanguage);
 
-</script>
 
-</body>
-</html>
+/* Antworten beim Laden mischen */
+shuffleAnswers();
+
+</script>
