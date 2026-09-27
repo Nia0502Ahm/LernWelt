@@ -10,21 +10,23 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f7fb;
+    background: #000000;
+    color: white;
     text-align: center;
 }
 
 header {
-    background: #2563eb;
+    background: #000000;
     color: white;
     padding: 30px 20px;
+    border-bottom: 1px solid #444;
 }
 
 .container {
     max-width: 900px;
     margin: 30px auto;
     padding: 25px;
-    background: white;
+    background: #111111;
     border-radius: 18px;
 }
 
@@ -35,43 +37,48 @@ header {
 button {
     padding: 12px 20px;
     margin: 6px;
-    border: none;
+    border: 1px solid #777;
     border-radius: 9px;
-    background: #2563eb;
-    color: white;
+    background: white;
+    color: black;
     font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background: #1d4ed8;
+    background: #cccccc;
 }
 
 .language button {
-    background: #475569;
+    background: #222222;
+    color: white;
+    border: 1px solid #777;
 }
 
 .explanation {
-    background: #eff6ff;
+    background: #1b1b1b;
     padding: 20px;
     border-radius: 15px;
     text-align: left;
     line-height: 1.7;
+    border: 1px solid #444;
 }
 
 .example {
-    background: #dbeafe;
+    background: #1b1b1b;
     padding: 20px;
     border-radius: 15px;
     margin: 20px 0;
+    border: 1px solid #444;
 }
 
 .question {
     margin: 20px 0;
     padding: 20px;
-    background: #f8fafc;
+    background: #181818;
     border-radius: 15px;
     text-align: left;
+    border: 1px solid #444;
 }
 
 .question h3 {
@@ -84,23 +91,25 @@ button:hover {
     margin: 8px 0;
     padding: 13px;
     background: white;
-    color: #111827;
-    border: 2px solid #d1d5db;
+    color: black;
+    border: 2px solid #777;
     text-align: left;
     box-sizing: border-box;
 }
 
 .answer:hover {
-    background: #eef4ff;
+    background: #dddddd;
 }
 
 .answer.correct {
-    background: #dcfce7 !important;
+    background: #d1fae5 !important;
+    color: black !important;
     border-color: #22c55e !important;
 }
 
 .answer.wrong {
-    background: #fee2e2 !important;
+    background: #fecaca !important;
+    color: black !important;
     border-color: #ef4444 !important;
 }
 
@@ -117,12 +126,15 @@ button:hover {
 }
 
 .restart {
-    background: #16a34a;
+    background: white;
+    color: black;
 }
 
 .back {
-    background: #64748b;
+    background: #333333;
+    color: white;
 }
+
 </style>
 </head>
 
@@ -174,213 +186,302 @@ Der Prozentsatz zeigt, wie groß der Anteil in Prozent ist.
 <h2 id="exerciseTitle">📝 30 Aufgaben</h2>
 
 
+<!-- FRAGE 1 -->
 <div class="question">
 <h3>1. Was bedeutet 1 %?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">1 von 100</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">1 von 10</button>
+<button class="answer" onclick="checkAnswer(this,true)">1 von 100</button>
 <button class="answer" onclick="checkAnswer(this,false)">10 von 100</button>
 </div>
 
+
+<!-- FRAGE 2 -->
 <div class="question">
 <h3>2. Was bedeutet 50 %?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">Die Hälfte</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">Ein Viertel</button>
 <button class="answer" onclick="checkAnswer(this,false)">Das Doppelte</button>
+<button class="answer" onclick="checkAnswer(this,true)">Die Hälfte</button>
 </div>
 
+
+<!-- FRAGE 3 -->
 <div class="question">
 <h3>3. Wie viel sind 10 % von 100?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">50</button>
 </div>
 
+
+<!-- FRAGE 4 -->
 <div class="question">
 <h3>4. Wie viel sind 20 % von 100?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">20</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
 </div>
 
+
+<!-- FRAGE 5 -->
 <div class="question">
 <h3>5. Wie viel sind 25 % von 100?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">25</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">50</button>
+<button class="answer" onclick="checkAnswer(this,true)">25</button>
 </div>
 
+
+<!-- FRAGE 6 -->
 <div class="question">
 <h3>6. Wie viel sind 50 % von 200?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">100</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">50</button>
+<button class="answer" onclick="checkAnswer(this,true)">100</button>
 <button class="answer" onclick="checkAnswer(this,false)">150</button>
 </div>
 
+
+<!-- FRAGE 7 -->
 <div class="question">
 <h3>7. Wie viel sind 10 % von 200?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">20</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
 </div>
 
+
+<!-- FRAGE 8 -->
 <div class="question">
 <h3>8. Wie viel sind 25 % von 80?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
 </div>
 
+
+<!-- FRAGE 9 -->
 <div class="question">
 <h3>9. Wie viel sind 20 % von 50?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">10</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">5</button>
+<button class="answer" onclick="checkAnswer(this,true)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 </div>
 
+
+<!-- FRAGE 10 -->
 <div class="question">
 <h3>10. Wie viel sind 10 % von 300?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">30</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">60</button>
+<button class="answer" onclick="checkAnswer(this,true)">30</button>
 </div>
 
+
+<!-- FRAGE 11 -->
 <div class="question">
 <h3>11. Wie viel sind 50 % von 60?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">30</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
 </div>
 
+
+<!-- FRAGE 12 -->
 <div class="question">
 <h3>12. Wie viel sind 25 % von 40?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">10</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">5</button>
+<button class="answer" onclick="checkAnswer(this,true)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 </div>
 
+
+<!-- FRAGE 13 -->
 <div class="question">
 <h3>13. Wie viel sind 20 % von 100?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">20</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">25</button>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
 </div>
 
+
+<!-- FRAGE 14 -->
 <div class="question">
 <h3>14. Wie viel sind 10 % von 500?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">50</button>
 <button class="answer" onclick="checkAnswer(this,false)">25</button>
 <button class="answer" onclick="checkAnswer(this,false)">100</button>
 </div>
 
+
+<!-- FRAGE 15 -->
 <div class="question">
 <h3>15. Wie viel sind 50 % von 500?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">250</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">100</button>
+<button class="answer" onclick="checkAnswer(this,true)">250</button>
 <button class="answer" onclick="checkAnswer(this,false)">200</button>
 </div>
 
+
+<!-- FRAGE 16 -->
 <div class="question">
 <h3>16. Wie viel sind 25 % von 200?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">50</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">25</button>
 <button class="answer" onclick="checkAnswer(this,false)">100</button>
+<button class="answer" onclick="checkAnswer(this,true)">50</button>
 </div>
 
+
+<!-- FRAGE 17 -->
 <div class="question">
 <h3>17. Wie viel sind 20 % von 200?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">40</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">60</button>
 </div>
 
+
+<!-- FRAGE 18 -->
 <div class="question">
 <h3>18. Wie viel sind 10 % von 80?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">8</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,true)">8</button>
 <button class="answer" onclick="checkAnswer(this,false)">16</button>
 </div>
 
+
+<!-- FRAGE 19 -->
 <div class="question">
 <h3>19. Wie viel sind 50 % von 80?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">40</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">60</button>
+<button class="answer" onclick="checkAnswer(this,true)">40</button>
 </div>
 
+
+<!-- FRAGE 20 -->
 <div class="question">
 <h3>20. Wie viel sind 25 % von 60?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">15</button>
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 </div>
 
+
+<!-- FRAGE 21 -->
 <div class="question">
 <h3>21. Wie viel sind 10 % von 700?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">70</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">7</button>
+<button class="answer" onclick="checkAnswer(this,true)">70</button>
 <button class="answer" onclick="checkAnswer(this,false)">140</button>
 </div>
 
+
+<!-- FRAGE 22 -->
 <div class="question">
 <h3>22. Wie viel sind 20 % von 300?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">60</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">30</button>
 <button class="answer" onclick="checkAnswer(this,false)">90</button>
+<button class="answer" onclick="checkAnswer(this,true)">60</button>
 </div>
 
+
+<!-- FRAGE 23 -->
 <div class="question">
 <h3>23. Wie viel sind 25 % von 120?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">30</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
 </div>
 
+
+<!-- FRAGE 24 -->
 <div class="question">
 <h3>24. Wie viel sind 50 % von 120?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">60</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">30</button>
+<button class="answer" onclick="checkAnswer(this,true)">60</button>
 <button class="answer" onclick="checkAnswer(this,false)">80</button>
 </div>
 
+
+<!-- FRAGE 25 -->
 <div class="question">
 <h3>25. Wie viel sind 10 % von 90?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">9</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">10</button>
 <button class="answer" onclick="checkAnswer(this,false)">18</button>
+<button class="answer" onclick="checkAnswer(this,true)">9</button>
 </div>
 
+
+<!-- FRAGE 26 -->
 <div class="question">
 <h3>26. Wie viel sind 20 % von 90?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">18</button>
 <button class="answer" onclick="checkAnswer(this,false)">9</button>
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
 </div>
 
+
+<!-- FRAGE 27 -->
 <div class="question">
 <h3>27. Wie viel sind 25 % von 160?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">40</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,true)">40</button>
 <button class="answer" onclick="checkAnswer(this,false)">80</button>
 </div>
 
+
+<!-- FRAGE 28 -->
 <div class="question">
 <h3>28. Wie viel sind 50 % von 160?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">80</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
 <button class="answer" onclick="checkAnswer(this,false)">100</button>
+<button class="answer" onclick="checkAnswer(this,true)">80</button>
 </div>
 
+
+<!-- FRAGE 29 -->
 <div class="question">
 <h3>29. Wie viel sind 10 % von 450?</h3>
+
 <button class="answer" onclick="checkAnswer(this,true)">45</button>
 <button class="answer" onclick="checkAnswer(this,false)">40</button>
 <button class="answer" onclick="checkAnswer(this,false)">90</button>
 </div>
 
+
+<!-- FRAGE 30 -->
 <div class="question">
 <h3>30. Wie viel sind 25 % von 400?</h3>
-<button class="answer" onclick="checkAnswer(this,true)">100</button>
+
 <button class="answer" onclick="checkAnswer(this,false)">50</button>
+<button class="answer" onclick="checkAnswer(this,true)">100</button>
 <button class="answer" onclick="checkAnswer(this,false)">200</button>
 </div>
 
