@@ -118,6 +118,8 @@ button:hover {
     </div>
 
 
+    <!-- ÜBERSCHRIFT -->
+
     <h2 id="title">
         🧮 Mathematik – Themen auswählen
     </h2>
@@ -138,7 +140,7 @@ button:hover {
     <!-- THEMA 2 -->
 
     <button class="topic"
-        onclick="location.href='brueche-addieren6.html'">
+        onclick="location.href='brueche-addieren-subtrahieren6.html'">
 
         ➕ <span id="topic2">
             Brüche addieren und subtrahieren
@@ -150,7 +152,7 @@ button:hover {
     <!-- THEMA 3 -->
 
     <button class="topic"
-        onclick="location.href='brueche-multiplizieren6.html'">
+        onclick="location.href='brueche-multiplizieren-dividieren6.html'">
 
         ✖️ <span id="topic3">
             Brüche multiplizieren und dividieren
@@ -322,7 +324,6 @@ const translations = {
 
         back:
             "Zurück"
-
     },
 
 
@@ -372,7 +373,6 @@ const translations = {
 
         back:
             "Back"
-
     },
 
 
@@ -422,7 +422,6 @@ const translations = {
 
         back:
             "بېرته"
-
     }
 
 };
@@ -438,10 +437,8 @@ function changeLanguage(language) {
     document.getElementById("subtitle").textContent =
         t.subtitle;
 
-
     document.getElementById("languageText").textContent =
         t.language;
-
 
     document.getElementById("title").textContent =
         t.title;
@@ -483,7 +480,6 @@ function changeLanguage(language) {
 
     document.getElementById("back").textContent =
         t.back;
-
 }
 
 
