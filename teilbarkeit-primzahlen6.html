@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Teilbarkeit und Primzahlen Klasse 6</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.example {
+    background: #dbeafe;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.question {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.answer.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.answer.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Mathematik – Klasse 6</p>
+</header>
+
+<div class="container">
+
+<div class="language">
+
+<p id="languageText">🌐 Sprache:</p>
+
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+
+</div>
+
+<h2 id="title">🔢 Teilbarkeit und Primzahlen</h2>
+
+<div class="explanation">
+
+<h2 id="explanationTitle">📖 Das Thema erklärt</h2>
+
+<p id="explanationText">
+Eine Primzahl hat genau zwei Teiler: 1 und sich selbst.
+Eine Zahl ist durch 2 teilbar, wenn sie gerade ist.
+Durch 5 ist eine Zahl teilbar, wenn sie auf 0 oder 5 endet.
+Durch 10 ist sie teilbar, wenn sie auf 0 endet.
+</p>
+
+</div>
+
+<div class="example">
+
+<h3 id="exampleTitle">💡 Beispiele</h3>
+
+<p>7 → Primzahl</p>
+<p>12 → durch 2, 3, 4 und 6 teilbar</p>
+<p>25 → durch 5 teilbar</p>
+<p>30 → durch 2, 3, 5 und 10 teilbar</p>
+
+</div>
+
+<h2 id="exerciseTitle">📝 30 Aufgaben</h2>
+
+
+<!-- 1 -->
+<div class="question">
+<h3>1. Welche Zahl ist eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">7</button>
+<button class="answer" onclick="checkAnswer(this,false)">8</button>
+<button class="answer" onclick="checkAnswer(this,false)">9</button>
+</div>
+
+<!-- 2 -->
+<div class="question">
+<h3>2. Welche Zahl ist eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">11</button>
+<button class="answer" onclick="checkAnswer(this,false)">12</button>
+<button class="answer" onclick="checkAnswer(this,false)">15</button>
+</div>
+
+<!-- 3 -->
+<div class="question">
+<h3>3. Welche Zahl ist keine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">15</button>
+<button class="answer" onclick="checkAnswer(this,false)">13</button>
+<button class="answer" onclick="checkAnswer(this,false)">17</button>
+</div>
+
+<!-- 4 -->
+<div class="question">
+<h3>4. Wie viele Teiler hat eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">2</button>
+<button class="answer" onclick="checkAnswer(this,false)">3</button>
+<button class="answer" onclick="checkAnswer(this,false)">4</button>
+</div>
+
+<!-- 5 -->
+<div class="question">
+<h3>5. Welche Zahl ist durch 2 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">18</button>
+<button class="answer" onclick="checkAnswer(this,false)">17</button>
+<button class="answer" onclick="checkAnswer(this,false)">21</button>
+</div>
+
+<!-- 6 -->
+<div class="question">
+<h3>6. Welche Zahl ist durch 5 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">25</button>
+<button class="answer" onclick="checkAnswer(this,false)">24</button>
+<button class="answer" onclick="checkAnswer(this,false)">23</button>
+</div>
+
+<!-- 7 -->
+<div class="question">
+<h3>7. Welche Zahl ist durch 10 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">40</button>
+<button class="answer" onclick="checkAnswer(this,false)">45</button>
+<button class="answer" onclick="checkAnswer(this,false)">44</button>
+</div>
+
+<!-- 8 -->
+<div class="question">
+<h3>8. Welche Zahl ist gerade?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">26</button>
+<button class="answer" onclick="checkAnswer(this,false)">27</button>
+<button class="answer" onclick="checkAnswer(this,false)">29</button>
+</div>
+
+<!-- 9 -->
+<div class="question">
+<h3>9. Welche Zahl ist ungerade?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">31</button>
+<button class="answer" onclick="checkAnswer(this,false)">32</button>
+<button class="answer" onclick="checkAnswer(this,false)">34</button>
+</div>
+
+<!-- 10 -->
+<div class="question">
+<h3>10. Ist 2 eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">Ja</button>
+<button class="answer" onclick="checkAnswer(this,false)">Nein</button>
+<button class="answer" onclick="checkAnswer(this,false)">Nur manchmal</button>
+</div>
+
+<!-- 11 -->
+<div class="question">
+<h3>11. Ist 1 eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">Nein</button>
+<button class="answer" onclick="checkAnswer(this,false)">Ja</button>
+<button class="answer" onclick="checkAnswer(this,false)">Nur manchmal</button>
+</div>
+
+<!-- 12 -->
+<div class="question">
+<h3>12. Welche Zahl ist durch 3 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">21</button>
+<button class="answer" onclick="checkAnswer(this,false)">22</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+</div>
+
+<!-- 13 -->
+<div class="question">
+<h3>13. Welche Zahl ist durch 4 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">21</button>
+<button class="answer" onclick="checkAnswer(this,false)">22</button>
+</div>
+
+<!-- 14 -->
+<div class="question">
+<h3>14. Welche Zahl ist durch 6 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">18</button>
+<button class="answer" onclick="checkAnswer(this,false)">19</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+</div>
+
+<!-- 15 -->
+<div class="question">
+<h3>15. Welche Zahl ist durch 9 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">27</button>
+<button class="answer" onclick="checkAnswer(this,false)">28</button>
+<button class="answer" onclick="checkAnswer(this,false)">29</button>
+</div>
+
+<!-- 16 -->
+<div class="question">
+<h3>16. Welche Zahl ist ein Teiler von 12?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3</button>
+<button class="answer" onclick="checkAnswer(this,false)">5</button>
+<button class="answer" onclick="checkAnswer(this,false)">7</button>
+</div>
+
+<!-- 17 -->
+<div class="question">
+<h3>17. Welche Zahl ist kein Teiler von 12?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">5</button>
+<button class="answer" onclick="checkAnswer(this,false)">3</button>
+<button class="answer" onclick="checkAnswer(this,false)">4</button>
+</div>
+
+<!-- 18 -->
+<div class="question">
+<h3>18. Welche Zahl ist ein Vielfaches von 5?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">35</button>
+<button class="answer" onclick="checkAnswer(this,false)">32</button>
+<button class="answer" onclick="checkAnswer(this,false)">33</button>
+</div>
+
+<!-- 19 -->
+<div class="question">
+<h3>19. Welche Zahl ist ein Vielfaches von 3?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">24</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+<button class="answer" onclick="checkAnswer(this,false)">26</button>
+</div>
+
+<!-- 20 -->
+<div class="question">
+<h3>20. Was ist ein Teiler von 20?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">4</button>
+<button class="answer" onclick="checkAnswer(this,false)">3</button>
+<button class="answer" onclick="checkAnswer(this,false)">7</button>
+</div>
+
+<!-- 21 -->
+<div class="question">
+<h3>21. Was ist ein Vielfaches von 4?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">28</button>
+<button class="answer" onclick="checkAnswer(this,false)">27</button>
+<button class="answer" onclick="checkAnswer(this,false)">29</button>
+</div>
+
+<!-- 22 -->
+<div class="question">
+<h3>22. Welche Zahl ist durch 2 und 5 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+<button class="answer" onclick="checkAnswer(this,false)">23</button>
+</div>
+
+<!-- 23 -->
+<div class="question">
+<h3>23. Welche Zahl ist durch 2 und 3 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">12</button>
+<button class="answer" onclick="checkAnswer(this,false)">13</button>
+<button class="answer" onclick="checkAnswer(this,false)">14</button>
+</div>
+
+<!-- 24 -->
+<div class="question">
+<h3>24. Welche Zahl ist durch 5 und 10 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">50</button>
+<button class="answer" onclick="checkAnswer(this,false)">55</button>
+<button class="answer" onclick="checkAnswer(this,false)">45</button>
+</div>
+
+<!-- 25 -->
+<div class="question">
+<h3>25. Welche Zahl ist eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">19</button>
+<button class="answer" onclick="checkAnswer(this,false)">18</button>
+<button class="answer" onclick="checkAnswer(this,false)">21</button>
+</div>
+
+<!-- 26 -->
+<div class="question">
+<h3>26. Welche Zahl ist eine Primzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">23</button>
+<button class="answer" onclick="checkAnswer(this,false)">24</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+</div>
+
+<!-- 27 -->
+<div class="question">
+<h3>27. Welche Zahl hat die Teiler 1, 2, 4 und 8?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">8</button>
+<button class="answer" onclick="checkAnswer(this,false)">9</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+</div>
+
+<!-- 28 -->
+<div class="question">
+<h3>28. Welche Zahl ist durch 10 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">70</button>
+<button class="answer" onclick="checkAnswer(this,false)">75</button>
+<button class="answer" onclick="checkAnswer(this,false)">77</button>
+</div>
+
+<!-- 29 -->
+<div class="question">
+<h3>29. Welche Zahl ist durch 3 und 5 teilbar?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">30</button>
+<button class="answer" onclick="checkAnswer(this,false)">31</button>
+<button class="answer" onclick="checkAnswer(this,false)">32</button>
+</div>
+
+<!-- 30 -->
+<div class="question">
+<h3>30. Welche Aussage über Primzahlen ist richtig?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">
+Primzahlen haben genau zwei Teiler.
+</button>
+<button class="answer" onclick="checkAnswer(this,false)">
+Primzahlen haben immer drei Teiler.
+</button>
+<button class="answer" onclick="checkAnswer(this,false)">
+Jede gerade Zahl ist eine Primzahl.
+</button>
+</div>
+
+
+<div id="score">
+🏆 Punkte: 0 / 30
+</div>
+
+<div id="result"></div>
+
+<button onclick="finishQuiz()" id="finishButton">
+✅ Auswertung
+</button>
+
+<button onclick="restartQuiz()" class="restart" id="restartButton">
+🔄 Neu starten
+</button>
+
+<br>
+
+<button class="back"
+onclick="location.href='mathe6.html'"
+id="backButton">
+← Zurück zu Mathematik
+</button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons = question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+
+            const code = btn.getAttribute("onclick");
+
+            if (code && code.includes("true")) {
+                btn.classList.add("correct");
+            }
+
+        });
+    }
+
+    answered++;
+    updateScore();
+}
+
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (language === "de") {
+
+        document.getElementById("score").textContent =
+            "🏆 Punkte: " + score + " / 30";
+
+    } else if (language === "en") {
+
+        document.getElementById("score").textContent =
+            "🏆 Points: " + score + " / 30";
+
+    } else {
+
+        document.getElementById("score").textContent =
+            "🏆 نمرې: " + score + " / ۳۰";
+    }
+}
+
+
+function finishQuiz() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (answered < 30) {
+
+        if (language === "de") {
+            document.getElementById("result").textContent =
+                "⚠️ Bitte beantworte alle 30 Aufgaben.";
+        }
+
+        if (language === "en") {
+            document.getElementById("result").textContent =
+                "⚠️ Please answer all 30 questions.";
+        }
+
+        if (language === "ps") {
+            document.getElementById("result").textContent =
+                "⚠️ مهرباني وکړئ ټولې ۳۰ پوښتنې ځواب کړئ.";
+        }
+
+        return;
+    }
+
+    let result = "";
+
+    if (language === "de") {
+
+        if (score === 30)
+            result = "🎉 Perfekt! 30 von 30 Punkten!";
+        else if (score >= 25)
+            result = "👏 Sehr gut! " + score + " von 30 Punkten!";
+        else if (score >= 18)
+            result = "👍 Gut gemacht! " + score + " von 30 Punkten!";
+        else
+            result = "💪 Übe noch etwas! " + score + " von 30 Punkten.";
+
+    } else if (language === "en") {
+
+        if (score === 30)
+            result = "🎉 Perfect! 30 out of 30 points!";
+        else if (score >= 25)
+            result = "👏 Very good! " + score + " out of 30 points!";
+        else if (score >= 18)
+            result = "👍 Good job! " + score + " out of 30 points!";
+        else
+            result = "💪 Keep practicing! " + score + " out of 30 points.";
+
+    } else {
+
+        if (score === 30)
+            result = "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
+        else if (score >= 25)
+            result = "👏 ډېر ښه! " + score + " له ۳۰ نمرې!";
+        else if (score >= 18)
+            result = "👍 ښه کار! " + score + " له ۳۰ نمرې!";
+        else
+            result = "💪 لا ډېر تمرین وکړه! " + score + " له ۳۰ څخه.";
+    }
+
+    document.getElementById("result").textContent = result;
+}
+
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        question.querySelectorAll(".answer").forEach(function(button) {
+
+            button.disabled = false;
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+const translations = {
+
+    de: {
+        subtitle: "Mathematik – Klasse 6",
+        language: "🌐 Sprache:",
+        title: "🔢 Teilbarkeit und Primzahlen",
+        explanationTitle: "📖 Das Thema erklärt",
+        explanationText:
+            "Eine Primzahl hat genau zwei Teiler: 1 und sich selbst. Eine Zahl ist durch 2 teilbar, wenn sie gerade ist. Durch 5 ist eine Zahl teilbar, wenn sie auf 0 oder 5 endet. Durch 10 ist sie teilbar, wenn sie auf 0 endet.",
+        exampleTitle: "💡 Beispiele",
+        exerciseTitle: "📝 30 Aufgaben",
+        finish: "✅ Auswertung",
+        restart: "🔄 Neu starten",
+        back: "← Zurück zu Mathematik"
+    },
+
+    en: {
+        subtitle: "Mathematics – Grade 6",
+        language: "🌐 Language:",
+        title: "🔢 Divisibility and Prime Numbers",
+        explanationTitle: "📖 The topic explained",
+        explanationText:
+            "A prime number has exactly two divisors: 1 and itself. A number is divisible by 2 when it is even. A number is divisible by 5 when it ends in 0 or 5. A number is divisible by 10 when it ends in 0.",
+        exampleTitle: "💡 Examples",
+        exerciseTitle: "📝 30 Exercises",
+        finish: "✅ Results",
+        restart: "🔄 Restart",
+        back: "← Back to Mathematics"
+    },
+
+    ps: {
+        subtitle: "ریاضي – شپږم ټولګی",
+        language: "🌐 ژبه:",
+        title: "🔢 د وېش قواعد او اولي شمېرې",
+        explanationTitle: "📖 د موضوع تشریح",
+        explanationText:
+            "اولي شمېره یوازې دوه وېشونکي لري: ۱ او خپله شمېره. هغه شمېره پر ۲ وېشل کېږي چې جوره وي. هغه شمېره پر ۵ وېشل کېږي چې په ۰ یا ۵ پای ته ورسېږي. هغه شمېره پر ۱۰ وېشل کېږي چې په ۰ پای ته ورسېږي.",
+        exampleTitle: "💡 بېلګې",
+        exerciseTitle: "📝 ۳۰ تمرینونه",
+        finish: "✅ پایله",
+        restart: "🔄 بیا پیل",
+        back: "← ریاضي ته بېرته"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("title").textContent =
+        t.title;
+
+    document.getElementById("explanationTitle").textContent =
+        t.explanationTitle;
+
+    document.getElementById("explanationText").textContent =
+        t.explanationText;
+
+    document.getElementById("exampleTitle").textContent =
+        t.exampleTitle;
+
+    document.getElementById("exerciseTitle").textContent =
+        t.exerciseTitle;
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+    updateScore();
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
