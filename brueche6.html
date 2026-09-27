@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Brüche Klasse 6</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.fraction-box {
+    margin: 20px auto;
+    padding: 20px;
+    background: #dbeafe;
+    border-radius: 15px;
+    font-size: 24px;
+}
+
+.question {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.answer.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.answer.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Mathematik – Klasse 6</p>
+</header>
+
+<div class="container">
+
+<!-- SPRACHE -->
+
+<div class="language">
+
+<p id="languageText">🌐 Sprache:</p>
+
+<button onclick="changeLanguage('de')">
+🇩🇪 Deutsch
+</button>
+
+<button onclick="changeLanguage('en')">
+🇬🇧 English
+</button>
+
+<button onclick="changeLanguage('ps')">
+🇦🇫 پښتو
+</button>
+
+</div>
+
+
+<!-- TITEL -->
+
+<h2 id="title">🍕 Brüche</h2>
+
+
+<!-- BILD / VISUALISIERUNG -->
+
+<div class="fraction-box">
+
+<svg width="100%" height="220" viewBox="0 0 700 220">
+
+<circle cx="350" cy="110" r="85"
+fill="#fbbf24"
+stroke="#92400e"
+stroke-width="5"/>
+
+<line x1="350" y1="25" x2="350" y2="195"
+stroke="#92400e" stroke-width="4"/>
+
+<line x1="265" y1="110" x2="435" y2="110"
+stroke="#92400e" stroke-width="4"/>
+
+<text x="350" y="215"
+text-anchor="middle"
+font-size="24">
+1/4
+</text>
+
+</svg>
+
+</div>
+
+
+<!-- ERKLÄRUNG -->
+
+<div class="explanation">
+
+<h2 id="explanationTitle">
+📖 Was ist ein Bruch?
+</h2>
+
+<p id="explanation">
+Ein Bruch beschreibt einen Teil eines Ganzen.
+</p>
+
+<p>
+<strong id="numeratorTitle">Zähler:</strong>
+<span id="numeratorText">
+Der Zähler steht oben.
+</span>
+</p>
+
+<p>
+<strong id="denominatorTitle">Nenner:</strong>
+<span id="denominatorText">
+Der Nenner steht unten und zeigt, in wie viele gleiche Teile das Ganze geteilt wurde.
+</span>
+</p>
+
+<p id="example">
+Beispiel: 3/4 bedeutet drei von vier gleichen Teilen.
+</p>
+
+</div>
+
+
+<!-- AUFGABEN -->
+
+<h2 id="exerciseTitle">📝 30 Aufgaben</h2>
+
+
+<!-- FRAGEN -->
+
+<div class="question">
+<h3>1. Was ist der Zähler bei 3/5?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3</button>
+<button class="answer" onclick="checkAnswer(this,false)">5</button>
+<button class="answer" onclick="checkAnswer(this,false)">8</button>
+</div>
+
+<div class="question">
+<h3>2. Was ist der Nenner bei 7/9?</h3>
+<button class="answer" onclick="checkAnswer(this,false)">7</button>
+<button class="answer" onclick="checkAnswer(this,true)">9</button>
+<button class="answer" onclick="checkAnswer(this,false)">16</button>
+</div>
+
+<div class="question">
+<h3>3. Welcher Bruch bedeutet drei von vier Teilen?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/3</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/8</button>
+</div>
+
+<div class="question">
+<h3>4. Welcher Bruch ist größer?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/8</button>
+</div>
+
+<div class="question">
+<h3>5. Wie viel ist 1/2 als Dezimalzahl?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">0,5</button>
+<button class="answer" onclick="checkAnswer(this,false)">0,2</button>
+<button class="answer" onclick="checkAnswer(this,false)">1,5</button>
+</div>
+
+<div class="question">
+<h3>6. Welcher Bruch entspricht 1/2?</h3>
+<button class="answer" onclick="checkAnswer(this,false)">1/3</button>
+<button class="answer" onclick="checkAnswer(this,true)">2/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/5</button>
+</div>
+
+<div class="question">
+<h3>7. Welcher Bruch ist kleiner als 1/2?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/5</button>
+</div>
+
+<div class="question">
+<h3>8. Wie viel ist 1/4 + 1/4?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/8</button>
+</div>
+
+<div class="question">
+<h3>9. Wie viel ist 2/5 + 1/5?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/5</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/10</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/10</button>
+</div>
+
+<div class="question">
+<h3>10. Wie viel ist 4/5 - 1/5?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/5</button>
+<button class="answer" onclick="checkAnswer(this,false)">5/5</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/10</button>
+</div>
+
+<div class="question">
+<h3>11. Welcher Bruch ist gleich 1?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">5/5</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/5</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/5</button>
+</div>
+
+<div class="question">
+<h3>12. Welcher Bruch ist größer als 1?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">5/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/5</button>
+</div>
+
+<div class="question">
+<h3>13. Kürze 4/8.</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/3</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/4</button>
+</div>
+
+<div class="question">
+<h3>14. Kürze 6/9.</h3>
+<button class="answer" onclick="checkAnswer(this,true)">2/3</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/3</button>
+</div>
+
+<div class="question">
+<h3>15. Erweitere 1/2 mit 3.</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/3</button>
+</div>
+
+<div class="question">
+<h3>16. Erweitere 2/3 mit 2.</h3>
+<button class="answer" onclick="checkAnswer(this,true)">4/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/5</button>
+</div>
+
+<div class="question">
+<h3>17. Wie viel ist 1/3 + 1/3?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">2/3</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/3</button>
+</div>
+
+<div class="question">
+<h3>18. Wie viel ist 3/4 - 2/4?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+<button class="answer" onclick="checkAnswer(this,false)">5/4</button>
+</div>
+
+<div class="question">
+<h3>19. Welcher Bruch ist am größten?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">5/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/6</button>
+</div>
+
+<div class="question">
+<h3>20. Welcher Bruch ist am kleinsten?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/8</button>
+<button class="answer" onclick="checkAnswer(this,false)">5/8</button>
+<button class="answer" onclick="checkAnswer(this,false)">7/8</button>
+</div>
+
+<div class="question">
+<h3>21. Wie viel ist 2/7 + 3/7?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">5/7</button>
+<button class="answer" onclick="checkAnswer(this,false)">5/14</button>
+<button class="answer" onclick="checkAnswer(this,false)">6/7</button>
+</div>
+
+<div class="question">
+<h3>22. Wie viel ist 6/7 - 2/7?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">4/7</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/14</button>
+<button class="answer" onclick="checkAnswer(this,false)">8/7</button>
+</div>
+
+<div class="question">
+<h3>23. Wie viel ist 1/2 + 1/4?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/6</button>
+</div>
+
+<div class="question">
+<h3>24. Wie viel ist 3/4 - 1/2?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/4</button>
+</div>
+
+<div class="question">
+<h3>25. Wie viel ist 2/3 + 1/6?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">5/6</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/9</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/6</button>
+</div>
+
+<div class="question">
+<h3>26. Wie viel ist 5/6 - 1/3?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+<button class="answer" onclick="checkAnswer(this,false)">4/3</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/6</button>
+</div>
+
+<div class="question">
+<h3>27. Welcher Bruch entspricht 0,25?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+<button class="answer" onclick="checkAnswer(this,false)">3/4</button>
+</div>
+
+<div class="question">
+<h3>28. Welcher Bruch entspricht 0,75?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">3/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">1/4</button>
+<button class="answer" onclick="checkAnswer(this,false)">2/5</button>
+</div>
+
+<div class="question">
+<h3>29. Was passiert beim Kürzen eines Bruchs?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">
+Zähler und Nenner werden durch dieselbe Zahl geteilt.
+</button>
+<button class="answer" onclick="checkAnswer(this,false)">
+Nur der Zähler wird geteilt.
+</button>
+<button class="answer" onclick="checkAnswer(this,false)">
+Nur der Nenner wird geteilt.
+</button>
+</div>
+
+<div class="question">
+<h3>30. Was bedeutet 7/10?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">
+Sieben von zehn gleichen Teilen.
+</button>
+<button class="answer" onclick="checkAnswer(this,false)">
+Zehn von sieben Teilen.
+</button>
+<button class="answer" onclick="checkAnswer(this,false)">
+Sieben ganze Zahlen.
+</button>
+</div>
+
+
+<!-- PUNKTE -->
+
+<div id="score">
+🏆 Punkte: 0 / 30
+</div>
+
+<div id="result"></div>
+
+<button onclick="finishQuiz()" id="finishButton">
+✅ Auswertung
+</button>
+
+<button onclick="restartQuiz()" class="restart" id="restartButton">
+🔄 Neu starten
+</button>
+
+<br>
+
+<button class="back"
+onclick="location.href='mathe6.html'"
+id="backButton">
+← Zurück zu Mathematik
+</button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons =
+        question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+
+            const code =
+                btn.getAttribute("onclick");
+
+            if (code && code.includes("true")) {
+                btn.classList.add("correct");
+            }
+
+        });
+    }
+
+    answered++;
+
+    updateScore();
+}
+
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (language === "de") {
+        document.getElementById("score").textContent =
+            "🏆 Punkte: " + score + " / 30";
+    }
+
+    if (language === "en") {
+        document.getElementById("score").textContent =
+            "🏆 Points: " + score + " / 30";
+    }
+
+    if (language === "ps") {
+        document.getElementById("score").textContent =
+            "🏆 نمرې: " + score + " / 30";
+    }
+}
+
+
+function finishQuiz() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (answered < 30) {
+
+        if (language === "de") {
+            document.getElementById("result").textContent =
+                "⚠️ Bitte beantworte alle 30 Aufgaben.";
+        }
+
+        if (language === "en") {
+            document.getElementById("result").textContent =
+                "⚠️ Please answer all 30 questions.";
+        }
+
+        if (language === "ps") {
+            document.getElementById("result").textContent =
+                "⚠️ مهرباني وکړئ ټولې ۳۰ پوښتنې ځواب کړئ.";
+        }
+
+        return;
+    }
+
+
+    let result = "";
+
+    if (language === "de") {
+
+        if (score === 30)
+            result = "🎉 Perfekt! 30 von 30 Punkten!";
+
+        else if (score >= 25)
+            result = "👏 Sehr gut! " + score + " von 30 Punkten!";
+
+        else if (score >= 18)
+            result = "👍 Gut gemacht! " + score + " von 30 Punkten!";
+
+        else
+            result = "💪 Übe noch etwas! " + score + " von 30 Punkten.";
+    }
+
+
+    if (language === "en") {
+
+        if (score === 30)
+            result = "🎉 Perfect! 30 out of 30 points!";
+
+        else if (score >= 25)
+            result = "👏 Very good! " + score + " out of 30 points!";
+
+        else if (score >= 18)
+            result = "👍 Good job! " + score + " out of 30 points!";
+
+        else
+            result = "💪 Keep practicing! " + score + " out of 30 points.";
+    }
+
+
+    if (language === "ps") {
+
+        if (score === 30)
+            result = "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
+
+        else if (score >= 25)
+            result = "👏 ډېر ښه! " + score + " له ۳۰ نمرې!";
+
+        else if (score >= 18)
+            result = "👍 ښه کار! " + score + " له ۳۰ نمرې!";
+
+        else
+            result = "💪 لا ډېر تمرین وکړه! " + score + " له ۳۰ څخه.";
+    }
+
+    document.getElementById("result").textContent = result;
+}
+
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        question.querySelectorAll(".answer").forEach(function(button) {
+
+            button.disabled = false;
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+/* Übersetzungen */
+
+const translations = {
+
+de: {
+
+subtitle: "Mathematik – Klasse 6",
+language: "🌐 Sprache:",
+title: "🍕 Brüche",
+
+explanationTitle: "📖 Was ist ein Bruch?",
+
+explanation:
+"Ein Bruch beschreibt einen Teil eines Ganzen.",
+
+numeratorTitle: "Zähler:",
+
+numeratorText:
+"Der Zähler steht oben.",
+
+denominatorTitle: "Nenner:",
+
+denominatorText:
+"Der Nenner steht unten und zeigt, in wie viele gleiche Teile das Ganze geteilt wurde.",
+
+example:
+"Beispiel: 3/4 bedeutet drei von vier gleichen Teilen.",
+
+exerciseTitle: "📝 30 Aufgaben",
+
+finish: "✅ Auswertung",
+
+restart: "🔄 Neu starten",
+
+back: "← Zurück zu Mathematik"
+
+},
+
+
+en: {
+
+subtitle: "Mathematics – Grade 6",
+
+language: "🌐 Language:",
+
+title: "🍕 Fractions",
+
+explanationTitle: "📖 What is a fraction?",
+
+explanation:
+"A fraction describes a part of a whole.",
+
+numeratorTitle: "Numerator:",
+
+numeratorText:
+"The numerator is on top.",
+
+denominatorTitle: "Denominator:",
+
+denominatorText:
+"The denominator is at the bottom and shows how many equal parts the whole is divided into.",
+
+example:
+"Example: 3/4 means three out of four equal parts.",
+
+exerciseTitle: "📝 30 Exercises",
+
+finish: "✅ Results",
+
+restart: "🔄 Restart",
+
+back: "← Back to Mathematics"
+
+},
+
+
+ps: {
+
+subtitle: "ریاضي – شپږم ټولګی",
+
+language: "🌐 ژبه:",
+
+title: "🍕 کسرونه",
+
+explanationTitle: "📖 کسر څه شی دی؟",
+
+explanation:
+"کسر د یوه ټول شي یوه برخه ښيي.",
+
+numeratorTitle: "صورت:",
+
+numeratorText:
+"صورت په پورته برخه کې وي.",
+
+denominatorTitle: "مخرج:",
+
+denominatorText:
+"مخرج په لاندې برخه کې وي او ښيي چې ټول شی په څو مساوي برخو وېشل شوی دی.",
+
+example:
+"مثال: 3/4 یعنې له څلورو مساوي برخو څخه درې برخې.",
+
+exerciseTitle: "📝 ۳۰ تمرینونه",
+
+finish: "✅ پایله",
+
+restart: "🔄 بیا پیل",
+
+back: "← ریاضي ته بېرته"
+
+}
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("title").textContent =
+        t.title;
+
+    document.getElementById("explanationTitle").textContent =
+        t.explanationTitle;
+
+    document.getElementById("explanation").textContent =
+        t.explanation;
+
+    document.getElementById("numeratorTitle").textContent =
+        t.numeratorTitle;
+
+    document.getElementById("numeratorText").textContent =
+        t.numeratorText;
+
+    document.getElementById("denominatorTitle").textContent =
+        t.denominatorTitle;
+
+    document.getElementById("denominatorText").textContent =
+        t.denominatorText;
+
+    document.getElementById("example").textContent =
+        t.example;
+
+    document.getElementById("exerciseTitle").textContent =
+        t.exerciseTitle;
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+    updateScore();
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
