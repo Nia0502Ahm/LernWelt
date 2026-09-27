@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Brüche multiplizieren und dividieren</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.example-box {
+    background: #dbeafe;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 20px 0;
+}
+
+.question {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.answer.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.answer.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Mathematik – Klasse 6</p>
+</header>
+
+<div class="container">
+
+    <div class="language">
+
+        <p id="languageText">🌐 Sprache:</p>
+
+        <button onclick="changeLanguage('de')">
+            🇩🇪 Deutsch
+        </button>
+
+        <button onclick="changeLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button onclick="changeLanguage('ps')">
+            🇦🇫 پښتو
+        </button>
+
+    </div>
+
+    <h2 id="title">
+        ✖️ Brüche multiplizieren und dividieren
+    </h2>
+
+    <div class="explanation">
+
+        <h2 id="explanationTitle">
+            📖 Wie multipliziert und dividiert man Brüche?
+        </h2>
+
+        <p id="explanationText">
+            Beim Multiplizieren werden Zähler mit Zähler
+            und Nenner mit Nenner multipliziert.
+            Beim Dividieren wird mit dem Kehrwert multipliziert.
+        </p>
+
+    </div>
+
+    <div class="example-box">
+
+        <strong id="exampleTitle">Beispiele:</strong>
+
+        <br><br>
+
+        2/3 × 4/5 = 8/15
+
+        <br><br>
+
+        3/4 ÷ 2/5 = 3/4 × 5/2 = 15/8
+
+    </div>
+
+    <h2 id="exerciseTitle">📝 30 Aufgaben</h2>
+
+
+    <!-- 1 -->
+    <div class="question">
+        <h3>1. Wie viel ist 1/2 × 1/3?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/6</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/5</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/5</button>
+    </div>
+
+    <!-- 2 -->
+    <div class="question">
+        <h3>2. Wie viel ist 2/3 × 1/4?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/6</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/7</button>
+        <button class="answer" onclick="checkAnswer(this,false)">3/8</button>
+    </div>
+
+    <!-- 3 -->
+    <div class="question">
+        <h3>3. Wie viel ist 2/5 × 3/4?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">3/10</button>
+        <button class="answer" onclick="checkAnswer(this,false)">6/9</button>
+        <button class="answer" onclick="checkAnswer(this,false)">5/20</button>
+    </div>
+
+    <!-- 4 -->
+    <div class="question">
+        <h3>4. Wie viel ist 3/7 × 2/3?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2/7</button>
+        <button class="answer" onclick="checkAnswer(this,false)">6/21</button>
+        <button class="answer" onclick="checkAnswer(this,false)">5/7</button>
+    </div>
+
+    <!-- 5 -->
+    <div class="question">
+        <h3>5. Wie viel ist 1/4 × 2/5?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/10</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/9</button>
+        <button class="answer" onclick="checkAnswer(this,false)">3/10</button>
+    </div>
+
+    <!-- 6 -->
+    <div class="question">
+        <h3>6. Wie viel ist 3/5 × 5/6?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">15/11</button>
+        <button class="answer" onclick="checkAnswer(this,false)">8/11</button>
+    </div>
+
+    <!-- 7 -->
+    <div class="question">
+        <h3>7. Wie viel ist 2/7 × 7/8?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/4</button>
+        <button class="answer" onclick="checkAnswer(this,false)">9/15</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/8</button>
+    </div>
+
+    <!-- 8 -->
+    <div class="question">
+        <h3>8. Wie viel ist 4/9 × 3/8?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/6</button>
+        <button class="answer" onclick="checkAnswer(this,false)">12/17</button>
+        <button class="answer" onclick="checkAnswer(this,false)">7/12</button>
+    </div>
+
+    <!-- 9 -->
+    <div class="question">
+        <h3>9. Wie viel ist 2/3 × 3/5?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2/5</button>
+        <button class="answer" onclick="checkAnswer(this,false)">6/8</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/5</button>
+    </div>
+
+    <!-- 10 -->
+    <div class="question">
+        <h3>10. Wie viel ist 3/4 × 2/9?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/6</button>
+        <button class="answer" onclick="checkAnswer(this,false)">6/13</button>
+        <button class="answer" onclick="checkAnswer(this,false)">5/12</button>
+    </div>
+
+    <!-- 11 -->
+    <div class="question">
+        <h3>11. Wie viel ist 1/2 ÷ 1/4?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/8</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 12 -->
+    <div class="question">
+        <h3>12. Wie viel ist 2/3 ÷ 1/3?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/9</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 13 -->
+    <div class="question">
+        <h3>13. Wie viel ist 3/4 ÷ 1/2?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">3/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">3/8</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 14 -->
+    <div class="question">
+        <h3>14. Wie viel ist 2/5 ÷ 1/5?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/25</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 15 -->
+    <div class="question">
+        <h3>15. Wie viel ist 3/5 ÷ 3/10?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">9/50</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 16 -->
+    <div class="question">
+        <h3>16. Wie viel ist 1/3 ÷ 2/3?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/6</button>
+    </div>
+
+    <!-- 17 -->
+    <div class="question">
+        <h3>17. Wie viel ist 4/5 ÷ 2/5?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">8/25</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 18 -->
+    <div class="question">
+        <h3>18. Wie viel ist 5/6 ÷ 5/12?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">25/72</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 19 -->
+    <div class="question">
+        <h3>19. Wie viel ist 1/2 × 4/5?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2/5</button>
+        <button class="answer" onclick="checkAnswer(this,false)">4/7</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/10</button>
+    </div>
+
+    <!-- 20 -->
+    <div class="question">
+        <h3>20. Wie viel ist 3/8 × 4/9?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/6</button>
+        <button class="answer" onclick="checkAnswer(this,false)">12/17</button>
+        <button class="answer" onclick="checkAnswer(this,false)">7/18</button>
+    </div>
+
+    <!-- 21 -->
+    <div class="question">
+        <h3>21. Wie viel ist 2/3 ÷ 2/9?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">3</button>
+        <button class="answer" onclick="checkAnswer(this,false)">4/27</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/3</button>
+    </div>
+
+    <!-- 22 -->
+    <div class="question">
+        <h3>22. Wie viel ist 3/4 ÷ 3/8?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">9/32</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/2</button>
+    </div>
+
+    <!-- 23 -->
+    <div class="question">
+        <h3>23. Wie viel ist 2/5 × 5/6?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/3</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10/11</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2/11</button>
+    </div>
+
+    <!-- 24 -->
+    <div class="question">
+        <h3>24. Wie viel ist 4/7 × 7/8?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">28/15</button>
+        <button class="answer" onclick="checkAnswer(this,false)">4/8</button>
+    </div>
+
+    <!-- 25 -->
+    <div class="question">
+        <h3>25. Wie viel ist 5/6 × 3/10?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/4</button>
+        <button class="answer" onclick="checkAnswer(this,false)">15/16</button>
+        <button class="answer" onclick="checkAnswer(this,false)">3/5</button>
+    </div>
+
+    <!-- 26 -->
+    <div class="question">
+        <h3>26. Wie viel ist 3/5 ÷ 6/5?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">18/25</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2</button>
+    </div>
+
+    <!-- 27 -->
+    <div class="question">
+        <h3>27. Wie viel ist 2/7 ÷ 4/7?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">8/49</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2</button>
+    </div>
+
+    <!-- 28 -->
+    <div class="question">
+        <h3>28. Wie viel ist 3/8 ÷ 3/4?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">9/32</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1/4</button>
+    </div>
+
+    <!-- 29 -->
+    <div class="question">
+        <h3>29. Wie viel ist 4/5 × 5/8?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">20/13</button>
+        <button class="answer" onclick="checkAnswer(this,false)">4/8</button>
+    </div>
+
+    <!-- 30 -->
+    <div class="question">
+        <h3>30. Wie viel ist 5/6 ÷ 5/3?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1/2</button>
+        <button class="answer" onclick="checkAnswer(this,false)">25/18</button>
+        <button class="answer" onclick="checkAnswer(this,false)">5/9</button>
+    </div>
+
+
+    <div id="score">
+        🏆 Punkte: 0 / 30
+    </div>
+
+    <div id="result"></div>
+
+    <button onclick="finishQuiz()" id="finishButton">
+        ✅ Auswertung
+    </button>
+
+    <button onclick="restartQuiz()"
+            class="restart"
+            id="restartButton">
+        🔄 Neu starten
+    </button>
+
+    <br>
+
+    <button class="back"
+            onclick="location.href='mathe6.html'"
+            id="backButton">
+        ← Zurück zu Mathematik
+    </button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons = question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+    if (correct) {
+        button.classList.add("correct");
+        score++;
+    } else {
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+            const code = btn.getAttribute("onclick");
+
+            if (code && code.includes("true")) {
+                btn.classList.add("correct");
+            }
+        });
+    }
+
+    answered++;
+
+    updateScore();
+}
+
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (language === "de") {
+        document.getElementById("score").textContent =
+            "🏆 Punkte: " + score + " / 30";
+    }
+
+    if (language === "en") {
+        document.getElementById("score").textContent =
+            "🏆 Points: " + score + " / 30";
+    }
+
+    if (language === "ps") {
+        document.getElementById("score").textContent =
+            "🏆 نمرې: " + score + " / ۳۰";
+    }
+}
+
+
+function finishQuiz() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (answered < 30) {
+
+        if (language === "de") {
+            document.getElementById("result").textContent =
+                "⚠️ Bitte beantworte alle 30 Aufgaben.";
+        }
+
+        if (language === "en") {
+            document.getElementById("result").textContent =
+                "⚠️ Please answer all 30 questions.";
+        }
+
+        if (language === "ps") {
+            document.getElementById("result").textContent =
+                "⚠️ مهرباني وکړئ ټولې ۳۰ پوښتنې ځواب کړئ.";
+        }
+
+        return;
+    }
+
+    let result = "";
+
+    if (language === "de") {
+
+        if (score === 30) {
+            result = "🎉 Perfekt! 30 von 30 Punkten!";
+        } else if (score >= 25) {
+            result = "👏 Sehr gut! " + score + " von 30 Punkten!";
+        } else if (score >= 18) {
+            result = "👍 Gut gemacht! " + score + " von 30 Punkten!";
+        } else {
+            result = "💪 Übe noch etwas! " + score + " von 30 Punkten.";
+        }
+    }
+
+    if (language === "en") {
+
+        if (score === 30) {
+            result = "🎉 Perfect! 30 out of 30 points!";
+        } else if (score >= 25) {
+            result = "👏 Very good! " + score + " out of 30 points!";
+        } else if (score >= 18) {
+            result = "👍 Good job! " + score + " out of 30 points!";
+        } else {
+            result = "💪 Keep practicing! " + score + " out of 30 points.";
+        }
+    }
+
+    if (language === "ps") {
+
+        if (score === 30) {
+            result = "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
+        } else if (score >= 25) {
+            result = "👏 ډېر ښه! " + score + " له ۳۰ نمرې!";
+        } else if (score >= 18) {
+            result = "👍 ښه کار! " + score + " له ۳۰ نمرې!";
+        } else {
+            result = "💪 لا ډېر تمرین وکړه! " + score + " له ۳۰ څخه.";
+        }
+    }
+
+    document.getElementById("result").textContent = result;
+}
+
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        question.querySelectorAll(".answer").forEach(function(button) {
+
+            button.disabled = false;
+
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+/* SPRACHEN */
+
+const translations = {
+
+    de: {
+        subtitle: "Mathematik – Klasse 6",
+        language: "🌐 Sprache:",
+        title: "✖️ Brüche multiplizieren und dividieren",
+        explanationTitle: "📖 Wie multipliziert und dividiert man Brüche?",
+        explanationText:
+            "Beim Multiplizieren werden Zähler mit Zähler und Nenner mit Nenner multipliziert. Beim Dividieren wird mit dem Kehrwert multipliziert.",
+        exampleTitle: "Beispiele:",
+        exerciseTitle: "📝 30 Aufgaben",
+        finish: "✅ Auswertung",
+        restart: "🔄 Neu starten",
+        back: "← Zurück zu Mathematik"
+    },
+
+    en: {
+        subtitle: "Mathematics – Grade 6",
+        language: "🌐 Language:",
+        title: "✖️ Multiplying and dividing fractions",
+        explanationTitle: "📖 How do you multiply and divide fractions?",
+        explanationText:
+            "When multiplying, multiply numerator by numerator and denominator by denominator. When dividing, multiply by the reciprocal.",
+        exampleTitle: "Examples:",
+        exerciseTitle: "📝 30 Exercises",
+        finish: "✅ Results",
+        restart: "🔄 Restart",
+        back: "← Back to Mathematics"
+    },
+
+    ps: {
+        subtitle: "ریاضي – شپږم ټولګی",
+        language: "🌐 ژبه:",
+        title: "✖️ د کسرونو ضرب او تقسیم",
+        explanationTitle: "📖 کسرونه څنګه ضرب او تقسیم کړو؟",
+        explanationText:
+            "د ضرب لپاره صورت له صورت او مخرج له مخرج سره ضربېږي. د تقسیم لپاره د دوهم کسر معکوس اخلو او بیا ضرب کوو.",
+        exampleTitle: "مثالونه:",
+        exerciseTitle: "📝 ۳۰ تمرینونه",
+        finish: "✅ پایله",
+        restart: "🔄 بیا پیل",
+        back: "← ریاضي ته بېرته"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("title").textContent =
+        t.title;
+
+    document.getElementById("explanationTitle").textContent =
+        t.explanationTitle;
+
+    document.getElementById("explanationText").textContent =
+        t.explanationText;
+
+    document.getElementById("exampleTitle").textContent =
+        t.exampleTitle;
+
+    document.getElementById("exerciseTitle").textContent =
+        t.exerciseTitle;
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+    updateScore();
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
