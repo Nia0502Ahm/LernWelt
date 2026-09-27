@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Längen, Flächen und Volumen Klasse 6</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.example {
+    background: #dbeafe;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.question {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.answer.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.answer.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Mathematik – Klasse 6</p>
+</header>
+
+<div class="container">
+
+    <div class="language">
+        <p id="languageText">🌐 Sprache:</p>
+
+        <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+        <button onclick="changeLanguage('en')">🇬🇧 English</button>
+        <button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+    </div>
+
+    <h2 id="title">📏 Längen, Flächen und Volumen</h2>
+
+    <div class="explanation">
+        <h2 id="explanationTitle">📖 Das Thema erklärt</h2>
+
+        <p id="explanationText">
+            Längen messen wir zum Beispiel in Millimeter, Zentimeter,
+            Meter und Kilometer. Flächen werden zum Beispiel in cm²
+            oder m² angegeben. Volumen werden zum Beispiel in cm³
+            oder m³ angegeben.
+        </p>
+    </div>
+
+    <div class="example">
+        <h3 id="exampleTitle">💡 Beispiele</h3>
+
+        <p>1 m = 100 cm</p>
+        <p>1 cm = 10 mm</p>
+        <p>1 km = 1000 m</p>
+        <p>1 m² = 10.000 cm²</p>
+        <p>1 m³ = 1.000.000 cm³</p>
+    </div>
+
+    <h2 id="exerciseTitle">📝 30 Aufgaben</h2>
+
+
+    <!-- FRAGE 1 -->
+    <div class="question">
+        <h3>1. Wie viele Zentimeter sind 1 Meter?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">100 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1000 cm</button>
+    </div>
+
+    <!-- FRAGE 2 -->
+    <div class="question">
+        <h3>2. Wie viele Millimeter sind 1 Zentimeter?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">10 mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">100 mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1 mm</button>
+    </div>
+
+    <!-- FRAGE 3 -->
+    <div class="question">
+        <h3>3. Wie viele Meter sind 1 Kilometer?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1000 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">100 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10 m</button>
+    </div>
+
+    <!-- FRAGE 4 -->
+    <div class="question">
+        <h3>4. Wie viele Zentimeter sind 3 Meter?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">300 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">30 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">3000 cm</button>
+    </div>
+
+    <!-- FRAGE 5 -->
+    <div class="question">
+        <h3>5. Wie viele Meter sind 500 cm?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">5 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">50 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">0,5 m</button>
+    </div>
+
+    <!-- FRAGE 6 -->
+    <div class="question">
+        <h3>6. Wie viele Millimeter sind 5 cm?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">50 mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">5 mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">500 mm</button>
+    </div>
+
+    <!-- FRAGE 7 -->
+    <div class="question">
+        <h3>7. Wie viele Meter sind 2 km?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">2000 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">200 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">20 m</button>
+    </div>
+
+    <!-- FRAGE 8 -->
+    <div class="question">
+        <h3>8. Welche Einheit passt zur Länge eines Bleistifts?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">km</button>
+        <button class="answer" onclick="checkAnswer(this,false)">m³</button>
+    </div>
+
+    <!-- FRAGE 9 -->
+    <div class="question">
+        <h3>9. Welche Einheit passt zur Entfernung zwischen zwei Städten?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">km</button>
+        <button class="answer" onclick="checkAnswer(this,false)">mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">cm²</button>
+    </div>
+
+    <!-- FRAGE 10 -->
+    <div class="question">
+        <h3>10. Welche Einheit gehört zu einer Fläche?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">m²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">m³</button>
+    </div>
+
+    <!-- FRAGE 11 -->
+    <div class="question">
+        <h3>11. Welche Einheit gehört zu einem Volumen?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">cm²</button>
+    </div>
+
+    <!-- FRAGE 12 -->
+    <div class="question">
+        <h3>12. Wie groß ist ein Quadrat mit 4 cm Seitenlänge?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">16 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">8 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">12 cm²</button>
+    </div>
+
+    <!-- FRAGE 13 -->
+    <div class="question">
+        <h3>13. Wie groß ist ein Rechteck mit 5 cm und 3 cm?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">15 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">8 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10 cm²</button>
+    </div>
+
+    <!-- FRAGE 14 -->
+    <div class="question">
+        <h3>14. Was ist die Formel für die Fläche eines Rechtecks?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">Länge × Breite</button>
+        <button class="answer" onclick="checkAnswer(this,false)">Länge + Breite</button>
+        <button class="answer" onclick="checkAnswer(this,false)">Länge − Breite</button>
+    </div>
+
+    <!-- FRAGE 15 -->
+    <div class="question">
+        <h3>15. Ein Rechteck ist 8 cm lang und 2 cm breit. Fläche?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">16 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">20 cm²</button>
+    </div>
+
+    <!-- FRAGE 16 -->
+    <div class="question">
+        <h3>16. Wie viele cm² sind 1 m²?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">10.000 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">100 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1.000 cm²</button>
+    </div>
+
+    <!-- FRAGE 17 -->
+    <div class="question">
+        <h3>17. Ein Quadrat hat eine Seitenlänge von 6 cm. Fläche?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">36 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">24 cm²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">12 cm²</button>
+    </div>
+
+    <!-- FRAGE 18 -->
+    <div class="question">
+        <h3>18. Wie viele cm³ sind 1 dm³?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1000 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">100 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10 cm³</button>
+    </div>
+
+    <!-- FRAGE 19 -->
+    <div class="question">
+        <h3>19. Ein Würfel hat eine Kantenlänge von 2 cm. Volumen?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">8 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">6 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">4 cm³</button>
+    </div>
+
+    <!-- FRAGE 20 -->
+    <div class="question">
+        <h3>20. Was ist die Formel für das Volumen eines Quaders?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">Länge × Breite × Höhe</button>
+        <button class="answer" onclick="checkAnswer(this,false)">Länge + Breite + Höhe</button>
+        <button class="answer" onclick="checkAnswer(this,false)">Länge × Breite</button>
+    </div>
+
+    <!-- FRAGE 21 -->
+    <div class="question">
+        <h3>21. Ein Quader ist 3 cm × 2 cm × 4 cm. Volumen?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">24 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">12 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">18 cm³</button>
+    </div>
+
+    <!-- FRAGE 22 -->
+    <div class="question">
+        <h3>22. Wie viele mm sind 2 cm?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">20 mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">2 mm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">200 mm</button>
+    </div>
+
+    <!-- FRAGE 23 -->
+    <div class="question">
+        <h3>23. Wie viele cm sind 1,5 m?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">150 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">15 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">105 cm</button>
+    </div>
+
+    <!-- FRAGE 24 -->
+    <div class="question">
+        <h3>24. Wie viele Meter sind 350 cm?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">3,5 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">35 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">0,35 m</button>
+    </div>
+
+    <!-- FRAGE 25 -->
+    <div class="question">
+        <h3>25. Ein Zimmer ist 4 m lang und 3 m breit. Fläche?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">12 m²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">7 m²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">14 m²</button>
+    </div>
+
+    <!-- FRAGE 26 -->
+    <div class="question">
+        <h3>26. Ein Würfel hat eine Kantenlänge von 3 cm. Volumen?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">27 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">9 cm³</button>
+        <button class="answer" onclick="checkAnswer(this,false)">18 cm³</button>
+    </div>
+
+    <!-- FRAGE 27 -->
+    <div class="question">
+        <h3>27. Welche Einheit ist größer?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1 m</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1 cm</button>
+        <button class="answer" onclick="checkAnswer(this,false)">1 mm</button>
+    </div>
+
+    <!-- FRAGE 28 -->
+    <div class="question">
+        <h3>28. Wie viele Liter entsprechen 1 dm³?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">1 Liter</button>
+        <button class="answer" onclick="checkAnswer(this,false)">10 Liter</button>
+        <button class="answer" onclick="checkAnswer(this,false)">100 Liter</button>
+    </div>
+
+    <!-- FRAGE 29 -->
+    <div class="question">
+        <h3>29. Ein Rechteck ist 10 m lang und 5 m breit. Fläche?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">50 m²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">15 m²</button>
+        <button class="answer" onclick="checkAnswer(this,false)">30 m²</button>
+    </div>
+
+    <!-- FRAGE 30 -->
+    <div class="question">
+        <h3>30. Was misst man mit m³?</h3>
+        <button class="answer" onclick="checkAnswer(this,true)">Volumen</button>
+        <button class="answer" onclick="checkAnswer(this,false)">Länge</button>
+        <button class="answer" onclick="checkAnswer(this,false)">Winkel</button>
+    </div>
+
+
+    <div id="score">
+        🏆 Punkte: 0 / 30
+    </div>
+
+    <div id="result"></div>
+
+    <button onclick="finishQuiz()" id="finishButton">
+        ✅ Auswertung
+    </button>
+
+    <button onclick="restartQuiz()" class="restart" id="restartButton">
+        🔄 Neu starten
+    </button>
+
+    <br>
+
+    <button class="back"
+            onclick="location.href='mathe6.html'"
+            id="backButton">
+        ← Zurück zu Mathematik
+    </button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons = question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+
+            const code = btn.getAttribute("onclick");
+
+            if (code && code.includes("true")) {
+                btn.classList.add("correct");
+            }
+
+        });
+    }
+
+    answered++;
+
+    updateScore();
+}
+
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (language === "de") {
+
+        document.getElementById("score").textContent =
+            "🏆 Punkte: " + score + " / 30";
+
+    } else if (language === "en") {
+
+        document.getElementById("score").textContent =
+            "🏆 Points: " + score + " / 30";
+
+    } else {
+
+        document.getElementById("score").textContent =
+            "🏆 نمرې: " + score + " / ۳۰";
+    }
+}
+
+
+function finishQuiz() {
+
+    if (answered < 30) {
+
+        const language =
+            localStorage.getItem("language") || "de";
+
+        if (language === "de") {
+            document.getElementById("result").textContent =
+                "⚠️ Bitte beantworte alle 30 Aufgaben.";
+        }
+
+        if (language === "en") {
+            document.getElementById("result").textContent =
+                "⚠️ Please answer all 30 questions.";
+        }
+
+        if (language === "ps") {
+            document.getElementById("result").textContent =
+                "⚠️ مهرباني وکړئ ټولې ۳۰ پوښتنې ځواب کړئ.";
+        }
+
+        return;
+    }
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    let result = "";
+
+    if (language === "de") {
+
+        if (score === 30)
+            result = "🎉 Perfekt! 30 von 30 Punkten!";
+        else if (score >= 25)
+            result = "👏 Sehr gut! " + score + " von 30 Punkten!";
+        else if (score >= 18)
+            result = "👍 Gut gemacht! " + score + " von 30 Punkten!";
+        else
+            result = "💪 Übe noch etwas! " + score + " von 30 Punkten.";
+
+    } else if (language === "en") {
+
+        if (score === 30)
+            result = "🎉 Perfect! 30 out of 30 points!";
+        else if (score >= 25)
+            result = "👏 Very good! " + score + " out of 30 points!";
+        else if (score >= 18)
+            result = "👍 Good job! " + score + " out of 30 points!";
+        else
+            result = "💪 Keep practicing! " + score + " out of 30 points.";
+
+    } else {
+
+        if (score === 30)
+            result = "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
+        else if (score >= 25)
+            result = "👏 ډېر ښه! " + score + " له ۳۰ نمرې!";
+        else if (score >= 18)
+            result = "👍 ښه کار! " + score + " له ۳۰ نمرې!";
+        else
+            result = "💪 لا ډېر تمرین وکړه! " + score + " له ۳۰ څخه.";
+    }
+
+    document.getElementById("result").textContent = result;
+}
+
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        question.querySelectorAll(".answer").forEach(function(button) {
+
+            button.disabled = false;
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+const translations = {
+
+    de: {
+        subtitle: "Mathematik – Klasse 6",
+        language: "🌐 Sprache:",
+        title: "📏 Längen, Flächen und Volumen",
+        explanationTitle: "📖 Das Thema erklärt",
+        explanationText:
+            "Längen messen wir zum Beispiel in Millimeter, Zentimeter, Meter und Kilometer. Flächen werden zum Beispiel in cm² oder m² angegeben. Volumen werden zum Beispiel in cm³ oder m³ angegeben.",
+        exampleTitle: "💡 Beispiele",
+        exerciseTitle: "📝 30 Aufgaben",
+        finish: "✅ Auswertung",
+        restart: "🔄 Neu starten",
+        back: "← Zurück zu Mathematik"
+    },
+
+    en: {
+        subtitle: "Mathematics – Grade 6",
+        language: "🌐 Language:",
+        title: "📏 Length, Area and Volume",
+        explanationTitle: "📖 The topic explained",
+        explanationText:
+            "Lengths can be measured in millimeters, centimeters, meters and kilometers. Areas are measured in cm² or m². Volumes are measured in cm³ or m³.",
+        exampleTitle: "💡 Examples",
+        exerciseTitle: "📝 30 Exercises",
+        finish: "✅ Results",
+        restart: "🔄 Restart",
+        back: "← Back to Mathematics"
+    },
+
+    ps: {
+        subtitle: "ریاضي – شپږم ټولګی",
+        language: "🌐 ژبه:",
+        title: "📏 اوږدوالی، مساحت او حجم",
+        explanationTitle: "📖 د موضوع تشریح",
+        explanationText:
+            "اوږدوالی په ملي متر، سانتي متر، متر او کیلومتر اندازه کېږي. مساحت په cm² یا m² او حجم په cm³ یا m³ اندازه کېږي.",
+        exampleTitle: "💡 بېلګې",
+        exerciseTitle: "📝 ۳۰ تمرینونه",
+        finish: "✅ پایله",
+        restart: "🔄 بیا پیل",
+        back: "← ریاضي ته بېرته"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("title").textContent =
+        t.title;
+
+    document.getElementById("explanationTitle").textContent =
+        t.explanationTitle;
+
+    document.getElementById("explanationText").textContent =
+        t.explanationText;
+
+    document.getElementById("exampleTitle").textContent =
+        t.exampleTitle;
+
+    document.getElementById("exerciseTitle").textContent =
+        t.exerciseTitle;
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+    updateScore();
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
