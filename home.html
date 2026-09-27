@@ -16,28 +16,26 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #000000;
-    color: white;
+    background: #f4f7fb;
+    color: #000000;
     text-align: center;
 }
 
 /* HEADER */
 
 header {
-    background: #000000;
+    background: #2563eb;
     color: white;
-    padding: 40px 20px;
-    border-bottom: 1px solid #333333;
+    padding: 35px 20px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 38px;
-    letter-spacing: 1px;
+    font-size: 36px;
 }
 
 header p {
-    color: #bdbdbd;
+    color: white;
     font-size: 17px;
 }
 
@@ -48,17 +46,15 @@ header p {
     max-width: 750px;
     margin: 35px auto;
     padding: 30px;
-    background: #000000;
-    border: 1px solid #333333;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(255,255,255,0.05);
+    background: white;
+    border-radius: 18px;
 }
 
 
 /* SPRACHE */
 
 #languageTitle {
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 20px;
 }
 
@@ -66,65 +62,33 @@ header p {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     margin: 20px 0 30px;
 }
 
 
-/* ALLE BUTTONS */
+/* BUTTONS */
 
 button {
-    border: 1px solid #777777;
+    padding: 14px 22px;
+    margin: 7px;
+    border: none;
     border-radius: 10px;
-    background: linear-gradient(
-        145deg,
-        #ffffff,
-        #bdbdbd
-    );
-    color: #000000;
+    background: #2563eb;
+    color: white;
     font-size: 17px;
-    font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-
-/* BUTTON HOVER */
-
 button:hover {
-    background: linear-gradient(
-        145deg,
-        #000000,
-        #000000
-    );
-
-    transform: scale(1.03);
-
-    box-shadow:
-        0 0 15px rgba(255,255,255,0.25);
+    background: #1d4ed8;
 }
 
 
 /* SPRACH-BUTTONS */
 
 .language-button {
-    padding: 12px 18px;
-    margin: 5px;
-    font-size: 15px;
-}
-
-
-/* TEXT */
-
-#message {
-    color: #bdbdbd;
-    margin: 20px;
-}
-
-#classTitle {
-    color: white;
-    margin-top: 30px;
-    font-size: 28px;
+    font-size: 16px;
 }
 
 
@@ -134,28 +98,32 @@ button:hover {
     display: block;
     width: 90%;
     max-width: 500px;
-
-    margin: 14px auto;
-
+    margin: 12px auto;
     padding: 17px;
-
     font-size: 19px;
-
-    border-radius: 12px;
 }
 
 
-/* FUSS */
+/* ÜBERSCHRIFT */
 
-.class-button:active,
-.language-button:active {
-    transform: scale(0.98);
+#classTitle {
+    margin-top: 25px;
+    font-size: 28px;
+    color: #000000;
+}
+
+
+/* TEXT */
+
+#message {
+    font-weight: bold;
+    margin: 15px;
+    color: #333333;
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -328,7 +296,6 @@ Klasse 13
 
 <script>
 
-
 const translations = {
 
 de: {
@@ -429,7 +396,6 @@ language
 
 const t = translations[language];
 
-
 document.getElementById("subtitle").textContent =
 t.subtitle;
 
@@ -481,7 +447,6 @@ localStorage.setItem(
 number
 );
 
-
 if (number === 5) {
 
 window.location.href =
@@ -514,7 +479,6 @@ number +
 changeLanguage(currentLanguage);
 
 </script>
-
 
 </body>
 
