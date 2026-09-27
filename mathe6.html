@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Mathematik Klasse 6</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin: 20px 0 30px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.topic {
+    display: block;
+    width: 90%;
+    max-width: 700px;
+    margin: 12px auto;
+    padding: 17px;
+    font-size: 18px;
+}
+
+.back {
+    background: #64748b;
+    margin-top: 25px;
+}
+
+#title {
+    font-size: 28px;
+}
+
+#languageText {
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>📚 LernWelt</h1>
+
+    <p id="subtitle">
+        Mathematik – Klasse 6
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <!-- SPRACHE -->
+
+    <div class="language">
+
+        <p id="languageText">
+            🌐 Sprache:
+        </p>
+
+        <button onclick="changeLanguage('de')">
+            🇩🇪 Deutsch
+        </button>
+
+        <button onclick="changeLanguage('en')">
+            🇬🇧 English
+        </button>
+
+        <button onclick="changeLanguage('ps')">
+            🇦🇫 پښتو
+        </button>
+
+    </div>
+
+
+    <h2 id="title">
+        🧮 Mathematik – Themen auswählen
+    </h2>
+
+
+    <!-- THEMA 1 -->
+
+    <button class="topic"
+        onclick="location.href='brueche6.html'">
+
+        🔢 <span id="topic1">
+            Brüche
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 2 -->
+
+    <button class="topic"
+        onclick="location.href='brueche-addieren6.html'">
+
+        ➕ <span id="topic2">
+            Brüche addieren und subtrahieren
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 3 -->
+
+    <button class="topic"
+        onclick="location.href='brueche-multiplizieren6.html'">
+
+        ✖️ <span id="topic3">
+            Brüche multiplizieren und dividieren
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 4 -->
+
+    <button class="topic"
+        onclick="location.href='dezimalzahlen6.html'">
+
+        🔢 <span id="topic4">
+            Dezimalzahlen
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 5 -->
+
+    <button class="topic"
+        onclick="location.href='teilbarkeit-primzahlen6.html'">
+
+        🧩 <span id="topic5">
+            Teilbarkeit und Primzahlen
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 6 -->
+
+    <button class="topic"
+        onclick="location.href='daten-diagramme6.html'">
+
+        📊 <span id="topic6">
+            Daten und Diagramme
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 7 -->
+
+    <button class="topic"
+        onclick="location.href='laengen-flaechen-volumen6.html'">
+
+        📐 <span id="topic7">
+            Längen, Flächen und Volumen
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 8 -->
+
+    <button class="topic"
+        onclick="location.href='prozentrechnung6.html'">
+
+        💯 <span id="topic8">
+            Prozentrechnung
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 9 -->
+
+    <button class="topic"
+        onclick="location.href='winkel6.html'">
+
+        📐 <span id="topic9">
+            Winkel
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 10 -->
+
+    <button class="topic"
+        onclick="location.href='terme-variablen6.html'">
+
+        🧮 <span id="topic10">
+            Terme und Variablen
+        </span>
+
+    </button>
+
+
+    <!-- THEMA 11 -->
+
+    <button class="topic"
+        onclick="location.href='gleichungen6.html'">
+
+        🟰 <span id="topic11">
+            Gleichungen und Sachaufgaben
+        </span>
+
+    </button>
+
+
+    <br>
+
+
+    <!-- ZURÜCK -->
+
+    <button class="back"
+        onclick="location.href='klasse6.html'">
+
+        ← <span id="back">
+            Zurück
+        </span>
+
+    </button>
+
+</div>
+
+
+<script>
+
+const translations = {
+
+    de: {
+
+        subtitle:
+            "Mathematik – Klasse 6",
+
+        language:
+            "🌐 Sprache:",
+
+        title:
+            "🧮 Mathematik – Themen auswählen",
+
+        topic1:
+            "Brüche",
+
+        topic2:
+            "Brüche addieren und subtrahieren",
+
+        topic3:
+            "Brüche multiplizieren und dividieren",
+
+        topic4:
+            "Dezimalzahlen",
+
+        topic5:
+            "Teilbarkeit und Primzahlen",
+
+        topic6:
+            "Daten und Diagramme",
+
+        topic7:
+            "Längen, Flächen und Volumen",
+
+        topic8:
+            "Prozentrechnung",
+
+        topic9:
+            "Winkel",
+
+        topic10:
+            "Terme und Variablen",
+
+        topic11:
+            "Gleichungen und Sachaufgaben",
+
+        back:
+            "Zurück"
+
+    },
+
+
+    en: {
+
+        subtitle:
+            "Mathematics – Grade 6",
+
+        language:
+            "🌐 Language:",
+
+        title:
+            "🧮 Mathematics – Choose a topic",
+
+        topic1:
+            "Fractions",
+
+        topic2:
+            "Adding and subtracting fractions",
+
+        topic3:
+            "Multiplying and dividing fractions",
+
+        topic4:
+            "Decimal numbers",
+
+        topic5:
+            "Divisibility and prime numbers",
+
+        topic6:
+            "Data and graphs",
+
+        topic7:
+            "Lengths, areas and volume",
+
+        topic8:
+            "Percentages",
+
+        topic9:
+            "Angles",
+
+        topic10:
+            "Terms and variables",
+
+        topic11:
+            "Equations and word problems",
+
+        back:
+            "Back"
+
+    },
+
+
+    ps: {
+
+        subtitle:
+            "ریاضي – شپږم ټولګی",
+
+        language:
+            "🌐 ژبه:",
+
+        title:
+            "🧮 ریاضي – موضوع وټاکئ",
+
+        topic1:
+            "کسرونه",
+
+        topic2:
+            "د کسرونو جمع او تفریق",
+
+        topic3:
+            "د کسرونو ضرب او تقسیم",
+
+        topic4:
+            "اعشاري شمېرې",
+
+        topic5:
+            "د وېش وړتیا او اولي شمېرې",
+
+        topic6:
+            "معلومات او ډیاګرامونه",
+
+        topic7:
+            "اوږدوالی، مساحت او حجم",
+
+        topic8:
+            "سلنه",
+
+        topic9:
+            "زاویې",
+
+        topic10:
+            "عبارتونه او متغیرونه",
+
+        topic11:
+            "معادلې او د کلمو مسئلې",
+
+        back:
+            "بېرته"
+
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+
+    document.getElementById("title").textContent =
+        t.title;
+
+
+    document.getElementById("topic1").textContent =
+        t.topic1;
+
+    document.getElementById("topic2").textContent =
+        t.topic2;
+
+    document.getElementById("topic3").textContent =
+        t.topic3;
+
+    document.getElementById("topic4").textContent =
+        t.topic4;
+
+    document.getElementById("topic5").textContent =
+        t.topic5;
+
+    document.getElementById("topic6").textContent =
+        t.topic6;
+
+    document.getElementById("topic7").textContent =
+        t.topic7;
+
+    document.getElementById("topic8").textContent =
+        t.topic8;
+
+    document.getElementById("topic9").textContent =
+        t.topic9;
+
+    document.getElementById("topic10").textContent =
+        t.topic10;
+
+    document.getElementById("topic11").textContent =
+        t.topic11;
+
+
+    document.getElementById("back").textContent =
+        t.back;
+
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
