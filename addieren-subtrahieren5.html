@@ -43,38 +43,6 @@
             font-size: 24px;
         }
 
-        .numberline {
-            position: relative;
-            height: 80px;
-            margin: 20px;
-        }
-
-        .line {
-            position: absolute;
-            top: 35px;
-            left: 5%;
-            right: 5%;
-            height: 4px;
-            background: #333;
-        }
-
-        .point {
-            position: absolute;
-            top: 27px;
-            width: 16px;
-            height: 16px;
-            background: #2563eb;
-            border-radius: 50%;
-            transform: translateX(-50%);
-        }
-
-        .number {
-            position: absolute;
-            top: 48px;
-            transform: translateX(-50%);
-            font-size: 15px;
-        }
-
         input {
             width: 80%;
             padding: 14px;
@@ -137,6 +105,7 @@
     <h2>➕ Addieren und Subtrahieren</h2>
 
     <div class="explanation">
+
         <h3>📖 Kurze Erklärung</h3>
 
         <p>
@@ -160,6 +129,7 @@
             Auf einem Zahlenstrahl geht man beim Addieren nach rechts
             und beim Subtrahieren nach links.
         </p>
+
     </div>
 
     <p id="progress"></p>
@@ -168,7 +138,11 @@
 
     <div id="visual" class="visual"></div>
 
-    <input id="answer" type="text" placeholder="Deine Antwort">
+    <input
+        id="answer"
+        type="text"
+        placeholder="Deine Antwort"
+    >
 
     <br>
 
@@ -179,24 +153,40 @@
     <div id="result"></div>
 
     <div id="solution">
+
         <h3>💡 Lösung</h3>
+
         <p id="solutionText"></p>
+
     </div>
 
-    <button id="nextButton" onclick="nextQuestion()">
+    <button
+        id="nextButton"
+        onclick="nextQuestion()">
+
         ➡️ Nächste Aufgabe
+
     </button>
 
     <br>
 
-    <button class="back"
+    <button
+        class="back"
         onclick="window.location.href='mathe5.html'">
+
         ← Zurück zu den Themen
+
     </button>
 
 </div>
 
+
 <script>
+
+/* =========================================
+   30 AUFGABEN
+   Addition und Subtraktion GEMISCHT
+========================================= */
 
 const questions = [
 
@@ -208,45 +198,10 @@ const questions = [
     },
 
     {
-        q: "7 + 2 = ?",
-        visual: "🟦🟦🟦🟦🟦🟦🟦 + 🟩🟩",
-        answer: "9",
-        solution: "7 + 2 = 9."
-    },
-
-    {
-        q: "4 + 6 = ?",
-        visual: "🟦🟦🟦🟦 + 🟩🟩🟩🟩🟩🟩",
-        answer: "10",
-        solution: "4 + 6 = 10."
-    },
-
-    {
         q: "10 - 3 = ?",
         visual: "🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦 − 🟥🟥🟥",
         answer: "7",
         solution: "10 - 3 = 7."
-    },
-
-    {
-        q: "9 - 4 = ?",
-        visual: "🟦🟦🟦🟦🟦🟦🟦🟦🟦 − 🟥🟥🟥🟥",
-        answer: "5",
-        solution: "9 - 4 = 5."
-    },
-
-    {
-        q: "6 + 5 = ?",
-        visual: "6 ➡️ +5 ➡️ ❓",
-        answer: "11",
-        solution: "6 + 5 = 11."
-    },
-
-    {
-        q: "12 - 5 = ?",
-        visual: "12 ➡️ -5 ➡️ ❓",
-        answer: "7",
-        solution: "12 - 5 = 7."
     },
 
     {
@@ -257,10 +212,10 @@ const questions = [
     },
 
     {
-        q: "20 - 8 = ?",
-        visual: "20 ➡️ -8 ➡️ ❓",
-        answer: "12",
-        solution: "20 - 8 = 12."
+        q: "9 - 4 = ?",
+        visual: "🟦🟦🟦🟦🟦🟦🟦🟦🟦 − 🟥🟥🟥🟥",
+        answer: "5",
+        solution: "9 - 4 = 5."
     },
 
     {
@@ -271,10 +226,17 @@ const questions = [
     },
 
     {
-        q: "30 - 10 = ?",
-        visual: "30 ➡️ -10 ➡️ ❓",
-        answer: "20",
-        solution: "30 - 10 = 20."
+        q: "7 + 2 = ?",
+        visual: "🟦🟦🟦🟦🟦🟦🟦 + 🟩🟩",
+        answer: "9",
+        solution: "7 + 2 = 9."
+    },
+
+    {
+        q: "20 - 8 = ?",
+        visual: "20 ➡️ -8 ➡️ ❓",
+        answer: "12",
+        solution: "20 - 8 = 12."
     },
 
     {
@@ -285,10 +247,31 @@ const questions = [
     },
 
     {
+        q: "12 - 5 = ?",
+        visual: "12 ➡️ -5 ➡️ ❓",
+        answer: "7",
+        solution: "12 - 5 = 7."
+    },
+
+    {
+        q: "4 + 6 = ?",
+        visual: "🟦🟦🟦🟦 + 🟩🟩🟩🟩🟩🟩",
+        answer: "10",
+        solution: "4 + 6 = 10."
+    },
+
+    {
         q: "70 - 30 = ?",
         visual: "70 ➡️ -30 ➡️ ❓",
         answer: "40",
         solution: "70 - 30 = 40."
+    },
+
+    {
+        q: "6 + 5 = ?",
+        visual: "6 ➡️ +5 ➡️ ❓",
+        answer: "11",
+        solution: "6 + 5 = 11."
     },
 
     {
@@ -299,10 +282,10 @@ const questions = [
     },
 
     {
-        q: "150 - 50 = ?",
-        visual: "150 ➡️ -50 ➡️ ❓",
-        answer: "100",
-        solution: "150 - 50 = 100."
+        q: "30 - 10 = ?",
+        visual: "30 ➡️ -10 ➡️ ❓",
+        answer: "20",
+        solution: "30 - 10 = 20."
     },
 
     {
@@ -408,11 +391,31 @@ const questions = [
         visual: "350 ➡️ +150 ➡️ ❓",
         answer: "500",
         solution: "350 + 150 = 500."
+    },
+
+    {
+        q: "150 - 50 = ?",
+        visual: "150 ➡️ -50 ➡️ ❓",
+        answer: "100",
+        solution: "150 - 50 = 100."
     }
 
 ];
 
+
+/* =========================================
+   AUFGABEN ZUFÄLLIG MISCHEN
+========================================= */
+
+questions.sort(() => Math.random() - 0.5);
+
+
 let current = 0;
+
+
+/* =========================================
+   AUFGABE ANZEIGEN
+========================================= */
 
 function showQuestion() {
 
@@ -423,8 +426,10 @@ function showQuestion() {
         questions[current].visual;
 
     document.getElementById("progress").textContent =
-        "Aufgabe " + (current + 1) +
-        " von " + questions.length;
+        "Aufgabe " +
+        (current + 1) +
+        " von " +
+        questions.length;
 
     document.getElementById("answer").value = "";
 
@@ -432,10 +437,23 @@ function showQuestion() {
 
     document.getElementById("result").textContent = "";
 
-    document.getElementById("solution").style.display = "none";
+    document.getElementById("solution").style.display =
+        "none";
 
-    document.getElementById("nextButton").style.display = "none";
+    document.getElementById("nextButton").style.display =
+        "none";
+
+    document.getElementById("answer").style.display =
+        "inline-block";
+
+    document.getElementById("visual").style.display =
+        "block";
 }
+
+
+/* =========================================
+   ANTWORT PRÜFEN
+========================================= */
 
 function checkAnswer() {
 
@@ -447,6 +465,7 @@ function checkAnswer() {
     const correctAnswer =
         questions[current].answer
         .replace(/\s/g, "");
+
 
     if (userAnswer === correctAnswer) {
 
@@ -465,15 +484,23 @@ function checkAnswer() {
             questions[current].solution;
     }
 
-    document.getElementById("answer").disabled = true;
+
+    document.getElementById("answer").disabled =
+        true;
 
     document.getElementById("nextButton").style.display =
         "inline-block";
 }
 
+
+/* =========================================
+   NÄCHSTE AUFGABE
+========================================= */
+
 function nextQuestion() {
 
     current++;
+
 
     if (current >= questions.length) {
 
@@ -501,8 +528,14 @@ function nextQuestion() {
         return;
     }
 
+
     showQuestion();
 }
+
+
+/* =========================================
+   START
+========================================= */
 
 showQuestion();
 
