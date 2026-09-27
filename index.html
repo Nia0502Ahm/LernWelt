@@ -1,419 +1,728 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LernWelt</title>
+<meta charset="UTF-8">
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script>
-        const supabaseClient = supabase.createClient(
-"https://hridnnwxsgionkeuhaas.supabase.co",
-        "sb_publishable_4DTDbPS-tS5P1u3OAcCe_Q_jNdZQ8P8"
-        );
-    </script>
+<title>LernWelt</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #000000;
-            text-align: center;
-        }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        header {
-            background: #000000;
-            color: black;
-            padding: 30px 20px;
-        }
+<script>
+const SUPABASE_URL = "https://hridnnwxsgionkeuhaas.supabase.co",
+const SUPABASE_KEY =   "sb_publishable_4DTDbPS-tS5P1u3OAcCe_Q_jNdZQ8P8"
 
-        h1 {
-            margin: 0;
-            font-size: 36px;
-        }
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+</script>
 
-        .container {
-            padding: 40px 20px;
-        }
 
-        button {
-            display: block;
-            width: 280px;
-            margin: 15px auto;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background:  #000000;
-            color: black;
-            font-size: 18px;
-            cursor: pointer;
-        }
+<style>
 
-        button:hover {
-            background: #000000;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .language button {
-            display: inline-block;
-            width: 130px;
-            margin: 8px;
-            font-size: 15px;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000000;
+    color: white;
+    text-align: center;
+}
 
-        #classBox {
-            display: none;
-            background: #000000;
-            max-width: 500px;
-            margin: 25px auto;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
 
-        #authBox {
-            background: #000000;
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: none;
-        }
+/* HEADER */
 
-        input {
-            display: block;
-            width: 90%;
-            margin: 12px auto;
-            padding: 14px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+header {
+    background: #000000;
+    color: white;
+    padding: 35px 20px;
+    border-bottom: 1px solid #333333;
+}
 
-        #message {
-            margin: 20px;
-            font-weight: bold;
-        }
-    </style>
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    color: #cccccc;
+}
+
+
+/* CONTAINER */
+
+.container {
+    padding: 40px 20px;
+}
+
+
+/* SPRACHE */
+
+.language {
+    margin: 20px 0 30px;
+}
+
+
+/* BUTTONS */
+
+button {
+    display: block;
+
+    width: 280px;
+
+    margin: 15px auto;
+
+    padding: 15px;
+
+    border: 1px solid #888888;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #bdbdbd
+    );
+
+    color: #000000;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* HOVER */
+
+button:hover {
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #e5e5e5
+    );
+
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 15px
+        rgba(255,255,255,0.25);
+}
+
+
+/* SPRACH-BUTTONS */
+
+.language button {
+
+    display: inline-block;
+
+    width: 130px;
+
+    margin: 8px;
+
+    font-size: 15px;
+}
+
+
+/* KLASSENBOX */
+
+#classBox {
+
+    display: none;
+
+    background: #111111;
+
+    max-width: 500px;
+
+    margin: 25px auto;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border: 1px solid #333333;
+}
+
+
+/* LOGIN BOX */
+
+#authBox {
+
+    background: #111111;
+
+    max-width: 400px;
+
+    margin: 20px auto;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 1px solid #333333;
+
+}
+
+
+/* INPUT */
+
+input {
+
+    display: block;
+
+    width: 90%;
+
+    margin: 12px auto;
+
+    padding: 14px;
+
+    border: 1px solid #777777;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    background: white;
+
+    color: black;
+}
+
+
+/* NACHRICHT */
+
+#message {
+
+    margin: 20px;
+
+    font-weight: bold;
+
+    color: white;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <header>
-    <h1>📚 LernWelt</h1>
-    <p id="subtitle">Lernen von Klasse 5 bis zum Abitur</p>
+
+<h1>📚 LernWelt</h1>
+
+<p id="subtitle">
+Lernen von Klasse 5 bis zum Abitur
+</p>
+
 </header>
+
 
 <div class="container">
 
-    <!-- SPRACHE -->
-    <h2 id="languageTitle">🌐 Sprache auswählen</h2>
 
-    <div class="language">
-        <button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-        <button onclick="changeLanguage('en')">🇬🇧 English</button>
-        <button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
-    </div>
+<!-- SPRACHE -->
 
-    <!-- ANMELDEN / REGISTRIEREN -->
-    <button onclick="showRegister()" id="registerMain">
-        Registrieren
-    </button>
+<h2 id="languageTitle">
+🌐 Sprache auswählen
+</h2>
 
-    <button onclick="showLogin()" id="loginMain">
-        Anmelden
-    </button>
 
-    <!-- KLASSE -->
-    <button onclick="showClasses()" id="classButton">
-        🎓 Klasse auswählen
-    </button>
+<div class="language">
 
-    <!-- KLASSENAUSWAHL -->
-    <div id="classBox">
+<button onclick="changeLanguage('de')">
+🇩🇪 Deutsch
+</button>
 
-        <h2 id="classTitle">🎓 Klasse auswählen</h2>
+<button onclick="changeLanguage('en')">
+🇬🇧 English
+</button>
 
-        <button onclick="selectClass(5)">
-            📚 Klasse 5
-        </button>
+<button onclick="changeLanguage('ps')">
+🇦🇫 پښتو
+</button>
 
-        <button onclick="selectClass(6)">
-            📚 Klasse 6
-        </button>
+</div>
 
-        <button onclick="selectClass(7)">
-            📚 Klasse 7
-        </button>
 
-        <button onclick="selectClass(8)">
-            📚 Klasse 8
-        </button>
+<!-- ANMELDEN / REGISTRIEREN -->
 
-        <button onclick="selectClass(9)">
-            📚 Klasse 9
-        </button>
+<button
+onclick="showRegister()"
+id="registerMain">
 
-        <button onclick="selectClass(10)">
-            📚 Klasse 10
-        </button>
+Registrieren
 
-    </div>
+</button>
 
-    <!-- LOGIN / REGISTRIERUNG -->
-    <div id="authBox">
 
-        <h2 id="authTitle">Registrieren</h2>
+<button
+onclick="showLogin()"
+id="loginMain">
 
-        <input
-            id="email"
-            type="email"
-            placeholder="E-Mail"
-        >
+Anmelden
 
-        <input
-            id="password"
-            type="password"
-            placeholder="Passwort"
-        >
+</button>
 
-        <button id="registerButton" onclick="register()">
-            Konto erstellen
-        </button>
 
-        <button id="loginButton"
-                onclick="login()"
-                style="display:none;">
-            Anmelden
-        </button>
+<!-- KLASSE -->
 
-        <div id="message"></div>
+<button
+onclick="showClasses()"
+id="classButton">
 
-    </div>
+🎓 Klasse auswählen
+
+</button>
+
+
+<!-- KLASSENAUSWAHL -->
+
+<div id="classBox">
+
+<h2 id="classTitle">
+🎓 Klasse auswählen
+</h2>
+
+
+<button onclick="selectClass(5)">
+📚 Klasse 5
+</button>
+
+
+<button onclick="selectClass(6)">
+📚 Klasse 6
+</button>
+
+
+<button onclick="selectClass(7)">
+📚 Klasse 7
+</button>
+
+
+<button onclick="selectClass(8)">
+📚 Klasse 8
+</button>
+
+
+<button onclick="selectClass(9)">
+📚 Klasse 9
+</button>
+
+
+<button onclick="selectClass(10)">
+📚 Klasse 10
+</button>
+
+</div>
+
+
+<!-- LOGIN / REGISTRIERUNG -->
+
+<div id="authBox"
+style="display:none;">
+
+<h2 id="authTitle">
+Registrieren
+</h2>
+
+
+<input
+id="email"
+type="email"
+placeholder="E-Mail"
+>
+
+
+<input
+id="password"
+type="password"
+placeholder="Passwort"
+>
+
+
+<button
+id="registerButton"
+onclick="register()">
+
+Konto erstellen
+
+</button>
+
+
+<button
+id="loginButton"
+onclick="login()"
+style="display:none;">
+
+Anmelden
+
+</button>
+
+
+<div id="message"></div>
+
+</div>
+
 
 </div>
 
 
 <script>
 
+
 const texts = {
 
-    de: {
-        subtitle: "Lernen von Klasse 5 bis zum Abitur",
-        language: "🌐 Sprache auswählen",
-        register: "Registrieren",
-        login: "Anmelden",
-        class: "🎓 Klasse auswählen",
-        classTitle: "🎓 Klasse auswählen",
-        email: "E-Mail",
-        password: "Passwort",
-        account: "Konto erstellen",
-        loginButton: "Anmelden"
-    },
+de: {
 
-    en: {
-        subtitle: "Learning from grade 5 to high school",
-        language: "🌐 Choose language",
-        register: "Register",
-        login: "Login",
-        class: "🎓 Choose grade",
-        classTitle: "🎓 Choose grade",
-        email: "Email",
-        password: "Password",
-        account: "Create account",
-        loginButton: "Login"
-    },
+subtitle:
+"Lernen von Klasse 5 bis zum Abitur",
 
-    ps: {
-        subtitle: "له پنځم ټولګي څخه تر لېسې پورې زده کړه",
-        language: "🌐 ژبه وټاکئ",
-        register: "نوم لیکنه",
-        login: "ننوتل",
-        class: "🎓 ټولګی وټاکئ",
-        classTitle: "🎓 ټولګی وټاکئ",
-        email: "ایمیل",
-        password: "پاسورډ",
-        account: "اکاونټ جوړول",
-        loginButton: "ننوتل"
-    }
+language:
+"🌐 Sprache auswählen",
+
+register:
+"Registrieren",
+
+login:
+"Anmelden",
+
+class:
+"🎓 Klasse auswählen",
+
+classTitle:
+"🎓 Klasse auswählen",
+
+email:
+"E-Mail",
+
+password:
+"Passwort",
+
+account:
+"Konto erstellen",
+
+loginButton:
+"Anmelden"
+
+},
+
+
+en: {
+
+subtitle:
+"Learning from grade 5 to high school",
+
+language:
+"🌐 Choose language",
+
+register:
+"Register",
+
+login:
+"Login",
+
+class:
+"🎓 Choose grade",
+
+classTitle:
+"🎓 Choose grade",
+
+email:
+"Email",
+
+password:
+"Password",
+
+account:
+"Create account",
+
+loginButton:
+"Login"
+
+},
+
+
+ps: {
+
+subtitle:
+"له پنځم ټولګي څخه تر لېسې پورې زده کړه",
+
+language:
+"🌐 ژبه وټاکئ",
+
+register:
+"نوم لیکنه",
+
+login:
+"ننوتل",
+
+class:
+"🎓 ټولګی وټاکئ",
+
+classTitle:
+"🎓 ټولګی وټاکئ",
+
+email:
+"ایمیل",
+
+password:
+"پاسورډ",
+
+account:
+"اکاونټ جوړول",
+
+loginButton:
+"ننوتل"
+
+}
 
 };
 
 
 let currentLanguage =
-    localStorage.getItem("language") || "de";
+localStorage.getItem("language") || "de";
 
 
 function changeLanguage(lang) {
 
-    currentLanguage = lang;
+currentLanguage = lang;
 
-    localStorage.setItem("language", lang);
+localStorage.setItem(
+"language",
+lang
+);
 
-    const t = texts[lang];
+const t = texts[lang];
 
-    document.getElementById("subtitle").textContent =
-        t.subtitle;
 
-    document.getElementById("languageTitle").textContent =
-        t.language;
+document.getElementById("subtitle").textContent =
+t.subtitle;
 
-    document.getElementById("registerMain").textContent =
-        t.register;
 
-    document.getElementById("loginMain").textContent =
-        t.login;
+document.getElementById("languageTitle").textContent =
+t.language;
 
-    document.getElementById("classButton").textContent =
-        t.class;
 
-    document.getElementById("classTitle").textContent =
-        t.classTitle;
+document.getElementById("registerMain").textContent =
+t.register;
 
-    document.getElementById("email").placeholder =
-        t.email;
 
-    document.getElementById("password").placeholder =
-        t.password;
+document.getElementById("loginMain").textContent =
+t.login;
 
-    document.getElementById("registerButton").textContent =
-        t.account;
 
-    document.getElementById("loginButton").textContent =
-        t.loginButton;
+document.getElementById("classButton").textContent =
+t.class;
+
+
+document.getElementById("classTitle").textContent =
+t.classTitle;
+
+
+document.getElementById("email").placeholder =
+t.email;
+
+
+document.getElementById("password").placeholder =
+t.password;
+
+
+document.getElementById("registerButton").textContent =
+t.account;
+
+
+document.getElementById("loginButton").textContent =
+t.loginButton;
+
 }
 
+
+/* KLASSEN ANZEIGEN */
 
 function showClasses() {
 
-    document.getElementById("classBox").style.display =
-        "block";
+document.getElementById("classBox").style.display =
+"block";
+
 }
 
+
+/* KLASSE AUSWÄHLEN */
 
 function selectClass(number) {
 
-    if (number === 5) {
+if (number === 5) {
 
-        /*
-        Klasse 5 wird geöffnet.
-        Danach kann man dort das Fach auswählen.
-        */
+window.location.href =
+"klasse5.html";
 
-        window.location.href = "klasse5.html";
-
-    } else {
-
-        alert(
-            "Diese Klasse wird noch erstellt."
-        );
-
-    }
 }
 
+else if (number === 6) {
+
+window.location.href =
+"klasse6.html";
+
+}
+
+else {
+
+alert(
+"Diese Klasse wird noch erstellt."
+);
+
+}
+
+}
+
+
+/* REGISTRIEREN */
 
 function showRegister() {
 
-    document.getElementById("authBox").style.display =
-        "block";
+document.getElementById("authBox").style.display =
+"block";
 
-    document.getElementById("authTitle").textContent =
-        texts[currentLanguage].register;
+document.getElementById("authTitle").textContent =
+texts[currentLanguage].register;
 
-    document.getElementById("registerButton").style.display =
-        "block";
+document.getElementById("registerButton").style.display =
+"block";
 
-    document.getElementById("loginButton").style.display =
-        "none";
+document.getElementById("loginButton").style.display =
+"none";
 
-    document.getElementById("message").textContent = "";
+document.getElementById("message").textContent =
+"";
+
 }
 
+
+/* ANMELDEN */
 
 function showLogin() {
 
-    document.getElementById("authBox").style.display =
-        "block";
+document.getElementById("authBox").style.display =
+"block";
 
-    document.getElementById("authTitle").textContent =
-        texts[currentLanguage].login;
+document.getElementById("authTitle").textContent =
+texts[currentLanguage].login;
 
-    document.getElementById("registerButton").style.display =
-        "none";
+document.getElementById("registerButton").style.display =
+"none";
 
-    document.getElementById("loginButton").style.display =
-        "block";
+document.getElementById("loginButton").style.display =
+"block";
 
-    document.getElementById("message").textContent = "";
+document.getElementById("message").textContent =
+"";
+
 }
 
+
+/* KONTO ERSTELLEN */
 
 async function register() {
 
-    const email =
-        document.getElementById("email").value;
+const email =
+document.getElementById("email").value;
 
-    const password =
-        document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-    if (!email || !password) {
 
-        document.getElementById("message").textContent =
-            "Bitte E-Mail und Passwort eingeben.";
+if (!email || !password) {
 
-        return;
-    }
+document.getElementById("message").textContent =
+"Bitte E-Mail und Passwort eingeben.";
 
-    const { data, error } =
-        await supabaseClient.auth.signUp({
-            email: email,
-            password: password
-        });
+return;
 
-    if (error) {
-
-        document.getElementById("message").textContent =
-            "Fehler: " + error.message;
-
-        return;
-    }
-
-    document.getElementById("message").textContent =
-        "Konto erstellt! Bitte prüfe deine E-Mail.";
 }
 
+
+const { data, error } =
+await supabaseClient.auth.signUp({
+
+email: email,
+
+password: password
+
+});
+
+
+if (error) {
+
+document.getElementById("message").textContent =
+"Fehler: " + error.message;
+
+return;
+
+}
+
+
+document.getElementById("message").textContent =
+"Konto erstellt! Bitte prüfe deine E-Mail.";
+
+}
+
+
+/* LOGIN */
 
 async function login() {
 
-    const email =
-        document.getElementById("email").value;
+const email =
+document.getElementById("email").value;
 
-    const password =
-        document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-    const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
 
-    if (error) {
+const { data, error } =
+await supabaseClient.auth.signInWithPassword({
 
-        document.getElementById("message").textContent =
-            "Fehler: " + error.message;
+email: email,
 
-        return;
-    }
+password: password
 
-    window.location.href = "home.html";
+});
+
+
+if (error) {
+
+document.getElementById("message").textContent =
+"Fehler: " + error.message;
+
+return;
+
 }
 
+
+window.location.href =
+"home.html";
+
+}
+
+
+/* SPRACHE LADEN */
 
 changeLanguage(currentLanguage);
 
 </script>
 
+
 </body>
+
 </html>
