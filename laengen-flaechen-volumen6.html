@@ -20,6 +20,11 @@ header {
     padding: 30px 20px;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
 .container {
     max-width: 900px;
     margin: 30px auto;
@@ -441,6 +446,38 @@ let score = 0;
 let answered = 0;
 
 
+/* ==========================================
+   ANTWORTEN ZUFÄLLIG MISCHEN
+   ========================================== */
+
+function shuffleAnswers() {
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        const answers = Array.from(
+            question.querySelectorAll(".answer")
+        );
+
+        for (let i = answers.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [answers[i], answers[j]] =
+            [answers[j], answers[i]];
+        }
+
+        answers.forEach(function(answer) {
+            question.appendChild(answer);
+        });
+
+    });
+}
+
+
+/* ==========================================
+   ANTWORT PRÜFEN
+   ========================================== */
+
 function checkAnswer(button, correct) {
 
     const question = button.parentElement;
@@ -470,7 +507,7 @@ function checkAnswer(button, correct) {
 
             const code = btn.getAttribute("onclick");
 
-            if (code && code.includes("true")) {
+            if (code && code.includes(",true)")) {
                 btn.classList.add("correct");
             }
 
@@ -482,6 +519,10 @@ function checkAnswer(button, correct) {
     updateScore();
 }
 
+
+/* ==========================================
+   PUNKTE ANZEIGEN
+   ========================================== */
 
 function updateScore() {
 
@@ -505,6 +546,10 @@ function updateScore() {
     }
 }
 
+
+/* ==========================================
+   AUSWERTUNG
+   ========================================== */
 
 function finishQuiz() {
 
@@ -574,6 +619,10 @@ function finishQuiz() {
 }
 
 
+/* ==========================================
+   NEU STARTEN
+   ========================================== */
+
 function restartQuiz() {
 
     score = 0;
@@ -595,9 +644,15 @@ function restartQuiz() {
 
     document.getElementById("result").textContent = "";
 
+    shuffleAnswers();
+
     updateScore();
 }
 
+
+/* ==========================================
+   ÜBERSETZUNGEN
+   ========================================== */
 
 const translations = {
 
@@ -646,6 +701,10 @@ const translations = {
 };
 
 
+/* ==========================================
+   SPRACHE WECHSELN
+   ========================================== */
+
 function changeLanguage(language) {
 
     localStorage.setItem("language", language);
@@ -686,8 +745,14 @@ function changeLanguage(language) {
 }
 
 
+/* ==========================================
+   START
+   ========================================== */
+
 const savedLanguage =
     localStorage.getItem("language") || "de";
+
+shuffleAnswers();
 
 changeLanguage(savedLanguage);
 
