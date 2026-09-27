@@ -2,93 +2,163 @@
 <html lang="de">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>LernWelt</title>
 
 <style>
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f7fb;
+    background: #000000;
+    color: white;
     text-align: center;
 }
 
+/* HEADER */
+
 header {
-    background: #2563eb;
-    color: black;
-    padding: 35px 20px;
+    background: #000000;
+    color: white;
+    padding: 40px 20px;
+    border-bottom: 1px solid #333333;
 }
 
 header h1 {
     margin: 0;
-    font-size: 36px;
+    font-size: 38px;
+    letter-spacing: 1px;
 }
+
+header p {
+    color: #bdbdbd;
+    font-size: 17px;
+}
+
+
+/* HAUPTBEREICH */
 
 .container {
     max-width: 750px;
     margin: 35px auto;
     padding: 30px;
-    background: black;
-    border-radius: 18px;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255,255,255,0.05);
+}
+
+
+/* SPRACHE */
+
+#languageTitle {
+    color: #ffffff;
+    margin-bottom: 20px;
 }
 
 .language-buttons {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     margin: 20px 0 30px;
 }
 
+
+/* ALLE BUTTONS */
+
 button {
-    padding: 14px 22px;
-    margin: 7px;
-    border: none;
+    border: 1px solid #777777;
     border-radius: 10px;
-    background: #2563eb;
-    color: black;
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #bdbdbd
+    );
+    color: #000000;
     font-size: 17px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
+
+
+/* BUTTON HOVER */
 
 button:hover {
-    background: #1d4ed8;
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #e5e5e5
+    );
+
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.25);
 }
 
+
+/* SPRACH-BUTTONS */
+
 .language-button {
-    font-size: 16px;
+    padding: 12px 18px;
+    margin: 5px;
+    font-size: 15px;
 }
+
+
+/* TEXT */
+
+#message {
+    color: #bdbdbd;
+    margin: 20px;
+}
+
+#classTitle {
+    color: white;
+    margin-top: 30px;
+    font-size: 28px;
+}
+
+
+/* KLASSEN-BUTTONS */
 
 .class-button {
     display: block;
     width: 90%;
     max-width: 500px;
-    margin: 12px auto;
+
+    margin: 14px auto;
+
     padding: 17px;
+
     font-size: 19px;
+
+    border-radius: 12px;
 }
 
-#classTitle {
-    margin-top: 25px;
-    font-size: 28px;
-}
 
-#message {
-    font-weight: bold;
-    margin: 15px;
+/* FUSS */
+
+.class-button:active,
+.language-button:active {
+    transform: scale(0.98);
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -113,24 +183,27 @@ Lernen von Klasse 5 bis Klasse 13
 
 <div class="language-buttons">
 
-<button class="language-button"
-        onclick="changeLanguage('de')">
+<button
+class="language-button"
+onclick="changeLanguage('de')">
 
 🇩🇪 Deutsch
 
 </button>
 
 
-<button class="language-button"
-        onclick="changeLanguage('en')">
+<button
+class="language-button"
+onclick="changeLanguage('en')">
 
 🇬🇧 English
 
 </button>
 
 
-<button class="language-button"
-        onclick="changeLanguage('ps')">
+<button
+class="language-button"
+onclick="changeLanguage('ps')">
 
 🇦🇫 پښتو
 
@@ -151,8 +224,9 @@ Wähle zuerst deine Klasse aus.
 </h2>
 
 
-<button class="class-button"
-        onclick="selectClass(5)">
+<button
+class="class-button"
+onclick="selectClass(5)">
 
 📚 <span id="class5">
 Klasse 5
@@ -161,8 +235,9 @@ Klasse 5
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(6)">
+<button
+class="class-button"
+onclick="selectClass(6)">
 
 📚 <span id="class6">
 Klasse 6
@@ -171,8 +246,9 @@ Klasse 6
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(7)">
+<button
+class="class-button"
+onclick="selectClass(7)">
 
 📚 <span id="class7">
 Klasse 7
@@ -181,8 +257,9 @@ Klasse 7
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(8)">
+<button
+class="class-button"
+onclick="selectClass(8)">
 
 📚 <span id="class8">
 Klasse 8
@@ -191,8 +268,9 @@ Klasse 8
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(9)">
+<button
+class="class-button"
+onclick="selectClass(9)">
 
 📚 <span id="class9">
 Klasse 9
@@ -201,8 +279,9 @@ Klasse 9
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(10)">
+<button
+class="class-button"
+onclick="selectClass(10)">
 
 📚 <span id="class10">
 Klasse 10
@@ -211,8 +290,9 @@ Klasse 10
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(11)">
+<button
+class="class-button"
+onclick="selectClass(11)">
 
 📚 <span id="class11">
 Klasse 11
@@ -221,8 +301,9 @@ Klasse 11
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(12)">
+<button
+class="class-button"
+onclick="selectClass(12)">
 
 📚 <span id="class12">
 Klasse 12
@@ -231,8 +312,9 @@ Klasse 12
 </button>
 
 
-<button class="class-button"
-        onclick="selectClass(13)">
+<button
+class="class-button"
+onclick="selectClass(13)">
 
 📚 <span id="class13">
 Klasse 13
@@ -249,7 +331,6 @@ Klasse 13
 
 const translations = {
 
-
 de: {
 
 subtitle:
@@ -264,32 +345,15 @@ message:
 classTitle:
 "🎓 Klasse auswählen",
 
-class5:
-"Klasse 5",
-
-class6:
-"Klasse 6",
-
-class7:
-"Klasse 7",
-
-class8:
-"Klasse 8",
-
-class9:
-"Klasse 9",
-
-class10:
-"Klasse 10",
-
-class11:
-"Klasse 11",
-
-class12:
-"Klasse 12",
-
-class13:
-"Klasse 13"
+class5: "Klasse 5",
+class6: "Klasse 6",
+class7: "Klasse 7",
+class8: "Klasse 8",
+class9: "Klasse 9",
+class10: "Klasse 10",
+class11: "Klasse 11",
+class12: "Klasse 12",
+class13: "Klasse 13"
 
 },
 
@@ -308,32 +372,15 @@ message:
 classTitle:
 "🎓 Choose your grade",
 
-class5:
-"Grade 5",
-
-class6:
-"Grade 6",
-
-class7:
-"Grade 7",
-
-class8:
-"Grade 8",
-
-class9:
-"Grade 9",
-
-class10:
-"Grade 10",
-
-class11:
-"Grade 11",
-
-class12:
-"Grade 12",
-
-class13:
-"Grade 13"
+class5: "Grade 5",
+class6: "Grade 6",
+class7: "Grade 7",
+class8: "Grade 8",
+class9: "Grade 9",
+class10: "Grade 10",
+class11: "Grade 11",
+class12: "Grade 12",
+class13: "Grade 13"
 
 },
 
@@ -352,32 +399,15 @@ message:
 classTitle:
 "🎓 خپل ټولګی وټاکئ",
 
-class5:
-"پنځم ټولګی",
-
-class6:
-"شپږم ټولګی",
-
-class7:
-"اووم ټولګی",
-
-class8:
-"اتم ټولګی",
-
-class9:
-"نهم ټولګی",
-
-class10:
-"لسم ټولګی",
-
-class11:
-"یوولسم ټولګی",
-
-class12:
-"دولسم ټولګی",
-
-class13:
-"دیارلسم ټولګی"
+class5: "پنځم ټولګی",
+class6: "شپږم ټولګی",
+class7: "اووم ټولګی",
+class8: "اتم ټولګی",
+class9: "نهم ټولګی",
+class10: "لسم ټولګی",
+class11: "یوولسم ټولګی",
+class12: "دولسم ټولګی",
+class13: "دیارلسم ټولګی"
 
 }
 
@@ -397,57 +427,44 @@ localStorage.setItem(
 language
 );
 
-const t =
-translations[language];
+const t = translations[language];
 
 
 document.getElementById("subtitle").textContent =
 t.subtitle;
 
-
 document.getElementById("languageTitle").textContent =
 t.languageTitle;
-
 
 document.getElementById("message").textContent =
 t.message;
 
-
 document.getElementById("classTitle").textContent =
 t.classTitle;
-
 
 document.getElementById("class5").textContent =
 t.class5;
 
-
 document.getElementById("class6").textContent =
 t.class6;
-
 
 document.getElementById("class7").textContent =
 t.class7;
 
-
 document.getElementById("class8").textContent =
 t.class8;
-
 
 document.getElementById("class9").textContent =
 t.class9;
 
-
 document.getElementById("class10").textContent =
 t.class10;
-
 
 document.getElementById("class11").textContent =
 t.class11;
 
-
 document.getElementById("class12").textContent =
 t.class12;
-
 
 document.getElementById("class13").textContent =
 t.class13;
@@ -470,14 +487,16 @@ if (number === 5) {
 window.location.href =
 "klasse5.html";
 
+}
 
-} else if (number === 6) {
+else if (number === 6) {
 
 window.location.href =
 "klasse6.html";
 
+}
 
-} else {
+else {
 
 alert(
 "Klasse " +
@@ -495,6 +514,7 @@ number +
 changeLanguage(currentLanguage);
 
 </script>
+
 
 </body>
 
