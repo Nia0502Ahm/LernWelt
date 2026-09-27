@@ -1,13 +1,17 @@
-```html
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>LernWelt</title>
 
 <style>
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -79,277 +83,419 @@ button:hover {
     font-weight: bold;
     margin: 15px;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>📚 LernWelt</h1>
 
-    <p id="subtitle">
-        Lernen von Klasse 5 bis Klasse 13
-    </p>
+<h1>📚 LernWelt</h1>
+
+<p id="subtitle">
+Lernen von Klasse 5 bis Klasse 13
+</p>
+
 </header>
+
 
 <div class="container">
 
-    <!-- SPRACHE -->
 
-    <h2 id="languageTitle">
-        🌐 Sprache auswählen
-    </h2>
+<!-- SPRACHE -->
 
-    <div class="language-buttons">
-
-        <button class="language-button"
-                onclick="changeLanguage('de')">
-            🇩🇪 Deutsch
-        </button>
-
-        <button class="language-button"
-                onclick="changeLanguage('en')">
-            🇬🇧 English
-        </button>
-
-        <button class="language-button"
-                onclick="changeLanguage('ps')">
-            🇦🇫 پښتو
-        </button>
-
-    </div>
-
-    <p id="message">
-        Wähle zuerst deine Klasse aus.
-    </p>
+<h2 id="languageTitle">
+🌐 Sprache auswählen
+</h2>
 
 
-    <!-- KLASSENAUSWAHL -->
+<div class="language-buttons">
 
-    <h2 id="classTitle">
-        🎓 Klasse auswählen
-    </h2>
+<button class="language-button"
+        onclick="changeLanguage('de')">
+
+🇩🇪 Deutsch
+
+</button>
 
 
-    <button class="class-button"
-            onclick="selectClass(5)">
-        📚 <span id="class5">Klasse 5</span>
-    </button>
+<button class="language-button"
+        onclick="changeLanguage('en')">
 
-    <button class="class-button"
-            onclick="selectClass(6)">
-        📚 <span id="class6">Klasse 6</span>
-    </button>
+🇬🇧 English
 
-    <button class="class-button"
-            onclick="selectClass(7)">
-        📚 <span id="class7">Klasse 7</span>
-    </button>
+</button>
 
-    <button class="class-button"
-            onclick="selectClass(8)">
-        📚 <span id="class8">Klasse 8</span>
-    </button>
 
-    <button class="class-button"
-            onclick="selectClass(9)">
-        📚 <span id="class9">Klasse 9</span>
-    </button>
+<button class="language-button"
+        onclick="changeLanguage('ps')">
 
-    <button class="class-button"
-            onclick="selectClass(10)">
-        📚 <span id="class10">Klasse 10</span>
-    </button>
+🇦🇫 پښتو
 
-    <button class="class-button"
-            onclick="selectClass(11)">
-        📚 <span id="class11">Klasse 11</span>
-    </button>
+</button>
 
-    <button class="class-button"
-            onclick="selectClass(12)">
-        📚 <span id="class12">Klasse 12</span>
-    </button>
+</div>
 
-    <button class="class-button"
-            onclick="selectClass(13)">
-        📚 <span id="class13">Klasse 13</span>
-    </button>
+
+<p id="message">
+Wähle zuerst deine Klasse aus.
+</p>
+
+
+<!-- KLASSENAUSWAHL -->
+
+<h2 id="classTitle">
+🎓 Klasse auswählen
+</h2>
+
+
+<button class="class-button"
+        onclick="selectClass(5)">
+
+📚 <span id="class5">
+Klasse 5
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(6)">
+
+📚 <span id="class6">
+Klasse 6
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(7)">
+
+📚 <span id="class7">
+Klasse 7
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(8)">
+
+📚 <span id="class8">
+Klasse 8
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(9)">
+
+📚 <span id="class9">
+Klasse 9
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(10)">
+
+📚 <span id="class10">
+Klasse 10
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(11)">
+
+📚 <span id="class11">
+Klasse 11
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(12)">
+
+📚 <span id="class12">
+Klasse 12
+</span>
+
+</button>
+
+
+<button class="class-button"
+        onclick="selectClass(13)">
+
+📚 <span id="class13">
+Klasse 13
+</span>
+
+</button>
+
 
 </div>
 
 
 <script>
 
+
 const translations = {
 
-    de: {
 
-        subtitle:
-        "Lernen von Klasse 5 bis Klasse 13",
+de: {
 
-        languageTitle:
-        "🌐 Sprache auswählen",
+subtitle:
+"Lernen von Klasse 5 bis Klasse 13",
 
-        message:
-        "Wähle zuerst deine Klasse aus.",
+languageTitle:
+"🌐 Sprache auswählen",
 
-        classTitle:
-        "🎓 Klasse auswählen",
+message:
+"Wähle zuerst deine Klasse aus.",
 
-        class5: "Klasse 5",
-        class6: "Klasse 6",
-        class7: "Klasse 7",
-        class8: "Klasse 8",
-        class9: "Klasse 9",
-        class10: "Klasse 10",
-        class11: "Klasse 11",
-        class12: "Klasse 12",
-        class13: "Klasse 13"
-    },
+classTitle:
+"🎓 Klasse auswählen",
 
+class5:
+"Klasse 5",
 
-    en: {
+class6:
+"Klasse 6",
 
-        subtitle:
-        "Learning from grade 5 to grade 13",
+class7:
+"Klasse 7",
 
-        languageTitle:
-        "🌐 Choose your language",
+class8:
+"Klasse 8",
 
-        message:
-        "First choose your grade.",
+class9:
+"Klasse 9",
 
-        classTitle:
-        "🎓 Choose your grade",
+class10:
+"Klasse 10",
 
-        class5: "Grade 5",
-        class6: "Grade 6",
-        class7: "Grade 7",
-        class8: "Grade 8",
-        class9: "Grade 9",
-        class10: "Grade 10",
-        class11: "Grade 11",
-        class12: "Grade 12",
-        class13: "Grade 13"
-    },
+class11:
+"Klasse 11",
+
+class12:
+"Klasse 12",
+
+class13:
+"Klasse 13"
+
+},
 
 
-    ps: {
+en: {
 
-        subtitle:
-        "له پنځم ټولګي څخه تر دیارلسم ټولګي پورې زده کړه",
+subtitle:
+"Learning from grade 5 to grade 13",
 
-        languageTitle:
-        "🌐 خپله ژبه وټاکئ",
+languageTitle:
+"🌐 Choose your language",
 
-        message:
-        "لومړی خپل ټولګی وټاکئ.",
+message:
+"First choose your grade.",
 
-        classTitle:
-        "🎓 خپل ټولګی وټاکئ",
+classTitle:
+"🎓 Choose your grade",
 
-        class5: "پنځم ټولګی",
-        class6: "شپږم ټولګی",
-        class7: "اووم ټولګی",
-        class8: "اتم ټولګی",
-        class9: "نهم ټولګی",
-        class10: "لسم ټولګی",
-        class11: "یوولسم ټولګی",
-        class12: "دولسم ټولګی",
-        class13: "دیارلسم ټولګی"
-    }
+class5:
+"Grade 5",
+
+class6:
+"Grade 6",
+
+class7:
+"Grade 7",
+
+class8:
+"Grade 8",
+
+class9:
+"Grade 9",
+
+class10:
+"Grade 10",
+
+class11:
+"Grade 11",
+
+class12:
+"Grade 12",
+
+class13:
+"Grade 13"
+
+},
+
+
+ps: {
+
+subtitle:
+"له پنځم ټولګي څخه تر دیارلسم ټولګي پورې زده کړه",
+
+languageTitle:
+"🌐 خپله ژبه وټاکئ",
+
+message:
+"لومړی خپل ټولګی وټاکئ.",
+
+classTitle:
+"🎓 خپل ټولګی وټاکئ",
+
+class5:
+"پنځم ټولګی",
+
+class6:
+"شپږم ټولګی",
+
+class7:
+"اووم ټولګی",
+
+class8:
+"اتم ټولګی",
+
+class9:
+"نهم ټولګی",
+
+class10:
+"لسم ټولګی",
+
+class11:
+"یوولسم ټولګی",
+
+class12:
+"دولسم ټولګی",
+
+class13:
+"دیارلسم ټولګی"
+
+}
 
 };
 
 
 let currentLanguage =
-    localStorage.getItem("language") || "de";
+localStorage.getItem("language") || "de";
 
 
 function changeLanguage(language) {
 
-    currentLanguage = language;
+currentLanguage = language;
 
-    localStorage.setItem("language", language);
+localStorage.setItem(
+"language",
+language
+);
 
-    const t = translations[language];
-
-
-    document.getElementById("subtitle").textContent =
-        t.subtitle;
-
-    document.getElementById("languageTitle").textContent =
-        t.languageTitle;
-
-    document.getElementById("message").textContent =
-        t.message;
-
-    document.getElementById("classTitle").textContent =
-        t.classTitle;
+const t =
+translations[language];
 
 
-    document.getElementById("class5").textContent =
-        t.class5;
+document.getElementById("subtitle").textContent =
+t.subtitle;
 
-    document.getElementById("class6").textContent =
-        t.class6;
 
-    document.getElementById("class7").textContent =
-        t.class7;
+document.getElementById("languageTitle").textContent =
+t.languageTitle;
 
-    document.getElementById("class8").textContent =
-        t.class8;
 
-    document.getElementById("class9").textContent =
-        t.class9;
+document.getElementById("message").textContent =
+t.message;
 
-    document.getElementById("class10").textContent =
-        t.class10;
 
-    document.getElementById("class11").textContent =
-        t.class11;
+document.getElementById("classTitle").textContent =
+t.classTitle;
 
-    document.getElementById("class12").textContent =
-        t.class12;
 
-    document.getElementById("class13").textContent =
-        t.class13;
+document.getElementById("class5").textContent =
+t.class5;
+
+
+document.getElementById("class6").textContent =
+t.class6;
+
+
+document.getElementById("class7").textContent =
+t.class7;
+
+
+document.getElementById("class8").textContent =
+t.class8;
+
+
+document.getElementById("class9").textContent =
+t.class9;
+
+
+document.getElementById("class10").textContent =
+t.class10;
+
+
+document.getElementById("class11").textContent =
+t.class11;
+
+
+document.getElementById("class12").textContent =
+t.class12;
+
+
+document.getElementById("class13").textContent =
+t.class13;
+
 }
 
+
+/* KLASSEN ÖFFNEN */
 
 function selectClass(number) {
 
-    localStorage.setItem(
-        "selectedClass",
-        number
-    );
+localStorage.setItem(
+"selectedClass",
+number
+);
 
 
-    if (number === 5) {
+if (number === 5) {
 
-        window.location.href =
-            "klasse5.html";
+window.location.href =
+"klasse5.html";
 
-    } else {(number === 6) {
 
-        window.location.href = "klasse6.html";
-        
- } else {
+} else if (number === 6) {
 
-        alert(
-            "Klasse " + number +
-            " wird noch erstellt."
-        );
+window.location.href =
+"klasse6.html";
 
-    }
+
+} else {
+
+alert(
+"Klasse " +
+number +
+" wird noch erstellt."
+);
+
 }
 
+}
+
+
+/* SPRACHE LADEN */
 
 changeLanguage(currentLanguage);
 
 </script>
 
 </body>
+
 </html>
-```
