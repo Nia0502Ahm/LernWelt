@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LernWelt – Prozentrechnung Klasse 6</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    text-align: center;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+}
+
+.language {
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 6px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.language button {
+    background: #475569;
+}
+
+.explanation {
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.example {
+    background: #dbeafe;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.question {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.question h3 {
+    margin-top: 0;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 13px;
+    background: white;
+    color: #111827;
+    border: 2px solid #d1d5db;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.answer:hover {
+    background: #eef4ff;
+}
+
+.answer.correct {
+    background: #dcfce7 !important;
+    border-color: #22c55e !important;
+}
+
+.answer.wrong {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.restart {
+    background: #16a34a;
+}
+
+.back {
+    background: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 LernWelt</h1>
+    <p id="subtitle">Mathematik – Klasse 6</p>
+</header>
+
+<div class="container">
+
+<div class="language">
+
+<p id="languageText">🌐 Sprache:</p>
+
+<button onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+<button onclick="changeLanguage('en')">🇬🇧 English</button>
+<button onclick="changeLanguage('ps')">🇦🇫 پښتو</button>
+
+</div>
+
+<h2 id="title">📊 Prozentrechnung</h2>
+
+<div class="explanation">
+
+<h2 id="explanationTitle">📖 Das Thema erklärt</h2>
+
+<p id="explanationText">
+Prozent bedeutet „von hundert“. 1 % bedeutet 1 von 100.
+Der Prozentwert ist der Teil einer Gesamtmenge.
+Der Grundwert ist die gesamte Menge.
+Der Prozentsatz zeigt, wie groß der Anteil in Prozent ist.
+</p>
+
+</div>
+
+<div class="example">
+
+<h3 id="exampleTitle">💡 Beispiele</h3>
+
+<p>50 % von 100 = 50</p>
+<p>10 % von 200 = 20</p>
+<p>25 % von 80 = 20</p>
+<p>20 % von 50 = 10</p>
+
+</div>
+
+<h2 id="exerciseTitle">📝 30 Aufgaben</h2>
+
+
+<div class="question">
+<h3>1. Was bedeutet 1 %?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">1 von 100</button>
+<button class="answer" onclick="checkAnswer(this,false)">1 von 10</button>
+<button class="answer" onclick="checkAnswer(this,false)">10 von 100</button>
+</div>
+
+<div class="question">
+<h3>2. Was bedeutet 50 %?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">Die Hälfte</button>
+<button class="answer" onclick="checkAnswer(this,false)">Ein Viertel</button>
+<button class="answer" onclick="checkAnswer(this,false)">Das Doppelte</button>
+</div>
+
+<div class="question">
+<h3>3. Wie viel sind 10 % von 100?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">50</button>
+</div>
+
+<div class="question">
+<h3>4. Wie viel sind 20 % von 100?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+</div>
+
+<div class="question">
+<h3>5. Wie viel sind 25 % von 100?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">25</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">50</button>
+</div>
+
+<div class="question">
+<h3>6. Wie viel sind 50 % von 200?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">100</button>
+<button class="answer" onclick="checkAnswer(this,false)">50</button>
+<button class="answer" onclick="checkAnswer(this,false)">150</button>
+</div>
+
+<div class="question">
+<h3>7. Wie viel sind 10 % von 200?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+</div>
+
+<div class="question">
+<h3>8. Wie viel sind 25 % von 80?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+</div>
+
+<div class="question">
+<h3>9. Wie viel sind 20 % von 50?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">5</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+</div>
+
+<div class="question">
+<h3>10. Wie viel sind 10 % von 300?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">30</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">60</button>
+</div>
+
+<div class="question">
+<h3>11. Wie viel sind 50 % von 60?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">30</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+</div>
+
+<div class="question">
+<h3>12. Wie viel sind 25 % von 40?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">5</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+</div>
+
+<div class="question">
+<h3>13. Wie viel sind 20 % von 100?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+</div>
+
+<div class="question">
+<h3>14. Wie viel sind 10 % von 500?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">50</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+<button class="answer" onclick="checkAnswer(this,false)">100</button>
+</div>
+
+<div class="question">
+<h3>15. Wie viel sind 50 % von 500?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">250</button>
+<button class="answer" onclick="checkAnswer(this,false)">100</button>
+<button class="answer" onclick="checkAnswer(this,false)">200</button>
+</div>
+
+<div class="question">
+<h3>16. Wie viel sind 25 % von 200?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">50</button>
+<button class="answer" onclick="checkAnswer(this,false)">25</button>
+<button class="answer" onclick="checkAnswer(this,false)">100</button>
+</div>
+
+<div class="question">
+<h3>17. Wie viel sind 20 % von 200?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">40</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">60</button>
+</div>
+
+<div class="question">
+<h3>18. Wie viel sind 10 % von 80?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">8</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">16</button>
+</div>
+
+<div class="question">
+<h3>19. Wie viel sind 50 % von 80?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">40</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">60</button>
+</div>
+
+<div class="question">
+<h3>20. Wie viel sind 25 % von 60?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">15</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+</div>
+
+<div class="question">
+<h3>21. Wie viel sind 10 % von 700?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">70</button>
+<button class="answer" onclick="checkAnswer(this,false)">7</button>
+<button class="answer" onclick="checkAnswer(this,false)">140</button>
+</div>
+
+<div class="question">
+<h3>22. Wie viel sind 20 % von 300?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">60</button>
+<button class="answer" onclick="checkAnswer(this,false)">30</button>
+<button class="answer" onclick="checkAnswer(this,false)">90</button>
+</div>
+
+<div class="question">
+<h3>23. Wie viel sind 25 % von 120?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">30</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+</div>
+
+<div class="question">
+<h3>24. Wie viel sind 50 % von 120?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">60</button>
+<button class="answer" onclick="checkAnswer(this,false)">30</button>
+<button class="answer" onclick="checkAnswer(this,false)">80</button>
+</div>
+
+<div class="question">
+<h3>25. Wie viel sind 10 % von 90?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">9</button>
+<button class="answer" onclick="checkAnswer(this,false)">10</button>
+<button class="answer" onclick="checkAnswer(this,false)">18</button>
+</div>
+
+<div class="question">
+<h3>26. Wie viel sind 20 % von 90?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">18</button>
+<button class="answer" onclick="checkAnswer(this,false)">9</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+</div>
+
+<div class="question">
+<h3>27. Wie viel sind 25 % von 160?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">40</button>
+<button class="answer" onclick="checkAnswer(this,false)">20</button>
+<button class="answer" onclick="checkAnswer(this,false)">80</button>
+</div>
+
+<div class="question">
+<h3>28. Wie viel sind 50 % von 160?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">80</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+<button class="answer" onclick="checkAnswer(this,false)">100</button>
+</div>
+
+<div class="question">
+<h3>29. Wie viel sind 10 % von 450?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">45</button>
+<button class="answer" onclick="checkAnswer(this,false)">40</button>
+<button class="answer" onclick="checkAnswer(this,false)">90</button>
+</div>
+
+<div class="question">
+<h3>30. Wie viel sind 25 % von 400?</h3>
+<button class="answer" onclick="checkAnswer(this,true)">100</button>
+<button class="answer" onclick="checkAnswer(this,false)">50</button>
+<button class="answer" onclick="checkAnswer(this,false)">200</button>
+</div>
+
+
+<div id="score">
+🏆 Punkte: 0 / 30
+</div>
+
+<div id="result"></div>
+
+<button onclick="finishQuiz()" id="finishButton">
+✅ Auswertung
+</button>
+
+<button onclick="restartQuiz()" class="restart" id="restartButton">
+🔄 Neu starten
+</button>
+
+<br>
+
+<button class="back"
+onclick="location.href='mathe6.html'"
+id="backButton">
+← Zurück zu Mathematik
+</button>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let answered = 0;
+
+
+function checkAnswer(button, correct) {
+
+    const question = button.parentElement;
+
+    if (question.dataset.done === "true") {
+        return;
+    }
+
+    question.dataset.done = "true";
+
+    const buttons = question.querySelectorAll(".answer");
+
+    buttons.forEach(function(btn) {
+        btn.disabled = true;
+    });
+
+    if (correct) {
+
+        button.classList.add("correct");
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        buttons.forEach(function(btn) {
+
+            const code = btn.getAttribute("onclick");
+
+            if (code && code.includes("true")) {
+                btn.classList.add("correct");
+            }
+
+        });
+    }
+
+    answered++;
+    updateScore();
+}
+
+
+function updateScore() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (language === "de") {
+
+        document.getElementById("score").textContent =
+            "🏆 Punkte: " + score + " / 30";
+
+    } else if (language === "en") {
+
+        document.getElementById("score").textContent =
+            "🏆 Points: " + score + " / 30";
+
+    } else {
+
+        document.getElementById("score").textContent =
+            "🏆 نمرې: " + score + " / ۳۰";
+    }
+}
+
+
+function finishQuiz() {
+
+    const language =
+        localStorage.getItem("language") || "de";
+
+    if (answered < 30) {
+
+        if (language === "de") {
+            document.getElementById("result").textContent =
+                "⚠️ Bitte beantworte alle 30 Aufgaben.";
+        }
+
+        if (language === "en") {
+            document.getElementById("result").textContent =
+                "⚠️ Please answer all 30 questions.";
+        }
+
+        if (language === "ps") {
+            document.getElementById("result").textContent =
+                "⚠️ مهرباني وکړئ ټولې ۳۰ پوښتنې ځواب کړئ.";
+        }
+
+        return;
+    }
+
+    let result = "";
+
+    if (language === "de") {
+
+        if (score === 30)
+            result = "🎉 Perfekt! 30 von 30 Punkten!";
+        else if (score >= 25)
+            result = "👏 Sehr gut! " + score + " von 30 Punkten!";
+        else if (score >= 18)
+            result = "👍 Gut gemacht! " + score + " von 30 Punkten!";
+        else
+            result = "💪 Übe noch etwas! " + score + " von 30 Punkten.";
+
+    } else if (language === "en") {
+
+        if (score === 30)
+            result = "🎉 Perfect! 30 out of 30 points!";
+        else if (score >= 25)
+            result = "👏 Very good! " + score + " out of 30 points!";
+        else if (score >= 18)
+            result = "👍 Good job! " + score + " out of 30 points!";
+        else
+            result = "💪 Keep practicing! " + score + " out of 30 points.";
+
+    } else {
+
+        if (score === 30)
+            result = "🎉 ډېر ښه! ۳۰ له ۳۰ نمرې!";
+        else if (score >= 25)
+            result = "👏 ډېر ښه! " + score + " له ۳۰ نمرې!";
+        else if (score >= 18)
+            result = "👍 ښه کار! " + score + " له ۳۰ نمرې!";
+        else
+            result = "💪 لا ډېر تمرین وکړه! " + score + " له ۳۰ څخه.";
+    }
+
+    document.getElementById("result").textContent = result;
+}
+
+
+function restartQuiz() {
+
+    score = 0;
+    answered = 0;
+
+    document.querySelectorAll(".question").forEach(function(question) {
+
+        question.dataset.done = "false";
+
+        question.querySelectorAll(".answer").forEach(function(button) {
+
+            button.disabled = false;
+            button.classList.remove("correct");
+            button.classList.remove("wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").textContent = "";
+
+    updateScore();
+}
+
+
+const translations = {
+
+    de: {
+        subtitle: "Mathematik – Klasse 6",
+        language: "🌐 Sprache:",
+        title: "📊 Prozentrechnung",
+        explanationTitle: "📖 Das Thema erklärt",
+        explanationText:
+            "Prozent bedeutet „von hundert“. 1 % bedeutet 1 von 100. Der Prozentwert ist der Teil einer Gesamtmenge. Der Grundwert ist die gesamte Menge. Der Prozentsatz zeigt, wie groß der Anteil in Prozent ist.",
+        exampleTitle: "💡 Beispiele",
+        exerciseTitle: "📝 30 Aufgaben",
+        finish: "✅ Auswertung",
+        restart: "🔄 Neu starten",
+        back: "← Zurück zu Mathematik"
+    },
+
+    en: {
+        subtitle: "Mathematics – Grade 6",
+        language: "🌐 Language:",
+        title: "📊 Percentages",
+        explanationTitle: "📖 The topic explained",
+        explanationText:
+            "Percent means 'out of one hundred'. 1% means 1 out of 100. The percentage value is the part of a total amount. The base value is the total amount. The percentage shows how large the part is.",
+        exampleTitle: "💡 Examples",
+        exerciseTitle: "📝 30 Exercises",
+        finish: "✅ Results",
+        restart: "🔄 Restart",
+        back: "← Back to Mathematics"
+    },
+
+    ps: {
+        subtitle: "ریاضي – شپږم ټولګی",
+        language: "🌐 ژبه:",
+        title: "📊 سلنه",
+        explanationTitle: "📖 د موضوع تشریح",
+        explanationText:
+            "سلنه د سل څخه یوه برخه ده. ۱٪ د ۱ له ۱۰۰ سره برابر دی. د سلنې ارزښت د ټول مقدار یوه برخه ده. اصلي مقدار ټول مقدار دی. سلنه ښيي چې یوه برخه څومره ده.",
+        exampleTitle: "💡 بېلګې",
+        exerciseTitle: "📝 ۳۰ تمرینونه",
+        finish: "✅ پایله",
+        restart: "🔄 بیا پیل",
+        back: "← ریاضي ته بېرته"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    localStorage.setItem("language", language);
+
+    const t = translations[language];
+
+    document.getElementById("subtitle").textContent =
+        t.subtitle;
+
+    document.getElementById("languageText").textContent =
+        t.language;
+
+    document.getElementById("title").textContent =
+        t.title;
+
+    document.getElementById("explanationTitle").textContent =
+        t.explanationTitle;
+
+    document.getElementById("explanationText").textContent =
+        t.explanationText;
+
+    document.getElementById("exampleTitle").textContent =
+        t.exampleTitle;
+
+    document.getElementById("exerciseTitle").textContent =
+        t.exerciseTitle;
+
+    document.getElementById("finishButton").textContent =
+        t.finish;
+
+    document.getElementById("restartButton").textContent =
+        t.restart;
+
+    document.getElementById("backButton").textContent =
+        t.back;
+
+    updateScore();
+}
+
+
+const savedLanguage =
+    localStorage.getItem("language") || "de";
+
+changeLanguage(savedLanguage);
+
+</script>
+
+</body>
+</html>
